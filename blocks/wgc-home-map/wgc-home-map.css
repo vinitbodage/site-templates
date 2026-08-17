@@ -45,8 +45,18 @@
   font-weight: 300;
 }
 
-.wgc-home-map .wgc-map-panel picture,
-.wgc-home-map .wgc-map-panel img:not(.wgc-map-pin img) {
+.wgc-home-map .wgc-map-pin {
+  display: none;
+}
+
+.wgc-home-map .wgc-map-pin picture,
+.wgc-home-map .wgc-map-pin img {
+  display: block;
+  width: 72px;
+  height: auto;
+}
+
+.wgc-home-map .wgc-map-panel picture img {
   display: block;
   width: 100%;
   max-width: 320px;
@@ -73,17 +83,6 @@
 .wgc-home-map .wgc-map-panel a.button:focus-visible {
   background-color: var(--wgc-paper);
   color: var(--wgc-ink);
-}
-
-.wgc-home-map .wgc-map-pin {
-  display: none;
-}
-
-.wgc-home-map .wgc-map-pin picture,
-.wgc-home-map .wgc-map-pin img {
-  display: block;
-  width: 72px;
-  height: auto;
 }
 
 @media (width >= 900px) {

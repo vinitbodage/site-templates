@@ -28,7 +28,9 @@
       "wgc-intro",
       "wgc-icons",
       "wgc-columns",
-      "wgc-gallery"
+      "wgc-gallery",
+      "wgc-home-room-dine-spa",
+      "wgc-home-map"
     ]
   },
   {
@@ -95,6 +97,12 @@
     "id": "wgc-gallery",
     "components": [
       "wgc-gallery-image"
+    ]
+  },
+  {
+    "id": "wgc-home-room-dine-spa",
+    "components": [
+      "wgc-rds-item"
     ]
   },
   {

@@ -472,6 +472,68 @@
           }
         },
         {
+          "title": "WGC Home Map",
+          "id": "wgc-home-map",
+          "model": "wgc-home-map",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div:nth-child(1)"
+                },
+                {
+                  "name": "pin",
+                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[src]"
+                },
+                {
+                  "name": "pinAlt",
+                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WGC Rooms Dining Spa",
+          "id": "wgc-home-room-dine-spa",
+          "model": "wgc-home-room-dine-spa",
+          "filter": "wgc-home-room-dine-spa",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "WGC Room Dining Spa Item",
+          "id": "wgc-rds-item",
+          "model": "wgc-rds-item",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "WGC Icon Strip",
           "id": "wgc-icons",
           "model": "wgc-icons",

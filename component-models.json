@@ -374,6 +374,65 @@
     ]
   },
   {
+    "id": "wgc-home-map",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading, inset hotel photo, body copy, and Explore call to action. Italicise the opening words of the heading for the lighter lead line."
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "pin",
+        "label": "Map Pin Image",
+        "description": "Optional pin graphic overlaid on the map background.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "pinAlt",
+        "label": "Map Pin Alt",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "wgc-home-room-dine-spa",
+    "fields": []
+  },
+  {
+    "id": "wgc-rds-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading and call to action. Italicise the opening words of the heading for the lighter lead line. Put the copy cell before the image cell to render copy above the image."
+      }
+    ]
+  },
+  {
     "id": "wgc-icons",
     "fields": []
   },
