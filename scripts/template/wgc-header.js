@@ -2,7 +2,8 @@
  * Wyndham Grand Clearwater header enhancements.
  *
  * Applied on top of the standard header block when the page uses the wgc
- * template. Adds scroll-state styling and promotes the Book Now action.
+ * template. Adds scroll-state styling and normalises the tools area so Book
+ * Now renders as a full-height teal bar instead of a boilerplate pill button.
  */
 
 const BOOK_URL = 'https://be-p2.synxis.com/?chain=5136&hotel=80554&src=SBE&theme=WY80554&config=WY80554';
@@ -20,31 +21,35 @@ function bindScrollState(header) {
 }
 
 /**
- * Ensures a Book Now call to action is present in the tools area.
+ * Strips boilerplate button classes from the tools area and marks Book Now.
  * @param {Element} nav the decorated nav element
  */
-function ensureBookNow(nav) {
+function normalizeTools(nav) {
   const tools = nav.querySelector('.nav-tools');
   if (!tools) return;
 
-  const existing = tools.querySelector('a[href*="synxis"], .wgc-book-now');
-  if (existing) {
-    existing.classList.add('wgc-book-now', 'button', 'primary');
-    const container = existing.closest('.button-container') || existing.parentElement;
-    if (container) container.classList.add('wgc-book-wrap');
-    return;
+  tools.querySelectorAll('a.button').forEach((link) => {
+    link.classList.remove('button', 'primary', 'secondary');
+    const container = link.closest('.button-container');
+    if (container) container.classList.remove('button-container');
+  });
+
+  let bookLink = tools.querySelector('a[href*="synxis"], .wgc-book-now');
+  if (!bookLink) {
+    const wrap = document.createElement('p');
+    wrap.className = 'wgc-book-wrap';
+    bookLink = document.createElement('a');
+    bookLink.href = BOOK_URL;
+    bookLink.textContent = 'Book Now';
+    bookLink.setAttribute('target', '_blank');
+    bookLink.setAttribute('rel', 'noopener noreferrer');
+    wrap.append(bookLink);
+    tools.append(wrap);
   }
 
-  const wrap = document.createElement('p');
-  wrap.className = 'button-container wgc-book-wrap';
-  const link = document.createElement('a');
-  link.href = BOOK_URL;
-  link.textContent = 'Book Now';
-  link.className = 'button primary wgc-book-now';
-  link.setAttribute('target', '_blank');
-  link.setAttribute('rel', 'noopener noreferrer');
-  wrap.append(link);
-  tools.append(wrap);
+  bookLink.classList.add('wgc-book-now');
+  const bookWrap = bookLink.closest('p') || bookLink.parentElement;
+  if (bookWrap) bookWrap.classList.add('wgc-book-wrap');
 }
 
 /**
@@ -59,6 +64,6 @@ export default function decorateWgcHeader(block) {
   const nav = block.querySelector('nav');
   if (!nav) return;
 
-  ensureBookNow(nav);
+  normalizeTools(nav);
   bindScrollState(header);
 }
