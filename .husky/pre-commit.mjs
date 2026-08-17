@@ -3,8 +3,14 @@ import { exec } from "node:child_process";
 const run = (cmd) => new Promise((resolve, reject) => exec(
   cmd,
   (error, stdout, stderr) => {
-    if (error) reject();
-    if (stderr) reject(stderr);
+    // Tools like npm and git write informational warnings to stderr even on
+    // success (e.g. npm's env-config notices, git's CRLF conversion notes),
+    // so only a non-zero exit actually fails the hook.
+    if (error) {
+      reject(stderr || error);
+      return;
+    }
+    if (stderr) console.warn(stderr);
     resolve(stdout);
   }
 ));

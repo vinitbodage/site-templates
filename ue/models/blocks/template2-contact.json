@@ -1,0 +1,43 @@
+{
+  "definitions": [
+    {
+      "title": "Template2 Contact",
+      "id": "template2-contact",
+      "model": "template2-contact",
+      "plugins": {
+        "da": {
+          "rows": 2,
+          "columns": 1,
+          "fields": [
+            { "name": "details", "selector": "div:nth-child(1)>div" },
+            { "name": "map", "selector": "div:nth-child(2)>div" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "template2-contact",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "details",
+          "value": "",
+          "label": "Contact Details",
+          "description": "Heading plus address, phone, email, and hours. A contact form is added automatically."
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "map",
+          "value": "",
+          "label": "Map",
+          "description": "Paste a Google Maps embed link, or add a static map image instead."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

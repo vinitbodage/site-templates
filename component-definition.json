@@ -347,6 +347,151 @@
           }
         },
         {
+          "title": "Template2 Contact",
+          "id": "template2-contact",
+          "model": "template2-contact",
+          "plugins": {
+            "da": {
+              "rows": 2,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "details",
+                  "selector": "div:nth-child(1)>div"
+                },
+                {
+                  "name": "map",
+                  "selector": "div:nth-child(2)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Template2 Hero",
+          "id": "template2-hero",
+          "model": "template2-hero",
+          "plugins": {
+            "da": {
+              "rows": 2,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>div>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>div>picture>img[alt]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(2)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Template2 Icon Strip",
+          "id": "template2-icons",
+          "model": "template2-icons",
+          "filter": "template2-icons",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "Template2 Icon",
+          "id": "template2-icon",
+          "model": "template2-icon",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "icon",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "iconAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "label",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Template2 Intro",
+          "id": "template2-intro",
+          "model": "template2-intro",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Template2 Services",
+          "id": "template2-services",
+          "model": "template2-services",
+          "filter": "template2-services",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "Template2 Service",
+          "id": "template2-service",
+          "model": "template2-service",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Video",
           "id": "video",
           "model": "video",

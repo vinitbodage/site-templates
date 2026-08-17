@@ -1,0 +1,206 @@
+/*
+ * "Template2" hotel-business template theme.
+ *
+ * Loaded by scripts.js for pages whose `template` metadata is `template2`, so
+ * the tokens below never reach pages built on other templates. Blocks in this
+ * template read these custom properties instead of hardcoding brand values.
+ *
+ * Poppins/Inter are the brand typefaces; they are listed first so they are
+ * used where available and fall back to the project fonts rather than adding
+ * a render-blocking webfont request.
+ */
+
+@import url('./template2-header.css');
+
+body.template2 {
+  /* brand palette */
+  --t2-navy: #16273e;
+  --t2-navy-dark: #0d1826;
+  --t2-amber: #e0a458;
+  --t2-amber-dark: #c98a34;
+  --t2-ink: #23262b;
+  --t2-paper: #fff;
+  --t2-sand: #f4f1ea;
+  --t2-overlay: rgb(13 24 38 / 50%);
+
+  /* typography */
+  --t2-font-heading: poppins, var(--heading-font-family);
+  --t2-font-body: inter, var(--body-font-family);
+  --t2-tracking-wide: 0.06em;
+
+  /* rhythm */
+  --t2-gap: 24px;
+  --t2-section-padding: 48px;
+  --t2-rule-width: 64px;
+  --t2-max-width: 1240px;
+
+  background-color: var(--t2-paper);
+  color: var(--t2-ink);
+  font-family: var(--t2-font-body);
+}
+
+@media (width >= 900px) {
+  body.template2 {
+    --t2-gap: 32px;
+    --t2-section-padding: 96px;
+  }
+}
+
+/* headings carry the brand navy and an amber accent rule */
+body.template2 main h1,
+body.template2 main h2,
+body.template2 main h3 {
+  font-family: var(--t2-font-heading);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+body.template2 main h2 {
+  color: var(--t2-navy);
+  text-align: center;
+}
+
+/* the accent rule under a heading, opt in per block */
+body.template2 .template2-rule {
+  position: relative;
+  padding-bottom: 22px;
+}
+
+body.template2 .template2-rule::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: var(--t2-rule-width);
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--t2-amber);
+  content: '';
+}
+
+body.template2 .template2-rule-centered::after {
+  right: 0;
+  margin: 0 auto;
+}
+
+body.template2 .template2-rule-light::after {
+  background-color: var(--t2-paper);
+}
+
+/*
+ * The lead half of a two-tone headline. Authors italicise the first words and
+ * the template blocks convert that run into this span.
+ */
+body.template2 .template2-headline-lead {
+  display: block;
+  color: var(--t2-amber);
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* buttons: filled amber pill, inverting to navy on hover */
+body.template2 main .button-container {
+  margin-top: 1.5em;
+}
+
+body.template2 main a.button:any-link {
+  border: 2px solid var(--t2-amber);
+  border-radius: 999px;
+  padding: 0.8em 2.2em;
+  background-color: var(--t2-amber);
+  color: var(--t2-navy-dark);
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  letter-spacing: var(--t2-tracking-wide);
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body.template2 main a.button:hover,
+body.template2 main a.button:focus-visible {
+  border-color: var(--t2-navy);
+  background-color: var(--t2-navy);
+  color: var(--t2-paper);
+  text-decoration: none;
+}
+
+body.template2 main a.button.secondary:any-link {
+  background-color: transparent;
+  color: var(--t2-paper);
+}
+
+body.template2 main a.button.secondary:hover,
+body.template2 main a.button.secondary:focus-visible {
+  background-color: var(--t2-paper);
+  border-color: var(--t2-paper);
+  color: var(--t2-navy-dark);
+}
+
+/* full-bleed sections opt out of the boilerplate content gutter */
+body.template2 main > .section.full-bleed > div {
+  max-width: none;
+  padding: 0;
+}
+
+/* soft alternate section background for rhythm between full-bleed blocks */
+body.template2 main > .section.tinted {
+  background-color: var(--t2-sand);
+}
+
+/* footer */
+body.template2 footer .footer {
+  background-color: var(--t2-navy-dark);
+  color: rgb(255 255 255 / 75%);
+}
+
+body.template2 footer .footer > .section {
+  display: grid;
+  gap: 32px;
+  max-width: var(--t2-max-width);
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+body.template2 footer .footer > .section:last-child {
+  border-top: 1px solid rgb(255 255 255 / 12%);
+  padding-block: 20px;
+  font-size: var(--body-font-size-xs);
+  text-align: center;
+}
+
+body.template2 footer .footer h3 {
+  margin: 0 0 14px;
+  color: var(--t2-paper);
+  font-family: var(--t2-font-heading);
+  font-size: var(--body-font-size-m);
+}
+
+body.template2 footer .footer p {
+  margin: 0 0 8px;
+}
+
+body.template2 footer .footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.template2 footer .footer li {
+  margin-bottom: 8px;
+}
+
+body.template2 footer .footer a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+body.template2 footer .footer a:hover {
+  color: var(--t2-amber);
+  text-decoration: underline;
+}
+
+@media (width >= 600px) {
+  body.template2 footer .footer > .section:first-child {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

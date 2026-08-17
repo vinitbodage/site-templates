@@ -1,4 +1,4 @@
-import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
+import { fetchPlaceholders, getMetadata, toClassName } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -176,8 +176,9 @@ async function buildBreadcrumbs() {
  */
 export default async function decorate(block) {
   // load nav as fragment
+  const template = toClassName(getMetadata('template'));
   const navMeta = getMetadata('nav');
-  const defaultNav = document.body.classList.contains('wgc') ? '/template1/nav' : '/nav';
+  const defaultNav = template ? `/${template}/nav` : '/nav';
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
   const fragment = await loadFragment(navPath);
 
@@ -252,10 +253,14 @@ export default async function decorate(block) {
     navWrapper.append(await buildBreadcrumbs());
   }
 
-  if (document.body.classList.contains('wgc')) {
-    const { default: decorateWgcHeader } = await import(
-      `${window.hlx.codeBasePath}/scripts/template/wgc-header.js`
-    );
-    decorateWgcHeader(block);
+  if (template) {
+    try {
+      const { default: decorateTemplateHeader } = await import(
+        `${window.hlx.codeBasePath}/scripts/template/${template}-header.js`
+      );
+      decorateTemplateHeader(block);
+    } catch (e) {
+      // this template ships no header script of its own
+    }
   }
 }

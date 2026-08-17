@@ -1,0 +1,61 @@
+{
+  "definitions": [
+    {
+      "title": "Template2 Hero",
+      "id": "template2-hero",
+      "model": "template2-hero",
+      "plugins": {
+        "da": {
+          "rows": 2,
+          "columns": 1,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>div>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>div>picture>img[alt]" },
+            { "name": "content", "selector": "div:nth-child(2)>div" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "template2-hero",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Background Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Background Image Alt",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Headline, optional intro copy, and an optional call to action. Italicise the opening words of the headline to render them as the amber lead line."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Size",
+          "value": "",
+          "options": [
+            { "name": "Full (home banner)", "value": "" },
+            { "name": "Compact (inner page header)", "value": "compact" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

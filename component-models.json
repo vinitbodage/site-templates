@@ -255,6 +255,178 @@
     ]
   },
   {
+    "id": "template2-contact",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "details",
+        "value": "",
+        "label": "Contact Details",
+        "description": "Heading plus address, phone, email, and hours. A contact form is added automatically."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "map",
+        "value": "",
+        "label": "Map",
+        "description": "Paste a Google Maps embed link, or add a static map image instead."
+      }
+    ]
+  },
+  {
+    "id": "template2-hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Background Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Background Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Headline, optional intro copy, and an optional call to action. Italicise the opening words of the headline to render them as the amber lead line."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Size",
+        "value": "",
+        "options": [
+          {
+            "name": "Full (home banner)",
+            "value": ""
+          },
+          {
+            "name": "Compact (inner page header)",
+            "value": "compact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "template2-icons",
+    "fields": []
+  },
+  {
+    "id": "template2-icon",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "description": "SVG or small raster image. SVGs are delivered untouched.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "iconAlt",
+        "label": "Icon Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "label",
+        "value": "",
+        "label": "Label",
+        "description": "Short benefit or amenity label. Add a link to make the item clickable."
+      }
+    ]
+  },
+  {
+    "id": "template2-intro",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading, body copy, and an optional call to action. Italicise the opening words of the heading to render them as the amber lead line."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Image Position",
+        "value": "",
+        "options": [
+          {
+            "name": "Image left",
+            "value": ""
+          },
+          {
+            "name": "Image right",
+            "value": "image-right"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "template2-services",
+    "fields": []
+  },
+  {
+    "id": "template2-service",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Service heading, short description, and an optional 'Learn more' link."
+      }
+    ]
+  },
+  {
     "id": "video",
     "fields": [
       {

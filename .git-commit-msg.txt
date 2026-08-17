@@ -1,0 +1,10 @@
+Add template2 hotel theme with Home/About/Service/Contact blocks
+
+Introduces a new template2 template (distinct navy/amber palette) built on
+generic hero, intro, icon-strip, service-card, and contact blocks. Shared
+non-branded logic (row/cell parsing, image optimization, heading helpers)
+is extracted from wgc.js into scripts/template/shared.js and reused by both
+templates. header.js is generalized to resolve nav path and per-template
+header script from the page's template metadata instead of hardcoding wgc.
+Also fixes the pre-commit hook, which treated any stderr output (including
+harmless git/npm warnings) as a failure.

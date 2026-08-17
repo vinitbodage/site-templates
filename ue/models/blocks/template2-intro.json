@@ -1,0 +1,61 @@
+{
+  "definitions": [
+    {
+      "title": "Template2 Intro",
+      "id": "template2-intro",
+      "model": "template2-intro",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[alt]" },
+            { "name": "content", "selector": "div:nth-child(1)>div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "template2-intro",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Heading, body copy, and an optional call to action. Italicise the opening words of the heading to render them as the amber lead line."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Image Position",
+          "value": "",
+          "options": [
+            { "name": "Image left", "value": "" },
+            { "name": "Image right", "value": "image-right" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

@@ -1,5 +1,5 @@
 /*
- * Shared helpers for the Wyndham Grand Clearwater ("wgc") template blocks.
+ * Shared helpers for the "template2" hotel-business template blocks.
  *
  * These exist so the template blocks read the authored structure the same
  * way. Anything used by only one block stays in that block. Logic that isn't
@@ -12,4 +12,4 @@ export {
   getRows, getCells, isEmpty, optimizePicture,
 } from './shared.js';
 
-export const { splitHeading, addRule } = createHeadingHelpers('wgc');
+export const { splitHeading, addRule } = createHeadingHelpers('template2');

@@ -30,7 +30,12 @@
       "wgc-columns",
       "wgc-gallery",
       "wgc-home-room-dine-spa",
-      "wgc-home-map"
+      "wgc-home-map",
+      "template2-hero",
+      "template2-intro",
+      "template2-icons",
+      "template2-services",
+      "template2-contact"
     ]
   },
   {
@@ -85,6 +90,18 @@
     "id": "tabs",
     "components": [
       "tabs-item"
+    ]
+  },
+  {
+    "id": "template2-icons",
+    "components": [
+      "template2-icon"
+    ]
+  },
+  {
+    "id": "template2-services",
+    "components": [
+      "template2-service"
     ]
   },
   {
