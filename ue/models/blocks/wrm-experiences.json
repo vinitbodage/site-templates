@@ -1,0 +1,62 @@
+{
+  "definitions": [
+    {
+      "title": "WRM Experiences",
+      "id": "wrm-experiences",
+      "model": "wrm-experiences",
+      "filter": "wrm-experiences",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    },
+    {
+      "title": "WRM Experience",
+      "id": "wrm-experience",
+      "model": "wrm-experience",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "label", "selector": "div:nth-child(1)" },
+            { "name": "content", "selector": "div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrm-experiences",
+      "fields": []
+    },
+    {
+      "id": "wrm-experience",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "label",
+          "label": "Tab Label"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Image, heading, body copy, and call to action."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "wrm-experiences",
+      "components": ["wrm-experience"]
+    }
+  ]
+}

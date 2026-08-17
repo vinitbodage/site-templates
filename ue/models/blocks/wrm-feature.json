@@ -1,0 +1,47 @@
+{
+  "definitions": [
+    {
+      "title": "WRM Feature",
+      "id": "wrm-feature",
+      "model": "wrm-feature",
+      "plugins": {
+        "da": {
+          "rows": 2,
+          "columns": 1,
+          "fields": [
+            { "name": "content", "selector": "div:nth-child(1)>div" },
+            { "name": "image", "selector": "div:nth-child(2)>div>picture>img[src]" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrm-feature",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Heading, body copy, and call to action."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Style",
+          "value": "",
+          "options": [
+            { "name": "Light (arena background)", "value": "" },
+            { "name": "Dark (green background)", "value": "dark" },
+            { "name": "Image left", "value": "image-left" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

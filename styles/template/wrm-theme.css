@@ -1,0 +1,156 @@
+/*
+ * Wyndham Grand Rio Mar template theme.
+ *
+ * Loaded by scripts.js for pages whose `template` metadata is `wrm`.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Prata&display=swap');
+@import url('./wrm-header.css');
+
+body.wrm {
+  /* brand palette */
+  --wrm-green: #103429;
+  --wrm-green-deep: #072c1e;
+  --wrm-blue: #182c31;
+  --wrm-llano: #195365;
+  --wrm-arena: #f4eedd;
+  --wrm-gold: #dbc287;
+  --wrm-gray: #f9f8f6;
+  --wrm-ink: #111;
+  --wrm-paper: #fff;
+  --wrm-overlay: rgb(16 52 41 / 45%);
+
+  /* typography */
+  --wrm-font-body: montserrat, var(--body-font-family);
+  --wrm-font-display: prata, var(--heading-font-family);
+  --wrm-tracking-wide: 0.1em;
+  --wrm-tracking-tight: 0.02em;
+
+  /* rhythm */
+  --wrm-gap: 24px;
+  --wrm-section-padding: 4rem;
+  --wrm-rule-width: 80px;
+  --wrm-max-width: 80rem;
+
+  background-color: var(--wrm-paper);
+  color: var(--wrm-ink);
+  font-family: var(--wrm-font-body);
+}
+
+@media (width >= 900px) {
+  body.wrm {
+    --wrm-gap: 32px;
+    --wrm-section-padding: 5rem;
+  }
+}
+
+body.wrm main h1,
+body.wrm main h2,
+body.wrm main h3,
+body.wrm main h4 {
+  font-family: var(--wrm-font-display);
+  font-weight: 400;
+  letter-spacing: var(--wrm-tracking-tight);
+}
+
+body.wrm main h2 {
+  color: var(--wrm-ink);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.2;
+  text-align: center;
+}
+
+body.wrm .wrm-rule {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+body.wrm .wrm-rule::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: var(--wrm-rule-width);
+  height: 1px;
+  background-color: var(--wrm-gold);
+  content: '';
+}
+
+body.wrm .wrm-rule-centered::after {
+  right: 0;
+  margin: 0 auto;
+}
+
+body.wrm .wrm-rule-light::after {
+  background-color: var(--wrm-paper);
+}
+
+body.wrm .wrm-headline-lead {
+  display: block;
+  font-weight: 300;
+  font-style: normal;
+}
+
+body.wrm main .button-container {
+  margin-top: 1.5em;
+}
+
+body.wrm main a.button:any-link {
+  border: 1px solid var(--wrm-green);
+  border-radius: 0;
+  padding: 0.85em 2em;
+  background-color: transparent;
+  color: var(--wrm-ink);
+  font-family: var(--wrm-font-body);
+  font-size: var(--body-font-size-xs);
+  font-weight: 500;
+  letter-spacing: var(--wrm-tracking-wide);
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.wrm main a.button:hover,
+body.wrm main a.button:focus-visible {
+  background-color: var(--wrm-green);
+  color: var(--wrm-paper);
+  text-decoration: none;
+}
+
+body.wrm main a.button.primary:any-link,
+body.wrm main a.button.outline-green:any-link {
+  border-color: var(--wrm-green);
+  color: var(--wrm-ink);
+}
+
+body.wrm main a.button.primary:hover,
+body.wrm main a.button.outline-green:hover,
+body.wrm main a.button.primary:focus-visible,
+body.wrm main a.button.outline-green:focus-visible {
+  background-color: var(--wrm-green);
+  color: var(--wrm-paper);
+}
+
+body.wrm main a.button.outline-white:any-link {
+  border-color: var(--wrm-paper);
+  color: var(--wrm-paper);
+}
+
+body.wrm main a.button.outline-white:hover,
+body.wrm main a.button.outline-white:focus-visible {
+  background-color: var(--wrm-paper);
+  color: var(--wrm-green);
+}
+
+body.wrm main > .section.full-bleed > div {
+  max-width: none;
+  padding: 0;
+}
+
+body.wrm main > .section.highlight,
+body.wrm main > .section.gray {
+  background-color: var(--wrm-gray);
+}
+
+body.wrm main > .section.arena {
+  background-color: var(--wrm-arena);
+}

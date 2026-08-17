@@ -1,0 +1,40 @@
+.wrm-intro-split {
+  max-width: var(--wrm-max-width);
+  margin: 0 auto;
+  padding: var(--wrm-section-padding) 5%;
+}
+
+.wrm-intro-split > div {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.wrm-intro-split .wrm-intro-split-heading h1,
+.wrm-intro-split .wrm-intro-split-heading h2 {
+  margin: 0;
+  color: var(--wrm-ink);
+  font-family: var(--wrm-font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.wrm-intro-split .wrm-intro-split-copy p {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+  line-height: 1.8;
+}
+
+@media (width >= 900px) {
+  .wrm-intro-split > div {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+
+  .wrm-intro-split .wrm-intro-split-heading h1,
+  .wrm-intro-split .wrm-intro-split-heading h2 {
+    text-align: right;
+  }
+}

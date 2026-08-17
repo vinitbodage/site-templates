@@ -1,0 +1,71 @@
+{
+  "definitions": [
+    {
+      "title": "WRM Offers",
+      "id": "wrm-offers",
+      "model": "wrm-offers",
+      "filter": "wrm-offers",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    },
+    {
+      "title": "WRM Offer",
+      "id": "wrm-offer",
+      "model": "wrm-offer",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>picture>img[alt]" },
+            { "name": "content", "selector": "div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrm-offers",
+      "fields": []
+    },
+    {
+      "id": "wrm-offer",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Eyebrow, title, description, availability, and Reserve Now link."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "wrm-offers",
+      "components": ["wrm-offer"]
+    }
+  ]
+}

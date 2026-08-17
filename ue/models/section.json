@@ -28,6 +28,14 @@
             {
               "name": "Full Bleed",
               "value": "full-bleed"
+            },
+            {
+              "name": "Gray Background",
+              "value": "gray"
+            },
+            {
+              "name": "Arena Background",
+              "value": "arena"
             }
           ]
         }
@@ -60,7 +68,19 @@
         "wgc-columns",
         "wgc-gallery",
         "wgc-home-room-dine-spa",
-        "wgc-home-map"
+        "wgc-home-map",
+        "wrm-hero",
+        "wrm-intro-split",
+        "wrm-carousel",
+        "wrm-media-slider",
+        "wrm-section-header",
+        "wrm-cards",
+        "wrm-offers",
+        "wrm-feature",
+        "wrm-gallery",
+        "wrm-experiences",
+        "wrm-intro",
+        "wrm-newsletter"
       ]
     }
   ]

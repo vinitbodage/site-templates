@@ -30,7 +30,19 @@
       "wgc-columns",
       "wgc-gallery",
       "wgc-home-room-dine-spa",
-      "wgc-home-map"
+      "wgc-home-map",
+      "wrm-hero",
+      "wrm-intro-split",
+      "wrm-carousel",
+      "wrm-media-slider",
+      "wrm-section-header",
+      "wrm-cards",
+      "wrm-offers",
+      "wrm-feature",
+      "wrm-gallery",
+      "wrm-experiences",
+      "wrm-intro",
+      "wrm-newsletter"
     ]
   },
   {
@@ -109,6 +121,42 @@
     "id": "wgc-icons",
     "components": [
       "wgc-icon"
+    ]
+  },
+  {
+    "id": "wrm-cards",
+    "components": [
+      "wrm-card"
+    ]
+  },
+  {
+    "id": "wrm-carousel",
+    "components": [
+      "wrm-carousel-slide"
+    ]
+  },
+  {
+    "id": "wrm-experiences",
+    "components": [
+      "wrm-experience"
+    ]
+  },
+  {
+    "id": "wrm-gallery",
+    "components": [
+      "wrm-gallery-image"
+    ]
+  },
+  {
+    "id": "wrm-media-slider",
+    "components": [
+      "wrm-media-slide"
+    ]
+  },
+  {
+    "id": "wrm-offers",
+    "components": [
+      "wrm-offer"
     ]
   }
 ]

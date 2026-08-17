@@ -594,6 +594,334 @@
               ]
             }
           }
+        },
+        {
+          "title": "WRM Cards",
+          "id": "wrm-cards",
+          "model": "wrm-cards",
+          "filter": "wrm-cards",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "WRM Card",
+          "id": "wrm-card",
+          "model": "wrm-card",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WRM Carousel",
+          "id": "wrm-carousel",
+          "model": "wrm-carousel",
+          "filter": "wrm-carousel",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "WRM Carousel Slide",
+          "id": "wrm-carousel-slide",
+          "model": "wrm-carousel-slide",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WRM Experiences",
+          "id": "wrm-experiences",
+          "model": "wrm-experiences",
+          "filter": "wrm-experiences",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "WRM Experience",
+          "id": "wrm-experience",
+          "model": "wrm-experience",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "label",
+                  "selector": "div:nth-child(1)"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WRM Feature",
+          "id": "wrm-feature",
+          "model": "wrm-feature",
+          "plugins": {
+            "da": {
+              "rows": 2,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div"
+                },
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(2)>div>picture>img[src]"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WRM Gallery",
+          "id": "wrm-gallery",
+          "model": "wrm-gallery",
+          "filter": "wrm-gallery",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "WRM Gallery Image",
+          "id": "wrm-gallery-image",
+          "model": "wrm-gallery-image",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WRM Hero",
+          "id": "wrm-hero",
+          "model": "wrm-hero",
+          "plugins": {
+            "da": {
+              "rows": 2,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "media",
+                  "selector": "div:nth-child(1)>div"
+                },
+                {
+                  "name": "banner",
+                  "selector": "div:nth-child(2)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WRM Intro Split",
+          "id": "wrm-intro-split",
+          "model": "wrm-intro-split",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "heading",
+                  "selector": "div:nth-child(1)>div:nth-child(1)"
+                },
+                {
+                  "name": "copy",
+                  "selector": "div:nth-child(1)>div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WRM Intro",
+          "id": "wrm-intro",
+          "model": "wrm-intro",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WRM Media Slider",
+          "id": "wrm-media-slider",
+          "model": "wrm-media-slider",
+          "filter": "wrm-media-slider",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "WRM Media Slide",
+          "id": "wrm-media-slide",
+          "model": "wrm-media-slide",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WRM Newsletter",
+          "id": "wrm-newsletter",
+          "model": "wrm-newsletter",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WRM Offers",
+          "id": "wrm-offers",
+          "model": "wrm-offers",
+          "filter": "wrm-offers",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "WRM Offer",
+          "id": "wrm-offer",
+          "model": "wrm-offer",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WRM Section Header",
+          "id": "wrm-section-header",
+          "model": "wrm-section-header",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div"
+                }
+              ]
+            }
+          }
         }
       ]
     }

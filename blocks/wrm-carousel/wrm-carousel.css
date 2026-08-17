@@ -1,0 +1,82 @@
+.wrm-carousel {
+  position: relative;
+  max-width: var(--wrm-max-width);
+  margin: 0 auto;
+  padding: 0 5% var(--wrm-section-padding);
+}
+
+.wrm-carousel .wrm-carousel-viewport {
+  overflow: hidden;
+}
+
+.wrm-carousel .wrm-carousel-track {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: transform 0.5s ease;
+}
+
+.wrm-carousel .wrm-carousel-track > li {
+  flex: 0 0 100%;
+}
+
+.wrm-carousel picture,
+.wrm-carousel img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.wrm-carousel .wrm-carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.wrm-carousel .wrm-carousel-prev,
+.wrm-carousel .wrm-carousel-next {
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--wrm-paper);
+  color: var(--wrm-ink);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+}
+
+.wrm-carousel .wrm-carousel-prev:hover,
+.wrm-carousel .wrm-carousel-next:hover {
+  background: rgb(0 0 0 / 50%);
+  color: var(--wrm-paper);
+}
+
+.wrm-carousel .wrm-carousel-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.wrm-carousel .wrm-carousel-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+}
+
+.wrm-carousel .wrm-carousel-dot[aria-selected='true'] {
+  background: var(--wrm-green);
+}
+
+@media (width >= 900px) {
+  .wrm-carousel .wrm-carousel-track > li {
+    flex-basis: calc(85% - 0.5rem);
+  }
+}

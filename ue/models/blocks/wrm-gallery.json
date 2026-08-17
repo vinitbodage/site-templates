@@ -1,0 +1,62 @@
+{
+  "definitions": [
+    {
+      "title": "WRM Gallery",
+      "id": "wrm-gallery",
+      "model": "wrm-gallery",
+      "filter": "wrm-gallery",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1
+        }
+      }
+    },
+    {
+      "title": "WRM Gallery Image",
+      "id": "wrm-gallery-image",
+      "model": "wrm-gallery-image",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>picture>img[alt]" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrm-gallery",
+      "fields": []
+    },
+    {
+      "id": "wrm-gallery-image",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt",
+          "multi": false
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "wrm-gallery",
+      "components": ["wrm-gallery-image"]
+    }
+  ]
+}

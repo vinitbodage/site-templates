@@ -1,0 +1,34 @@
+{
+  "definitions": [
+    {
+      "title": "WRM Newsletter",
+      "id": "wrm-newsletter",
+      "model": "wrm-newsletter",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "content", "selector": "div:nth-child(1)>div" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrm-newsletter",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Heading, description, and email signup form."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

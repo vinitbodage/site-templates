@@ -1,0 +1,74 @@
+{
+  "definitions": [
+    {
+      "title": "WRM Media Slider",
+      "id": "wrm-media-slider",
+      "model": "wrm-media-slider",
+      "filter": "wrm-media-slider",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1
+        }
+      }
+    },
+    {
+      "title": "WRM Media Slide",
+      "id": "wrm-media-slide",
+      "model": "wrm-media-slide",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>picture>img[alt]" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrm-media-slider",
+      "fields": [
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Height",
+          "value": "",
+          "options": [
+            { "name": "Standard", "value": "" },
+            { "name": "Tall (suites)", "value": "tall" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wrm-media-slide",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt",
+          "multi": false
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "wrm-media-slider",
+      "components": ["wrm-media-slide"]
+    }
+  ]
+}

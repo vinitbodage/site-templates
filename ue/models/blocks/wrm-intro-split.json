@@ -1,0 +1,41 @@
+{
+  "definitions": [
+    {
+      "title": "WRM Intro Split",
+      "id": "wrm-intro-split",
+      "model": "wrm-intro-split",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "heading", "selector": "div:nth-child(1)>div:nth-child(1)" },
+            { "name": "copy", "selector": "div:nth-child(1)>div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrm-intro-split",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "heading",
+          "value": "",
+          "label": "Heading"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "copy",
+          "value": "",
+          "label": "Copy"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

@@ -175,7 +175,12 @@ async function buildBreadcrumbs() {
 export default async function decorate(block) {
   // load nav as fragment
   const navMeta = getMetadata('nav');
-  const defaultNav = document.body.classList.contains('wgc') ? '/template1/nav' : '/nav';
+  let defaultNav = '/nav';
+  if (document.body.classList.contains('wgc')) {
+    defaultNav = '/template1/nav';
+  } else if (document.body.classList.contains('wrm')) {
+    defaultNav = '/wyndhamriomar/nav';
+  }
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
   const fragment = await loadFragment(navPath);
 
@@ -249,5 +254,12 @@ export default async function decorate(block) {
       `${window.hlx.codeBasePath}/scripts/template/wgc-header.js`
     );
     decorateWgcHeader(block);
+  }
+
+  if (document.body.classList.contains('wrm')) {
+    const { default: decorateWrmHeader } = await import(
+      `${window.hlx.codeBasePath}/scripts/template/wrm-header.js`
+    );
+    decorateWrmHeader(block);
   }
 }

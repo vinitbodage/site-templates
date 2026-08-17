@@ -56,6 +56,14 @@
           {
             "name": "Full Bleed",
             "value": "full-bleed"
+          },
+          {
+            "name": "Gray Background",
+            "value": "gray"
+          },
+          {
+            "name": "Arena Background",
+            "value": "arena"
           }
         ]
       }
@@ -505,6 +513,328 @@
             "value": "image-right"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "wrm-cards",
+    "fields": []
+  },
+  {
+    "id": "wrm-card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Title, description, stats line, and explore link."
+      }
+    ]
+  },
+  {
+    "id": "wrm-carousel",
+    "fields": []
+  },
+  {
+    "id": "wrm-carousel-slide",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "wrm-experiences",
+    "fields": []
+  },
+  {
+    "id": "wrm-experience",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Tab Label"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Image, heading, body copy, and call to action."
+      }
+    ]
+  },
+  {
+    "id": "wrm-feature",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading, body copy, and call to action."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Style",
+        "value": "",
+        "options": [
+          {
+            "name": "Light (arena background)",
+            "value": ""
+          },
+          {
+            "name": "Dark (green background)",
+            "value": "dark"
+          },
+          {
+            "name": "Image left",
+            "value": "image-left"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wrm-gallery",
+    "fields": []
+  },
+  {
+    "id": "wrm-gallery-image",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "wrm-hero",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "video",
+        "label": "Background Video",
+        "description": "Vimeo or .mp4 link. Poster image is used as fallback."
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "poster",
+        "label": "Poster Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "banner",
+        "value": "",
+        "label": "Promo Banner",
+        "description": "Optional three-part banner: logo image, promo copy, and CTA button."
+      }
+    ]
+  },
+  {
+    "id": "wrm-intro-split",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "heading",
+        "value": "",
+        "label": "Heading"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "copy",
+        "value": "",
+        "label": "Copy"
+      }
+    ]
+  },
+  {
+    "id": "wrm-intro",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading, body copy, and optional call to action."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Image Position",
+        "value": "",
+        "options": [
+          {
+            "name": "Image left",
+            "value": ""
+          },
+          {
+            "name": "Image right",
+            "value": "image-right"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wrm-media-slider",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Height",
+        "value": "",
+        "options": [
+          {
+            "name": "Standard",
+            "value": ""
+          },
+          {
+            "name": "Tall (suites)",
+            "value": "tall"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wrm-media-slide",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "wrm-newsletter",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading, description, and email signup form."
+      }
+    ]
+  },
+  {
+    "id": "wrm-offers",
+    "fields": []
+  },
+  {
+    "id": "wrm-offer",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Eyebrow, title, description, availability, and Reserve Now link."
+      }
+    ]
+  },
+  {
+    "id": "wrm-section-header",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Section heading, body copy, and optional call to action."
       }
     ]
   }

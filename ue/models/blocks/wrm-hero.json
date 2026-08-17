@@ -1,0 +1,49 @@
+{
+  "definitions": [
+    {
+      "title": "WRM Hero",
+      "id": "wrm-hero",
+      "model": "wrm-hero",
+      "plugins": {
+        "da": {
+          "rows": 2,
+          "columns": 1,
+          "fields": [
+            { "name": "media", "selector": "div:nth-child(1)>div" },
+            { "name": "banner", "selector": "div:nth-child(2)>div" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrm-hero",
+      "fields": [
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "video",
+          "label": "Background Video",
+          "description": "Vimeo or .mp4 link. Poster image is used as fallback."
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "poster",
+          "label": "Poster Image",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "banner",
+          "value": "",
+          "label": "Promo Banner",
+          "description": "Optional three-part banner: logo image, promo copy, and CTA button."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

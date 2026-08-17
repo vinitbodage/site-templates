@@ -1,0 +1,48 @@
+.wrm-section-header {
+  max-width: var(--wrm-max-width);
+  margin: 0 auto;
+  padding: var(--wrm-section-padding) 5% 1.5rem;
+  text-align: center;
+}
+
+.wrm-section-header .wrm-section-header-inner h2 {
+  margin: 0 auto;
+  max-width: none;
+  color: var(--wrm-ink);
+  font-family: var(--wrm-font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.2;
+}
+
+.wrm-section-header .wrm-section-header-inner h3 {
+  margin: 0.75rem auto 0;
+  color: var(--wrm-ink);
+  font-family: var(--wrm-font-body);
+  font-size: var(--body-font-size-s);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wrm-section-header .wrm-section-header-inner p {
+  margin: 1.25em auto 0;
+  max-width: 52rem;
+  color: var(--wrm-ink);
+  font-size: var(--body-font-size-s);
+  line-height: 1.8;
+}
+
+.wrm-section-header .wrm-section-header-inner .button-container {
+  margin-top: 1.5rem;
+}
+
+.wrm-section-header .wrm-section-header-inner a.button:any-link {
+  border-color: var(--wrm-green);
+  color: var(--wrm-ink);
+}
+
+.wrm-section-header .wrm-section-header-inner a.button:hover,
+.wrm-section-header .wrm-section-header-inner a.button:focus-visible {
+  background-color: var(--wrm-green);
+  color: var(--wrm-paper);
+}

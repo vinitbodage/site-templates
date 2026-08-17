@@ -1,0 +1,71 @@
+{
+  "definitions": [
+    {
+      "title": "WRM Cards",
+      "id": "wrm-cards",
+      "model": "wrm-cards",
+      "filter": "wrm-cards",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    },
+    {
+      "title": "WRM Card",
+      "id": "wrm-card",
+      "model": "wrm-card",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>picture>img[alt]" },
+            { "name": "content", "selector": "div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrm-cards",
+      "fields": []
+    },
+    {
+      "id": "wrm-card",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Title, description, stats line, and explore link."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "wrm-cards",
+      "components": ["wrm-card"]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "definitions": [
+    {
+      "title": "WRM Section Header",
+      "id": "wrm-section-header",
+      "model": "wrm-section-header",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "content", "selector": "div:nth-child(1)>div" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrm-section-header",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Section heading, body copy, and optional call to action."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

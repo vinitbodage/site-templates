@@ -1,0 +1,62 @@
+{
+  "definitions": [
+    {
+      "title": "WRM Carousel",
+      "id": "wrm-carousel",
+      "model": "wrm-carousel",
+      "filter": "wrm-carousel",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1
+        }
+      }
+    },
+    {
+      "title": "WRM Carousel Slide",
+      "id": "wrm-carousel-slide",
+      "model": "wrm-carousel-slide",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>picture>img[alt]" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wrm-carousel",
+      "fields": []
+    },
+    {
+      "id": "wrm-carousel-slide",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt",
+          "multi": false
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "wrm-carousel",
+      "components": ["wrm-carousel-slide"]
+    }
+  ]
+}

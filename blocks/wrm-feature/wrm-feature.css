@@ -1,0 +1,113 @@
+.wrm-feature {
+  background-color: var(--wrm-arena);
+}
+
+.wrm-feature.dark {
+  background-color: var(--wrm-green);
+  color: var(--wrm-paper);
+}
+
+.wrm-feature .wrm-feature-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wrm-gap);
+  max-width: var(--wrm-max-width);
+  margin: 0 auto;
+  padding: var(--wrm-section-padding) 24px;
+}
+
+.wrm-feature .wrm-feature-copy {
+  flex: 1;
+}
+
+.wrm-feature .wrm-feature-copy h2,
+.wrm-feature .wrm-feature-copy h3 {
+  margin: 0 0 20px;
+  color: var(--wrm-green);
+  font-size: var(--heading-font-size-l);
+  text-align: left;
+  text-transform: none;
+}
+
+.wrm-feature.dark .wrm-feature-copy h2,
+.wrm-feature.dark .wrm-feature-copy h3 {
+  color: var(--wrm-paper);
+}
+
+.wrm-feature .wrm-feature-copy p {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+  line-height: 1.8;
+}
+
+.wrm-feature.dark .wrm-feature-copy p {
+  color: rgb(255 255 255 / 85%);
+}
+
+.wrm-feature .wrm-feature-copy .button-container {
+  margin-top: 24px;
+}
+
+.wrm-feature.dark .wrm-feature-copy a.button:any-link {
+  border-color: var(--wrm-paper);
+  color: var(--wrm-paper);
+}
+
+.wrm-feature.dark .wrm-feature-copy a.button:hover,
+.wrm-feature.dark .wrm-feature-copy a.button:focus-visible {
+  background-color: var(--wrm-paper);
+  color: var(--wrm-green);
+}
+
+.wrm-feature .wrm-feature-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wrm-feature .wrm-feature-gallery > li:first-child {
+  grid-column: span 2;
+}
+
+.wrm-feature .wrm-feature-gallery picture,
+.wrm-feature .wrm-feature-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.wrm-feature .wrm-feature-gallery > li:first-child picture,
+.wrm-feature .wrm-feature-gallery > li:first-child img {
+  aspect-ratio: 21 / 9;
+}
+
+@media (width >= 900px) {
+  .wrm-feature .wrm-feature-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: calc(var(--wrm-gap) * 2);
+    padding-inline: 32px;
+  }
+
+  .wrm-feature .wrm-feature-copy {
+    flex: 0 0 38%;
+  }
+
+  .wrm-feature .wrm-feature-gallery {
+    flex: 1;
+    gap: 16px;
+  }
+
+  .wrm-feature.image-left .wrm-feature-gallery {
+    order: -1;
+  }
+
+  .wrm-feature .wrm-feature-copy h2,
+  .wrm-feature .wrm-feature-copy h3 {
+    font-size: var(--heading-font-size-xl);
+  }
+}

@@ -1,0 +1,130 @@
+.wrm-offers {
+  position: relative;
+  max-width: var(--wrm-max-width);
+  margin: 0 auto;
+  padding: 0 5% var(--wrm-section-padding);
+}
+
+.wrm-offers .wrm-offers-track {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.wrm-offers .wrm-offers-track::-webkit-scrollbar {
+  display: none;
+}
+
+.wrm-offers .wrm-offers-list {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wrm-offers .wrm-offers-list > li {
+  flex: 0 0 min(22rem, 82vw);
+  scroll-snap-align: start;
+}
+
+.wrm-offers .wrm-offers-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrm-offers .wrm-offers-media picture,
+.wrm-offers .wrm-offers-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.wrm-offers .wrm-offers-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-top: 1rem;
+}
+
+.wrm-offers .wrm-offers-copy p:first-of-type {
+  margin: 0 0 0.5rem;
+  color: var(--wrm-ink);
+  font-size: var(--body-font-size-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wrm-offers .wrm-offers-copy h2,
+.wrm-offers .wrm-offers-copy h3,
+.wrm-offers .wrm-offers-copy h4 {
+  margin: 0 0 0.75rem;
+  font-family: var(--wrm-font-display);
+  font-size: var(--heading-font-size-s);
+  font-weight: 400;
+  text-align: left;
+}
+
+.wrm-offers .wrm-offers-copy p {
+  margin: 0;
+  font-size: var(--body-font-size-xs);
+  line-height: 1.7;
+}
+
+.wrm-offers .wrm-offers-copy em,
+.wrm-offers .wrm-offers-copy i {
+  font-style: italic;
+}
+
+.wrm-offers .wrm-offers-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  color: var(--wrm-green);
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wrm-offers .wrm-offers-action::after {
+  content: '›';
+  font-size: 1.1em;
+}
+
+.wrm-offers .wrm-offers-prev,
+.wrm-offers .wrm-offers-next {
+  position: absolute;
+  top: 42%;
+  z-index: 1;
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--wrm-paper);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.wrm-offers .wrm-offers-prev {
+  left: 1rem;
+}
+
+.wrm-offers .wrm-offers-next {
+  right: 1rem;
+}
+
+@media (width >= 900px) {
+  .wrm-offers .wrm-offers-list > li {
+    flex-basis: calc(25% - 1.125rem);
+  }
+}

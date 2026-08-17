@@ -1,0 +1,126 @@
+/* Wyndham Grand Rio Mar header — layered on the standard header block */
+
+body.wrm {
+  --wrm-header-height: 80px;
+  --header-height: var(--wrm-header-height);
+}
+
+body.wrm header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  width: 100%;
+}
+
+body.wrm header .nav-wrapper {
+  background: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.wrm header.wrm-header-scrolled .nav-wrapper {
+  background: var(--wrm-paper);
+  box-shadow: 0 2px 16px rgb(16 52 41 / 10%);
+}
+
+body.wrm header nav {
+  max-width: var(--wrm-max-width);
+  height: var(--wrm-header-height);
+  color: var(--wrm-paper);
+  font-size: var(--body-font-size-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+body.wrm header.wrm-header-scrolled nav {
+  color: var(--wrm-ink);
+}
+
+body.wrm header nav a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+body.wrm header nav a:any-link:hover {
+  color: var(--wrm-gold);
+  text-decoration: none;
+}
+
+body.wrm header .nav-brand img {
+  width: 180px;
+  max-width: 40vw;
+  height: auto;
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
+
+body.wrm header.wrm-header-scrolled .nav-brand img {
+  filter: none;
+}
+
+body.wrm header .nav-sections ul > li {
+  font-weight: 500;
+}
+
+body.wrm header .nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+body.wrm header .wrm-book-wrap {
+  margin: 0;
+}
+
+body.wrm header .wrm-book-now:any-link {
+  border: 0;
+  border-radius: 0;
+  padding: 0.85em 1.6em;
+  background-color: var(--wrm-green);
+  color: var(--wrm-paper);
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  letter-spacing: var(--wrm-tracking-wide);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+body.wrm header .wrm-book-now:hover,
+body.wrm header .wrm-book-now:focus-visible {
+  background-color: var(--wrm-green-deep);
+  color: var(--wrm-paper);
+}
+
+body.wrm header nav .nav-hamburger button {
+  background: transparent;
+  color: inherit;
+}
+
+@media (width >= 900px) {
+  body.wrm header .nav-sections ul {
+    gap: 12px;
+  }
+
+  body.wrm header .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
+    background-color: var(--wrm-green);
+    color: var(--wrm-paper);
+  }
+
+  body.wrm header .nav-sections .default-content-wrapper > ul > li > ul::before {
+    border-bottom-color: var(--wrm-green);
+  }
+
+  body.wrm header .nav-sections .default-content-wrapper > ul > li > ul a:any-link {
+    color: var(--wrm-paper);
+  }
+}
+
+@media (width < 900px) {
+  body.wrm header nav[aria-expanded='true'] {
+    background: var(--wrm-paper);
+    color: var(--wrm-ink);
+  }
+
+  body.wrm header nav[aria-expanded='true'] .nav-brand img {
+    filter: none;
+  }
+}

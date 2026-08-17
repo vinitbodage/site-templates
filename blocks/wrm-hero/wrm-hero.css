@@ -1,0 +1,144 @@
+.wrm-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 32rem;
+  overflow: hidden;
+  background-color: var(--wrm-blue);
+  color: var(--wrm-paper);
+}
+
+.wrm-hero .wrm-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.wrm-hero .wrm-hero-media::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(#0006, #0006);
+  content: '';
+  z-index: 1;
+  pointer-events: none;
+}
+
+.wrm-hero .wrm-hero-media picture,
+.wrm-hero .wrm-hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wrm-hero .wrm-hero-media iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.78vh;
+  min-width: 100%;
+  min-height: 100%;
+  height: 56.25vw;
+  border: 0;
+  transform: translate(-50%, -50%);
+}
+
+.wrm-hero .wrm-hero-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.wrm-hero .wrm-hero-media video[data-ready='true'] {
+  opacity: 1;
+}
+
+.wrm-hero .wrm-hero-banner {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 5.5rem;
+  left: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  width: 100%;
+  height: 6.25rem;
+  margin: 0 auto;
+  border: 1px solid var(--wrm-arena);
+  border-radius: 2px;
+  background-color: rgb(24 44 49 / 72%);
+}
+
+.wrm-hero .wrm-hero-banner-part {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.wrm-hero .wrm-hero-banner-part-1 picture,
+.wrm-hero .wrm-hero-banner-part-1 img {
+  display: block;
+  max-width: 12rem;
+  max-height: 4rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.wrm-hero .wrm-hero-banner-part-2 p {
+  margin: 0;
+  color: var(--wrm-paper);
+  font-size: var(--body-font-size-s);
+  line-height: 1.4;
+}
+
+.wrm-hero .wrm-hero-banner-part-3 .button-container {
+  margin: 0;
+}
+
+.wrm-hero .wrm-hero-banner a.button:any-link {
+  border-color: var(--wrm-paper);
+  color: var(--wrm-paper);
+}
+
+.wrm-hero .wrm-hero-banner a.button:hover,
+.wrm-hero .wrm-hero-banner a.button:focus-visible {
+  background-color: var(--wrm-paper);
+  color: var(--wrm-green);
+}
+
+@media (width < 900px) {
+  .wrm-hero {
+    height: 38rem;
+    margin-top: -5rem;
+  }
+
+  .wrm-hero .wrm-hero-banner {
+    bottom: 0;
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 6rem;
+  }
+
+  .wrm-hero .wrm-hero-banner-part {
+    padding: 0.75rem 1rem;
+  }
+
+  .wrm-hero .wrm-hero-banner-part-1 {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrm-hero .wrm-hero-media video,
+  .wrm-hero .wrm-hero-media iframe {
+    display: none;
+  }
+}
