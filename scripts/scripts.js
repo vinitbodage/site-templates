@@ -44,6 +44,20 @@ async function loadFonts() {
   }
 }
 
+/**
+ * Loads the stylesheet for the page's template, when the template ships one.
+ * Keeps template tokens out of pages built on a different template.
+ */
+async function loadTemplateStyles() {
+  const template = toClassName(getMetadata('template'));
+  if (!template) return;
+  try {
+    await loadCSS(`${window.hlx.codeBasePath}/styles/template/${template}-theme.css`);
+  } catch (e) {
+    // this template ships no stylesheet of its own
+  }
+}
+
 function autolinkModals(doc) {
   doc.addEventListener('click', async (e) => {
     const origin = e.target.closest('a');
@@ -61,7 +75,8 @@ function autolinkModals(doc) {
  */
 function buildAutoBlocks(main) {
   try {
-    if (!main.querySelector('.hero')) buildHeroBlock(main);
+    // template pages author their own hero, so only plain documents get one built
+    if (!main.querySelector('.hero, .wgc-hero')) buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -144,6 +159,7 @@ async function loadEager(doc) {
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     doc.body.dataset.breadcrumbs = true;
   }
+  await loadTemplateStyles();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);

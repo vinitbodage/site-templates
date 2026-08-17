@@ -1,0 +1,137 @@
+/*
+ * Wyndham Grand Clearwater Beach template theme.
+ *
+ * Loaded by scripts.js for pages whose `template` metadata is `wgc`, so the
+ * tokens below never reach pages built on other templates. Blocks in this
+ * template read these custom properties instead of hardcoding brand values.
+ *
+ * Montserrat is the brand typeface; it is listed first so it is used where
+ * available and falls back to the project fonts rather than adding a
+ * render-blocking webfont request.
+ */
+
+body.wgc {
+  /* brand palette */
+  --wgc-teal: #3d717f;
+  --wgc-teal-dark: #38525d;
+  --wgc-teal-muted: #56757e;
+  --wgc-gold: #d9b941;
+  --wgc-sand: #e8e0d3;
+  --wgc-ink: #282829;
+  --wgc-paper: #fff;
+  --wgc-overlay: rgb(40 40 41 / 35%);
+
+  /* typography */
+  --wgc-font-body: montserrat, var(--body-font-family);
+  --wgc-font-heading: montserrat, var(--heading-font-family);
+  --wgc-tracking-wide: 0.08em;
+
+  /* rhythm */
+  --wgc-gap: 24px;
+  --wgc-section-padding: 48px;
+  --wgc-rule-width: 135px;
+  --wgc-max-width: 1200px;
+
+  background-color: var(--wgc-paper);
+  color: var(--wgc-ink);
+  font-family: var(--wgc-font-body);
+}
+
+@media (width >= 900px) {
+  body.wgc {
+    --wgc-gap: 32px;
+    --wgc-section-padding: 80px;
+  }
+}
+
+/* headings carry the brand teal and a centred hairline rule */
+body.wgc main h1,
+body.wgc main h2,
+body.wgc main h3 {
+  font-family: var(--wgc-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+body.wgc main h2 {
+  color: var(--wgc-teal);
+  text-align: center;
+}
+
+/* the hairline rule under a heading, opt in per block */
+body.wgc .wgc-rule {
+  position: relative;
+  padding-bottom: 22px;
+}
+
+body.wgc .wgc-rule::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: var(--wgc-rule-width);
+  height: 1px;
+  background-color: var(--wgc-teal);
+  content: '';
+}
+
+body.wgc .wgc-rule-centered::after {
+  right: 0;
+  margin: 0 auto;
+}
+
+body.wgc .wgc-rule-light::after {
+  background-color: var(--wgc-paper);
+}
+
+/*
+ * The lead half of a two-tone headline. Authors italicise the first words and
+ * the template blocks convert that run into this span.
+ */
+body.wgc .wgc-headline-lead {
+  display: block;
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* buttons: outlined and uppercase, filling on hover */
+body.wgc main .button-container {
+  margin-top: 1.5em;
+}
+
+body.wgc main a.button:any-link {
+  border: 1px solid var(--wgc-teal);
+  border-radius: 0;
+  padding: 0.9em 2.2em;
+  background-color: transparent;
+  color: var(--wgc-teal);
+  font-size: var(--body-font-size-xs);
+  font-weight: 500;
+  letter-spacing: var(--wgc-tracking-wide);
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.wgc main a.button:hover,
+body.wgc main a.button:focus-visible {
+  background-color: var(--wgc-teal);
+  color: var(--wgc-paper);
+  text-decoration: none;
+}
+
+body.wgc main a.button.primary:any-link {
+  background-color: var(--wgc-teal);
+  color: var(--wgc-paper);
+  font-weight: 700;
+}
+
+body.wgc main a.button.primary:hover,
+body.wgc main a.button.primary:focus-visible {
+  background-color: var(--wgc-teal-dark);
+}
+
+/* full-bleed sections opt out of the boilerplate content gutter */
+body.wgc main > .section.full-bleed > div {
+  max-width: none;
+  padding: 0;
+}

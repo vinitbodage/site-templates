@@ -24,6 +24,10 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+            {
+              "name": "Full Bleed",
+              "value": "full-bleed"
             }
           ]
         }
@@ -49,7 +53,12 @@
         "table",
         "text",
         "video",
-        "product-recommendations"
+        "product-recommendations",
+        "wgc-hero",
+        "wgc-intro",
+        "wgc-icons",
+        "wgc-columns",
+        "wgc-gallery"
       ]
     }
   ]

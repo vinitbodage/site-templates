@@ -52,6 +52,10 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Full Bleed",
+            "value": "full-bleed"
           }
         ]
       }
@@ -277,6 +281,171 @@
         "name": "posterImage",
         "label": "Poster Image",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wgc-columns",
+    "fields": []
+  },
+  {
+    "id": "wgc-column",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "body",
+        "value": "",
+        "label": "Body",
+        "description": "Column heading, copy, and an optional call to action."
+      }
+    ]
+  },
+  {
+    "id": "wgc-gallery",
+    "fields": []
+  },
+  {
+    "id": "wgc-gallery-image",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "wgc-hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Background Image",
+        "description": "Still image behind the headline. Also used as the video poster.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Background Image Alt",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "video",
+        "label": "Background Video (optional)",
+        "description": "Link to an .mp4 or .webm. Fades in over the image once it can play."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Headline, optional intro copy, and an optional call to action. Italicise the opening words of the headline to render them as the lighter lead line."
+      }
+    ]
+  },
+  {
+    "id": "wgc-icons",
+    "fields": []
+  },
+  {
+    "id": "wgc-icon",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "description": "SVG or small raster image. SVGs are delivered untouched.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "iconAlt",
+        "label": "Icon Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "label",
+        "value": "",
+        "label": "Label",
+        "description": "Short benefit label. Add a link to make the benefit clickable."
+      }
+    ]
+  },
+  {
+    "id": "wgc-intro",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading, body copy, and an optional call to action. Italicise the opening words of the heading to render them as the lighter lead line."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Image Position",
+        "value": "",
+        "options": [
+          {
+            "name": "Image left",
+            "value": ""
+          },
+          {
+            "name": "Image right",
+            "value": "image-right"
+          }
+        ]
       }
     ]
   }

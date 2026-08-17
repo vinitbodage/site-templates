@@ -23,7 +23,12 @@
       "table",
       "text",
       "video",
-      "product-recommendations"
+      "product-recommendations",
+      "wgc-hero",
+      "wgc-intro",
+      "wgc-icons",
+      "wgc-columns",
+      "wgc-gallery"
     ]
   },
   {
@@ -78,6 +83,24 @@
     "id": "tabs",
     "components": [
       "tabs-item"
+    ]
+  },
+  {
+    "id": "wgc-columns",
+    "components": [
+      "wgc-column"
+    ]
+  },
+  {
+    "id": "wgc-gallery",
+    "components": [
+      "wgc-gallery-image"
+    ]
+  },
+  {
+    "id": "wgc-icons",
+    "components": [
+      "wgc-icon"
     ]
   }
 ]
