@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { getMetadata, toClassName } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 /**
@@ -17,4 +17,16 @@ export default async function decorate(block) {
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
   block.append(footer);
+
+  const template = toClassName(getMetadata('template'));
+  if (template) {
+    try {
+      const { default: decorateTemplateFooter } = await import(
+        `${window.hlx.codeBasePath}/scripts/template/${template}-footer.js`
+      );
+      decorateTemplateFooter(block);
+    } catch (e) {
+      // this template ships no footer script of its own
+    }
+  }
 }
