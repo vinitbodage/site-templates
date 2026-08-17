@@ -16,6 +16,7 @@ import {
   toClassName,
   toCamelCase,
 } from './aem.js';
+import { initThemeOption } from './template/wgc-theme.js';
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -160,6 +161,7 @@ async function loadEager(doc) {
     doc.body.dataset.breadcrumbs = true;
   }
   await loadTemplateStyles();
+  await initThemeOption();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
