@@ -175,7 +175,8 @@ async function buildBreadcrumbs() {
 export default async function decorate(block) {
   // load nav as fragment
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  const defaultNav = document.body.classList.contains('wgc') ? '/template1/nav' : '/nav';
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
@@ -239,5 +240,12 @@ export default async function decorate(block) {
 
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     navWrapper.append(await buildBreadcrumbs());
+  }
+
+  if (document.body.classList.contains('wgc')) {
+    const { default: decorateWgcHeader } = await import(
+      `${window.hlx.codeBasePath}/scripts/template/wgc-header.js`
+    );
+    decorateWgcHeader(block);
   }
 }

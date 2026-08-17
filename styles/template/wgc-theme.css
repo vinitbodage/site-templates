@@ -135,3 +135,5 @@ body.wgc main > .section.full-bleed > div {
   max-width: none;
   padding: 0;
 }
+
+@import './wgc-header.css';
