@@ -75,8 +75,8 @@ function autolinkModals(doc) {
  */
 function buildAutoBlocks(main) {
   try {
-    // template pages author their own hero, so only plain documents get one built
-    if (!main.querySelector('.hero, .wgc-hero')) buildHeroBlock(main);
+    // template pages author their own hero/banner, so only plain documents get one built
+    if (!main.querySelector('.hero, .wgc-hero, .wgc-intro-container')) buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

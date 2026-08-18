@@ -373,6 +373,23 @@
           }
         },
         {
+          "title": "WGC Amenities",
+          "id": "wgc-amenities",
+          "model": "wgc-amenities",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "WGC Columns",
           "id": "wgc-columns",
           "model": "wgc-columns",
@@ -571,6 +588,23 @@
           }
         },
         {
+          "title": "WGC Intro Container",
+          "id": "wgc-intro-container",
+          "model": "wgc-intro-container",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "WGC Intro",
           "id": "wgc-intro",
           "model": "wgc-intro",
@@ -590,6 +624,56 @@
                 {
                   "name": "content",
                   "selector": "div:nth-child(1)>div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WGC Room",
+          "id": "wgc-room",
+          "model": "wgc-room",
+          "filter": "wgc-room",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "WGC Room Slide",
+          "id": "wgc-room-slide",
+          "model": "wgc-room-slide",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WGC Room Copy",
+          "id": "wgc-room-copy",
+          "model": "wgc-room-copy",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)"
                 }
               ]
             }

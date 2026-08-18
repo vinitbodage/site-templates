@@ -60,7 +60,10 @@
         "wgc-columns",
         "wgc-gallery",
         "wgc-home-room-dine-spa",
-        "wgc-home-map"
+        "wgc-home-map",
+        "wgc-intro-container",
+        "wgc-amenities",
+        "wgc-room"
       ]
     }
   ]
