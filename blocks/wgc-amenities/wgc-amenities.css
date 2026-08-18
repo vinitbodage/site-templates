@@ -1,0 +1,109 @@
+.wgc-amenities.details-container {
+  padding-block: calc(var(--wgc-section-padding) * 1.1);
+  background-color: var(--wgc-paper);
+}
+
+.wgc-amenities .container {
+  max-width: var(--wgc-max-width);
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+.wgc-amenities .wgc-amenities-layout {
+  display: grid;
+  gap: calc(var(--wgc-gap) * 1.5);
+  align-items: start;
+}
+
+.wgc-amenities .wgc-amenities-title h2,
+.wgc-amenities .wgc-amenities-title h3 {
+  margin: 0;
+  color: var(--wgc-gold);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.wgc-amenities .wgc-amenities-title .wgc-headline-lead {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--wgc-teal-muted);
+  font-size: clamp(0.68rem, 1.1vw, 0.82rem);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+}
+
+.wgc-amenities .wgc-amenities-title .wgc-headline-tail {
+  display: block;
+  color: var(--wgc-gold);
+}
+
+.wgc-amenities .wgc-amenities-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  columns: 1;
+  column-gap: calc(var(--wgc-gap) * 2);
+}
+
+.wgc-amenities .wgc-amenities-list li {
+  position: relative;
+  margin: 0 0 8px;
+  padding-left: 1rem;
+  break-inside: avoid;
+  color: var(--wgc-teal-muted);
+  font-size: var(--body-font-size-xs);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.wgc-amenities .wgc-amenities-list li::before {
+  position: absolute;
+  left: 0;
+  color: var(--wgc-gold);
+  font-size: 1.1em;
+  line-height: 1.35;
+  content: '\2022';
+}
+
+.wgc-amenities .wgc-amenities-list a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.wgc-amenities .wgc-amenities-list a:hover,
+.wgc-amenities .wgc-amenities-list a:focus-visible {
+  color: var(--wgc-teal);
+}
+
+@media (width >= 600px) {
+  .wgc-amenities .wgc-amenities-list {
+    columns: 2;
+  }
+}
+
+@media (width >= 900px) {
+  .wgc-amenities .container {
+    padding-inline: 32px;
+  }
+
+  .wgc-amenities .wgc-amenities-layout {
+    grid-template-columns: 5fr 7fr;
+    gap: calc(var(--wgc-gap) * 2.5);
+  }
+
+  .wgc-amenities .wgc-amenities-title h2,
+  .wgc-amenities .wgc-amenities-title h3 {
+    font-size: 1.85rem;
+    letter-spacing: 0.14em;
+  }
+
+  .wgc-amenities .wgc-amenities-list li {
+    font-size: var(--body-font-size-s);
+  }
+}

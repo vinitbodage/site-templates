@@ -324,6 +324,19 @@
     ]
   },
   {
+    "id": "wgc-amenities",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Section heading and a bullet list of amenities."
+      }
+    ]
+  },
+  {
     "id": "wgc-columns",
     "fields": []
   },
@@ -504,6 +517,19 @@
     ]
   },
   {
+    "id": "wgc-intro-container",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Centered headline and intro copy. Use a span or italics for the lighter lead line in the headline."
+      }
+    ]
+  },
+  {
     "id": "wgc-intro",
     "fields": [
       {
@@ -544,6 +570,60 @@
             "value": "image-right"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "wgc-room",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Image Position",
+        "value": "",
+        "options": [
+          {
+            "name": "Image left",
+            "value": ""
+          },
+          {
+            "name": "Image right",
+            "value": "image-right"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wgc-room-slide",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "wgc-room-copy",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Room name, description, and an optional Book Now call to action."
       }
     ]
   }

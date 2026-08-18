@@ -2,11 +2,10 @@ import { exec } from "node:child_process";
 
 const run = (cmd) => new Promise((resolve, reject) => exec(
   cmd,
-  (error, stdout, stderr) => {
-    if (error) reject();
-    if (stderr) reject(stderr);
+  (error, stdout) => {
+    if (error) reject(error);
     resolve(stdout);
-  }
+  },
 ));
 
 const changeset = await run('git diff --cached --name-only --diff-filter=ACMR');
