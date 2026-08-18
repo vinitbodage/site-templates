@@ -33,6 +33,9 @@
       "wgc-home-map",
       "wgc-accordion",
       "wgc-media-mosaic",
+      "wgc-intro-container",
+      "wgc-amenities",
+      "wgc-room",
       "book-now-modal",
       "wgc-hotel-intro",
       "wgc-hotel-policies",
@@ -128,6 +131,13 @@
     "id": "wgc-icons",
     "components": [
       "wgc-icon"
+    ]
+  },
+  {
+    "id": "wgc-room",
+    "components": [
+      "wgc-room-slide",
+      "wgc-room-copy"
     ]
   }
 ]

@@ -249,7 +249,7 @@ body.wgc header .nav-tools p {
 }
 
 /* phone number — hidden on small screens like the source utility cluster */
-body.wgc header .nav-tools p:not(.wgc-book-wrap) {
+body.wgc header .nav-tools p:not(.wgc-book-wrap, .theme-option-wrap) {
   display: none;
   padding-right: 16px;
   font-size: var(--wgc-nav-link-size);
@@ -258,7 +258,7 @@ body.wgc header .nav-tools p:not(.wgc-book-wrap) {
 }
 
 @media (width >= 1100px) {
-  body.wgc header .nav-tools p:not(.wgc-book-wrap) {
+  body.wgc header .nav-tools p:not(.wgc-book-wrap, .theme-option-wrap) {
     display: flex;
   }
 }
@@ -278,7 +278,7 @@ body.wgc header .wgc-book-now:any-link {
   border: 0;
   border-radius: 0;
   padding: 0 24px;
-  background-color: var(--wgc-teal);
+  background-color: var(--wgc-cta, var(--wgc-teal));
   color: var(--wgc-paper);
   font-size: var(--wgc-nav-link-size);
   font-weight: 700;
@@ -291,7 +291,7 @@ body.wgc header .wgc-book-now:any-link {
 
 body.wgc header .wgc-book-now:hover,
 body.wgc header .wgc-book-now:focus-visible {
-  background-color: var(--wgc-teal-dark);
+  background-color: var(--wgc-cta-hover, var(--wgc-teal-dark));
   color: var(--wgc-paper);
   text-decoration: none;
 }

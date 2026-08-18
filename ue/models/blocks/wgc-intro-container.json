@@ -1,0 +1,34 @@
+{
+  "definitions": [
+    {
+      "title": "WGC Intro Container",
+      "id": "wgc-intro-container",
+      "model": "wgc-intro-container",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "content", "selector": "div:nth-child(1)>div" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wgc-intro-container",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Centered headline and intro copy. Use a span or italics for the lighter lead line in the headline."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
