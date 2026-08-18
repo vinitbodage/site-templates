@@ -95,6 +95,63 @@
           }
         },
         {
+          "title": "Book Now Modal",
+          "id": "book-now-modal",
+          "model": "book-now-modal",
+          "plugins": {
+            "da": {
+              "rows": 11,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "bookingUrl",
+                  "selector": "div:nth-child(1)>div>a[href]"
+                },
+                {
+                  "name": "title",
+                  "selector": "div:nth-child(2)>div"
+                },
+                {
+                  "name": "closeLabel",
+                  "selector": "div:nth-child(3)>div"
+                },
+                {
+                  "name": "checkInLabel",
+                  "selector": "div:nth-child(4)>div"
+                },
+                {
+                  "name": "checkOutLabel",
+                  "selector": "div:nth-child(5)>div"
+                },
+                {
+                  "name": "adultsLabel",
+                  "selector": "div:nth-child(6)>div"
+                },
+                {
+                  "name": "kidsLabel",
+                  "selector": "div:nth-child(7)>div"
+                },
+                {
+                  "name": "roomsLabel",
+                  "selector": "div:nth-child(8)>div"
+                },
+                {
+                  "name": "promoLabel",
+                  "selector": "div:nth-child(9)>div"
+                },
+                {
+                  "name": "submitLabel",
+                  "selector": "div:nth-child(10)>div"
+                },
+                {
+                  "name": "footerNote",
+                  "selector": "div:nth-child(11)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Cards",
           "id": "cards",
           "model": "cards",
@@ -527,6 +584,58 @@
                 },
                 {
                   "name": "content",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WGC Hotel Intro",
+          "id": "wgc-hotel-intro",
+          "model": "wgc-hotel-intro",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WGC Hotel Policies",
+          "id": "wgc-hotel-policies",
+          "model": "wgc-hotel-policies",
+          "filter": "wgc-hotel-policies",
+          "plugins": {
+            "da": {
+              "name": "wgc-hotel-policies",
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "Hotel Policy",
+          "id": "wgc-hotel-policy-item",
+          "model": "wgc-hotel-policy-item",
+          "plugins": {
+            "da": {
+              "name": "wgc-hotel-policy-item",
+              "rows": 2,
+              "columns": 0,
+              "fields": [
+                {
+                  "name": "title",
+                  "selector": "div:nth-child(1)"
+                },
+                {
+                  "name": "body",
                   "selector": "div:nth-child(2)"
                 }
               ]

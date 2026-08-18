@@ -1,0 +1,62 @@
+{
+  "definitions": [
+    {
+      "title": "WGC Hotel Policies",
+      "id": "wgc-hotel-policies",
+      "model": "wgc-hotel-policies",
+      "filter": "wgc-hotel-policies",
+      "plugins": {
+        "da": {
+          "name": "wgc-hotel-policies",
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    },
+    {
+      "title": "Hotel Policy",
+      "id": "wgc-hotel-policy-item",
+      "model": "wgc-hotel-policy-item",
+      "plugins": {
+        "da": {
+          "name": "wgc-hotel-policy-item",
+          "rows": 2,
+          "columns": 0,
+          "fields": [
+            { "name": "title", "selector": "div:nth-child(1)" },
+            { "name": "body", "selector": "div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wgc-hotel-policy-item",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "title",
+          "label": "Policy Title",
+          "required": true
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "body",
+          "label": "Policy Details",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "wgc-hotel-policies",
+      "components": [
+        "wgc-hotel-policy-item"
+      ]
+    }
+  ]
+}

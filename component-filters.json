@@ -30,7 +30,10 @@
       "wgc-columns",
       "wgc-gallery",
       "wgc-home-room-dine-spa",
-      "wgc-home-map"
+      "wgc-home-map",
+      "book-now-modal",
+      "wgc-hotel-intro",
+      "wgc-hotel-policies"
     ]
   },
   {
@@ -103,6 +106,12 @@
     "id": "wgc-home-room-dine-spa",
     "components": [
       "wgc-rds-item"
+    ]
+  },
+  {
+    "id": "wgc-hotel-policies",
+    "components": [
+      "wgc-hotel-policy-item"
     ]
   },
   {
