@@ -45,12 +45,17 @@ export function isEmpty(cell) {
  * @param {Element} heading a heading element
  */
 export function splitHeading(heading) {
-  const em = heading && heading.querySelector('em, i');
-  if (!em) return;
-  const lead = document.createElement('span');
-  lead.className = 'wgc-headline-lead';
-  lead.append(...em.childNodes);
-  em.replaceWith(lead);
+  if (!heading) return;
+  const em = heading.querySelector('em, i');
+  if (em) {
+    const lead = document.createElement('span');
+    lead.className = 'wgc-headline-lead';
+    lead.append(...em.childNodes);
+    em.replaceWith(lead);
+    return;
+  }
+  const span = heading.querySelector(':scope > span');
+  if (span) span.classList.add('wgc-headline-lead');
 }
 
 /**
