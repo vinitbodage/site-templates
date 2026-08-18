@@ -54,7 +54,7 @@
   color: var(--wgc-gold);
 }
 
-.wgc-intro-container .heading-border-bottom_centered::after {
+.wgc-intro-container .heading-border-bottom-centered::after {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -74,7 +74,7 @@
   line-height: 1.85;
 }
 
-.wgc-intro-container .intro-container__bagde:empty {
+.wgc-intro-container .intro-container-badge:empty {
   display: none;
 }
 
