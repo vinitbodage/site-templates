@@ -14,11 +14,6 @@ body.theme-clearwater {
   --wgc-teal-dark: #38525d;
   --wgc-teal-muted: #56757e;
   --wgc-gold: #d9b941;
-  --wgc-button-bg: transparent;
-  --wgc-button-color: #3d717f;
-  --wgc-button-border: #3d717f;
-  --wgc-button-hover-bg: #3d717f;
-  --wgc-button-hover-color: #fff;
   --wgc-cta: #3d717f;
   --wgc-cta-hover: #38525d;
 }

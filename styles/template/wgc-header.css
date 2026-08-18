@@ -291,7 +291,7 @@ body.wgc header .wgc-book-now:any-link {
 
 body.wgc header .wgc-book-now:hover,
 body.wgc header .wgc-book-now:focus-visible {
-  background-color: var(--wgc-cta-hover, var(--wgc-teal-dark));
+  background-color: var(--wgc-cta-hover, var(--wgc-cta, var(--wgc-teal)));
   color: var(--wgc-paper);
   text-decoration: none;
 }

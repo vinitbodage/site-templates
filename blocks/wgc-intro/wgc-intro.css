@@ -16,7 +16,7 @@
 .wgc-intro .wgc-intro-copy h2,
 .wgc-intro .wgc-intro-copy h3 {
   margin-top: 0;
-  color: var(--wgc-teal);
+  color: var(--wgc-cta, var(--wgc-teal));
   font-size: var(--heading-font-size-l);
   text-align: left;
   text-transform: uppercase;
