@@ -256,6 +256,6 @@ export default async function decorate(block) {
     const { default: decorateWgcHeader } = await import(
       `${window.hlx.codeBasePath}/scripts/template/wgc-header.js`
     );
-    decorateWgcHeader(block);
+    await decorateWgcHeader(block);
   }
 }
