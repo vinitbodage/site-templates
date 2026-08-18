@@ -22,6 +22,32 @@
         "name": "robots",
         "label": "Robots",
         "description": "Index control via robots"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "theme-option",
+        "label": "Theme Option",
+        "description": "Site typography theme. Set this on the home page (Master Page) — other pages inherit it automatically unless they pick their own.",
+        "value": "",
+        "options": [
+          {
+            "name": "Inherit from Master Page",
+            "value": ""
+          },
+          {
+            "name": "Rio Mar",
+            "value": "riomar"
+          },
+          {
+            "name": "Grand Clearwater",
+            "value": "clearwater"
+          },
+          {
+            "name": "Ramada Jaipur",
+            "value": "ramada"
+          }
+        ]
       }
     ]
   },
@@ -325,6 +351,19 @@
         "name": "content",
         "label": "Content",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "theme-option",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Label",
+        "description": "Optional label shown above the theme swatches when placed manually in page content.",
+        "value": "Theme"
       }
     ]
   },

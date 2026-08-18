@@ -16,6 +16,9 @@ import {
   toClassName,
   toCamelCase,
 } from './aem.js';
+import { initThemeOption } from './template/wgc-theme.js';
+
+export const NX_ORIGIN = 'https://da.live/nx';
 
 /**
  * Promotes authored metadata block rows into head meta tags so template/theme
@@ -191,6 +194,7 @@ async function loadEager(doc) {
     doc.body.dataset.breadcrumbs = true;
   }
   await loadTemplateStyles();
+  await initThemeOption();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
@@ -282,5 +286,5 @@ loadPage();
 
   const exp = searchParams.get('daexperiment');
   // eslint-disable-next-line import/no-unresolved
-  if (exp) import('https://da.live/nx/public/plugins/exp/exp.js');
+  if (exp) import(`${NX_ORIGIN}/public/plugins/exp/exp.js`);
 }());
