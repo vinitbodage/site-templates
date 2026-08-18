@@ -8,8 +8,6 @@
 
 import { decorateBlock, loadBlock } from '../aem.js';
 
-const BOOK_URL = 'https://be-p2.synxis.com/?chain=5136&hotel=80554&src=SBE&theme=WY80554&config=WY80554';
-
 /**
  * Adds a solid background once the visitor scrolls past the hero.
  * @param {Element} header the page header element
