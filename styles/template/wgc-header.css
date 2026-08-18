@@ -51,19 +51,24 @@ body.wgc header.wgc-header-scrolled nav {
   color: var(--wgc-ink);
 }
 
-body.wgc header nav[aria-expanded='true'] {
-  display: grid;
-  grid-template:
-    'hamburger brand' var(--wgc-header-height)
-    'sections sections' 1fr
-    'tools tools' auto / auto 1fr;
-  align-items: center;
-  gap: 0;
-  min-height: 100dvh;
-  padding: 0 16px 24px;
-  overflow-y: auto;
-  background: var(--wgc-paper);
-  color: var(--wgc-ink);
+/* the boilerplate treats aria-expanded="true" as the default desktop state
+   (nav sections always visible), so the stacked mobile-menu layout must only
+   apply below the 900px breakpoint, when aria-expanded really means "open" */
+@media (width < 900px) {
+  body.wgc header nav[aria-expanded='true'] {
+    display: grid;
+    grid-template:
+      'hamburger brand' var(--wgc-header-height)
+      'sections sections' 1fr
+      'tools tools' auto / auto 1fr;
+    align-items: center;
+    gap: 0;
+    min-height: 100dvh;
+    padding: 0 16px 24px;
+    overflow-y: auto;
+    background: var(--wgc-paper);
+    color: var(--wgc-ink);
+  }
 }
 
 body.wgc header nav a:any-link {
@@ -82,21 +87,30 @@ body.wgc header .nav-brand {
   flex: 0 0 18%;
   align-items: center;
   max-width: 18%;
+  height: 100%;
   padding-left: 24px;
+  overflow: hidden;
 }
 
 body.wgc header .nav-brand img {
   display: block;
-  width: 100%;
+  width: auto;
   max-width: 220px;
   height: auto;
+  max-height: 44px;
   filter: brightness(0) invert(1);
   transition: filter 0.3s ease;
+  object-fit: contain;
 }
 
-body.wgc header.wgc-header-scrolled .nav-brand img,
-body.wgc header nav[aria-expanded='true'] .nav-brand img {
+body.wgc header.wgc-header-scrolled .nav-brand img {
   filter: none;
+}
+
+@media (width < 900px) {
+  body.wgc header nav[aria-expanded='true'] .nav-brand img {
+    filter: none;
+  }
 }
 
 /* primary navigation — centred white links */
@@ -114,12 +128,14 @@ body.wgc header .nav-sections {
   }
 }
 
-body.wgc header nav[aria-expanded='true'] .nav-sections {
-  grid-area: sections;
-  align-self: start;
-  width: 100%;
-  padding-top: 16px;
-  visibility: visible;
+@media (width < 900px) {
+  body.wgc header nav[aria-expanded='true'] .nav-sections {
+    grid-area: sections;
+    align-self: start;
+    width: 100%;
+    padding-top: 16px;
+    visibility: visible;
+  }
 }
 
 body.wgc header .nav-sections ul {
@@ -136,11 +152,13 @@ body.wgc header .nav-sections ul {
   white-space: nowrap;
 }
 
-body.wgc header nav[aria-expanded='true'] .nav-sections ul {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  white-space: normal;
+@media (width < 900px) {
+  body.wgc header nav[aria-expanded='true'] .nav-sections ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    white-space: normal;
+  }
 }
 
 body.wgc header .nav-sections .default-content-wrapper > ul > li {
@@ -213,13 +231,15 @@ body.wgc header .nav-tools {
   margin: 0;
 }
 
-body.wgc header nav[aria-expanded='true'] .nav-tools {
-  grid-area: tools;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 12px;
-  width: 100%;
-  padding-top: 16px;
+@media (width < 900px) {
+  body.wgc header nav[aria-expanded='true'] .nav-tools {
+    grid-area: tools;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    padding-top: 16px;
+  }
 }
 
 body.wgc header .nav-tools p {
@@ -276,9 +296,11 @@ body.wgc header .wgc-book-now:focus-visible {
   text-decoration: none;
 }
 
-body.wgc header nav[aria-expanded='true'] .wgc-book-now:any-link {
-  min-height: 48px;
-  width: 100%;
+@media (width < 900px) {
+  body.wgc header nav[aria-expanded='true'] .wgc-book-now:any-link {
+    min-height: 48px;
+    width: 100%;
+  }
 }
 
 /* hamburger */
@@ -312,7 +334,15 @@ body.wgc header nav .nav-hamburger button {
   }
 
   body.wgc header nav:not([aria-expanded='true']) .nav-tools {
+    flex: 0 0 auto;
     margin-left: auto;
+  }
+
+  /* keep the closed mobile bar compact so brand + tools never overflow */
+  body.wgc header nav:not([aria-expanded='true']) .wgc-book-now:any-link {
+    min-width: 0;
+    padding: 0 14px;
+    font-size: 10px;
   }
 }
 

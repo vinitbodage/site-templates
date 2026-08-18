@@ -204,6 +204,12 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+    // nav links authored as the sole content of a paragraph get auto-decorated
+    // as buttons; nav links should always render as plain text links
+    navSections.querySelectorAll('a.button').forEach((a) => {
+      a.classList.remove('button', 'primary', 'secondary');
+      a.closest('.button-container')?.classList.remove('button-container');
+    });
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
@@ -250,6 +256,6 @@ export default async function decorate(block) {
     const { default: decorateWgcHeader } = await import(
       `${window.hlx.codeBasePath}/scripts/template/wgc-header.js`
     );
-    decorateWgcHeader(block);
+    await decorateWgcHeader(block);
   }
 }

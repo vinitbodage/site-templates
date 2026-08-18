@@ -62,7 +62,11 @@
         "wgc-home-room-dine-spa",
         "wgc-home-map",
         "wgc-accordion",
-        "wgc-media-mosaic"
+        "wgc-media-mosaic",
+        "book-now-modal",
+        "wgc-hotel-intro",
+        "wgc-hotel-policies",
+        "theme-option"
       ]
     }
   ]
