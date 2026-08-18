@@ -1,0 +1,11 @@
+/*
+ * Ramada Jaipur typography theme — clean, practical sans-serif.
+ * Inspired by Ramada brand hotel pages; reuses project Roboto stack.
+ */
+
+body.theme-ramada {
+  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: roboto, roboto-fallback, sans-serif;
+  --wgc-font-heading: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --wgc-font-body: roboto, roboto-fallback, sans-serif;
+}

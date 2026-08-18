@@ -1,1 +1,4 @@
 helix-importer-ui
+# Plugin tests are linted from plugins/experimentation with their own node_modules.
+plugins/experimentation/tests/**
+plugins/experimentation/playwright.config.js
