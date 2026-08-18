@@ -1,0 +1,62 @@
+.wgc-hotel-intro {
+  padding-block: var(--wgc-section-padding);
+}
+
+.wgc-hotel-intro .wgc-hotel-intro-inner {
+  max-width: var(--wgc-max-width);
+  margin: 0 auto;
+  padding-inline: 24px;
+  text-align: center;
+}
+
+body.wgc main .wgc-hotel-intro h1 {
+  margin: 0 0 24px;
+  color: var(--wgc-teal);
+  font-family: var(--wgc-font-heading);
+  font-size: var(--heading-font-size-l);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-transform: none;
+}
+
+body.wgc main .wgc-hotel-intro p {
+  max-width: 48rem;
+  margin: 0 auto;
+  color: var(--wgc-ink);
+  font-family: var(--wgc-font-body);
+  font-size: var(--body-font-size-s);
+  line-height: 1.8;
+}
+
+.wgc-hotel-intro .button-container {
+  margin-top: 2em;
+}
+
+.wgc-hotel-intro a.button:any-link {
+  border-color: var(--wgc-teal);
+  color: var(--wgc-teal);
+}
+
+.wgc-hotel-intro a.button.primary:any-link {
+  background-color: var(--wgc-teal);
+  border-color: var(--wgc-teal);
+  color: var(--wgc-paper);
+}
+
+.wgc-hotel-intro a.button.primary:hover,
+.wgc-hotel-intro a.button.primary:focus-visible {
+  background-color: var(--wgc-teal-dark);
+  border-color: var(--wgc-teal-dark);
+  color: var(--wgc-paper);
+}
+
+@media (width >= 900px) {
+  .wgc-hotel-intro .wgc-hotel-intro-inner {
+    padding-inline: 32px;
+  }
+
+  body.wgc main .wgc-hotel-intro h1 {
+    font-size: var(--heading-font-size-xl);
+  }
+}

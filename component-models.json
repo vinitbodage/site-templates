@@ -109,6 +109,80 @@
     ]
   },
   {
+    "id": "book-now-modal",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "bookingUrl",
+        "label": "Booking Engine URL",
+        "description": "Base Synxis or booking engine URL. Form submission appends stay and guest parameters."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Modal Title",
+        "description": "Heading shown at the top of the booking form."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "closeLabel",
+        "label": "Close Button Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "checkInLabel",
+        "label": "Check-in Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "checkOutLabel",
+        "label": "Check-out Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "adultsLabel",
+        "label": "Adults Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "kidsLabel",
+        "label": "Kids Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "roomsLabel",
+        "label": "Rooms Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "promoLabel",
+        "label": "Promo Code Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "submitLabel",
+        "label": "Submit Button Label"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "footerNote",
+        "label": "Footer Note",
+        "description": "Optional links and text below the submit button."
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
@@ -481,6 +555,37 @@
         "value": "",
         "label": "Content",
         "description": "Heading and call to action. Italicise the opening words of the heading for the lighter lead line. Put the copy cell before the image cell to render copy above the image."
+      }
+    ]
+  },
+  {
+    "id": "wgc-hotel-intro",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "label": "Content",
+        "description": "Page headline, intro copy, and an optional Book Now button."
+      }
+    ]
+  },
+  {
+    "id": "wgc-hotel-policy-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "label": "Policy Title",
+        "required": true
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "body",
+        "label": "Policy Details",
+        "required": true
       }
     ]
   },

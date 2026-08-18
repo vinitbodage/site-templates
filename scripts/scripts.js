@@ -21,6 +21,36 @@ import { initThemeOption } from './template/wgc-theme.js';
 export const NX_ORIGIN = 'https://da.live/nx';
 
 /**
+ * Promotes authored metadata block rows into head meta tags so template/theme
+ * classes apply on draft and locally served pages (AEM Cloud injects these for
+ * published content).
+ * @param {Document} doc
+ */
+function hydratePageMetadata(doc) {
+  const metaBlock = doc.querySelector('main .metadata');
+  if (!metaBlock) return;
+
+  metaBlock.querySelectorAll(':scope > div').forEach((row) => {
+    const cells = [...row.querySelectorAll(':scope > div')];
+    if (cells.length < 2) return;
+    const name = cells[0].textContent.trim();
+    const content = cells[1].textContent.trim();
+    if (!name || !content) return;
+
+    const attr = name.includes(':') ? 'property' : 'name';
+    let meta = doc.head.querySelector(`meta[${attr}="${name}"]`);
+    if (!meta) {
+      meta = doc.createElement('meta');
+      meta.setAttribute(attr, name);
+      doc.head.append(meta);
+    }
+    meta.setAttribute('content', content);
+  });
+
+  metaBlock.closest('main > div')?.remove();
+}
+
+/**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
@@ -158,6 +188,7 @@ export function decorateMain(main) {
  */
 async function loadEager(doc) {
   doc.documentElement.lang = 'en';
+  hydratePageMetadata(doc);
   decorateTemplateAndTheme();
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     doc.body.dataset.breadcrumbs = true;
@@ -192,6 +223,13 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
+
+  if (doc.querySelector('.wgc-book-now, [data-book-now], .book-now-modal')) {
+    const { bindBookNowTriggers } = await import(
+      `${window.hlx.codeBasePath}/blocks/book-now-modal/book-now-modal.js`
+    );
+    bindBookNowTriggers(doc);
+  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
