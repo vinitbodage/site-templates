@@ -28,6 +28,15 @@ body.wgc {
   --wgc-font-heading: montserrat, var(--heading-font-family);
   --wgc-tracking-wide: 0.08em;
 
+  /* buttons — Clearwater default: teal outline on transparent */
+  --wgc-button-bg: transparent;
+  --wgc-button-color: var(--wgc-teal);
+  --wgc-button-border: var(--wgc-teal);
+  --wgc-button-hover-bg: var(--wgc-teal);
+  --wgc-button-hover-color: var(--wgc-paper);
+  --wgc-cta: var(--wgc-teal);
+  --wgc-cta-hover: var(--wgc-teal-dark);
+
   /* rhythm */
   --wgc-gap: 24px;
   --wgc-section-padding: 48px;
@@ -102,34 +111,36 @@ body.wgc main .button-container {
 }
 
 body.wgc main a.button:any-link {
-  border: 1px solid var(--wgc-teal);
+  border: 1px solid var(--wgc-button-border);
   border-radius: 0;
   padding: 0.9em 2.2em;
-  background-color: transparent;
-  color: var(--wgc-teal);
+  background-color: var(--wgc-button-bg);
+  color: var(--wgc-button-color);
   font-size: var(--body-font-size-xs);
   font-weight: 500;
   letter-spacing: var(--wgc-tracking-wide);
   text-transform: uppercase;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 body.wgc main a.button:hover,
 body.wgc main a.button:focus-visible {
-  background-color: var(--wgc-teal);
-  color: var(--wgc-paper);
+  background-color: var(--wgc-button-hover-bg);
+  color: var(--wgc-button-hover-color);
   text-decoration: none;
 }
 
 body.wgc main a.button.primary:any-link {
-  background-color: var(--wgc-teal);
+  border-color: var(--wgc-cta);
+  background-color: var(--wgc-cta);
   color: var(--wgc-paper);
   font-weight: 700;
 }
 
 body.wgc main a.button.primary:hover,
 body.wgc main a.button.primary:focus-visible {
-  background-color: var(--wgc-teal-dark);
+  border-color: var(--wgc-cta-hover);
+  background-color: var(--wgc-cta-hover);
 }
 
 /* full-bleed sections opt out of the boilerplate content gutter */
