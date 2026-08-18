@@ -165,3 +165,48 @@ body.wgc main > .section.full-bleed > div {
   padding: 0;
 }
 
+/*
+ * Columns "Split heading & list" variant: gold heading on the left, teal
+ * bulleted list on the right. Stacks below 900px via the default columns
+ * layout; this only restyles type, markers, and the desktop gutter.
+ */
+body.wgc main .columns.split-list > div > div:first-child > :first-child,
+body.wgc main .columns.split-list > div > div:first-child :is(h1, h2, h3, h4) {
+  margin: 0;
+  color: var(--wgc-gold);
+  font-family: var(--wgc-font-heading);
+  font-weight: 600;
+  letter-spacing: var(--wgc-tracking-wide);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+body.wgc main .columns.split-list > div {
+  gap: var(--wgc-gap);
+}
+
+body.wgc main .columns.split-list ul {
+  margin: 0;
+  padding-inline-start: 1.1em;
+  color: var(--wgc-teal);
+  font-size: var(--body-font-size-s);
+  line-height: 1.8;
+}
+
+body.wgc main .columns.split-list li::marker {
+  color: var(--wgc-gold);
+}
+
+@media (width >= 900px) {
+  body.wgc main .columns.split-list > div {
+    gap: calc(var(--wgc-gap) * 2);
+  }
+
+  body.wgc main .columns.split-list > div > div:first-child {
+    flex: 1 1 40%;
+  }
+
+  body.wgc main .columns.split-list > div > div:last-child {
+    flex: 1 1 50%;
+  }
+}

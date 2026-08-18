@@ -14,7 +14,7 @@ import { showSlide } from '../../blocks/carousel/carousel.js';
 import { moveInstrumentation } from './ue-utils.js';
 
 const setupObservers = () => {
-  const mutatingBlocks = document.querySelectorAll('div.cards, div.carousel, div.accordion');
+  const mutatingBlocks = document.querySelectorAll('div.cards, div.carousel, div.accordion, div.wgc-accordion');
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList' && mutation.target.tagName === 'DIV') {
@@ -52,6 +52,7 @@ const setupObservers = () => {
             }
             break;
           case 'accordion':
+          case 'wgc-accordion':
             if (addedElements.length === 1 && addedElements[0].tagName === 'DETAILS') {
               moveInstrumentation(removedElements[0], addedElements[0]);
               moveInstrumentation(removedElements[0].querySelector('div'), addedElements[0].querySelector('summary'));
@@ -113,11 +114,14 @@ const setupUEEventHandlers = () => {
 
         switch (block) {
           case 'accordion':
+          case 'wgc-accordion': {
             blockEl.querySelectorAll('details').forEach((details) => {
               details.open = false;
             });
-            element.open = true;
+            const item = element.tagName === 'DETAILS' ? element : element.closest('details');
+            if (item) item.open = true;
             break;
+          }
           case 'carousel':
             if (index) {
               showSlide(blockEl, index);

@@ -385,6 +385,68 @@
           }
         },
         {
+          "title": "WGC Accordion",
+          "id": "wgc-accordion",
+          "model": "wgc-accordion",
+          "filter": "wgc-accordion",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 3
+            }
+          }
+        },
+        {
+          "title": "WGC Accordion Heading",
+          "id": "wgc-accordion-heading",
+          "model": "wgc-accordion-heading",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "eyebrow",
+                  "selector": "div:nth-child(1)"
+                },
+                {
+                  "name": "heading",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WGC Accordion Item",
+          "id": "wgc-accordion-item",
+          "model": "wgc-accordion-item",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 3,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "title",
+                  "selector": "div:nth-child(2)"
+                },
+                {
+                  "name": "body",
+                  "selector": "div:nth-child(3)"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "WGC Amenities",
           "id": "wgc-amenities",
           "model": "wgc-amenities",
@@ -636,6 +698,47 @@
                 {
                   "name": "content",
                   "selector": "div:nth-child(1)>div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "WGC Media Mosaic",
+          "id": "wgc-media-mosaic",
+          "model": "wgc-media-mosaic",
+          "plugins": {
+            "da": {
+              "rows": 4,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "video",
+                  "selector": "div:nth-child(1)>div>p>a[href]"
+                },
+                {
+                  "name": "image1",
+                  "selector": "div:nth-child(2)>div>picture>img[src]"
+                },
+                {
+                  "name": "image1Alt",
+                  "selector": "div:nth-child(2)>div>picture>img[alt]"
+                },
+                {
+                  "name": "image2",
+                  "selector": "div:nth-child(3)>div>picture>img[src]"
+                },
+                {
+                  "name": "image2Alt",
+                  "selector": "div:nth-child(3)>div>picture>img[alt]"
+                },
+                {
+                  "name": "image3",
+                  "selector": "div:nth-child(4)>div>picture>img[src]"
+                },
+                {
+                  "name": "image3Alt",
+                  "selector": "div:nth-child(4)>div>picture>img[alt]"
                 }
               ]
             }
