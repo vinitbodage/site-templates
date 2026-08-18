@@ -46,6 +46,16 @@ main > .section.wgc-room-container {
   transition: opacity 0.45s ease;
 }
 
+.wgc-room .wgc-room-copy ul {
+  margin: 1.75em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wgc-room .wgc-room-copy > ul > li {
+  margin: 0;
+}
+
 .wgc-room .wgc-room-slider-track > li.is-active,
 .wgc-room .wgc-room-slider-track > li:only-child {
   opacity: 1;
@@ -66,6 +76,14 @@ main > .section.wgc-room-container {
   cursor: pointer;
   text-align: inherit;
   font: inherit;
+}
+
+.wgc-room-lightbox-panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 160px);
+  object-fit: contain;
 }
 
 .wgc-room .wgc-room-slider-track picture,
@@ -155,16 +173,6 @@ main > .section.wgc-room-container {
 
 .wgc-room .wgc-room-copy .button-container {
   margin-top: 1.75em;
-}
-
-.wgc-room .wgc-room-copy ul {
-  margin: 1.75em 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.wgc-room .wgc-room-copy ul li {
-  margin: 0;
 }
 
 /* reference-style scroll reveal: panels slide toward centre */
@@ -307,12 +315,4 @@ body.wgc-room-lightbox-open {
 
 .wgc-room-lightbox-close::after {
   transform: rotate(-45deg);
-}
-
-.wgc-room-lightbox-panel img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: calc(100dvh - 160px);
-  object-fit: contain;
 }
