@@ -1,0 +1,249 @@
+.wgc-media-mosaic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wgc-media-mosaic-item {
+  overflow: hidden;
+}
+
+.wgc-media-mosaic-tile {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wgc-media-mosaic-tile picture,
+.wgc-media-mosaic-tile img,
+.wgc-media-mosaic-tile video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.wgc-media-mosaic-item:first-child {
+  aspect-ratio: 3 / 4;
+}
+
+.wgc-media-mosaic-item:not(:first-child) {
+  aspect-ratio: 16 / 9;
+}
+
+.wgc-media-mosaic-open {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.wgc-media-mosaic-tile:has(.wgc-media-mosaic-open:hover) :is(img, video),
+.wgc-media-mosaic-tile:has(.wgc-media-mosaic-open:focus-visible) :is(img, video) {
+  transform: scale(1.04);
+}
+
+.wgc-media-mosaic-open:focus {
+  outline: none;
+}
+
+.wgc-media-mosaic-open:focus-visible {
+  outline: 2px solid var(--wgc-gold);
+  outline-offset: -2px;
+}
+
+.wgc-media-mosaic-dialog {
+  position: relative;
+  width: calc(100vw - 32px);
+  max-width: 1100px;
+  max-height: calc(100dvh - 48px);
+  padding: 40px 36px 28px;
+  border: 0;
+  background: var(--wgc-paper);
+}
+
+.wgc-media-mosaic-dialog::backdrop {
+  background-color: rgb(40 40 41 / 70%);
+}
+
+.wgc-media-mosaic-frame {
+  position: relative;
+}
+
+.wgc-media-mosaic-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: calc(100dvh - 140px);
+  overflow: hidden;
+}
+
+.wgc-media-mosaic-stage img,
+.wgc-media-mosaic-stage video {
+  display: block;
+  width: 100%;
+  max-height: calc(100dvh - 140px);
+  object-fit: contain;
+}
+
+.wgc-media-mosaic-dialog button {
+  max-width: none;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.wgc-media-mosaic-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--wgc-teal);
+}
+
+.wgc-media-mosaic-close span,
+.wgc-media-mosaic-close span::before,
+.wgc-media-mosaic-close span::after {
+  display: block;
+}
+
+.wgc-media-mosaic-close span::before,
+.wgc-media-mosaic-close span::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 2px;
+  background-color: var(--wgc-paper);
+  content: '';
+}
+
+.wgc-media-mosaic-close span::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.wgc-media-mosaic-close span::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.wgc-media-mosaic-prev,
+.wgc-media-mosaic-next {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  transform: translateY(-50%);
+}
+
+.wgc-media-mosaic-prev {
+  left: 8px;
+}
+
+.wgc-media-mosaic-next {
+  right: 8px;
+}
+
+.wgc-media-mosaic-prev::before,
+.wgc-media-mosaic-next::before {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 0 auto;
+  border-color: var(--wgc-paper);
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  filter: drop-shadow(0 1px 2px rgb(40 40 41 / 70%));
+  content: '';
+}
+
+.wgc-media-mosaic-prev::before {
+  transform: rotate(135deg);
+}
+
+.wgc-media-mosaic-next::before {
+  transform: rotate(-45deg);
+}
+
+.wgc-media-mosaic-close:focus-visible,
+.wgc-media-mosaic-prev:focus-visible,
+.wgc-media-mosaic-next:focus-visible {
+  outline: 2px solid var(--wgc-gold);
+  outline-offset: 2px;
+}
+
+@media (width >= 900px) {
+  .wgc-media-mosaic-list {
+    display: grid;
+    grid-template:
+      'video wide wide' 1fr
+      'video a    b' 1fr
+      / 2fr 1.5fr 1.5fr;
+    gap: 16px;
+    aspect-ratio: 2 / 1;
+    min-height: 420px;
+  }
+
+  .wgc-media-mosaic-item {
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+
+  .wgc-media-mosaic-item:nth-child(1) {
+    grid-area: video;
+  }
+
+  .wgc-media-mosaic-item:nth-child(2) {
+    grid-area: wide;
+  }
+
+  .wgc-media-mosaic-item:nth-child(3) {
+    grid-area: a;
+  }
+
+  .wgc-media-mosaic-item:nth-child(4) {
+    grid-area: b;
+  }
+
+  .wgc-media-mosaic-dialog {
+    width: calc(100vw - 64px);
+    padding: 48px 56px 36px;
+  }
+
+  .wgc-media-mosaic-prev {
+    left: 16px;
+  }
+
+  .wgc-media-mosaic-next {
+    right: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wgc-media-mosaic-tile picture,
+  .wgc-media-mosaic-tile img,
+  .wgc-media-mosaic-tile video {
+    transition: none;
+  }
+
+  .wgc-media-mosaic-tile:has(.wgc-media-mosaic-open:hover) :is(img, video),
+  .wgc-media-mosaic-tile:has(.wgc-media-mosaic-open:focus-visible) :is(img, video) {
+    transform: none;
+  }
+}

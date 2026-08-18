@@ -1,0 +1,85 @@
+{
+  "definitions": [
+    {
+      "title": "WGC Media Mosaic",
+      "id": "wgc-media-mosaic",
+      "model": "wgc-media-mosaic",
+      "plugins": {
+        "da": {
+          "rows": 4,
+          "columns": 1,
+          "fields": [
+            { "name": "video", "selector": "div:nth-child(1)>div>p>a[href]" },
+            { "name": "image1", "selector": "div:nth-child(2)>div>picture>img[src]" },
+            { "name": "image1Alt", "selector": "div:nth-child(2)>div>picture>img[alt]" },
+            { "name": "image2", "selector": "div:nth-child(3)>div>picture>img[src]" },
+            { "name": "image2Alt", "selector": "div:nth-child(3)>div>picture>img[alt]" },
+            { "name": "image3", "selector": "div:nth-child(4)>div>picture>img[src]" },
+            { "name": "image3Alt", "selector": "div:nth-child(4)>div>picture>img[alt]" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wgc-media-mosaic",
+      "fields": [
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "video",
+          "label": "Video",
+          "description": "Link to an .mp4 or .webm. Plays muted, looping, and inline in the tall left tile.",
+          "required": true
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image1",
+          "label": "Top image",
+          "multi": false,
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "image1Alt",
+          "label": "Top image alt",
+          "required": true
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image2",
+          "label": "Bottom-left image",
+          "multi": false,
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "image2Alt",
+          "label": "Bottom-left image alt",
+          "required": true
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image3",
+          "label": "Bottom-right image",
+          "multi": false,
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "image3Alt",
+          "label": "Bottom-right image alt",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

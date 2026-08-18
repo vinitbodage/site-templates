@@ -145,6 +145,24 @@
           "numberMin": 1,
           "numberMax": 6
         }
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Style",
+        "description": "Split heading & list: put a heading in the first cell and a bulleted list in the second. Cells stack on small screens.",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Split heading & list",
+            "value": "split-list"
+          }
+        ]
       }
     ]
   },
@@ -281,6 +299,66 @@
         "name": "posterImage",
         "label": "Poster Image",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "wgc-accordion",
+    "fields": []
+  },
+  {
+    "id": "wgc-accordion-heading",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "eyebrow",
+        "label": "Eyebrow",
+        "description": "Small line above the heading, e.g. Spa Services. CSS displays it in uppercase."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "heading",
+        "label": "Heading",
+        "description": "Main heading, e.g. At Pallavi Luxury Spa. CSS displays it in uppercase.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "wgc-accordion-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "description": "Label on the teal trigger bar, e.g. How To Spa.",
+        "required": true
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "body",
+        "value": "",
+        "label": "Body",
+        "description": "Content shown when this item is open. Use italics for the intro line and headings for sections such as Booking or Cancellations.",
+        "required": true
       }
     ]
   },
@@ -505,6 +583,64 @@
             "value": "image-right"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "wgc-media-mosaic",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "video",
+        "label": "Video",
+        "description": "Link to an .mp4 or .webm. Plays muted, looping, and inline in the tall left tile.",
+        "required": true
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image1",
+        "label": "Top image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "image1Alt",
+        "label": "Top image alt",
+        "required": true
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image2",
+        "label": "Bottom-left image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "image2Alt",
+        "label": "Bottom-left image alt",
+        "required": true
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image3",
+        "label": "Bottom-right image",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "image3Alt",
+        "label": "Bottom-right image alt",
+        "required": true
       }
     ]
   }

@@ -53,6 +53,24 @@
             "numberMin": 1,
             "numberMax": 6
           }
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Style",
+          "description": "Split heading & list: put a heading in the first cell and a bulleted list in the second. Cells stack on small screens.",
+          "value": "",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Split heading & list",
+              "value": "split-list"
+            }
+          ]
         }
       ]
     }
