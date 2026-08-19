@@ -31,6 +31,8 @@
       "wgc-gallery",
       "wgc-home-room-dine-spa",
       "wgc-home-map",
+      "wgc-accordion",
+      "wgc-media-mosaic",
       "wgc-intro-container",
       "wgc-amenities",
       "wgc-room",
@@ -103,6 +105,13 @@
     "id": "wgc-accolades",
     "components": [
       "wgc-accolade"
+    ]
+  },
+  {
+    "id": "wgc-accordion",
+    "components": [
+      "wgc-accordion-heading",
+      "wgc-accordion-item"
     ]
   },
   {
