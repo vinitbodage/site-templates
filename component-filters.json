@@ -34,6 +34,14 @@
       "wgc-intro-container",
       "wgc-amenities",
       "wgc-room",
+      "wgc-meetings-hero",
+      "wgc-meetings-intro",
+      "wgc-accolades",
+      "wgc-meeting-amenities",
+      "wgc-planning-tools",
+      "wgc-meeting-feature",
+      "wgc-meeting-testimonials",
+      "wgc-request-proposal",
       "theme-option"
     ]
   },
@@ -92,6 +100,12 @@
     ]
   },
   {
+    "id": "wgc-accolades",
+    "components": [
+      "wgc-accolade"
+    ]
+  },
+  {
     "id": "wgc-columns",
     "components": [
       "wgc-column"
@@ -113,6 +127,12 @@
     "id": "wgc-icons",
     "components": [
       "wgc-icon"
+    ]
+  },
+  {
+    "id": "wgc-meeting-testimonials",
+    "components": [
+      "wgc-meeting-testimonial"
     ]
   },
   {

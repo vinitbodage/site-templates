@@ -64,6 +64,14 @@
         "wgc-intro-container",
         "wgc-amenities",
         "wgc-room",
+        "wgc-meetings-hero",
+        "wgc-meetings-intro",
+        "wgc-accolades",
+        "wgc-meeting-amenities",
+        "wgc-planning-tools",
+        "wgc-meeting-feature",
+        "wgc-meeting-testimonials",
+        "wgc-request-proposal",
         "theme-option"
       ]
     }

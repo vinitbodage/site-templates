@@ -1,47 +1,17 @@
 import {
-  getRows, getCells, isEmpty, splitHeading, addRule, optimizePicture,
+  getRows, getCells, isEmpty, splitHeading, addRule, createSlider, optimizePicture,
 } from '../../scripts/template/wgc.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 
 const EXPAND_ICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.4 21.4" aria-hidden="true"><path d="M20.79,0H.61A.61.61,0,0,0,0,.61V15.89a.61.61,0,0,0,1.21,0V1.21h19v19H5.51a.61.61,0,1,0,0,1.21H20.79a.61.61,0,0,0,.61-.61V.61A.61.61,0,0,0,20.79,0Z"/><path d="M2.59,18.75a.63.63,0,0,0,.43.17.65.65,0,0,0,.43-.17L15.15,7v6.25a.61.61,0,1,0,1.21,0V5.58a.54.54,0,0,0,0-.22h0A.63.63,0,0,0,16,5h0a.59.59,0,0,0-.22,0H8A.61.61,0,0,0,8,6.18h6.25L2.59,17.89A.6.6,0,0,0,2.59,18.75Z"/></svg>';
 
 function bindSlider(media, track) {
-  const slides = [...track.children];
-  if (slides.length < 2) return;
-
-  let active = 0;
-  const dots = [];
-
-  const goTo = (index) => {
-    active = (index + slides.length) % slides.length;
-    slides.forEach((slide, idx) => {
-      slide.classList.toggle('is-active', idx === active);
-      slide.setAttribute('aria-hidden', idx !== active);
-    });
-    dots.forEach((dot, idx) => {
-      dot.classList.toggle('is-active', idx === active);
-      dot.setAttribute('aria-selected', idx === active ? 'true' : 'false');
-    });
-  };
-
-  const nav = document.createElement('div');
-  nav.className = 'wgc-room-slider-nav';
-  nav.setAttribute('role', 'tablist');
-  nav.setAttribute('aria-label', 'Room images');
-
-  slides.forEach((_, idx) => {
-    const dot = document.createElement('button');
-    dot.type = 'button';
-    dot.className = 'wgc-room-slider-dot';
-    dot.setAttribute('role', 'tab');
-    dot.setAttribute('aria-label', `Image ${idx + 1}`);
-    dot.addEventListener('click', () => goTo(idx));
-    nav.append(dot);
-    dots.push(dot);
+  const slider = createSlider(track, {
+    prefix: 'wgc-room-slider',
+    label: 'Room images',
+    slideLabel: (index) => `Image ${index + 1}`,
   });
-
-  media.append(nav);
-  goTo(0);
+  if (slider) media.append(slider.nav);
 }
 
 let activeLightbox = null;
