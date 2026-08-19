@@ -221,7 +221,7 @@ function bindFilters(list, mediaItems, filterItem, grid) {
       });
 
       mediaItems.forEach((item) => {
-        const category = item.dataset.category;
+        const { category } = item.dataset;
         const show = filter === '*' || !category || category === filter;
         item.classList.toggle('is-hidden', !show);
         item.setAttribute('aria-hidden', show ? 'false' : 'true');
