@@ -18,6 +18,9 @@ import {
 } from './aem.js';
 import { applyTheme, getStoredTheme } from './template/theme.js';
 
+/** Origin for da.live NX assets loaded by sidekick and preview tooling. */
+export const NX_ORIGIN = 'https://da.live/nx';
+
 /**
  * Authored pages that still use the old prefixed block names
  * (`template2-hero`, `wgc-intro`, …) are rewritten to the unprefixed folders
