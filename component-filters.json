@@ -34,8 +34,6 @@
       "wgc-intro-container",
       "wgc-amenities",
       "wgc-room",
-      "wgc-hotel-intro",
-      "wgc-hotel-policies",
       "theme-option"
     ]
   },
@@ -109,12 +107,6 @@
     "id": "wgc-home-room-dine-spa",
     "components": [
       "wgc-rds-item"
-    ]
-  },
-  {
-    "id": "wgc-hotel-policies",
-    "components": [
-      "wgc-hotel-policy-item"
     ]
   },
   {

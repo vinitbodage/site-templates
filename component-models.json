@@ -485,37 +485,6 @@
     ]
   },
   {
-    "id": "wgc-hotel-intro",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "label": "Content",
-        "description": "Page headline, intro copy, and an optional Book Now button."
-      }
-    ]
-  },
-  {
-    "id": "wgc-hotel-policy-item",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "title",
-        "label": "Policy Title",
-        "required": true
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "body",
-        "label": "Policy Details",
-        "required": true
-      }
-    ]
-  },
-  {
     "id": "wgc-icons",
     "fields": []
   },
