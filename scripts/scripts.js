@@ -16,6 +16,10 @@ import {
   toClassName,
   toCamelCase,
 } from './aem.js';
+import { applyTheme, getStoredTheme } from './template/theme.js';
+
+/** Origin for da.live NX assets loaded by sidekick and preview tooling. */
+export const NX_ORIGIN = 'https://da.live/nx';
 
 /**
  * Authored pages that still use the old prefixed block names
@@ -84,7 +88,7 @@ async function loadFonts() {
 async function loadTemplateStyles() {
   const template = toClassName(getMetadata('template'));
   if (!template) return;
-  document.body.classList.add('template2');
+  document.body.classList.add(template);
   await loadCSS(`${window.hlx.codeBasePath}/styles/template/template-theme.css`);
 }
 
@@ -187,6 +191,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   doc.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  applyTheme(getStoredTheme());
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     doc.body.dataset.breadcrumbs = true;
   }

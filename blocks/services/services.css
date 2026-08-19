@@ -50,7 +50,7 @@
 
 .services-copy h3 {
   margin: 0 0 10px;
-  color: var(--t2-navy);
+  color: var(--theme-color);
   font-family: var(--t2-font-heading);
   font-size: var(--heading-font-size-s);
 }

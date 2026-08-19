@@ -567,6 +567,16 @@
           }
         },
         {
+          "title": "Theme Picker",
+          "id": "theme-picker",
+          "model": "theme-picker",
+          "plugins": {
+            "da": {
+              "unsafeHTML": "<div class=\"theme-picker\"><div></div></div>"
+            }
+          }
+        },
+        {
           "title": "Video",
           "id": "video",
           "model": "video",

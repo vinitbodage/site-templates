@@ -523,5 +523,9 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "theme-picker",
+    "fields": []
   }
 ]

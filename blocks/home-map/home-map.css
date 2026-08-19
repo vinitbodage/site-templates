@@ -81,8 +81,9 @@
 
 .home-map .home-map-panel a.button:hover,
 .home-map .home-map-panel a.button:focus-visible {
-  background-color: var(--t2-paper);
-  color: var(--t2-ink);
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--t2-paper);
 }
 
 @media (width >= 900px) {
