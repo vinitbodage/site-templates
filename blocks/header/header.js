@@ -1,4 +1,11 @@
-import { fetchPlaceholders, getMetadata, toClassName } from '../../scripts/aem.js';
+import {
+  buildBlock,
+  decorateBlock,
+  fetchPlaceholders,
+  getMetadata,
+  loadBlock,
+  toClassName,
+} from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -193,17 +200,49 @@ function decorateBookNow(nav) {
 }
 
 /**
- * Branded header extras (scroll state + book-now) for themed pages.
+ * Mounts the theme picker in the header tools, aligned with the nav on the
+ * top-right. Skips when a picker is already present.
+ * @param {Element} nav the decorated nav
+ */
+async function mountThemePicker(nav) {
+  if (nav.querySelector('.theme-picker')) return;
+
+  let tools = nav.querySelector('.nav-tools');
+  if (!tools) {
+    tools = document.createElement('div');
+    tools.className = 'section nav-tools';
+    tools.append(document.createElement('div'));
+    nav.append(tools);
+  }
+
+  const pickerWrap = document.createElement('div');
+  pickerWrap.className = 'theme-picker-wrapper';
+  const picker = buildBlock('theme-picker', '');
+  pickerWrap.append(picker);
+
+  const bookWrap = tools.querySelector('.book-wrap');
+  if (bookWrap) {
+    bookWrap.after(pickerWrap);
+  } else {
+    (tools.querySelector(':scope > div') || tools).append(pickerWrap);
+  }
+
+  decorateBlock(picker);
+  await loadBlock(picker);
+}
+
+/**
+ * Branded header extras (scroll state, book-now, theme picker) for themed pages.
  * @param {Element} block the header block
  */
-function decorateTemplateHeader(block) {
+async function decorateTemplateHeader(block) {
   const header = block.closest('header');
   if (!header) return;
   const nav = block.querySelector('nav');
   if (nav) {
     decorateBookNow(nav);
-    // nav fragments can carry extra sections (theme switcher, booking modal)
-    // that break the logo / links / book-now row
+    // nav fragments can carry extra sections (booking modal) that break the
+    // logo / links / book-now row; the theme picker is mounted into nav-tools
     nav.querySelectorAll(':scope > .section').forEach((section) => {
       if (!['nav-brand', 'nav-sections', 'nav-tools'].some((name) => (
         section.classList.contains(name)
@@ -211,6 +250,7 @@ function decorateTemplateHeader(block) {
         section.hidden = true;
       }
     });
+    await mountThemePicker(nav);
   }
   bindHeaderScroll(header, 8);
 }
@@ -323,5 +363,5 @@ export default async function decorate(block) {
     navWrapper.append(await buildBreadcrumbs());
   }
 
-  if (template) decorateTemplateHeader(block);
+  if (template) await decorateTemplateHeader(block);
 }

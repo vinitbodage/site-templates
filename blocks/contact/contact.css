@@ -75,22 +75,24 @@
 .contact-submit {
   grid-column: 1 / -1;
   justify-self: start;
-  border: 0;
+  border: 2px solid var(--theme-color);
   border-radius: 999px;
   padding: 0.85em 2.4em;
-  background-color: var(--t2-navy);
-  color: var(--t2-paper);
+  background-color: transparent;
+  color: var(--theme-color);
   font-size: var(--body-font-size-xs);
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .contact-submit:hover,
 .contact-submit:focus-visible {
-  background-color: var(--t2-navy-dark);
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--t2-paper);
 }
 
 .contact-map {
