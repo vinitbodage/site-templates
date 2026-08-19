@@ -21,9 +21,9 @@ export default function decorate(block) {
 
   block.querySelectorAll('a').forEach((link) => {
     if (link.textContent.trim().toLowerCase() === 'book now' || link.hasAttribute('data-book-now')) {
-      link.dataset.bookNow = '';
-      link.classList.add('primary');
-      link.href = '#';
+      link.classList.add('button', 'primary');
+      const parent = link.closest('p, li');
+      if (parent) parent.classList.add('button-container');
     }
   });
 

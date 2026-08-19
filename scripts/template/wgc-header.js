@@ -3,10 +3,12 @@
  *
  * Applied on top of the standard header block when the page uses the wgc
  * template. Adds scroll-state styling and normalises the tools area so Book
- * Now opens the booking modal instead of navigating away.
+ * Now renders as a full-height teal bar instead of a boilerplate pill button.
  */
 
 import { decorateBlock, loadBlock } from '../aem.js';
+
+const BOOK_URL = 'https://be-p2.synxis.com/?chain=5136&hotel=80554&src=SBE&theme=WY80554&config=WY80554';
 
 /**
  * Adds a solid background once the visitor scrolls past the hero.
@@ -34,22 +36,20 @@ function normalizeTools(nav) {
     if (container) container.classList.remove('button-container');
   });
 
-  let bookLink = tools.querySelector('a[href*="synxis"], .wgc-book-now, [data-book-now]');
+  let bookLink = tools.querySelector('a[href*="synxis"], .wgc-book-now');
   if (!bookLink) {
     const wrap = document.createElement('p');
     wrap.className = 'wgc-book-wrap';
     bookLink = document.createElement('a');
-    bookLink.href = '#';
+    bookLink.href = BOOK_URL;
     bookLink.textContent = 'Book Now';
+    bookLink.setAttribute('target', '_blank');
+    bookLink.setAttribute('rel', 'noopener noreferrer');
     wrap.append(bookLink);
     tools.append(wrap);
   }
 
-  bookLink.href = '#';
-  bookLink.removeAttribute('target');
-  bookLink.removeAttribute('rel');
   bookLink.classList.add('wgc-book-now');
-  bookLink.dataset.bookNow = '';
   const bookWrap = bookLink.closest('p') || bookLink.parentElement;
   if (bookWrap) bookWrap.classList.add('wgc-book-wrap');
 }

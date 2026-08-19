@@ -224,13 +224,6 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadSections(main);
 
-  if (doc.querySelector('.wgc-book-now, [data-book-now], .book-now-modal')) {
-    const { bindBookNowTriggers } = await import(
-      `${window.hlx.codeBasePath}/blocks/book-now-modal/book-now-modal.js`
-    );
-    bindBookNowTriggers(doc);
-  }
-
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
