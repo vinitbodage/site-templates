@@ -190,6 +190,26 @@ function buildFilterPanel(filters) {
   return { item, list };
 }
 
+function syncFilterHeight(filterItem, grid) {
+  const firstMedia = grid.querySelector('.photo-gallery-item-media:not(.is-hidden)');
+  const inner = filterItem.querySelector('.photo-gallery-filter-inner');
+  if (!firstMedia || !inner) return;
+
+  const sync = () => {
+    const link = firstMedia.querySelector('a');
+    const height = link?.offsetHeight;
+    if (height) inner.style.height = `${height}px`;
+  };
+
+  sync();
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(sync);
+    observer.observe(firstMedia);
+  } else {
+    window.addEventListener('resize', sync, { passive: true });
+  }
+}
+
 function bindFilters(list, mediaItems, filterItem, grid) {
   list.querySelectorAll('a[data-filter]').forEach((link) => {
     link.addEventListener('click', (e) => {
@@ -210,26 +230,6 @@ function bindFilters(list, mediaItems, filterItem, grid) {
       syncFilterHeight(filterItem, grid);
     });
   });
-}
-
-function syncFilterHeight(filterItem, grid) {
-  const firstMedia = grid.querySelector('.photo-gallery-item-media:not(.is-hidden)');
-  const inner = filterItem.querySelector('.photo-gallery-filter-inner');
-  if (!firstMedia || !inner) return;
-
-  const sync = () => {
-    const link = firstMedia.querySelector('a');
-    const height = link?.offsetHeight;
-    if (height) inner.style.height = `${height}px`;
-  };
-
-  sync();
-  if ('ResizeObserver' in window) {
-    const observer = new ResizeObserver(sync);
-    observer.observe(firstMedia);
-  } else {
-    window.addEventListener('resize', sync, { passive: true });
-  }
 }
 
 function getImageCell(cells) {
