@@ -308,6 +308,93 @@
           }
         },
         {
+          "title": "Photo Gallery",
+          "id": "photo-gallery",
+          "model": "photo-gallery",
+          "filter": "photo-gallery",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "Photo Gallery Filter",
+          "id": "photo-gallery-filter",
+          "model": "photo-gallery-filter",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "label",
+                  "selector": "div:nth-child(1)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Photo Gallery Video",
+          "id": "photo-gallery-video",
+          "model": "photo-gallery-video",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "video",
+                  "selector": "div:nth-child(2)>p>a[href]"
+                },
+                {
+                  "name": "category",
+                  "selector": "div:nth-child(2)>p:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Photo Gallery Image",
+          "id": "photo-gallery-image",
+          "model": "photo-gallery-image",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "fullImage",
+                  "selector": "div:nth-child(2)>p>a[href]"
+                },
+                {
+                  "name": "category",
+                  "selector": "div:nth-child(2)>p:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Quote",
           "id": "quote",
           "model": "quote",
