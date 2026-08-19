@@ -1,0 +1,185 @@
+.wgc-accordion-header {
+  margin-bottom: var(--wgc-gap);
+  text-align: center;
+}
+
+.wgc-accordion-eyebrow {
+  margin: 0 0 0.4em;
+  color: var(--wgc-ink);
+  font-size: var(--body-font-size-xs);
+  font-weight: 500;
+  letter-spacing: var(--wgc-tracking-wide);
+  text-transform: uppercase;
+}
+
+body.wgc main .wgc-accordion .wgc-accordion-header h2 {
+  margin: 0;
+  color: var(--wgc-gold);
+  font-family: var(--wgc-font-heading);
+  font-size: var(--heading-font-size-l);
+  font-weight: 600;
+  letter-spacing: var(--wgc-tracking-wide);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.wgc-accordion-item + .wgc-accordion-item {
+  margin-top: 8px;
+}
+
+.wgc-accordion-trigger {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.wgc-accordion-trigger::-webkit-details-marker,
+.wgc-accordion-trigger::marker {
+  display: none;
+  content: '';
+}
+
+.wgc-accordion-media picture,
+.wgc-accordion-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.wgc-accordion-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  padding: 20px 56px;
+  background-color: var(--wgc-teal);
+  color: var(--wgc-paper);
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.wgc-accordion-title :is(h2, h3, h4, p) {
+  margin: 0;
+  color: var(--wgc-paper);
+  font-family: var(--wgc-font-heading);
+  font-size: var(--heading-font-size-s);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.wgc-accordion-title::after {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--wgc-paper);
+  color: var(--wgc-teal);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.wgc-accordion-item[open] .wgc-accordion-title {
+  background-color: var(--wgc-teal-dark);
+}
+
+.wgc-accordion-item[open] .wgc-accordion-title::after {
+  content: '−';
+  color: var(--wgc-teal-dark);
+}
+
+.wgc-accordion-trigger:hover .wgc-accordion-title,
+.wgc-accordion-trigger:focus-visible .wgc-accordion-title {
+  background-color: var(--wgc-teal-dark);
+}
+
+.wgc-accordion-trigger:focus {
+  outline: none;
+}
+
+.wgc-accordion-trigger:focus-visible {
+  outline: 2px solid var(--wgc-gold);
+  outline-offset: 2px;
+}
+
+.wgc-accordion-body {
+  padding: var(--wgc-gap) 0;
+}
+
+.wgc-accordion-body :is(h3, h4, h5) {
+  margin: 1.25em 0 0.35em;
+  color: var(--wgc-ink);
+  font-family: var(--wgc-font-heading);
+  font-size: var(--body-font-size-m);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: left;
+  text-transform: none;
+}
+
+.wgc-accordion-body :is(h3, h4, h5):first-child {
+  margin-top: 0;
+}
+
+.wgc-accordion-body p {
+  margin: 0 0 1em;
+  color: var(--wgc-ink);
+  font-size: var(--body-font-size-s);
+  line-height: 1.7;
+}
+
+.wgc-accordion-body p:last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 900px) {
+  body.wgc main .wgc-accordion .wgc-accordion-header h2 {
+    font-size: var(--heading-font-size-xl);
+  }
+
+  .wgc-accordion-header {
+    margin-bottom: var(--wgc-section-padding);
+  }
+
+  .wgc-accordion-trigger {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .wgc-accordion-media {
+    flex: 0 0 40%;
+    max-width: 40%;
+    overflow: hidden;
+  }
+
+  .wgc-accordion-media picture,
+  .wgc-accordion-media img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .wgc-accordion-title {
+    flex: 1 1 60%;
+    min-height: 0;
+  }
+
+  .wgc-accordion-title :is(h2, h3, h4, p) {
+    font-size: var(--heading-font-size-m);
+  }
+
+  .wgc-accordion-body {
+    padding: var(--wgc-gap) 0 var(--wgc-section-padding);
+  }
+}
