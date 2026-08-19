@@ -1,0 +1,73 @@
+{
+  "definitions": [
+    {
+      "title": "WGC Meeting Feature",
+      "id": "wgc-meeting-feature",
+      "model": "wgc-meeting-feature",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[alt]" },
+            { "name": "content", "selector": "div:nth-child(1)>div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wgc-meeting-feature",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "description": "Photograph of the space, the catering or the event.",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Heading, body copy, and an optional call to action. Italicise the opening words of the heading to render them as the lighter lead line."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Image Position",
+          "value": "",
+          "options": [
+            { "name": "Image left", "value": "" },
+            { "name": "Image right", "value": "image-right" }
+          ]
+        },
+        {
+          "component": "multiselect",
+          "valueType": "string",
+          "name": "classes_style",
+          "label": "Options",
+          "options": [
+            { "name": "Wide image", "value": "wide" },
+            { "name": "Overlap copy", "value": "overlap" },
+            { "name": "Paper background", "value": "paper" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

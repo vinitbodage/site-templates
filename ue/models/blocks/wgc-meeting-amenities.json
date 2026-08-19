@@ -1,0 +1,54 @@
+{
+  "definitions": [
+    {
+      "title": "WGC Meeting Amenities",
+      "id": "wgc-meeting-amenities",
+      "model": "wgc-meeting-amenities",
+      "plugins": {
+        "da": {
+          "rows": 2,
+          "columns": 1,
+          "fields": [
+            { "name": "title", "selector": "div:nth-child(1)>div" },
+            { "name": "items", "selector": "div:nth-child(2)>div" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wgc-meeting-amenities",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "title",
+          "value": "",
+          "label": "Heading",
+          "description": "Section heading, with optional supporting copy below it. Italicise the opening words to render them as the lighter lead line."
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "items",
+          "value": "",
+          "label": "Amenities",
+          "description": "A bullet list of what the meeting package includes. It splits into two columns on wider screens."
+        },
+        {
+          "component": "multiselect",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Options",
+          "options": [
+            { "name": "Single column list", "value": "single-col" },
+            { "name": "Check marks", "value": "checklist" },
+            { "name": "Paper background", "value": "paper" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

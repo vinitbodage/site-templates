@@ -1,0 +1,208 @@
+.wgc-meeting-testimonials {
+  padding-block: var(--wgc-section-padding);
+  background-color: var(--wgc-sand);
+}
+
+.wgc-meeting-testimonials.paper {
+  background-color: var(--wgc-paper);
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonials-viewport {
+  margin: 0 auto;
+  max-width: 860px;
+  padding-inline: 24px;
+}
+
+/*
+ * The slides share one grid cell so the track is as tall as the longest quote
+ * and a fade can cross between them without the band changing height.
+ */
+.wgc-meeting-testimonials .wgc-meeting-testimonials-track {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonial {
+  grid-area: 1 / 1;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonial.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonial blockquote {
+  margin: 0;
+  text-align: center;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonial-headline {
+  margin: 0 0 1.1em;
+  color: var(--wgc-cta, var(--wgc-teal));
+  font-family: var(--wgc-font-heading);
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonial-headline h2,
+.wgc-meeting-testimonials .wgc-meeting-testimonial-headline h3,
+.wgc-meeting-testimonials .wgc-meeting-testimonial-headline h4,
+.wgc-meeting-testimonials .wgc-meeting-testimonial-headline p {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  letter-spacing: inherit;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonial-quote {
+  position: relative;
+  color: var(--wgc-ink);
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonial-quote p {
+  margin: 0 0 1em;
+  font-size: var(--body-font-size-s);
+  font-style: italic;
+  line-height: 1.85;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonial-attribution {
+  margin-top: 1.6em;
+  color: var(--wgc-teal-muted);
+  font-size: var(--body-font-size-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonial-attribution p {
+  margin: 0;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonial-attribution cite {
+  display: block;
+  color: var(--wgc-gold);
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* controls */
+.wgc-meeting-testimonials .wgc-meeting-testimonials-nav {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonials-dots {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonials-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid var(--wgc-cta, var(--wgc-teal));
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonials-dot.is-active {
+  background-color: var(--wgc-cta, var(--wgc-teal));
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonials-prev,
+.wgc-meeting-testimonials .wgc-meeting-testimonials-next {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--wgc-cta, var(--wgc-teal));
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonials-prev::before,
+.wgc-meeting-testimonials .wgc-meeting-testimonials-next::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--wgc-cta, var(--wgc-teal));
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M13 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2h12.2l-4.6-4.6L13 5z'/%3E%3C/svg%3E");
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: 15px 15px;
+  transition: background-color 0.3s ease;
+  content: '';
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonials-prev::before {
+  transform: scaleX(-1);
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonials-prev:hover,
+.wgc-meeting-testimonials .wgc-meeting-testimonials-prev:focus-visible,
+.wgc-meeting-testimonials .wgc-meeting-testimonials-next:hover,
+.wgc-meeting-testimonials .wgc-meeting-testimonials-next:focus-visible {
+  background-color: var(--wgc-cta, var(--wgc-teal));
+}
+
+.wgc-meeting-testimonials .wgc-meeting-testimonials-prev:hover::before,
+.wgc-meeting-testimonials .wgc-meeting-testimonials-prev:focus-visible::before,
+.wgc-meeting-testimonials .wgc-meeting-testimonials-next:hover::before,
+.wgc-meeting-testimonials .wgc-meeting-testimonials-next:focus-visible::before {
+  background-color: var(--wgc-paper);
+}
+
+/* the stacked and grid variants show every testimonial at once */
+.wgc-meeting-testimonials.stacked .wgc-meeting-testimonials-viewport,
+.wgc-meeting-testimonials.grid .wgc-meeting-testimonials-viewport {
+  max-width: var(--wgc-max-width);
+}
+
+.wgc-meeting-testimonials.stacked .wgc-meeting-testimonials-track,
+.wgc-meeting-testimonials.grid .wgc-meeting-testimonials-track {
+  gap: calc(var(--wgc-gap) * 2);
+}
+
+.wgc-meeting-testimonials.stacked .wgc-meeting-testimonial,
+.wgc-meeting-testimonials.grid .wgc-meeting-testimonial {
+  grid-area: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (width >= 900px) {
+  .wgc-meeting-testimonials .wgc-meeting-testimonials-viewport {
+    padding-inline: 32px;
+  }
+
+  .wgc-meeting-testimonials .wgc-meeting-testimonial-quote p {
+    font-size: var(--body-font-size-m);
+  }
+
+  .wgc-meeting-testimonials.grid .wgc-meeting-testimonials-track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wgc-meeting-testimonials .wgc-meeting-testimonial {
+    transition: none;
+  }
+}
