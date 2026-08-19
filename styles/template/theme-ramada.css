@@ -12,11 +12,6 @@ body.theme-ramada {
   --wgc-teal-dark: #9b0e26;
   --wgc-teal-muted: #d64a5c;
   --wgc-gold: #c4a035;
-  --wgc-button-bg: #fff;
-  --wgc-button-color: #c41230;
-  --wgc-button-border: #c41230;
-  --wgc-button-hover-bg: #c41230;
-  --wgc-button-hover-color: #fff;
   --wgc-cta: #c41230;
   --wgc-cta-hover: #9b0e26;
 }

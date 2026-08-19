@@ -30,7 +30,7 @@
 .wgc-columns .wgc-columns-body h3,
 .wgc-columns .wgc-columns-body h4 {
   margin: 0;
-  color: var(--wgc-teal);
+  color: var(--wgc-cta, var(--wgc-teal));
   font-size: var(--heading-font-size-m);
   text-align: left;
   text-transform: uppercase;

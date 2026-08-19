@@ -14,11 +14,6 @@ body.theme-riomar {
   --wgc-teal-dark: #1e3d32;
   --wgc-teal-muted: #4a7a68;
   --wgc-gold: #c4a35a;
-  --wgc-button-bg: #fff;
-  --wgc-button-color: #1a1a1a;
-  --wgc-button-border: #1a1a1a;
-  --wgc-button-hover-bg: #1a1a1a;
-  --wgc-button-hover-color: #fff;
-  --wgc-cta: #1a1a1a;
-  --wgc-cta-hover: #2d5a4a;
+  --wgc-cta: #2d5a4a;
+  --wgc-cta-hover: #1e3d32;
 }
