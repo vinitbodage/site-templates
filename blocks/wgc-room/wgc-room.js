@@ -5,6 +5,40 @@ import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 
 const EXPAND_ICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.4 21.4" aria-hidden="true"><path d="M20.79,0H.61A.61.61,0,0,0,0,.61V15.89a.61.61,0,0,0,1.21,0V1.21h19v19H5.51a.61.61,0,1,0,0,1.21H20.79a.61.61,0,0,0,.61-.61V.61A.61.61,0,0,0,20.79,0Z"/><path d="M2.59,18.75a.63.63,0,0,0,.43.17.65.65,0,0,0,.43-.17L15.15,7v6.25a.61.61,0,1,0,1.21,0V5.58a.54.54,0,0,0,0-.22h0A.63.63,0,0,0,16,5h0a.59.59,0,0,0-.22,0H8A.61.61,0,0,0,8,6.18h6.25L2.59,17.89A.6.6,0,0,0,2.59,18.75Z"/></svg>';
 
+const LIGHTBOX_PREV_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="12" viewBox="0 0 40 12" aria-hidden="true"><path d="M0 6 9 0v12L0 6Z" fill="currentColor"/><rect x="9" y="5.5" width="31" height="1" fill="currentColor"/></svg>';
+const LIGHTBOX_NEXT_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="12" viewBox="0 0 40 12" aria-hidden="true"><rect x="0" y="5.5" width="31" height="1" fill="currentColor"/><path d="M40 6 31 0v12l9-6Z" fill="currentColor"/></svg>';
+
+function buildLightboxNav(label, className, icon) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = `wgc-room-lightbox-nav ${className}`;
+  button.setAttribute('aria-label', label);
+  button.innerHTML = `<span class="wgc-room-lightbox-nav-icon">${icon}</span><span class="wgc-room-lightbox-nav-label">${label}</span>`;
+  return button;
+}
+
+function stackHeadingTail(heading) {
+  const lead = heading.querySelector('.wgc-headline-lead');
+  if (!lead || lead.nextSibling?.classList?.contains('wgc-headline-tail')) return;
+
+  if (lead.nextSibling?.nodeType === Node.TEXT_NODE) {
+    const tail = document.createElement('span');
+    tail.className = 'wgc-headline-tail';
+    tail.textContent = lead.nextSibling.textContent.trim();
+    lead.nextSibling.replaceWith(tail);
+    return;
+  }
+
+  if (lead.nextSibling) {
+    const tail = document.createElement('span');
+    tail.className = 'wgc-headline-tail';
+    while (lead.nextSibling) {
+      tail.append(lead.nextSibling);
+    }
+    heading.append(tail);
+  }
+}
+
 function bindSlider(media, track) {
   const slider = createSlider(track, {
     prefix: 'wgc-room-slider',
@@ -36,16 +70,28 @@ function closeLightbox(overlay, onKeyDown) {
   document.removeEventListener('keydown', onKeyDown);
 }
 
-function openImageLightbox(img) {
-  if (activeLightbox) return;
+function collectSlideImages(track) {
+  return [...track.children].map((slide) => {
+    const img = slide.querySelector('img');
+    if (!img) return null;
+    return {
+      src: img.dataset.fullSrc || img.currentSrc || img.src,
+      alt: img.alt || '',
+    };
+  }).filter(Boolean);
+}
+
+function openImageLightbox(images, startIndex = 0) {
+  if (activeLightbox || !images.length) return;
 
   lockPageScroll();
+
+  let current = Math.max(0, Math.min(startIndex, images.length - 1));
 
   const overlay = document.createElement('div');
   overlay.className = 'wgc-room-lightbox-overlay';
   overlay.setAttribute('role', 'dialog');
   overlay.setAttribute('aria-modal', 'true');
-  overlay.setAttribute('aria-label', img.alt || 'Room image');
 
   const panel = document.createElement('div');
   panel.className = 'wgc-room-lightbox-panel';
@@ -55,20 +101,42 @@ function openImageLightbox(img) {
   closeBtn.className = 'wgc-room-lightbox-close';
   closeBtn.setAttribute('aria-label', 'Close');
 
-  const lightboxImg = document.createElement('img');
-  lightboxImg.src = img.currentSrc || img.src;
-  lightboxImg.alt = img.alt || '';
+  const viewport = document.createElement('div');
+  viewport.className = 'wgc-room-lightbox-viewport';
 
-  panel.append(closeBtn, lightboxImg);
+  const lightboxImg = document.createElement('img');
+  lightboxImg.className = 'wgc-room-lightbox-image';
+
+  const prevBtn = buildLightboxNav('Previous', 'wgc-room-lightbox-prev', LIGHTBOX_PREV_ICON);
+  const nextBtn = buildLightboxNav('Next', 'wgc-room-lightbox-next', LIGHTBOX_NEXT_ICON);
+
+  const showImage = (index) => {
+    current = (index + images.length) % images.length;
+    const item = images[current];
+    lightboxImg.src = item.src;
+    lightboxImg.alt = item.alt;
+    overlay.setAttribute('aria-label', item.alt || 'Room image');
+    const multi = images.length > 1;
+    prevBtn.hidden = !multi;
+    nextBtn.hidden = !multi;
+  };
+
+  viewport.append(prevBtn, lightboxImg, nextBtn);
+  panel.append(closeBtn, viewport);
   overlay.append(panel);
   document.body.append(overlay);
   activeLightbox = overlay;
+  showImage(current);
 
   const onKeyDown = (e) => {
     if (e.key === 'Escape') closeLightbox(overlay, onKeyDown);
+    if (e.key === 'ArrowLeft') showImage(current - 1);
+    if (e.key === 'ArrowRight') showImage(current + 1);
   };
 
   closeBtn.addEventListener('click', () => closeLightbox(overlay, onKeyDown));
+  prevBtn.addEventListener('click', () => showImage(current - 1));
+  nextBtn.addEventListener('click', () => showImage(current + 1));
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) closeLightbox(overlay, onKeyDown);
   });
@@ -77,10 +145,14 @@ function openImageLightbox(img) {
 }
 
 function bindLightbox(track) {
+  const images = collectSlideImages(track);
+
   track.querySelectorAll('.wgc-room-slide-trigger').forEach((trigger) => {
     trigger.addEventListener('click', () => {
-      const img = trigger.querySelector('img');
-      if (img) openImageLightbox(img);
+      const slide = trigger.closest('li');
+      if (!slide) return;
+      const index = [...track.children].indexOf(slide);
+      if (index >= 0) openImageLightbox(images, index);
     });
   });
 }
@@ -93,6 +165,7 @@ function wrapSlideMedia(slide) {
   const legacyLink = slide.querySelector('a');
 
   if (legacyLink && !trigger) {
+    if (legacyLink.href) img.dataset.fullSrc = legacyLink.href;
     trigger = document.createElement('button');
     trigger.type = 'button';
     trigger.className = 'wgc-room-slide-trigger';
@@ -270,7 +343,7 @@ export default function decorate(block) {
   });
 
   track.querySelectorAll('picture > img').forEach((img) => {
-    optimizePicture(img, { width: '615' });
+    optimizePicture(img, { width: '570' });
   });
 
   track.querySelectorAll('li').forEach(wrapSlideMedia);
@@ -282,6 +355,7 @@ export default function decorate(block) {
   const heading = copy.querySelector('h1, h2, h3, h4');
   if (heading) {
     splitHeading(heading);
+    stackHeadingTail(heading);
     addRule(heading);
   }
 
