@@ -1,5 +1,5 @@
 /*
- * Helpers shared across every template's blocks (wgc, template2, ...).
+ * Helpers shared across every template's blocks.
  *
  * Kept free of any brand-specific class names so new templates can reuse them
  * without pulling in another template's visual language.
@@ -69,12 +69,11 @@ export function optimizePicture(img, { eager = false, width = '750' } = {}) {
 }
 
 /**
- * Builds heading helpers (two-tone headline splitting + hairline rule) scoped
- * to a template's own CSS class prefix, so two templates never collide.
- * @param {string} prefix the template's class prefix, e.g. "wgc" or "template2"
- * @returns {{splitHeading: Function, addRule: Function}} the scoped helpers
+ * Builds heading helpers (two-tone headline splitting + hairline rule).
+ * Theme look is applied in CSS via `body.template2`.
+ * @returns {{splitHeading: Function, addRule: Function}} the heading helpers
  */
-export function createHeadingHelpers(prefix) {
+export function createHeadingHelpers() {
   /**
    * Converts the emphasised run at the start of a heading into a styled span
    * so the template can render a two-tone headline. Authors italicise the
@@ -85,7 +84,7 @@ export function createHeadingHelpers(prefix) {
     const em = heading && heading.querySelector('em, i');
     if (!em) return;
     const lead = document.createElement('span');
-    lead.className = `${prefix}-headline-lead`;
+    lead.className = 'headline-lead';
     lead.append(...em.childNodes);
     em.replaceWith(lead);
   }
@@ -99,10 +98,25 @@ export function createHeadingHelpers(prefix) {
    */
   function addRule(heading, { centered = false, light = false } = {}) {
     if (!heading) return;
-    heading.classList.add(`${prefix}-rule`);
-    if (centered) heading.classList.add(`${prefix}-rule-centered`);
-    if (light) heading.classList.add(`${prefix}-rule-light`);
+    heading.classList.add('headline-rule');
+    if (centered) heading.classList.add('headline-rule-centered');
+    if (light) heading.classList.add('headline-rule-light');
   }
 
   return { splitHeading, addRule };
+}
+
+/**
+ * Returns the shared row/cell helpers plus heading helpers.
+ * Theme look is applied in CSS via `body.template2`.
+ * @returns {object} row/cell helpers plus heading helpers
+ */
+export function getTemplateHelpers() {
+  return {
+    getRows,
+    getCells,
+    isEmpty,
+    optimizePicture,
+    ...createHeadingHelpers(),
+  };
 }

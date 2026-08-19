@@ -207,6 +207,27 @@
           }
         },
         {
+          "title": "Contact",
+          "id": "contact",
+          "model": "contact",
+          "plugins": {
+            "da": {
+              "rows": 2,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "details",
+                  "selector": "div:nth-child(1)>div"
+                },
+                {
+                  "name": "map",
+                  "selector": "div:nth-child(2)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Fragment",
           "id": "fragment",
           "model": "fragment",
@@ -227,24 +248,186 @@
           }
         },
         {
+          "title": "Gallery",
+          "id": "gallery",
+          "model": "gallery",
+          "filter": "gallery",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "Gallery Image",
+          "id": "gallery-image",
+          "model": "gallery-image",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Hero",
           "id": "hero",
           "model": "hero",
           "plugins": {
             "da": {
-              "unsafeHTML": "<div class=\"hero\"><div><div><picture><source type=\"image/webp\" srcset=\"\"><source type=\"image/jpeg\" srcset=\"\"><img loading=\"lazy\"></picture><h1></h1></div></div></div>",
+              "rows": 2,
+              "columns": 1,
               "fields": [
                 {
                   "name": "image",
-                  "selector": "div>div>picture>img[src]"
+                  "selector": "div:nth-child(1)>div>picture>img[src]"
                 },
                 {
                   "name": "imageAlt",
-                  "selector": "div>div>picture>img[alt]"
+                  "selector": "div:nth-child(1)>div>picture>img[alt]"
                 },
                 {
-                  "name": "text",
-                  "selector": "div>div>h1"
+                  "name": "video",
+                  "selector": "div:nth-child(1)>div>p>a[href]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(2)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Home Map",
+          "id": "home-map",
+          "model": "home-map",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div:nth-child(1)"
+                },
+                {
+                  "name": "pin",
+                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[src]"
+                },
+                {
+                  "name": "pinAlt",
+                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Rooms Dining Spa",
+          "id": "home-room-dine-spa",
+          "model": "home-room-dine-spa",
+          "filter": "home-room-dine-spa",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "Room Dining Spa Item",
+          "id": "home-room-dine-spa-item",
+          "model": "home-room-dine-spa-item",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Icon Strip",
+          "id": "icons",
+          "model": "icons",
+          "filter": "icons",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "Icon",
+          "id": "icon-item",
+          "model": "icon-item",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "icon",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "iconAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "label",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Intro",
+          "id": "intro",
+          "model": "intro",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div:nth-child(2)"
                 }
               ]
             }
@@ -289,6 +472,43 @@
                 {
                   "name": "searchUrlText",
                   "selector": "div>div>p>a"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Services",
+          "id": "services",
+          "model": "services",
+          "filter": "services",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "Service",
+          "id": "service",
+          "model": "service",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(2)"
                 }
               ]
             }
@@ -347,151 +567,6 @@
           }
         },
         {
-          "title": "Template2 Contact",
-          "id": "template2-contact",
-          "model": "template2-contact",
-          "plugins": {
-            "da": {
-              "rows": 2,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "details",
-                  "selector": "div:nth-child(1)>div"
-                },
-                {
-                  "name": "map",
-                  "selector": "div:nth-child(2)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "Template2 Hero",
-          "id": "template2-hero",
-          "model": "template2-hero",
-          "plugins": {
-            "da": {
-              "rows": 2,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>div>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>div>picture>img[alt]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(2)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "Template2 Icon Strip",
-          "id": "template2-icons",
-          "model": "template2-icons",
-          "filter": "template2-icons",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2
-            }
-          }
-        },
-        {
-          "title": "Template2 Icon",
-          "id": "template2-icon",
-          "model": "template2-icon",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "icon",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "iconAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "label",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "Template2 Intro",
-          "id": "template2-intro",
-          "model": "template2-intro",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)>div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "Template2 Services",
-          "id": "template2-services",
-          "model": "template2-services",
-          "filter": "template2-services",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2
-            }
-          }
-        },
-        {
-          "title": "Template2 Service",
-          "id": "template2-service",
-          "model": "template2-service",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
           "title": "Video",
           "id": "video",
           "model": "video",
@@ -512,229 +587,6 @@
                 {
                   "name": "posterImage",
                   "selector": "div>div>picture>img[src]"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Columns",
-          "id": "wgc-columns",
-          "model": "wgc-columns",
-          "filter": "wgc-columns",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2
-            }
-          }
-        },
-        {
-          "title": "WGC Column",
-          "id": "wgc-column",
-          "model": "wgc-column",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "body",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Gallery",
-          "id": "wgc-gallery",
-          "model": "wgc-gallery",
-          "filter": "wgc-gallery",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1
-            }
-          }
-        },
-        {
-          "title": "WGC Gallery Image",
-          "id": "wgc-gallery-image",
-          "model": "wgc-gallery-image",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Hero",
-          "id": "wgc-hero",
-          "model": "wgc-hero",
-          "plugins": {
-            "da": {
-              "rows": 2,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>div>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>div>picture>img[alt]"
-                },
-                {
-                  "name": "video",
-                  "selector": "div:nth-child(1)>div>p>a[href]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(2)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Home Map",
-          "id": "wgc-home-map",
-          "model": "wgc-home-map",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)>div:nth-child(1)"
-                },
-                {
-                  "name": "pin",
-                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[src]"
-                },
-                {
-                  "name": "pinAlt",
-                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[alt]"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Rooms Dining Spa",
-          "id": "wgc-home-room-dine-spa",
-          "model": "wgc-home-room-dine-spa",
-          "filter": "wgc-home-room-dine-spa",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2
-            }
-          }
-        },
-        {
-          "title": "WGC Room Dining Spa Item",
-          "id": "wgc-rds-item",
-          "model": "wgc-rds-item",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Icon Strip",
-          "id": "wgc-icons",
-          "model": "wgc-icons",
-          "filter": "wgc-icons",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2
-            }
-          }
-        },
-        {
-          "title": "WGC Icon",
-          "id": "wgc-icon",
-          "model": "wgc-icon",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "icon",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "iconAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "label",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Intro",
-          "id": "wgc-intro",
-          "model": "wgc-intro",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)>div:nth-child(2)"
                 }
               ]
             }

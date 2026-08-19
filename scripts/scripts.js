@@ -45,17 +45,14 @@ async function loadFonts() {
 }
 
 /**
- * Loads the stylesheet for the page's template, when the template ships one.
- * Keeps template tokens out of pages built on a different template.
+ * Loads the branded theme for any page that sets `template` metadata.
+ * One stylesheet (`template-theme.css`) owns the tokens every block reads.
  */
 async function loadTemplateStyles() {
   const template = toClassName(getMetadata('template'));
   if (!template) return;
-  try {
-    await loadCSS(`${window.hlx.codeBasePath}/styles/template/${template}-theme.css`);
-  } catch (e) {
-    // this template ships no stylesheet of its own
-  }
+  document.body.classList.add('template2');
+  await loadCSS(`${window.hlx.codeBasePath}/styles/template/template-theme.css`);
 }
 
 function autolinkModals(doc) {
@@ -76,7 +73,7 @@ function autolinkModals(doc) {
 function buildAutoBlocks(main) {
   try {
     // template pages author their own hero, so only plain documents get one built
-    if (!main.querySelector('.hero, .wgc-hero, .template2-hero')) buildHeroBlock(main);
+    if (!main.querySelector('.hero')) buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

@@ -1,0 +1,74 @@
+{
+  "definitions": [
+    {
+      "title": "Icon Strip",
+      "id": "icons",
+      "model": "icons",
+      "filter": "icons",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    },
+    {
+      "title": "Icon",
+      "id": "icon-item",
+      "model": "icon-item",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "icon", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "iconAlt", "selector": "div:nth-child(1)>picture>img[alt]" },
+            { "name": "label", "selector": "div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "icons",
+      "fields": []
+    },
+    {
+      "id": "icon-item",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "icon",
+          "label": "Icon",
+          "description": "SVG or small raster image. SVGs are delivered untouched.",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "iconAlt",
+          "label": "Icon Alt",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "label",
+          "value": "",
+          "label": "Label",
+          "description": "Short benefit label. Add a link to make the benefit clickable."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "icons",
+      "components": [
+        "icon-item"
+      ]
+    }
+  ]
+}

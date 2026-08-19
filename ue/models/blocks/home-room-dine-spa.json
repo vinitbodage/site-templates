@@ -1,0 +1,73 @@
+{
+  "definitions": [
+    {
+      "title": "Rooms Dining Spa",
+      "id": "home-room-dine-spa",
+      "model": "home-room-dine-spa",
+      "filter": "home-room-dine-spa",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    },
+    {
+      "title": "Room Dining Spa Item",
+      "id": "home-room-dine-spa-item",
+      "model": "home-room-dine-spa-item",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>picture>img[alt]" },
+            { "name": "content", "selector": "div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "home-room-dine-spa",
+      "fields": []
+    },
+    {
+      "id": "home-room-dine-spa-item",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Heading and call to action. Italicise the opening words of the heading for the lighter lead line. Put the copy cell before the image cell to render copy above the image."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "home-room-dine-spa",
+      "components": [
+        "home-room-dine-spa-item"
+      ]
+    }
+  ]
+}

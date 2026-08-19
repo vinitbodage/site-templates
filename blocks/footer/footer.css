@@ -18,3 +18,60 @@ footer .footer p {
     padding: 40px 32px 24px;
   }
 }
+
+body.template2 footer .footer {
+  background-color: var(--t2-navy-dark);
+  color: rgb(255 255 255 / 75%);
+}
+
+body.template2 footer .footer > .section {
+  display: grid;
+  gap: 32px;
+  max-width: var(--t2-max-width);
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+body.template2 footer .footer > .section:last-child {
+  border-top: 1px solid rgb(255 255 255 / 12%);
+  padding-block: 20px;
+  font-size: var(--body-font-size-xs);
+  text-align: center;
+}
+
+body.template2 footer .footer h3 {
+  margin: 0 0 14px;
+  color: var(--t2-paper);
+  font-family: var(--t2-font-heading);
+  font-size: var(--body-font-size-m);
+}
+
+body.template2 footer .footer p {
+  margin: 0 0 8px;
+}
+
+body.template2 footer .footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.template2 footer .footer li {
+  margin-bottom: 8px;
+}
+
+body.template2 footer .footer a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+body.template2 footer .footer a:hover {
+  color: var(--t2-amber);
+  text-decoration: underline;
+}
+
+@media (width >= 600px) {
+  body.template2 footer .footer > .section:first-child {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
