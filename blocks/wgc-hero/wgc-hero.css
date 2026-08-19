@@ -93,8 +93,10 @@
   margin-inline: 0;
 }
 
-.wgc-hero .wgc-hero-content a.button:any-link {
+.wgc-hero .wgc-hero-content a.button:any-link,
+.wgc-hero .wgc-hero-content a.button.primary:any-link {
   border-color: var(--wgc-paper);
+  background-color: transparent;
   color: var(--wgc-paper);
 }
 

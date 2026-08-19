@@ -13,7 +13,7 @@ const MASTER_CACHE_PREFIX = 'wgc-master-theme-option:';
 export const THEMES = [
   { id: 'riomar', label: 'Rio Mar', swatch: '#2d5a4a' },
   { id: 'clearwater', label: 'Grand Clearwater', swatch: '#3d717f' },
-  { id: 'ramada', label: 'Ramada Jaipur', swatch: '#003da5' },
+  { id: 'ramada', label: 'Ramada Jaipur', swatch: '#c41230' },
 ];
 
 const THEME_IDS = new Set(THEMES.map((t) => t.id));

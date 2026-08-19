@@ -74,8 +74,10 @@
   margin-top: 32px;
 }
 
-.wgc-home-map .wgc-map-panel a.button:any-link {
+.wgc-home-map .wgc-map-panel a.button:any-link,
+.wgc-home-map .wgc-map-panel a.button.primary:any-link {
   border-color: var(--wgc-paper);
+  background-color: transparent;
   color: var(--wgc-paper);
 }
 
