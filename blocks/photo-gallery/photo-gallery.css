@@ -1,0 +1,181 @@
+/* Matches https://www.wyndhamgrandclearwater.com/photo-gallery grid layout */
+
+.photo-gallery-heading {
+  position: absolute;
+  overflow: hidden;
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+}
+
+.photo-gallery-wrapper {
+  width: 100%;
+}
+
+.photo-gallery-grid {
+  box-sizing: border-box;
+}
+
+.photo-gallery-grid *,
+.photo-gallery-grid *::before,
+.photo-gallery-grid *::after {
+  box-sizing: border-box;
+}
+
+.photo-gallery-item {
+  position: relative;
+  width: 100%;
+  padding: 5px;
+}
+
+.photo-gallery-item.is-hidden {
+  display: none;
+}
+
+.photo-gallery-item a {
+  display: block;
+  text-decoration: none;
+  aspect-ratio: 480 / 300;
+}
+
+.photo-gallery-filter-inner {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-gallery-item-filter .photo-gallery-filter-inner {
+  aspect-ratio: 480 / 300;
+}
+
+.photo-gallery-item figure {
+  margin: 0;
+  overflow: hidden;
+}
+
+.photo-gallery-item img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.photo-gallery-lightbox-overlay img,
+.photo-gallery-lightbox-video video {
+  display: block;
+  max-width: min(1100px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  object-fit: contain;
+}
+
+.photo-gallery-item a figure:hover img,
+.photo-gallery-item a:focus-visible figure img {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+.photo-gallery-item-filter {
+  text-align: center;
+}
+
+.photo-gallery-filter-content {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.photo-gallery-filter-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.photo-gallery-filter-list li {
+  text-transform: uppercase;
+}
+
+.photo-gallery-filter-list li + li {
+  margin-top: 8px;
+}
+
+.photo-gallery-filter-list a {
+  color: inherit;
+}
+
+.photo-gallery-filter-list a:hover {
+  opacity: 0.7;
+}
+
+.photo-gallery-filter-list li.active a {
+  text-decoration: underline;
+}
+
+@media (width >= 768px) {
+  .photo-gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .photo-gallery-item {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+}
+
+/* Live site uses 4 columns from 1280px: ALL + video + images per row */
+@media (width >= 1280px) {
+  .photo-gallery-item {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+@media (width >= 1680px) {
+  .photo-gallery-item {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-gallery-item img {
+    transition: none;
+  }
+
+  .photo-gallery-item a figure:hover img,
+  .photo-gallery-item a:focus-visible figure img {
+    transform: none;
+  }
+}
+
+body.photo-gallery-lightbox-open {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+}
+
+.photo-gallery-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background-color: rgb(0 0 0 / 78%);
+}
+
+.photo-gallery-lightbox-close {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 10001;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E") center / 24px no-repeat;
+  cursor: pointer;
+}

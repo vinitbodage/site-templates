@@ -27,7 +27,7 @@
 }
 
 .wgc-icons .wgc-icons-label {
-  color: var(--wgc-teal);
+  color: var(--wgc-cta, var(--wgc-teal));
   font-size: var(--body-font-size-xs);
   font-weight: 500;
   letter-spacing: var(--wgc-tracking-wide);
@@ -44,7 +44,7 @@
 }
 
 .wgc-icons .wgc-icons-label a:hover {
-  color: var(--wgc-teal-dark);
+  color: var(--wgc-cta, var(--wgc-teal-dark));
   text-decoration: underline;
 }
 

@@ -101,9 +101,12 @@
 }
 
 .wgc-hero .wgc-hero-content a.button:hover,
-.wgc-hero .wgc-hero-content a.button:focus-visible {
-  background-color: var(--wgc-paper);
-  color: var(--wgc-ink);
+.wgc-hero .wgc-hero-content a.button:focus-visible,
+.wgc-hero .wgc-hero-content a.button.primary:hover,
+.wgc-hero .wgc-hero-content a.button.primary:focus-visible {
+  border-color: var(--wgc-cta, var(--wgc-teal));
+  background-color: var(--wgc-cta, var(--wgc-teal));
+  color: var(--wgc-paper);
 }
 
 @media (width >= 900px) {

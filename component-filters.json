@@ -29,6 +29,7 @@
       "wgc-icons",
       "wgc-columns",
       "wgc-gallery",
+      "photo-gallery",
       "wgc-home-room-dine-spa",
       "wgc-home-map",
       "wgc-accordion",
@@ -75,6 +76,14 @@
     "components": [
       "text",
       "image"
+    ]
+  },
+  {
+    "id": "photo-gallery",
+    "components": [
+      "photo-gallery-filter",
+      "photo-gallery-video",
+      "photo-gallery-image"
     ]
   },
   {

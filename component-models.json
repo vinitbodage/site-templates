@@ -309,6 +309,96 @@
     ]
   },
   {
+    "id": "photo-gallery",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "pageTitle",
+        "label": "Page Title",
+        "description": "Visually hidden heading. Live page uses: Pictures Of Clearwater Florida | Photo Gallery | Wyndham Grand."
+      }
+    ]
+  },
+  {
+    "id": "photo-gallery-filter",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Filter Label",
+        "description": "Category name shown in the filter panel."
+      }
+    ]
+  },
+  {
+    "id": "photo-gallery-video",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Video Thumbnail",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Thumbnail Alt",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "video",
+        "label": "Video URL",
+        "description": "Link to an .mp4 or .webm file."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "category",
+        "label": "Category",
+        "description": "Optional filter category for the editor only — not shown on the page."
+      }
+    ]
+  },
+  {
+    "id": "photo-gallery-image",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "fullImage",
+        "label": "Full-size Image",
+        "description": "Optional link to the full-resolution image for the lightbox."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "category",
+        "label": "Category",
+        "description": "Optional filter category for the editor only — not shown on the page."
+      }
+    ]
+  },
+  {
     "id": "quote",
     "fields": [
       {
