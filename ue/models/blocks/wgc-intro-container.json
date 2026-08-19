@@ -25,7 +25,7 @@
           "name": "content",
           "value": "",
           "label": "Content",
-          "description": "Centered headline and intro copy. Use a span or italics for the lighter lead line in the headline."
+          "description": "Centered headline and intro copy. Put the eyebrow and title in one H1/H2 (italicise the eyebrow), or use two rows: eyebrow row then title + paragraph row."
         }
       ]
     }

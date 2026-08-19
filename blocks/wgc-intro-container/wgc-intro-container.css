@@ -1,3 +1,7 @@
+main > .section.wgc-intro-container-container {
+  margin-top: -40px;
+}
+
 .wgc-intro-container.intro-container {
   background-color: var(--wgc-paper);
 }

@@ -5,7 +5,8 @@
   justify-content: center;
   min-height: 70vh;
   overflow: hidden;
-  background-color: var(--wgc-teal-dark);
+  border-radius: 0% 0% 50% 50% / 0% 0% 6% 6%;
+  background-color: transparent;
   color: var(--wgc-paper);
   text-align: center;
 }
