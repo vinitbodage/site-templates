@@ -1,7 +1,7 @@
 .services {
   max-width: var(--t2-max-width);
   margin: 0 auto;
-  padding: 0 24px;
+  padding-block: 0 var(--t2-section-padding);
 }
 
 .services .services-list {

@@ -54,16 +54,37 @@ function isCardGrid(block) {
 }
 
 /**
+ * True when the block has at least one authored cell. Empty leftover
+ * columns (a stray table in the hero section) are dropped so they do
+ * not sit above the hero.
+ * @param {Element} block the block
+ * @returns {boolean} whether any cell has content
+ */
+function hasAuthoredContent(block) {
+  return [...block.querySelectorAll(':scope > div > div')].some((cell) => (
+    !!cell.querySelector('picture, img, a, video, iframe') || !!cell.textContent.trim()
+  ));
+}
+
+/**
  * decorate the block
  * @param {Element} block the block
  */
 export default function decorate(block) {
+  if (!hasAuthoredContent(block)) {
+    block.parentElement?.remove();
+    return;
+  }
+
   if (isCardGrid(block)) {
     decorateCardColumns(block);
     return;
   }
 
-  const cols = [...block.firstElementChild.children];
+  const firstRow = block.firstElementChild;
+  if (!firstRow) return;
+
+  const cols = [...firstRow.children];
   block.classList.add(`columns-${cols.length}-cols`);
 
   // setup image columns

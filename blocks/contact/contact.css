@@ -1,7 +1,7 @@
 .contact {
   max-width: var(--t2-max-width);
   margin: 0 auto;
-  padding: var(--t2-section-padding) 24px;
+  padding-block: var(--t2-section-padding);
 }
 
 .contact-layout {

@@ -27,6 +27,11 @@ export default function decorate(block) {
       li.append(cell);
     });
 
+    li.querySelectorAll('.services-copy a.button').forEach((a) => {
+      a.classList.remove('button', 'primary', 'secondary');
+      a.closest('.button-container')?.classList.remove('button-container');
+    });
+
     if (li.childElementCount) ul.append(li);
   });
 

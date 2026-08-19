@@ -19,6 +19,10 @@ footer .footer p {
   }
 }
 
+body.template2 footer {
+  background-color: var(--t2-navy-dark);
+}
+
 body.template2 footer .footer {
   background-color: var(--t2-navy-dark);
   color: rgb(255 255 255 / 75%);

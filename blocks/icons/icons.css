@@ -38,7 +38,7 @@
 body.template2 .icons {
   max-width: var(--t2-max-width);
   margin: 0 auto;
-  padding: 0 24px;
+  padding-block: calc(var(--t2-section-padding) * 0.55);
 }
 
 body.template2 .icons .icons-list {
@@ -55,6 +55,7 @@ body.template2 .icons .icons-icon {
   justify-content: center;
   width: 64px;
   height: 64px;
+  border: 2px solid var(--t2-amber);
   border-radius: 50%;
   background-color: var(--t2-sand);
   color: var(--t2-amber-dark);

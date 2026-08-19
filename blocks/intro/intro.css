@@ -22,7 +22,7 @@
 body.template2 .intro {
   max-width: var(--t2-max-width);
   margin: 0 auto;
-  padding: var(--t2-section-padding) 24px;
+  padding-block: var(--t2-section-padding);
 }
 
 body.template2 .intro > div {
@@ -56,10 +56,6 @@ body.template2 .intro .intro-copy p {
 
   .intro.image-right .intro-media {
     order: 1;
-  }
-
-  body.template2 .intro {
-    padding-inline: 32px;
   }
 
   body.template2 .intro > div {

@@ -74,6 +74,7 @@ body:not(.template2) .hero img {
 
 .hero .hero-content {
   position: relative;
+  min-width: 0;
   width: 100%;
   padding: var(--t2-section-padding, 48px) 24px;
 }
@@ -111,15 +112,23 @@ body.template2 .hero .hero-media::after {
 }
 
 body.template2 .hero .hero-content {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
   max-width: var(--t2-max-width);
   padding: var(--t2-section-padding) 24px;
+  overflow-wrap: break-word;
 }
 
 body.template2 .hero .hero-content h1,
 body.template2 .hero .hero-content h2 {
-  max-width: 22ch;
+  max-width: 100%;
   color: var(--t2-paper);
   font-size: var(--heading-font-size-xl);
+}
+
+body.template2 .hero .hero-content p {
+  max-width: 100%;
 }
 
 body.template2 .hero.compact .hero-content {
@@ -165,7 +174,12 @@ body.template2 .hero.light .hero-media::after {
 
   body.template2 .hero .hero-content h1,
   body.template2 .hero .hero-content h2 {
+    max-width: 22ch;
     font-size: var(--heading-font-size-xxl);
+  }
+
+  body.template2 .hero .hero-content p {
+    max-width: 52ch;
   }
 
   body.template2 .hero.compact .hero-content h1,

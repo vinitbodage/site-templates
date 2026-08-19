@@ -332,9 +332,13 @@ body.template2 header {
   top: 0;
   z-index: 100;
   width: 100%;
+  height: var(--t2-header-height);
 }
 
 body.template2 header .nav-wrapper {
+  position: static;
+  width: 100%;
+  height: 100%;
   background: var(--t2-navy);
   transition: box-shadow 0.3s ease;
 }
@@ -455,12 +459,22 @@ body.template2 header .nav-sections .default-content-wrapper > ul > li > ul a:an
   font-weight: 400;
 }
 
+body.template2 header nav > .section:not(.nav-brand, .nav-sections, .nav-tools) {
+  display: none;
+}
+
 body.template2 header .nav-tools {
   display: flex;
   flex: 0 0 auto;
   align-items: stretch;
   gap: 0;
   margin: 0;
+}
+
+body.template2 header .nav-tools .default-content-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 body.template2 header .nav-tools p {
@@ -583,12 +597,26 @@ body.template2 header nav .nav-hamburger button {
   body.template2 header nav:not([aria-expanded='true']) .nav-brand {
     flex: 1 1 auto;
     justify-content: center;
+    min-width: 0;
     max-width: none;
     padding-left: 0;
   }
 
+  body.template2 header nav:not([aria-expanded='true']) .nav-brand a:any-link {
+    overflow: hidden;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   body.template2 header nav:not([aria-expanded='true']) .nav-tools {
+    flex: 0 0 auto;
     margin-left: auto;
+  }
+
+  body.template2 header nav:not([aria-expanded='true']) .book-wrap {
+    display: flex;
+    padding-right: 12px;
   }
 
   body.template2 header nav:not([aria-expanded='true']) .book-now:any-link {

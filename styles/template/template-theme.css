@@ -95,8 +95,8 @@ body.template2 .headline-rule-light::after {
 body.template2 .headline-lead {
   display: block;
   color: var(--t2-amber);
-  font-weight: 600;
-  font-style: normal;
+  font-weight: 500;
+  font-style: italic;
 }
 
 /* buttons: filled amber pill, inverting to navy on hover */
@@ -114,6 +114,7 @@ body.template2 main a.button:any-link {
   font-weight: 700;
   letter-spacing: var(--t2-tracking-wide);
   text-transform: uppercase;
+  white-space: normal;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -137,8 +138,18 @@ body.template2 main a.button.secondary:focus-visible {
   color: var(--t2-navy-dark);
 }
 
-/* full-bleed sections opt out of the boilerplate content gutter */
-body.template2 main > .section.full-bleed > div {
+/* hotel pages drop the boilerplate 40px section gap */
+body.template2 main > .section {
+  margin: 0;
+}
+
+body.template2 main > .section > div {
+  max-width: var(--t2-max-width);
+}
+
+/* full-bleed sections (and every hero) opt out of the content gutter */
+body.template2 main > .section.full-bleed > div,
+body.template2 main > .section.hero-container > div {
   max-width: none;
   padding: 0;
 }
@@ -146,4 +157,19 @@ body.template2 main > .section.full-bleed > div {
 /* soft alternate section background for rhythm between full-bleed blocks */
 body.template2 main > .section.tinted {
   background-color: var(--t2-sand);
+}
+
+body.template2 main > .section.services-container {
+  padding-top: var(--t2-section-padding);
+}
+
+/* section titles authored as default content, e.g. "Our Services" */
+body.template2 main .default-content-wrapper > h2::after {
+  display: block;
+  width: var(--t2-rule-width);
+  height: 4px;
+  margin: 16px auto 0;
+  border-radius: 2px;
+  background-color: var(--t2-amber);
+  content: '';
 }

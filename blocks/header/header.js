@@ -180,7 +180,12 @@ function decorateBookNow(nav) {
 
   stripButtonClasses(tools);
 
-  const bookLink = tools.querySelector('a[href*="synxis"], .book-now, a');
+  const links = [...tools.querySelectorAll('a')];
+  const bookLink = tools.querySelector('a.book-now')
+    || links.find((a) => /synxis/i.test(a.href))
+    || links.find((a) => /book|reserve/i.test(a.textContent))
+    || links.find((a) => !/^(tel:|mailto:)/i.test(a.getAttribute('href') || ''))
+    || links[0];
   if (!bookLink) return;
   bookLink.classList.add('book-now');
   const bookWrap = bookLink.closest('p') || bookLink.parentElement;
@@ -195,7 +200,18 @@ function decorateTemplateHeader(block) {
   const header = block.closest('header');
   if (!header) return;
   const nav = block.querySelector('nav');
-  if (nav) decorateBookNow(nav);
+  if (nav) {
+    decorateBookNow(nav);
+    // nav fragments can carry extra sections (theme switcher, booking modal)
+    // that break the logo / links / book-now row
+    nav.querySelectorAll(':scope > .section').forEach((section) => {
+      if (!['nav-brand', 'nav-sections', 'nav-tools'].some((name) => (
+        section.classList.contains(name)
+      ))) {
+        section.hidden = true;
+      }
+    });
+  }
   bindHeaderScroll(header, 8);
 }
 

@@ -18,6 +18,39 @@ import {
 } from './aem.js';
 
 /**
+ * Authored pages that still use the old prefixed block names
+ * (`template2-hero`, `wgc-intro`, …) are rewritten to the unprefixed folders
+ * so those blocks load. The first class token must stay the block name.
+ */
+const LEGACY_BLOCK_NAMES = {
+  'template2-hero': 'hero',
+  'template2-intro': 'intro',
+  'template2-icons': 'icons',
+  'template2-services': 'services',
+  'template2-contact': 'contact',
+  'wgc-hero': 'hero',
+  'wgc-intro': 'intro',
+  'wgc-icons': 'icons',
+  'wgc-columns': 'columns',
+  'wgc-gallery': 'gallery',
+  'wgc-home-map': 'home-map',
+  'wgc-home-room-dine-spa': 'home-room-dine-spa',
+};
+
+/**
+ * Rewrites leftover prefixed block class names to the current folders.
+ * @param {Element} main The container element
+ */
+function remapLegacyBlockNames(main) {
+  Object.entries(LEGACY_BLOCK_NAMES).forEach(([from, to]) => {
+    main.querySelectorAll(`.${from}`).forEach((el) => {
+      const rest = [...el.classList].filter((name) => name !== from && name !== to);
+      el.className = [to, ...rest].join(' ');
+    });
+  });
+}
+
+/**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
@@ -141,6 +174,7 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
+  remapLegacyBlockNames(main);
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
