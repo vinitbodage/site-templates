@@ -31,6 +31,9 @@
       "wgc-gallery",
       "wgc-home-room-dine-spa",
       "wgc-home-map",
+      "wgc-intro-container",
+      "wgc-amenities",
+      "wgc-room",
       "theme-option"
     ]
   },
@@ -110,6 +113,13 @@
     "id": "wgc-icons",
     "components": [
       "wgc-icon"
+    ]
+  },
+  {
+    "id": "wgc-room",
+    "components": [
+      "wgc-room-slide",
+      "wgc-room-copy"
     ]
   }
 ]
