@@ -160,6 +160,24 @@ function isImageCell(cell) {
   return !isEmpty(cell) && cell.querySelector('picture, img');
 }
 
+/**
+ * Image-right can be set explicitly (UE block option or block name variant) or
+ * inferred when authors place the copy column before the image column in da.live.
+ * @param {Element} block the block
+ * @returns {boolean} whether the media panel should render on the right
+ */
+function resolveImageRight(block) {
+  if (block.classList.contains('image-right')) return true;
+
+  return getRows(block).some((row) => {
+    const cells = getCells(row).filter((cell) => !isEmpty(cell));
+    const copyCell = cells.find(isCopyCell);
+    const imageCell = cells.find(isImageCell);
+    return copyCell && imageCell && cells.length >= 2
+      && cells.indexOf(copyCell) < cells.indexOf(imageCell);
+  });
+}
+
 function markBookLinks(container) {
   container.querySelectorAll('a[href*="synxis"]').forEach((link) => {
     link.classList.add('button', 'primary');
@@ -236,6 +254,10 @@ function bindReveal(block, media, copy) {
  * @param {Element} block the block
  */
 export default function decorate(block) {
+  if (resolveImageRight(block)) {
+    block.classList.add('image-right');
+  }
+
   const layout = document.createElement('div');
   layout.className = 'wgc-room-layout';
 

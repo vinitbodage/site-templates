@@ -87,7 +87,7 @@
           "name": "content",
           "value": "",
           "label": "Content",
-          "description": "Room name, description, and an optional Book Now call to action."
+          "description": "Room name, description, and an optional Book Now call to action. Put copy in the left column and images in the right column to flip the layout, or use the block Image Position option."
         }
       ]
     }
