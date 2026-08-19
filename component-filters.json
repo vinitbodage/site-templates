@@ -29,11 +29,12 @@
       "wgc-icons",
       "wgc-columns",
       "wgc-gallery",
+      "photo-gallery",
       "wgc-home-room-dine-spa",
       "wgc-home-map",
       "wgc-intro-container",
       "wgc-amenities",
-      "wgc-room"
+      "wgc-room",
       "book-now-modal",
       "wgc-hotel-intro",
       "wgc-hotel-policies",
@@ -73,6 +74,14 @@
     "components": [
       "text",
       "image"
+    ]
+  },
+  {
+    "id": "photo-gallery",
+    "components": [
+      "photo-gallery-filter",
+      "photo-gallery-video",
+      "photo-gallery-image"
     ]
   },
   {
