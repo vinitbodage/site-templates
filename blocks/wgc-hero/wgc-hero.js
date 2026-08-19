@@ -93,5 +93,18 @@ export default function decorate(block) {
     optimizePicture(img, { eager: true, width: '2000' });
   });
 
+  content.querySelectorAll('a').forEach((link) => {
+    const label = link.textContent.trim().toLowerCase();
+    if (
+      label === 'book now'
+      || label === 'book your stay'
+      || link.hasAttribute('data-book-now')
+      || link.href.includes('synxis')
+    ) {
+      link.dataset.bookNow = '';
+      link.href = '#';
+    }
+  });
+
   block.replaceChildren(...[media, content].filter((el) => el.childElementCount));
 }
