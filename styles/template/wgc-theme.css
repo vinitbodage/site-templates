@@ -13,21 +13,15 @@
 @import url('./wgc-header.css');
 
 body.wgc {
-  /* brand palette — matched to wyndhamgrandclearwater.com */
+  /* brand palette */
   --wgc-teal: #3d717f;
   --wgc-teal-dark: #38525d;
   --wgc-teal-muted: #56757e;
   --wgc-gold: #d9b941;
-  --wgc-navy: #21304d;
   --wgc-sand: #e8e0d3;
   --wgc-ink: #282829;
   --wgc-paper: #fff;
   --wgc-overlay: rgb(40 40 41 / 35%);
-
-  /* booking modal */
-  --book-now-text: #fff;
-  --book-now-border: rgb(255 255 255 / 60%);
-  --book-now-font: montserrat, var(--body-font-family);
 
   /* typography */
   --wgc-font-body: montserrat, var(--body-font-family);
