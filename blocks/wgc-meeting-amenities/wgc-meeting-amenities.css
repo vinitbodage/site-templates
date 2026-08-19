@@ -1,0 +1,122 @@
+.wgc-meeting-amenities {
+  padding-block: calc(var(--wgc-section-padding) * 1.1);
+  background-color: transparent;
+}
+
+.wgc-meeting-amenities.paper {
+  background-color: var(--wgc-paper);
+}
+
+.wgc-meeting-amenities .wgc-meeting-amenities-layout {
+  display: grid;
+  gap: calc(var(--wgc-gap) * 1.5);
+  align-items: start;
+  margin: 0 auto;
+  max-width: var(--wgc-max-width);
+  padding-inline: 24px;
+}
+
+.wgc-meeting-amenities .wgc-meeting-amenities-title h2,
+.wgc-meeting-amenities .wgc-meeting-amenities-title h3,
+.wgc-meeting-amenities .wgc-meeting-amenities-title h4 {
+  margin: 0;
+  color: var(--wgc-gold);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.wgc-meeting-amenities .wgc-meeting-amenities-title .wgc-headline-lead {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--wgc-teal-muted);
+  font-size: clamp(0.68rem, 1.1vw, 0.82rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+}
+
+.wgc-meeting-amenities .wgc-meeting-amenities-title p {
+  margin: 1em 0 0;
+  color: var(--wgc-teal-muted);
+  font-size: var(--body-font-size-xs);
+  line-height: 1.7;
+}
+
+.wgc-meeting-amenities .wgc-meeting-amenities-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  columns: 1;
+  column-gap: calc(var(--wgc-gap) * 2);
+}
+
+.wgc-meeting-amenities .wgc-meeting-amenities-list li {
+  position: relative;
+  margin: 0 0 10px;
+  padding-left: 1.15rem;
+  break-inside: avoid;
+  color: var(--wgc-teal-muted);
+  font-size: var(--body-font-size-xs);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.wgc-meeting-amenities .wgc-meeting-amenities-list li::before {
+  position: absolute;
+  left: 0;
+  color: var(--wgc-gold);
+  font-size: 1.1em;
+  line-height: 1.45;
+  content: '\2022';
+}
+
+/* the checklist variant reads as a list of what is included */
+.wgc-meeting-amenities.checklist .wgc-meeting-amenities-list li::before {
+  font-size: 0.95em;
+  font-weight: 700;
+  content: '\2713';
+}
+
+.wgc-meeting-amenities .wgc-meeting-amenities-list a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.wgc-meeting-amenities .wgc-meeting-amenities-list a:hover,
+.wgc-meeting-amenities .wgc-meeting-amenities-list a:focus-visible {
+  color: var(--wgc-cta, var(--wgc-teal));
+}
+
+@media (width >= 600px) {
+  .wgc-meeting-amenities .wgc-meeting-amenities-list {
+    columns: 2;
+  }
+
+  .wgc-meeting-amenities.single-col .wgc-meeting-amenities-list {
+    columns: 1;
+  }
+}
+
+@media (width >= 900px) {
+  .wgc-meeting-amenities .wgc-meeting-amenities-layout {
+    grid-template-columns: 5fr 7fr;
+    gap: calc(var(--wgc-gap) * 2.5);
+    padding-inline: 32px;
+  }
+
+  .wgc-meeting-amenities .wgc-meeting-amenities-title h2,
+  .wgc-meeting-amenities .wgc-meeting-amenities-title h3,
+  .wgc-meeting-amenities .wgc-meeting-amenities-title h4 {
+    font-size: 1.85rem;
+    letter-spacing: 0.14em;
+  }
+
+  .wgc-meeting-amenities .wgc-meeting-amenities-list li {
+    font-size: var(--body-font-size-s);
+  }
+}

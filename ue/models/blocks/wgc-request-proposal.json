@@ -1,0 +1,75 @@
+{
+  "definitions": [
+    {
+      "title": "WGC Request Proposal",
+      "id": "wgc-request-proposal",
+      "model": "wgc-request-proposal",
+      "plugins": {
+        "da": {
+          "rows": 2,
+          "columns": 1,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>div>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>div>picture>img[alt]" },
+            { "name": "content", "selector": "div:nth-child(2)>div" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "wgc-request-proposal",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Background Image (optional)",
+          "description": "Turns the band into a photographic panel. Pair it with the photograph option so the text renders light.",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Background Image Alt",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Heading, a line of copy carrying the phone number, and the proposal link. A phone number linked as tel: stays inline as a contact detail rather than becoming a button."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Background",
+          "value": "",
+          "options": [
+            { "name": "Sand", "value": "" },
+            { "name": "Teal", "value": "teal" },
+            { "name": "Dark teal", "value": "dark" },
+            { "name": "Photograph", "value": "image" }
+          ]
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes_layout",
+          "label": "Layout",
+          "value": "",
+          "options": [
+            { "name": "Centered", "value": "" },
+            { "name": "Heading beside button", "value": "split" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

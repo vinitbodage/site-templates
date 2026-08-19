@@ -342,6 +342,63 @@
     ]
   },
   {
+    "id": "wgc-accolades",
+    "fields": [
+      {
+        "component": "multiselect",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Options",
+        "options": [
+          {
+            "name": "Muted until hovered",
+            "value": "mono"
+          },
+          {
+            "name": "Compact",
+            "value": "compact"
+          },
+          {
+            "name": "Dark background",
+            "value": "dark"
+          },
+          {
+            "name": "Two rows",
+            "value": "two-row"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wgc-accolade",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Logo",
+        "description": "Award or accolade badge. SVGs are delivered untouched.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Logo Alt",
+        "description": "Names the award. Reused as the link's accessible name.",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "label": "Link (optional)",
+        "description": "Wraps the logo in a link, usually to the awarding body."
+      }
+    ]
+  },
+  {
     "id": "wgc-accordion",
     "fields": []
   },
@@ -706,6 +763,380 @@
         "name": "image3Alt",
         "label": "Bottom-right image alt",
         "required": true
+      }
+    ]
+  },
+  {
+    "id": "wgc-meeting-amenities",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "value": "",
+        "label": "Heading",
+        "description": "Section heading, with optional supporting copy below it. Italicise the opening words to render them as the lighter lead line."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "items",
+        "value": "",
+        "label": "Amenities",
+        "description": "A bullet list of what the meeting package includes. It splits into two columns on wider screens."
+      },
+      {
+        "component": "multiselect",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Options",
+        "options": [
+          {
+            "name": "Single column list",
+            "value": "single-col"
+          },
+          {
+            "name": "Check marks",
+            "value": "checklist"
+          },
+          {
+            "name": "Paper background",
+            "value": "paper"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wgc-meeting-feature",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "description": "Photograph of the space, the catering or the event.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading, body copy, and an optional call to action. Italicise the opening words of the heading to render them as the lighter lead line."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Image Position",
+        "value": "",
+        "options": [
+          {
+            "name": "Image left",
+            "value": ""
+          },
+          {
+            "name": "Image right",
+            "value": "image-right"
+          }
+        ]
+      },
+      {
+        "component": "multiselect",
+        "valueType": "string",
+        "name": "classes_style",
+        "label": "Options",
+        "options": [
+          {
+            "name": "Wide image",
+            "value": "wide"
+          },
+          {
+            "name": "Overlap copy",
+            "value": "overlap"
+          },
+          {
+            "name": "Paper background",
+            "value": "paper"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wgc-meeting-testimonials",
+    "fields": [
+      {
+        "component": "multiselect",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Options",
+        "description": "Leave the layout options clear for the one-at-a-time carousel.",
+        "options": [
+          {
+            "name": "Show all, stacked",
+            "value": "stacked"
+          },
+          {
+            "name": "Show all, two per row",
+            "value": "grid"
+          },
+          {
+            "name": "Paper background",
+            "value": "paper"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wgc-meeting-testimonial",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "headline",
+        "value": "",
+        "label": "Headline",
+        "description": "The one line from the quote worth leading with."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "quote",
+        "value": "",
+        "label": "Quote",
+        "description": "The testimonial in full."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "attribution",
+        "value": "",
+        "label": "Attribution",
+        "description": "Who said it, such as the company followed by the person and their role. Italicise the company name to set it on its own line as the citation."
+      }
+    ]
+  },
+  {
+    "id": "wgc-meetings-hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Background Image",
+        "description": "Still image behind the page heading. Also used as the video poster.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Background Image Alt",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "video",
+        "label": "Background Video (optional)",
+        "description": "Link to an .mp4 or .webm. Fades in over the image once it can play."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "An optional short label such as Plan An Event on its own line, then the page heading. Italicise the opening words of the heading to render them as the lighter lead line."
+      },
+      {
+        "component": "multiselect",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Options",
+        "options": [
+          {
+            "name": "Short",
+            "value": "short"
+          },
+          {
+            "name": "Align left",
+            "value": "left"
+          },
+          {
+            "name": "Light overlay",
+            "value": "light"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wgc-meetings-intro",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading and intro copy. Italicise the opening words of the heading to render them as the lighter lead line. A phone number linked as tel: stays inline as a contact detail rather than becoming a button."
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "cta",
+        "label": "Call To Action Link",
+        "description": "Where the closing button goes, such as the request for proposal form."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "ctaText",
+        "label": "Call To Action Text",
+        "multi": false
+      },
+      {
+        "component": "multiselect",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Options",
+        "options": [
+          {
+            "name": "Paper background",
+            "value": "paper"
+          },
+          {
+            "name": "Narrow",
+            "value": "narrow"
+          },
+          {
+            "name": "No rule under heading",
+            "value": "no-rule"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wgc-planning-tools",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "value": "",
+        "label": "Heading",
+        "description": "Section heading, with optional supporting copy below it. Italicise the opening words to render them as the lighter lead line."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "links",
+        "value": "",
+        "label": "Resources",
+        "description": "A bullet list of linked planner resources such as the virtual tour, property information, banquet menus and capacity chart. Each one picks up its icon from where it points, and documents and off-site links open in a new tab."
+      },
+      {
+        "component": "multiselect",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Options",
+        "options": [
+          {
+            "name": "Two column list",
+            "value": "two-col"
+          },
+          {
+            "name": "Heading above list",
+            "value": "stacked"
+          },
+          {
+            "name": "Show as buttons",
+            "value": "buttons"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "wgc-request-proposal",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Background Image (optional)",
+        "description": "Turns the band into a photographic panel. Pair it with the photograph option so the text renders light.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Background Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading, a line of copy carrying the phone number, and the proposal link. A phone number linked as tel: stays inline as a contact detail rather than becoming a button."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Background",
+        "value": "",
+        "options": [
+          {
+            "name": "Sand",
+            "value": ""
+          },
+          {
+            "name": "Teal",
+            "value": "teal"
+          },
+          {
+            "name": "Dark teal",
+            "value": "dark"
+          },
+          {
+            "name": "Photograph",
+            "value": "image"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes_layout",
+        "label": "Layout",
+        "value": "",
+        "options": [
+          {
+            "name": "Centered",
+            "value": ""
+          },
+          {
+            "name": "Heading beside button",
+            "value": "split"
+          }
+        ]
       }
     ]
   },
