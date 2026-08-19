@@ -3,10 +3,8 @@ import { exec } from "node:child_process";
 const run = (cmd) => new Promise((resolve, reject) => exec(
   cmd,
   (error, stdout, stderr) => {
-    if (error) reject(error);
-    if (stderr && !/LF will be replaced by CRLF|CRLF will be replaced by LF/.test(stderr)) {
-      reject(new Error(stderr));
-    }
+    if (error) reject();
+    if (stderr) reject(stderr);
     resolve(stdout);
   }
 ));
