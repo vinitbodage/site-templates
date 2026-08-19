@@ -28,6 +28,15 @@ body.wgc {
   --wgc-font-heading: montserrat, var(--heading-font-family);
   --wgc-tracking-wide: 0.08em;
 
+  /* buttons — ghost on photos; fill uses the selected theme on hover */
+  --wgc-button-bg: transparent;
+  --wgc-button-color: var(--wgc-paper);
+  --wgc-button-border: var(--wgc-paper);
+  --wgc-button-hover-bg: var(--wgc-cta, var(--wgc-teal));
+  --wgc-button-hover-color: var(--wgc-paper);
+  --wgc-cta: var(--wgc-teal);
+  --wgc-cta-hover: var(--wgc-teal);
+
   /* rhythm */
   --wgc-gap: 24px;
   --wgc-section-padding: 48px;
@@ -46,18 +55,25 @@ body.wgc {
   }
 }
 
-/* headings carry the brand teal and a centred hairline rule */
+/* headings follow the selected theme; hero copy stays white */
 body.wgc main h1,
 body.wgc main h2,
 body.wgc main h3 {
   font-family: var(--wgc-font-heading);
   font-weight: 400;
   letter-spacing: 0.02em;
+  color: var(--wgc-cta, var(--wgc-teal));
 }
 
 body.wgc main h2 {
-  color: var(--wgc-teal);
   text-align: center;
+}
+
+body.wgc main .wgc-hero h1,
+body.wgc main .wgc-hero h2,
+body.wgc main .wgc-hero h3,
+body.wgc main .wgc-hero p {
+  color: var(--wgc-paper);
 }
 
 /* the hairline rule under a heading, opt in per block */
@@ -73,7 +89,7 @@ body.wgc .wgc-rule::after {
   display: block;
   width: var(--wgc-rule-width);
   height: 1px;
-  background-color: var(--wgc-teal);
+  background-color: var(--wgc-cta, var(--wgc-teal));
   content: '';
 }
 
@@ -96,40 +112,51 @@ body.wgc .wgc-headline-lead {
   font-style: normal;
 }
 
-/* buttons: outlined and uppercase, filling on hover */
+/* section CTAs (except home map + gallery, which keep their own CSS):
+   transparent + theme text/border; hover fills theme with white text */
 body.wgc main .button-container {
   margin-top: 1.5em;
 }
 
-body.wgc main a.button:any-link {
-  border: 1px solid var(--wgc-teal);
+body.wgc main a.button:any-link,
+body.wgc main a.button.primary:any-link {
+  border: 1px solid var(--wgc-cta, var(--wgc-teal));
   border-radius: 0;
   padding: 0.9em 2.2em;
   background-color: transparent;
-  color: var(--wgc-teal);
+  color: var(--wgc-cta, var(--wgc-teal));
   font-size: var(--body-font-size-xs);
   font-weight: 500;
   letter-spacing: var(--wgc-tracking-wide);
   text-transform: uppercase;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 body.wgc main a.button:hover,
-body.wgc main a.button:focus-visible {
-  background-color: var(--wgc-teal);
+body.wgc main a.button:focus-visible,
+body.wgc main a.button.primary:hover,
+body.wgc main a.button.primary:focus-visible {
+  border-color: var(--wgc-cta, var(--wgc-teal));
+  background-color: var(--wgc-cta, var(--wgc-teal));
   color: var(--wgc-paper);
   text-decoration: none;
 }
 
-body.wgc main a.button.primary:any-link {
-  background-color: var(--wgc-teal);
+/* gallery CTAs: theme fill + white text; hover ghost with theme text/border */
+body.wgc main .wgc-gallery-container a.button:any-link,
+body.wgc main .wgc-gallery-container a.button.primary:any-link {
+  border-color: var(--wgc-cta, var(--wgc-teal));
+  background-color: var(--wgc-cta, var(--wgc-teal));
   color: var(--wgc-paper);
-  font-weight: 700;
 }
 
-body.wgc main a.button.primary:hover,
-body.wgc main a.button.primary:focus-visible {
-  background-color: var(--wgc-teal-dark);
+body.wgc main .wgc-gallery-container a.button:hover,
+body.wgc main .wgc-gallery-container a.button:focus-visible,
+body.wgc main .wgc-gallery-container a.button.primary:hover,
+body.wgc main .wgc-gallery-container a.button.primary:focus-visible {
+  border-color: var(--wgc-cta, var(--wgc-teal));
+  background-color: transparent;
+  color: var(--wgc-cta, var(--wgc-teal));
 }
 
 /* full-bleed sections opt out of the boilerplate content gutter */
@@ -137,3 +164,4 @@ body.wgc main > .section.full-bleed > div {
   max-width: none;
   padding: 0;
 }
+

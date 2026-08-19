@@ -1,0 +1,19 @@
+/*
+ * Wyndham Grand Clearwater typography theme — refined classic upscale.
+ * Inspired by wyndhamgrandclearwater.com tone: elegant serif headings, Montserrat body.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;700&display=swap');
+
+body.theme-clearwater {
+  --heading-font-family: 'Cormorant Garamond', georgia, 'Times New Roman', serif;
+  --body-font-family: montserrat, roboto, roboto-fallback, sans-serif;
+  --wgc-font-heading: 'Cormorant Garamond', georgia, 'Times New Roman', serif;
+  --wgc-font-body: montserrat, roboto, roboto-fallback, sans-serif;
+  --wgc-teal: #3d717f;
+  --wgc-teal-dark: #38525d;
+  --wgc-teal-muted: #56757e;
+  --wgc-gold: #d9b941;
+  --wgc-cta: #3d717f;
+  --wgc-cta-hover: #38525d;
+}
