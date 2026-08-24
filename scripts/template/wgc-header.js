@@ -29,7 +29,7 @@ function stripThemeOption(nav) {
 function ensureBookWrap(bookLink) {
   if (!bookLink) return null;
 
-  let wrap = bookLink.closest('.wgc-book-wrap');
+  const wrap = bookLink.closest('.wgc-book-wrap');
   if (wrap && wrap.tagName !== 'P') {
     return wrap;
   }

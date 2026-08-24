@@ -190,7 +190,7 @@ async function buildBreadcrumbs() {
 function ensureBookWrap(bookLink) {
   if (!bookLink) return null;
 
-  let wrap = bookLink.closest('.wgc-book-wrap, .header-book-wrap');
+  const wrap = bookLink.closest('.wgc-book-wrap, .header-book-wrap');
   if (wrap && wrap.tagName !== 'P') return wrap;
 
   const paragraph = wrap?.tagName === 'P' ? wrap : bookLink.closest('p');
@@ -266,9 +266,12 @@ export default async function decorate(block) {
   // load nav as fragment
   const template = toClassName(getMetadata('template'));
   const navMeta = getMetadata('nav');
-  const defaultNav = (document.body.classList.contains('wgc') || template === 'wgc')
-    ? '/template1/nav'
-    : (template ? `/${template}/nav` : '/nav');
+  let defaultNav = '/nav';
+  if (document.body.classList.contains('wgc') || template === 'wgc') {
+    defaultNav = '/template1/nav';
+  } else if (template) {
+    defaultNav = `/${template}/nav`;
+  }
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
   const fragment = await loadFragment(navPath);
 
