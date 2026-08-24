@@ -339,6 +339,7 @@ body.template2 header .nav-wrapper {
   position: static;
   width: 100%;
   height: 100%;
+  overflow: visible;
   background: var(--t2-navy);
   transition: box-shadow 0.3s ease;
 }
@@ -471,6 +472,58 @@ body.template2 header .nav-tools {
   margin: 0;
 }
 
+body.template2 header .theme-picker-wrapper {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  align-self: stretch;
+  padding-right: 20px;
+}
+
+body.template2 header .theme-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+body.template2 header .theme-picker-toggle {
+  min-width: 0;
+  min-height: 0;
+  padding: 2px;
+  border: 0;
+  background-color: transparent;
+  color: var(--t2-paper);
+  box-shadow: none;
+}
+
+body.template2 header .theme-picker-toggle:hover,
+body.template2 header .theme-picker-toggle:focus-visible {
+  border: 0;
+  background-color: transparent;
+  color: var(--t2-paper);
+  opacity: 0.85;
+}
+
+body.template2 header .theme-picker-toggle .icon {
+  width: 24px;
+  height: 24px;
+}
+
+body.template2 header .theme-picker-active {
+  right: -1px;
+  bottom: -1px;
+  width: 11px;
+  height: 11px;
+  border-color: var(--t2-navy);
+}
+
+body.template2 header .theme-picker-menu {
+  z-index: 200;
+}
+
 body.template2 header .nav-tools .default-content-wrapper {
   display: flex;
   align-items: center;
@@ -499,7 +552,7 @@ body.template2 header .book-wrap {
   display: flex;
   align-items: center;
   margin: 0;
-  padding-right: 24px;
+  padding-right: 12px;
 }
 
 body.template2 header .book-now:any-link {
@@ -572,6 +625,11 @@ body.template2 header nav .nav-hamburger button {
     white-space: normal;
   }
 
+  body.template2 header nav[aria-expanded='true'] .theme-picker-wrapper {
+    padding-right: 0;
+    justify-content: flex-end;
+  }
+
   body.template2 header nav[aria-expanded='true'] .nav-tools {
     grid-area: tools;
     flex-direction: column;
@@ -616,7 +674,16 @@ body.template2 header nav .nav-hamburger button {
 
   body.template2 header nav:not([aria-expanded='true']) .book-wrap {
     display: flex;
+    padding-right: 8px;
+  }
+
+  body.template2 header nav:not([aria-expanded='true']) .theme-picker-wrapper {
     padding-right: 12px;
+  }
+
+  body.template2 header nav:not([aria-expanded='true']) .theme-picker-toggle .icon {
+    width: 22px;
+    height: 22px;
   }
 
   body.template2 header nav:not([aria-expanded='true']) .book-now:any-link {

@@ -32,12 +32,25 @@ body.template2 {
   --t2-max-width: 1240px;
   --t2-header-height: 84px;
   --header-height: var(--t2-header-height);
-  --t2-accent: var(--t2-navy);
+  --theme-color: #16273e;
+  --t2-accent: var(--theme-color);
   --t2-accent-dark: var(--t2-navy-dark);
 
   background-color: var(--t2-paper);
   color: var(--t2-ink);
   font-family: var(--t2-font-body);
+}
+
+body.template2[data-theme='navy'] {
+  --theme-color: #16273e;
+}
+
+body.template2[data-theme='sage'] {
+  --theme-color: #6b8f71;
+}
+
+body.template2[data-theme='terracotta'] {
+  --theme-color: #c46a4a;
 }
 
 @media (width >= 900px) {
@@ -47,17 +60,20 @@ body.template2 {
   }
 }
 
-/* headings carry the brand navy and an amber accent rule */
+/* headings use the selected theme color and an amber accent rule */
 body.template2 main h1,
 body.template2 main h2,
-body.template2 main h3 {
+body.template2 main h3,
+body.template2 main h4,
+body.template2 main h5,
+body.template2 main h6 {
   font-family: var(--t2-font-heading);
   font-weight: 600;
   letter-spacing: 0.01em;
+  color: var(--theme-color);
 }
 
 body.template2 main h2 {
-  color: var(--t2-navy);
   text-align: center;
 }
 
@@ -99,17 +115,17 @@ body.template2 .headline-lead {
   font-style: italic;
 }
 
-/* buttons: filled amber pill, inverting to navy on hover */
+/* buttons: theme-colored outline, filling with the theme color on hover */
 body.template2 main .button-container {
   margin-top: 1.5em;
 }
 
 body.template2 main a.button:any-link {
-  border: 2px solid var(--t2-amber);
+  border: 2px solid var(--theme-color);
   border-radius: 999px;
   padding: 0.8em 2.2em;
-  background-color: var(--t2-amber);
-  color: var(--t2-navy-dark);
+  background-color: transparent;
+  color: var(--theme-color);
   font-size: var(--body-font-size-xs);
   font-weight: 700;
   letter-spacing: var(--t2-tracking-wide);
@@ -120,8 +136,8 @@ body.template2 main a.button:any-link {
 
 body.template2 main a.button:hover,
 body.template2 main a.button:focus-visible {
-  border-color: var(--t2-navy);
-  background-color: var(--t2-navy);
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
   color: var(--t2-paper);
   text-decoration: none;
 }
@@ -136,6 +152,20 @@ body.template2 main a.button.secondary:focus-visible {
   background-color: var(--t2-paper);
   border-color: var(--t2-paper);
   color: var(--t2-navy-dark);
+}
+
+/* dark media blocks keep a light outline so the CTA stays readable */
+body.template2 .hero a.button:any-link {
+  border-color: var(--t2-paper);
+  background-color: transparent;
+  color: var(--t2-paper);
+}
+
+body.template2 .hero a.button:hover,
+body.template2 .hero a.button:focus-visible {
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--t2-paper);
 }
 
 /* hotel pages drop the boilerplate 40px section gap */
