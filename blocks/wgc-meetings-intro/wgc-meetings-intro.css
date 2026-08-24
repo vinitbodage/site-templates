@@ -58,7 +58,7 @@
 }
 
 .wgc-meetings-intro .wgc-meetings-intro-copy .wgc-meetings-intro-contact {
-  color: var(--wgc-cta, var(--wgc-teal));
+  color: var(--theme-color);
   font-weight: 500;
   white-space: nowrap;
   text-decoration: none;

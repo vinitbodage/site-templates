@@ -105,8 +105,8 @@
 .wgc-hero .wgc-hero-content a.button:focus-visible,
 .wgc-hero .wgc-hero-content a.button.primary:hover,
 .wgc-hero .wgc-hero-content a.button.primary:focus-visible {
-  border-color: var(--wgc-cta, var(--wgc-teal));
-  background-color: var(--wgc-cta, var(--wgc-teal));
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
   color: var(--wgc-paper);
 }
 

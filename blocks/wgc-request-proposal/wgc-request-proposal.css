@@ -54,7 +54,7 @@
 .wgc-request-proposal .wgc-request-proposal-copy h2,
 .wgc-request-proposal .wgc-request-proposal-copy h3 {
   margin: 0;
-  color: var(--wgc-cta, var(--wgc-teal));
+  color: var(--theme-color);
   font-size: clamp(1.4rem, 3vw, 2.1rem);
   font-weight: 400;
   line-height: 1.25;
@@ -125,7 +125,7 @@
 .wgc-request-proposal.image .wgc-request-proposal-copy a.button:focus-visible {
   border-color: var(--wgc-paper);
   background-color: var(--wgc-paper);
-  color: var(--wgc-cta, var(--wgc-teal));
+  color: var(--theme-color);
 }
 
 @media (width >= 900px) {

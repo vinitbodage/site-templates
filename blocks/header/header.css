@@ -354,12 +354,13 @@ body.template2 header .nav-tools p {
   margin: 0;
 }
 
-body.template2 header .header-book-wrap {
+body.template2 header .header-book-wrap,
+body.template2 header .wgc-book-wrap {
   display: inline-flex;
   flex: 0 0 auto;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   height: 100%;
   margin: 0;
   padding: 0;

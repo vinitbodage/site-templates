@@ -18,6 +18,7 @@
   --text-color: #131313;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
+  --theme-color: #16273e;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -261,4 +262,10 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/* Legacy theme-option block removed in favor of theme-picker */
+.theme-option,
+.theme-option-wrap {
+  display: none !important;
 }

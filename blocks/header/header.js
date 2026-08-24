@@ -182,6 +182,47 @@ async function buildBreadcrumbs() {
  * top-right. Skips when a picker is already present.
  * @param {Element} nav the decorated nav
  */
+/**
+ * Ensures the book CTA wrapper is a div so block-level picker markup stays valid.
+ * @param {Element} bookLink
+ * @returns {Element|null}
+ */
+function ensureBookWrap(bookLink) {
+  if (!bookLink) return null;
+
+  let wrap = bookLink.closest('.wgc-book-wrap, .header-book-wrap');
+  if (wrap && wrap.tagName !== 'P') return wrap;
+
+  const paragraph = wrap?.tagName === 'P' ? wrap : bookLink.closest('p');
+  const div = document.createElement('div');
+  div.className = 'header-book-wrap';
+
+  if (paragraph) {
+    paragraph.replaceWith(div);
+    div.append(bookLink);
+    return div;
+  }
+
+  bookLink.replaceWith(div);
+  div.append(bookLink);
+  return div;
+}
+
+/**
+ * Inserts the theme picker immediately beside Book Now.
+ * @param {Element} bookWrap
+ * @param {Element} bookLink
+ * @param {Element} pickerWrap
+ */
+function attachPickerToBook(bookWrap, bookLink, pickerWrap) {
+  if (!bookWrap || !bookLink || !pickerWrap) return;
+  pickerWrap.remove();
+  bookLink.before(pickerWrap);
+  if (!bookWrap.contains(pickerWrap)) {
+    bookWrap.insertBefore(pickerWrap, bookLink);
+  }
+}
+
 async function mountThemePicker(nav) {
   if (nav.querySelector('.theme-picker')) return;
 
@@ -202,20 +243,13 @@ async function mountThemePicker(nav) {
   const picker = buildBlock('theme-picker', '');
   pickerWrap.append(picker);
 
-  let bookWrap = tools.querySelector('.book-wrap, .wgc-book-wrap');
-  if (!bookWrap) {
-    const bookLink = tools.querySelector('a[href*="synxis"], .wgc-book-now, a[href="#book"]');
-    bookWrap = bookLink?.closest('p') || bookLink?.parentElement;
-  }
-  const bookLink = bookWrap?.querySelector('.wgc-book-now, a[href*="synxis"], a[href="#book"]')
-    || tools.querySelector('a[href*="synxis"], .wgc-book-now, a[href="#book"]');
-  if (bookWrap) {
+  let bookLink = tools.querySelector('a[href*="synxis"], .wgc-book-now, a[href="#book"]');
+  const bookWrap = ensureBookWrap(bookLink);
+  bookLink = bookWrap?.querySelector('.wgc-book-now, a[href*="synxis"], a[href="#book"]')
+    || bookLink;
+  if (bookWrap && bookLink) {
     bookWrap.classList.add('header-book-wrap');
-    if (bookLink && bookLink.parentElement === bookWrap) {
-      bookLink.after(pickerWrap);
-    } else {
-      bookWrap.append(pickerWrap);
-    }
+    attachPickerToBook(bookWrap, bookLink, pickerWrap);
   } else {
     (tools.querySelector(':scope > div') || tools).append(pickerWrap);
   }
