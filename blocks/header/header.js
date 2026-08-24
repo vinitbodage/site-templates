@@ -209,7 +209,7 @@ function ensureBookWrap(bookLink) {
 }
 
 /**
- * Inserts the theme picker immediately beside Book Now.
+ * Inserts the theme picker immediately after Book Now.
  * @param {Element} bookWrap
  * @param {Element} bookLink
  * @param {Element} pickerWrap
@@ -217,9 +217,9 @@ function ensureBookWrap(bookLink) {
 function attachPickerToBook(bookWrap, bookLink, pickerWrap) {
   if (!bookWrap || !bookLink || !pickerWrap) return;
   pickerWrap.remove();
-  bookLink.before(pickerWrap);
+  bookLink.after(pickerWrap);
   if (!bookWrap.contains(pickerWrap)) {
-    bookWrap.insertBefore(pickerWrap, bookLink);
+    bookWrap.append(pickerWrap);
   }
 }
 
