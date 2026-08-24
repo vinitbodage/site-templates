@@ -1,0 +1,53 @@
+{
+  "definitions": [
+    {
+      "title": "Breadcrumb",
+      "id": "breadcrumb",
+      "model": "breadcrumb",
+      "filter": "breadcrumb",
+      "plugins": {
+        "da": {
+          "rows": 2,
+          "columns": 1
+        }
+      }
+    },
+    {
+      "title": "Breadcrumb Item",
+      "id": "breadcrumb-item",
+      "model": "breadcrumb-item",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "text", "selector": "div:nth-child(1)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "breadcrumb-item",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "text",
+          "value": "",
+          "label": "Crumb",
+          "description": "Link ancestor pages. Leave the last crumb unlinked — it is the current page."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "breadcrumb",
+      "components": [
+        "breadcrumb-item"
+      ]
+    }
+  ]
+}

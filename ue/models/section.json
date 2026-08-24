@@ -28,6 +28,14 @@
             {
               "name": "Full Bleed",
               "value": "full-bleed"
+            },
+            {
+              "name": "Has Sidebar",
+              "value": "has-sidebar"
+            },
+            {
+              "name": "Breadcrumb Bar",
+              "value": "breadcrumb-bar"
             }
           ]
         }
@@ -61,7 +69,10 @@
         "home-room-dine-spa",
         "home-map",
         "contact",
-        "theme-picker"
+        "theme-picker",
+        "breadcrumb",
+        "page-title",
+        "side-nav"
       ]
     }
   ]

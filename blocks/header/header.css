@@ -327,8 +327,8 @@ header .breadcrumbs ol li[aria-current] {
    boilerplate header are mutually exclusive; they never match the same page. */
 
 /*
- * Axalta header — a white bar with a crimson wordmark on the left and, on
- * desktop, two right-aligned rows: the small utility links above the main nav.
+ * Northline header — one mint row: sentence-case wordmark, links, and a
+ * filled sample pill. Not a two-row utility bar or an uppercase wordmark.
  */
 body.template4 header {
   position: sticky;
@@ -342,9 +342,9 @@ body.template4 header .nav-wrapper {
   position: static;
   width: 100%;
   height: 100%;
-  border-bottom: 1px solid var(--t4-line);
+  border-bottom: 3px solid var(--t4-red);
   overflow: visible;
-  background: var(--t4-paper);
+  background: var(--t4-tint);
   transition: box-shadow 0.3s ease;
 }
 
@@ -362,7 +362,7 @@ body.template4 header nav {
   height: var(--t4-header-height);
   margin: 0 auto;
   padding: 0 var(--t4-bleed);
-  background-color: var(--t4-paper);
+  background-color: transparent;
   color: var(--t4-ink);
   font-family: var(--t4-font-body);
   font-size: var(--body-font-size-s);
@@ -388,8 +388,8 @@ body.template4 header .nav-brand a:any-link {
   color: var(--t4-red);
   font-size: 22px;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  text-transform: none;
 }
 
 body.template4 header .nav-brand img {
@@ -435,12 +435,21 @@ body.template4 header .nav-tools p {
 }
 
 body.template4 header .nav-tools a:any-link {
-  color: var(--t4-muted);
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.55em 1.1em;
+  background-color: var(--t4-red);
+  color: var(--t4-paper);
   font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 body.template4 header .nav-tools a:hover {
-  color: var(--t4-red);
+  background-color: var(--t4-red-dark);
+  color: var(--t4-paper);
 }
 
 body.template4 header nav .nav-hamburger {
@@ -463,13 +472,14 @@ body.template4 header nav .nav-hamburger button {
   body.template4 header nav {
     display: grid;
     grid-template:
-      'brand tools' var(--t4-utility-height)
-      'brand sections' var(--t4-nav-height) / auto 1fr;
+      'brand sections tools' var(--t4-nav-height) / auto 1fr auto;
     align-items: center;
+    column-gap: 32px;
   }
 
   body.template4 header .nav-brand {
     grid-area: brand;
+    flex: 0 0 auto;
   }
 
   body.template4 header .nav-tools {
