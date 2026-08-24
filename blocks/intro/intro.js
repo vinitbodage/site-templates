@@ -31,7 +31,7 @@ export default function decorate(block) {
     addRule(heading);
   }
 
-  block.querySelectorAll('.intro-media picture > img').forEach((img) => {
+  block.querySelectorAll('.intro-media img').forEach((img) => {
     optimizePicture(img, { width: '1200' });
   });
 }

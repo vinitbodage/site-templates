@@ -1,10 +1,13 @@
 /*
- * Branded hotel theme.
+ * Branded themes.
  *
- * Loaded by scripts.js for every page that sets `template` metadata. Blocks
- * read these custom properties instead of hardcoding brand values.
+ * Loaded by scripts.js for every page that sets `template` metadata. Each look
+ * is a scope in this one file — `body.template2` for the hotel pages,
+ * `body.template4` for the Axalta pages — and the scopes are mutually
+ * exclusive, so a page only ever matches one of them. Blocks read these custom
+ * properties instead of hardcoding brand values. Never add a templateN-theme.css.
  *
- * Poppins/Inter are the brand typefaces; they are listed first so they are
+ * Poppins/Inter are the hotel brand typefaces; they are listed first so they are
  * used where available and fall back to the project fonts rather than adding
  * a render-blocking webfont request.
  */
@@ -202,4 +205,219 @@ body.template2 main .default-content-wrapper > h2::after {
   border-radius: 2px;
   background-color: var(--t2-amber);
   content: '';
+}
+
+/* stylelint-disable no-descending-specificity -- the hotel and Axalta looks are
+   mutually exclusive; they never match the same page. */
+
+/*
+ * Axalta look.
+ *
+ * Sampled from the source: crimson #c82127 on white, near-black copy, a #222
+ * footer, square corners throughout, and outline rectangular CTAs that fill on
+ * hover. Section headings are regular weight and centred; only the masthead and
+ * the card titles are bold.
+ *
+ * The brand typeface is not licensed here, so the project fonts carry the look
+ * rather than adding a webfont request that would cost more than it returns.
+ */
+body.template4 {
+  /* brand palette */
+  --t4-red: #c82127;
+  --t4-red-dark: #9e1a1f;
+  --t4-ink: #1e1e1e;
+  --t4-muted: #565656;
+  --t4-paper: #fff;
+  --t4-tint: #f5f5f5;
+  --t4-line: #d7d7d7;
+  --t4-footer: #222;
+  --t4-footer-ink: #b3b3b3;
+  --t4-overlay: rgb(0 0 0 / 30%);
+
+  /* typography — the source sets copy at 16px, where the project runs large */
+  --t4-font-heading: var(--body-font-family);
+  --t4-font-body: var(--body-font-family);
+  --body-font-size-m: 18px;
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 14px;
+
+  /* rhythm */
+  --t4-max-width: 1170px;
+  --t4-bleed: 20px;
+  --t4-gap: 24px;
+  --t4-section-padding: 40px;
+  --t4-utility-height: 0px;
+  --t4-nav-height: 60px;
+  --t4-header-height: calc(var(--t4-utility-height) + var(--t4-nav-height));
+  --header-height: var(--t4-header-height);
+  --theme-color: var(--t4-red);
+
+  background-color: var(--t4-paper);
+  color: var(--t4-ink);
+  font-family: var(--t4-font-body);
+}
+
+@media (width >= 900px) {
+  body.template4 {
+    --t4-utility-height: 38px;
+    --t4-nav-height: 56px;
+    --t4-section-padding: 56px;
+    --t4-gap: 30px;
+    --t4-bleed: 24px;
+  }
+}
+
+body.template4 main h1,
+body.template4 main h2,
+body.template4 main h3,
+body.template4 main h4,
+body.template4 main h5,
+body.template4 main h6 {
+  color: var(--t4-ink);
+  font-family: var(--t4-font-heading);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+/* the centred crimson section title, e.g. "More than 150 years of experience" */
+body.template4 main .default-content-wrapper > h2 {
+  margin: 0 0 0.5em;
+  color: var(--t4-red);
+  font-size: clamp(1.5rem, 3vw, 2.125rem);
+  text-align: center;
+}
+
+body.template4 main .default-content-wrapper > p {
+  color: var(--t4-ink);
+  font-size: var(--body-font-size-s);
+  line-height: 1.6;
+}
+
+/* CTAs are square outline rectangles that fill on hover */
+body.template4 main .button-container {
+  margin: 1.4em 0 0;
+}
+
+body.template4 main a.button:any-link {
+  border: 1px solid var(--t4-red);
+  border-radius: 0;
+  padding: 0.8em 1.5em;
+  background-color: transparent;
+  color: var(--t4-red);
+  font-size: var(--body-font-size-xs);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: normal;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.template4 main a.button:hover,
+body.template4 main a.button:focus-visible {
+  border-color: var(--t4-red);
+  background-color: var(--t4-red);
+  color: var(--t4-paper);
+  text-decoration: none;
+}
+
+/* over photography the outline turns white */
+body.template4 main a.button.secondary:any-link,
+body.template4 .hero a.button:any-link {
+  border-color: var(--t4-paper);
+  background-color: transparent;
+  color: var(--t4-paper);
+}
+
+body.template4 main a.button.secondary:hover,
+body.template4 main a.button.secondary:focus-visible,
+body.template4 .hero a.button:hover,
+body.template4 .hero a.button:focus-visible {
+  border-color: var(--t4-paper);
+  background-color: var(--t4-paper);
+  color: var(--t4-ink);
+}
+
+body.template4 main > .section {
+  margin: 0;
+  padding: var(--t4-section-padding) 0;
+}
+
+body.template4 main > .section > div {
+  box-sizing: border-box;
+  max-width: var(--t4-max-width);
+  margin: 0 auto;
+  padding: 0 var(--t4-bleed);
+}
+
+/* the masthead runs full bleed, with no gutter and no radius */
+body.template4 main > .section.hero-container {
+  padding: 0;
+}
+
+body.template4 main > .section.hero-container > div,
+body.template4 main > .section.full-bleed > div {
+  max-width: none;
+  padding: 0;
+}
+
+body.template4 main > .section.tint {
+  background-color: var(--t4-tint);
+}
+
+/*
+ * The announcement strip: one centred outline box below the masthead. It sits
+ * close to both neighbours, so it collapses the padding it would otherwise
+ * stack with the section that follows.
+ */
+body.template4 main > .section.notice {
+  padding: calc(var(--t4-section-padding) * 0.6) 0 0;
+}
+
+body.template4 main > .section.notice + .section {
+  padding-top: calc(var(--t4-section-padding) * 0.6);
+}
+
+body.template4 main > .section.notice .button-container {
+  margin: 0;
+  text-align: center;
+}
+
+/* a row of equal CTAs, sitting just under the block it follows */
+body.template4 main > .section.actions {
+  padding-top: calc(var(--t4-section-padding) * 0.4);
+}
+
+body.template4 main > .section.actions .default-content-wrapper {
+  display: grid;
+  gap: var(--t4-gap);
+  justify-items: center;
+}
+
+body.template4 main > .section.actions .button-container {
+  margin: 0;
+}
+
+body.template4 main > .section.actions a.button:any-link {
+  min-width: 180px;
+}
+
+@media (width >= 700px) {
+  body.template4 main > .section.actions .default-content-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*
+ * Boxes the lazy blocks hold while they decorate. Only the look knows roughly
+ * how tall a decorated block is, so the reservation belongs here rather than in
+ * styles.css with the shimmer itself.
+ */
+body.template4 .cards {
+  --block-loading-height: 320px;
+}
+
+body.template4 .intro,
+body.template4 .columns {
+  --block-loading-height: 260px;
 }

@@ -101,6 +101,47 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
+/*
+ * Block loading placeholder.
+ *
+ * Until a block's JS runs its content is still the authored table, so painting
+ * it raw costs both a flash of unstyled markup and the layout shift of
+ * replacing it. Lazily loaded blocks therefore reserve a box and shimmer until
+ * decoration finishes; `--block-loading-height` lets each look reserve a height
+ * close to the decorated one, which is what keeps the reservation from becoming
+ * a shift of its own.
+ *
+ * The first section is excluded on purpose: it holds the LCP candidate, and
+ * hiding its content would postpone first paint. `loadBlock()` sets `loaded`
+ * even when a block throws, so content can never be stranded here.
+ */
+@keyframes block-loading {
+  from { background-position: 100% 50%; }
+  to { background-position: -100% 50%; }
+}
+
+main > .section:not(:first-child) .block:not([data-block-status="loaded"]) {
+  min-height: var(--block-loading-height, 0);
+  background-image: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 3%) 25%,
+    rgb(0 0 0 / 7%) 37%,
+    rgb(0 0 0 / 3%) 63%
+  );
+  background-size: 300% 100%;
+  animation: block-loading 1.4s ease-in-out infinite;
+}
+
+main > .section:not(:first-child) .block:not([data-block-status="loaded"]) > * {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main > .section:not(:first-child) .block:not([data-block-status="loaded"]) {
+    animation: none;
+  }
+}
+
 @media (width >= 900px) {
   body[data-breadcrumbs] {
     --header-height: calc(var(--nav-height) + var(--breadcrumbs-height));

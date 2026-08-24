@@ -326,6 +326,217 @@ header .breadcrumbs ol li[aria-current] {
 /* stylelint-disable no-descending-specificity -- branded header and the
    boilerplate header are mutually exclusive; they never match the same page. */
 
+/*
+ * Axalta header — a white bar with a crimson wordmark on the left and, on
+ * desktop, two right-aligned rows: the small utility links above the main nav.
+ */
+body.template4 header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: var(--t4-header-height);
+}
+
+body.template4 header .nav-wrapper {
+  position: static;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid var(--t4-line);
+  overflow: visible;
+  background: var(--t4-paper);
+  transition: box-shadow 0.3s ease;
+}
+
+body.template4 header.header-scrolled .nav-wrapper {
+  box-shadow: 0 1px 10px rgb(0 0 0 / 10%);
+}
+
+body.template4 header nav {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  max-width: var(--t4-max-width);
+  height: var(--t4-header-height);
+  margin: 0 auto;
+  padding: 0 var(--t4-bleed);
+  background-color: var(--t4-paper);
+  color: var(--t4-ink);
+  font-family: var(--t4-font-body);
+  font-size: var(--body-font-size-s);
+}
+
+body.template4 header nav a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+body.template4 header .nav-brand {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+}
+
+body.template4 header .nav-brand p {
+  margin: 0;
+}
+
+/* a text wordmark, so no trademarked logo binary ships in the repo */
+body.template4 header .nav-brand a:any-link {
+  color: var(--t4-red);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+body.template4 header .nav-brand img {
+  display: block;
+  width: auto;
+  height: 34px;
+}
+
+body.template4 header .nav-sections {
+  display: flex;
+  visibility: hidden;
+}
+
+body.template4 header .nav-sections ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+body.template4 header .nav-sections a:hover {
+  color: var(--t4-red);
+}
+
+/* the utility row is desktop-only; on mobile it drops into the open menu */
+body.template4 header .nav-tools {
+  display: none;
+}
+
+body.template4 header .nav-tools .default-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+body.template4 header .nav-tools p {
+  margin: 0;
+}
+
+body.template4 header .nav-tools a:any-link {
+  color: var(--t4-muted);
+  font-size: var(--body-font-size-xs);
+}
+
+body.template4 header .nav-tools a:hover {
+  color: var(--t4-red);
+}
+
+body.template4 header nav .nav-hamburger {
+  display: flex;
+  order: -1;
+  align-items: center;
+  padding-right: 14px;
+}
+
+body.template4 header nav .nav-hamburger button {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  line-height: 1;
+}
+
+@media (width >= 900px) {
+  body.template4 header nav {
+    display: grid;
+    grid-template:
+      'brand tools' var(--t4-utility-height)
+      'brand sections' var(--t4-nav-height) / auto 1fr;
+    align-items: center;
+  }
+
+  body.template4 header .nav-brand {
+    grid-area: brand;
+  }
+
+  body.template4 header .nav-tools {
+    display: flex;
+    grid-area: tools;
+    justify-content: flex-end;
+  }
+
+  body.template4 header .nav-sections {
+    grid-area: sections;
+    justify-content: flex-end;
+    visibility: visible;
+  }
+
+  body.template4 header nav .nav-hamburger {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+@media (width < 900px) {
+  body.template4 header nav[aria-expanded='true'] {
+    display: grid;
+    grid-template:
+      'hamburger brand' var(--t4-nav-height)
+      'sections sections' 1fr
+      'tools tools' auto / auto 1fr;
+    align-items: center;
+    min-height: 100dvh;
+    padding-bottom: 24px;
+    overflow-y: auto;
+  }
+
+  body.template4 header nav[aria-expanded='true'] .nav-hamburger {
+    grid-area: hamburger;
+  }
+
+  body.template4 header nav[aria-expanded='true'] .nav-brand {
+    grid-area: brand;
+  }
+
+  body.template4 header nav[aria-expanded='true'] .nav-sections {
+    grid-area: sections;
+    align-self: start;
+    width: 100%;
+    padding-top: 20px;
+    visibility: visible;
+  }
+
+  body.template4 header nav[aria-expanded='true'] .nav-sections ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    white-space: normal;
+  }
+
+  body.template4 header nav[aria-expanded='true'] .nav-tools {
+    display: flex;
+    grid-area: tools;
+    padding-top: 20px;
+  }
+
+  body.template4 header nav:not([aria-expanded='true']) .nav-sections {
+    display: none;
+  }
+}
+
 /* branded header — overrides boilerplate layout */
 body.template2 header {
   position: sticky;

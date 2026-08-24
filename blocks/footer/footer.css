@@ -79,3 +79,108 @@ body.template2 footer .footer a:hover {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* stylelint-disable no-descending-specificity -- the hotel and Axalta looks are
+   mutually exclusive; they never match the same page. */
+
+/*
+ * Axalta footer — a #222 band holding a right-aligned social row, a five-column
+ * sitemap, then the trademark line and the privacy link.
+ */
+body.template4 footer {
+  background-color: var(--t4-footer);
+  font-size: var(--body-font-size-xs);
+}
+
+body.template4 footer .footer {
+  background-color: var(--t4-footer);
+  color: var(--t4-footer-ink);
+}
+
+/* a descendant selector: fragment sections do not always land as children */
+body.template4 footer .footer .section {
+  box-sizing: border-box;
+  max-width: var(--t4-max-width);
+  margin: 0 auto;
+  padding: 22px var(--t4-bleed);
+}
+
+body.template4 footer .footer .section + .section {
+  border-top: 1px solid rgb(255 255 255 / 12%);
+}
+
+body.template4 footer .footer h3 {
+  margin: 0 0 12px;
+  color: var(--t4-footer-ink);
+  font-size: var(--body-font-size-xs);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+body.template4 footer .footer p {
+  margin: 0 0 6px;
+  line-height: 1.6;
+}
+
+body.template4 footer .footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.template4 footer .footer ul + ul {
+  margin-top: 22px;
+}
+
+body.template4 footer .footer li {
+  margin-bottom: 7px;
+}
+
+body.template4 footer .footer strong {
+  color: var(--t4-paper);
+  font-weight: 700;
+}
+
+body.template4 footer .footer a:any-link {
+  color: var(--t4-footer-ink);
+  text-decoration: none;
+}
+
+body.template4 footer .footer a:hover {
+  color: var(--t4-paper);
+  text-decoration: underline;
+}
+
+/* the sitemap is a grid, so it pairs up on tablets instead of running as one
+   very long single column */
+body.template4 footer .footer .columns > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--t4-gap);
+}
+
+body.template4 footer .footer .section.social {
+  text-align: right;
+}
+
+body.template4 footer .footer .section.legal a:any-link {
+  text-decoration: underline;
+}
+
+body.template4 footer .footer .section.centered {
+  text-align: center;
+}
+
+@media (width >= 600px) {
+  body.template4 footer .footer .columns > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  body.template4 footer .footer .columns > div {
+    grid-template-columns: repeat(5, 1fr);
+    align-items: start;
+  }
+}

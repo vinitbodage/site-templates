@@ -69,14 +69,15 @@ export default function decorate(block) {
     getCells(row).forEach((cell) => {
       if (isEmpty(cell)) return;
 
-      const picture = cell.querySelector('picture');
+      // an authored image arrives wrapped in a picture, or bare
+      const picture = cell.querySelector('picture, img');
       const videoLink = [...cell.querySelectorAll('a')].find((a) => VIDEO_RE.test(a.href));
 
       if (picture || videoLink) {
         if (!media.childElementCount) moveInstrumentation(cell, media);
         if (picture) media.append(picture);
         if (videoLink) {
-          const poster = picture ? picture.querySelector('img').src : '';
+          const poster = picture ? (picture.querySelector('img') || picture).src : '';
           removeVideoLink(videoLink);
           media.append(buildVideo(videoLink.href, poster));
         }
@@ -95,7 +96,7 @@ export default function decorate(block) {
   }
 
   // the hero image is above the fold, so it loads eagerly as the LCP candidate
-  media.querySelectorAll('picture > img').forEach((img) => {
+  media.querySelectorAll('img').forEach((img) => {
     optimizePicture(img, { eager: true, width: '2000' });
   });
 

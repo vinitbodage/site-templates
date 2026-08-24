@@ -67,3 +67,58 @@ body.template2 .intro .intro-copy p {
     order: 2;
   }
 }
+
+/* Axalta promo row — a square photograph beside copy, alternating side */
+body.template4 .intro {
+  max-width: var(--t4-max-width);
+  margin: 0 auto;
+}
+
+body.template4 .intro > div {
+  gap: var(--t4-gap);
+  align-items: stretch;
+}
+
+body.template4 .intro > div > div {
+  min-width: 0;
+}
+
+body.template4 .intro .intro-copy h1,
+body.template4 .intro .intro-copy h2,
+body.template4 .intro .intro-copy h3 {
+  max-width: min(24ch, 100%);
+  margin: 0 0 0.6em;
+  color: var(--t4-red);
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  font-weight: 700;
+}
+
+body.template4 .intro .intro-copy p {
+  max-width: min(56ch, 100%);
+  margin: 0 0 0.6em;
+  color: var(--t4-ink);
+  font-size: var(--body-font-size-s);
+  line-height: 1.6;
+}
+
+/* an authored image arrives wrapped in a paragraph; it must not add spacing */
+body.template4 .intro .intro-media p {
+  margin: 0;
+}
+
+body.template4 .intro .intro-media picture,
+body.template4 .intro .intro-media img {
+  border-radius: 0;
+}
+
+body.template4 .intro .intro-media img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+@media (width >= 900px) {
+  body.template4 .intro > div {
+    gap: 56px;
+    align-items: center;
+  }
+}

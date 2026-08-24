@@ -45,26 +45,38 @@ export function isEmpty(cell) {
  * resize assets it serves, so appending its parameters to a third-party URL
  * produces a source that advertises webp while the CDN returns the original;
  * SVGs have nothing to resize. Both still get an explicit loading hint.
+ *
+ * An eager image is the page's LCP candidate, so it also gets
+ * `fetchpriority="high"` to pull it ahead of the lazy images and stylesheets
+ * competing for the same connection.
  * @param {Element} img the authored image
  * @param {object} options optimization options
  * @param {boolean} options.eager whether the image loads eagerly
  * @param {string} options.width the target width in pixels
  */
 export function optimizePicture(img, { eager = false, width = '750' } = {}) {
-  const picture = img.closest('picture');
-  if (!picture) return;
+  const applyLoadingHints = (target) => {
+    target.setAttribute('loading', eager ? 'eager' : 'lazy');
+    target.setAttribute('decoding', eager ? 'sync' : 'async');
+    if (eager) target.setAttribute('fetchpriority', 'high');
+  };
 
+  const picture = img.closest('picture');
   const { origin } = new URL(img.src, window.location.href);
-  const optimizable = origin === window.location.origin
+  const optimizable = picture
+    && origin === window.location.origin
     && !img.src.toLowerCase().includes('.svg');
 
+  // a bare <img>, an off-origin image or an SVG keeps its own element
   if (!optimizable) {
-    img.setAttribute('loading', eager ? 'eager' : 'lazy');
+    applyLoadingHints(img);
     return;
   }
 
   const optimized = createOptimizedPicture(img.src, img.alt, eager, [{ width }]);
-  moveInstrumentation(img, optimized.querySelector('img'));
+  const optimizedImg = optimized.querySelector('img');
+  applyLoadingHints(optimizedImg);
+  moveInstrumentation(img, optimizedImg);
   picture.replaceWith(optimized);
 }
 

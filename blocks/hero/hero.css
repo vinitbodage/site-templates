@@ -7,20 +7,20 @@
    boilerplate hero are mutually exclusive; they never match the same page. */
 
 /* boilerplate hero — used on pages that do not load a branded template */
-body:not(.template2) .hero {
+body:not(.template2, .template4) .hero {
   position: relative;
   padding: 40px 24px;
   min-height: 300px;
 }
 
-body:not(.template2) .hero h1 {
+body:not(.template2, .template4) .hero h1 {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   color: var(--background-color);
 }
 
-body:not(.template2) .hero picture {
+body:not(.template2, .template4) .hero picture {
   position: absolute;
   z-index: -1;
   inset: 0;
@@ -28,14 +28,14 @@ body:not(.template2) .hero picture {
   box-sizing: border-box;
 }
 
-body:not(.template2) .hero img {
+body:not(.template2, .template4) .hero img {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
 @media (width >= 900px) {
-  body:not(.template2) .hero {
+  body:not(.template2, .template4) .hero {
     padding: 40px 32px;
   }
 }
@@ -189,6 +189,87 @@ body.template2 .hero.light .hero-media::after {
 
   body.template2 .hero.short {
     min-height: 55vh;
+  }
+}
+
+/*
+ * Axalta masthead — a full-bleed photograph with square corners, white bold
+ * copy held to the container gutter on the left, and an outline white CTA.
+ */
+body.template4 .hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 360px;
+  overflow: hidden;
+  background-color: var(--t4-ink);
+  color: var(--t4-paper);
+  text-align: left;
+}
+
+body.template4 .hero.compact {
+  min-height: 240px;
+}
+
+/* the overlay keeps the copy legible over any authored photograph */
+body.template4 .hero .hero-media::after {
+  background-image: linear-gradient(90deg, rgb(0 0 0 / 55%), rgb(0 0 0 / 15%));
+}
+
+/* a text-only masthead reads on the brand crimson instead of a photo */
+body.template4 .hero:not(:has(.hero-media)) {
+  background-color: var(--t4-red);
+}
+
+body.template4 .hero .hero-content {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  max-width: var(--t4-max-width);
+  margin: 0 auto;
+  padding: 40px var(--t4-bleed);
+  overflow-wrap: break-word;
+}
+
+body.template4 .hero .hero-content h1,
+body.template4 .hero .hero-content h2 {
+  max-width: min(24ch, 100%);
+  margin: 0;
+  color: var(--t4-paper);
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+body.template4 .hero.compact .hero-content h1,
+body.template4 .hero.compact .hero-content h2 {
+  max-width: min(28ch, 100%);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+}
+
+body.template4 .hero .hero-content p {
+  max-width: min(48ch, 100%);
+  margin: 0.9em 0 0;
+  color: var(--t4-paper);
+  font-size: var(--body-font-size-s);
+}
+
+body.template4 .hero .hero-content .button-container {
+  margin-top: 1.6em;
+}
+
+@media (width >= 900px) {
+  body.template4 .hero {
+    min-height: 480px;
+  }
+
+  body.template4 .hero.compact {
+    min-height: 300px;
+  }
+
+  body.template4 .hero .hero-content {
+    padding-block: 56px;
   }
 }
 

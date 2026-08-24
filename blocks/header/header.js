@@ -11,6 +11,9 @@ import { loadFragment } from '../fragment/fragment.js';
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
+// templates whose header carries the hotel booking extras
+const HOTEL_TEMPLATES = ['template2', 'wgc'];
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -232,25 +235,32 @@ async function mountThemePicker(nav) {
 }
 
 /**
- * Branded header extras (scroll state, book-now, theme picker) for themed pages.
+ * Branded header extras for themed pages: the scroll state is shared, while
+ * the booking button and theme picker belong to the hotel look alone.
  * @param {Element} block the header block
+ * @param {string} template the page template metadata
  */
-async function decorateTemplateHeader(block) {
+async function decorateTemplateHeader(block, template) {
   const header = block.closest('header');
   if (!header) return;
   const nav = block.querySelector('nav');
   if (nav) {
-    decorateBookNow(nav);
-    // nav fragments can carry extra sections (booking modal) that break the
-    // logo / links / book-now row; the theme picker is mounted into nav-tools
-    nav.querySelectorAll(':scope > .section').forEach((section) => {
-      if (!['nav-brand', 'nav-sections', 'nav-tools'].some((name) => (
-        section.classList.contains(name)
-      ))) {
-        section.hidden = true;
-      }
-    });
-    await mountThemePicker(nav);
+    if (HOTEL_TEMPLATES.includes(template)) {
+      decorateBookNow(nav);
+      // nav fragments can carry extra sections (booking modal) that break the
+      // logo / links / book-now row; the theme picker is mounted into nav-tools
+      nav.querySelectorAll(':scope > .section').forEach((section) => {
+        if (!['nav-brand', 'nav-sections', 'nav-tools'].some((name) => (
+          section.classList.contains(name)
+        ))) {
+          section.hidden = true;
+        }
+      });
+      await mountThemePicker(nav);
+    } else {
+      // other looks carry a plain utility row, not a promoted CTA
+      stripButtonClasses(nav.querySelector('.nav-tools'));
+    }
   }
   bindHeaderScroll(header, 8);
 }
@@ -363,5 +373,5 @@ export default async function decorate(block) {
     navWrapper.append(await buildBreadcrumbs());
   }
 
-  if (template) await decorateTemplateHeader(block);
+  if (template) await decorateTemplateHeader(block, template);
 }
