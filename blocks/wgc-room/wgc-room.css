@@ -334,10 +334,8 @@ body.wgc-room-lightbox-open {
   padding: 0;
   border: 0;
   background: none;
-  color: #a8a8a8;
   cursor: pointer;
   transform: translateY(-50%);
-  transition: color 0.3s ease-in-out;
 }
 
 .wgc-room-lightbox-nav-icon {
@@ -345,6 +343,21 @@ body.wgc-room-lightbox-open {
   place-items: center;
   width: 40px;
   height: 12px;
+}
+
+.wgc-room-lightbox-nav-icon .icon {
+  display: block;
+  width: 40px;
+  height: 12px;
+  padding: 0;
+}
+
+.wgc-room-lightbox-nav-icon .icon img {
+  display: block;
+  width: 40px;
+  height: 12px;
+  opacity: 0.55;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .wgc-room-lightbox-nav-label {
@@ -384,9 +397,9 @@ body.wgc-room-lightbox-open {
   right: calc(100% + 10px);
 }
 
-.wgc-room-lightbox-nav:hover,
-.wgc-room-lightbox-nav:focus-visible {
-  color: #fff;
+.wgc-room-lightbox-nav:hover .wgc-room-lightbox-nav-icon .icon img,
+.wgc-room-lightbox-nav:focus-visible .wgc-room-lightbox-nav-icon .icon img {
+  opacity: 1;
 }
 
 .wgc-room-lightbox-nav:hover .wgc-room-lightbox-nav-label,

@@ -1,19 +1,31 @@
 import {
   getRows, getCells, isEmpty, splitHeading, addRule, optimizePicture,
 } from '../../scripts/template/wgc.js';
+import { decorateIcons } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 
 const EXPAND_ICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.4 21.4" aria-hidden="true"><path d="M20.79,0H.61A.61.61,0,0,0,0,.61V15.89a.61.61,0,0,0,1.21,0V1.21h19v19H5.51a.61.61,0,1,0,0,1.21H20.79a.61.61,0,0,0,.61-.61V.61A.61.61,0,0,0,20.79,0Z"/><path d="M2.59,18.75a.63.63,0,0,0,.43.17.65.65,0,0,0,.43-.17L15.15,7v6.25a.61.61,0,1,0,1.21,0V5.58a.54.54,0,0,0,0-.22h0A.63.63,0,0,0,16,5h0a.59.59,0,0,0-.22,0H8A.61.61,0,0,0,8,6.18h6.25L2.59,17.89A.6.6,0,0,0,2.59,18.75Z"/></svg>';
 
-const LIGHTBOX_PREV_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="12" viewBox="0 0 40 12" aria-hidden="true"><path d="M0 6 9 0v12L0 6Z" fill="currentColor"/><rect x="9" y="5.5" width="31" height="1" fill="currentColor"/></svg>';
-const LIGHTBOX_NEXT_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="12" viewBox="0 0 40 12" aria-hidden="true"><rect x="0" y="5.5" width="31" height="1" fill="currentColor"/><path d="M40 6 31 0v12l9-6Z" fill="currentColor"/></svg>';
-
-function buildLightboxNav(label, className, icon) {
+function buildLightboxNav(label, className, iconName) {
   const button = document.createElement('button');
   button.type = 'button';
   button.className = `wgc-room-lightbox-nav ${className}`;
   button.setAttribute('aria-label', label);
-  button.innerHTML = `<span class="wgc-room-lightbox-nav-icon">${icon}</span><span class="wgc-room-lightbox-nav-label">${label}</span>`;
+
+  const iconWrap = document.createElement('span');
+  iconWrap.className = 'wgc-room-lightbox-nav-icon';
+
+  const icon = document.createElement('span');
+  icon.className = `icon icon-${iconName}`;
+  icon.setAttribute('aria-hidden', 'true');
+  iconWrap.append(icon);
+  decorateIcons(iconWrap);
+
+  const labelEl = document.createElement('span');
+  labelEl.className = 'wgc-room-lightbox-nav-label';
+  labelEl.textContent = label;
+
+  button.append(iconWrap, labelEl);
   return button;
 }
 
@@ -137,8 +149,8 @@ function openImageLightbox(images, startIndex = 0) {
   const lightboxImg = document.createElement('img');
   lightboxImg.className = 'wgc-room-lightbox-image';
 
-  const prevBtn = buildLightboxNav('Previous', 'wgc-room-lightbox-prev', LIGHTBOX_PREV_ICON);
-  const nextBtn = buildLightboxNav('Next', 'wgc-room-lightbox-next', LIGHTBOX_NEXT_ICON);
+  const prevBtn = buildLightboxNav('Previous', 'wgc-room-lightbox-prev', 'lightbox-prev');
+  const nextBtn = buildLightboxNav('Next', 'wgc-room-lightbox-next', 'lightbox-next');
 
   const showImage = (index) => {
     current = (index + images.length) % images.length;
