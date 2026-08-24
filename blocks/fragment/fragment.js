@@ -13,6 +13,22 @@ import {
 } from '../../scripts/aem.js';
 
 /**
+ * Removes legacy theme-option blocks from fetched fragments so only the
+ * theme-picker block is used in the header.
+ * @param {Element} root the fragment root
+ */
+function stripThemeOption(root) {
+  if (!root) return;
+  root.querySelectorAll(':scope > div').forEach((section) => {
+    const blockName = section.querySelector(':scope > div > div')?.textContent?.trim().toLowerCase();
+    if (blockName === 'theme-option') section.remove();
+  });
+  root.querySelectorAll('.theme-option, .theme-option-wrap').forEach((el) => {
+    el.remove();
+  });
+}
+
+/**
  * Loads a fragment.
  * @param {string} path The path to the fragment
  * @returns {HTMLElement} The root element of the fragment
@@ -33,7 +49,9 @@ export async function loadFragment(path) {
       resetAttributeBase('img', 'src');
       resetAttributeBase('source', 'srcset');
 
+      stripThemeOption(main);
       decorateMain(main);
+      stripThemeOption(main);
       await loadSections(main);
       return main;
     }

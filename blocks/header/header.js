@@ -1,4 +1,11 @@
-import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
+import {
+  buildBlock,
+  decorateBlock,
+  fetchPlaceholders,
+  getMetadata,
+  loadBlock,
+  toClassName,
+} from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -171,13 +178,63 @@ async function buildBreadcrumbs() {
 }
 
 /**
+ * Mounts the theme picker in the header tools, aligned with the nav on the
+ * top-right. Skips when a picker is already present.
+ * @param {Element} nav the decorated nav
+ */
+async function mountThemePicker(nav) {
+  if (nav.querySelector('.theme-picker')) return;
+
+  nav.querySelectorAll('.theme-option, .theme-option-wrap').forEach((el) => {
+    el.remove();
+  });
+
+  let tools = nav.querySelector('.nav-tools');
+  if (!tools) {
+    tools = document.createElement('div');
+    tools.className = 'section nav-tools';
+    tools.append(document.createElement('div'));
+    nav.append(tools);
+  }
+
+  const pickerWrap = document.createElement('div');
+  pickerWrap.className = 'theme-picker-wrapper';
+  const picker = buildBlock('theme-picker', '');
+  pickerWrap.append(picker);
+
+  let bookWrap = tools.querySelector('.book-wrap, .wgc-book-wrap');
+  if (!bookWrap) {
+    const bookLink = tools.querySelector('a[href*="synxis"], .wgc-book-now, a[href="#book"]');
+    bookWrap = bookLink?.closest('p') || bookLink?.parentElement;
+  }
+  const bookLink = bookWrap?.querySelector('.wgc-book-now, a[href*="synxis"], a[href="#book"]')
+    || tools.querySelector('a[href*="synxis"], .wgc-book-now, a[href="#book"]');
+  if (bookWrap) {
+    bookWrap.classList.add('header-book-wrap');
+    if (bookLink && bookLink.parentElement === bookWrap) {
+      bookLink.after(pickerWrap);
+    } else {
+      bookWrap.append(pickerWrap);
+    }
+  } else {
+    (tools.querySelector(':scope > div') || tools).append(pickerWrap);
+  }
+
+  decorateBlock(picker);
+  await loadBlock(picker);
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
   // load nav as fragment
+  const template = toClassName(getMetadata('template'));
   const navMeta = getMetadata('nav');
-  const defaultNav = document.body.classList.contains('wgc') ? '/template1/nav' : '/nav';
+  const defaultNav = (document.body.classList.contains('wgc') || template === 'wgc')
+    ? '/template1/nav'
+    : (template ? `/${template}/nav` : '/nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
   const fragment = await loadFragment(navPath);
 
@@ -188,6 +245,10 @@ export default async function decorate(block) {
   if (fragment) {
     while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
   }
+
+  nav.querySelectorAll('.theme-option, .theme-option-wrap').forEach((el) => {
+    el.remove();
+  });
 
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
@@ -257,5 +318,8 @@ export default async function decorate(block) {
       `${window.hlx.codeBasePath}/scripts/template/wgc-header.js`
     );
     await decorateWgcHeader(block);
+  } else if (template === 'template2') {
+    const navEl = block.querySelector('nav');
+    if (navEl) await mountThemePicker(navEl);
   }
 }

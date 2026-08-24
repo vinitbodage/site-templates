@@ -27,7 +27,7 @@
 .wgc-home-room-dine-spa .wgc-rds-copy h2,
 .wgc-home-room-dine-spa .wgc-rds-copy h3 {
   margin: 0 0 16px;
-  color: var(--wgc-cta, var(--wgc-teal));
+  color: var(--wgc-teal);
   font-size: var(--heading-font-size-m);
   line-height: 1.3;
   text-align: left;
