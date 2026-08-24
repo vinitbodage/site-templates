@@ -209,7 +209,7 @@ body.template4 .video.slider .video-slide-content h3 {
   max-width: min(24ch, 100%);
   margin: 0;
   color: var(--t4-muted);
-  font-size: clamp(1.75rem, 4.6vw, 2.1875rem);
+  font-size: 2.1875rem;
   font-weight: 700;
   line-height: 1.2;
   overflow-wrap: break-word;
@@ -231,6 +231,7 @@ body.template4 .video.slider .video-slide-content .button-container {
 body.template4 .video.slider .video-slide-content a.button:any-link {
   border: 2px solid var(--t4-muted);
   border-radius: 3px;
+  padding: 10px 31px 11px;
   color: var(--t4-muted);
 }
 
