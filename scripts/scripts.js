@@ -56,11 +56,16 @@ function remapLegacyBlockNames(main) {
 
 /**
  * Builds hero block and prepends to main in a new section.
+ *
+ * Only default content is eligible. A heading or image inside an authored block
+ * belongs to that block, and moving it out leaves the block half-rendered while
+ * a second masthead appears above it.
  * @param {Element} main The container element
  */
 function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
+  const isDefaultContent = (el) => !el.closest('main > div > div[class]');
+  const h1 = [...main.querySelectorAll('h1')].find(isDefaultContent);
+  const picture = [...main.querySelectorAll('picture')].find(isDefaultContent);
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
