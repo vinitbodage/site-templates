@@ -79,3 +79,67 @@ body.template2 footer .footer a:hover {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* stylelint-disable no-descending-specificity -- template2 and template
+   footers are mutually exclusive; they never match the same page. */
+
+/*
+ * BT's footer is a light grey band of small link rows, not a dark
+ * multi-column sitemap.
+ */
+body.template footer {
+  background-color: var(--t-footer);
+}
+
+body.template footer .footer {
+  background-color: var(--t-footer);
+  color: var(--t-muted);
+  font-size: var(--body-font-size-xs);
+}
+
+/* the footer fragment nests its sections one level deeper than `.footer` */
+body.template footer .footer .section {
+  box-sizing: border-box;
+  max-width: var(--t-max-width);
+  margin: 0 auto;
+  padding: 14px 28px;
+}
+
+body.template footer .footer .section + .section {
+  border-top: 1px solid rgb(0 0 0 / 8%);
+}
+
+body.template footer .footer .section:last-child {
+  text-align: right;
+}
+
+body.template footer .footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.template footer .footer h3 {
+  margin: 0 0 8px;
+  color: var(--t-ink);
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+}
+
+body.template footer .footer p,
+body.template footer .footer li {
+  margin: 0;
+}
+
+body.template footer .footer a:any-link {
+  color: var(--t-muted);
+  text-decoration: none;
+}
+
+body.template footer .footer a:hover {
+  color: var(--t-purple);
+  text-decoration: underline;
+}

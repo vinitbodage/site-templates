@@ -82,13 +82,28 @@ async function loadFonts() {
 }
 
 /**
- * Loads the branded theme for any page that sets `template` metadata.
- * One stylesheet (`template-theme.css`) owns the tokens every block reads.
+ * True for the hotel pages that still read `body.template2` tokens.
+ * Every other `template` metadata value uses the current `body.template` look.
+ * @param {string} template the page template metadata
+ * @returns {boolean} whether the page is a hotel template
+ */
+function isHotelTemplate(template) {
+  return template === 'template2' || template === 'wgc';
+}
+
+/**
+ * Loads the single branded stylesheet. Hotel pages get `body.template2`;
+ * the current site look (BT) gets `body.template`. Never add templateN-theme.css.
  */
 async function loadTemplateStyles() {
   const template = toClassName(getMetadata('template'));
   if (!template) return;
-  document.body.classList.add(template);
+  if (isHotelTemplate(template)) {
+    document.body.classList.add('template2');
+    if (template !== 'template2') document.body.classList.add(template);
+  } else {
+    document.body.classList.add('template');
+  }
   await loadCSS(`${window.hlx.codeBasePath}/styles/template/template-theme.css`);
 }
 
@@ -191,7 +206,9 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   doc.documentElement.lang = 'en';
   decorateTemplateAndTheme();
-  applyTheme(getStoredTheme());
+  if (isHotelTemplate(toClassName(getMetadata('template')))) {
+    applyTheme(getStoredTheme());
+  }
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     doc.body.dataset.breadcrumbs = true;
   }

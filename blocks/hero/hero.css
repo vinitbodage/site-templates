@@ -7,20 +7,20 @@
    boilerplate hero are mutually exclusive; they never match the same page. */
 
 /* boilerplate hero — used on pages that do not load a branded template */
-body:not(.template2) .hero {
+body:not(.template2, .template) .hero {
   position: relative;
   padding: 40px 24px;
   min-height: 300px;
 }
 
-body:not(.template2) .hero h1 {
+body:not(.template2, .template) .hero h1 {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   color: var(--background-color);
 }
 
-body:not(.template2) .hero picture {
+body:not(.template2, .template) .hero picture {
   position: absolute;
   z-index: -1;
   inset: 0;
@@ -28,14 +28,14 @@ body:not(.template2) .hero picture {
   box-sizing: border-box;
 }
 
-body:not(.template2) .hero img {
+body:not(.template2, .template) .hero img {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
 @media (width >= 900px) {
-  body:not(.template2) .hero {
+  body:not(.template2, .template) .hero {
     padding: 40px 32px;
   }
 }
@@ -195,5 +195,105 @@ body.template2 .hero.light .hero-media::after {
 @media (prefers-reduced-motion: reduce) {
   .hero .hero-media video {
     display: none;
+  }
+}
+
+/*
+ * BT masthead — an inset, rounded photo banner with light uppercase type.
+ * `compact` is the shorter inner-page banner.
+ */
+body.template .hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 340px;
+  margin: 0 var(--t-bleed);
+  border-radius: var(--t-radius);
+  overflow: hidden;
+  background-color: var(--t-tint-strong);
+  color: var(--t-paper);
+  text-align: left;
+}
+
+body.template .hero.compact {
+  min-height: 240px;
+}
+
+/* the overlay keeps the type legible over any authored photograph */
+body.template .hero .hero-media::after {
+  background-image: linear-gradient(90deg, rgb(0 0 0 / 62%), rgb(0 0 0 / 20%));
+}
+
+/* text-only mastheads read on the brand tint instead of a photo */
+body.template .hero:not(:has(.hero-media)) {
+  background-color: var(--t-purple);
+}
+
+body.template .hero .hero-content {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  max-width: var(--t-max-width);
+  margin: 0 auto;
+  padding: 40px 28px;
+  overflow-wrap: break-word;
+}
+
+body.template .hero .hero-content h1,
+body.template .hero .hero-content h2 {
+  max-width: min(18ch, 100%);
+  margin: 0;
+  color: var(--t-paper);
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.08;
+  text-transform: uppercase;
+}
+
+body.template .hero.compact .hero-content h1,
+body.template .hero.compact .hero-content h2 {
+  max-width: min(26ch, 100%);
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  text-transform: none;
+}
+
+body.template .hero .hero-content p {
+  max-width: min(46ch, 100%);
+  margin: 0.9em 0 0;
+  color: var(--t-paper);
+  font-size: var(--body-font-size-s);
+}
+
+body.template .hero .hero-content .button-container {
+  margin-top: 1.6em;
+}
+
+/* the masthead CTA is the outline pill, whatever the author authored */
+body.template .hero a.button:any-link {
+  border-color: var(--t-paper);
+  background-color: transparent;
+  color: var(--t-paper);
+}
+
+body.template .hero a.button:hover,
+body.template .hero a.button:focus-visible {
+  border-color: var(--t-paper);
+  background-color: var(--t-paper);
+  color: var(--t-ink);
+}
+
+@media (width >= 900px) {
+  body.template .hero {
+    min-height: 460px;
+  }
+
+  body.template .hero.compact {
+    min-height: 300px;
+  }
+
+  body.template .hero .hero-content {
+    padding: 56px 44px;
   }
 }

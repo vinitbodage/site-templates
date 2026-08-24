@@ -125,6 +125,11 @@
     align-items: start;
   }
 
+  /* without an authored map there is no second column to fill */
+  .contact-layout:not(:has(.contact-map)) {
+    grid-template-columns: 1fr;
+  }
+
   .contact-field-wide,
   .contact-submit {
     grid-column: 1 / -1;
@@ -135,4 +140,70 @@
   .contact-form {
     grid-template-columns: 1fr;
   }
+}
+
+body.template .contact {
+  box-sizing: border-box;
+  max-width: var(--t-max-width);
+  padding: var(--t-section-padding) var(--t-bleed);
+}
+
+body.template .contact-details h1,
+body.template .contact-details h2,
+body.template .contact-details h3 {
+  color: var(--t-ink);
+  font-weight: 400;
+}
+
+body.template .contact-details p {
+  color: var(--t-muted);
+  font-size: var(--body-font-size-s);
+  line-height: 1.6;
+}
+
+body.template .contact-details a:any-link {
+  color: var(--t-purple);
+  font-weight: 400;
+}
+
+body.template .contact-field label {
+  color: var(--t-muted);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+body.template .contact-field input,
+body.template .contact-field textarea {
+  border-color: var(--t-line);
+  border-radius: var(--t-radius-sm);
+}
+
+body.template .contact-submit {
+  border-color: var(--t-purple);
+  border-radius: 999px;
+  background-color: var(--t-purple);
+  color: var(--t-paper);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+body.template .contact-submit:hover,
+body.template .contact-submit:focus-visible {
+  border-color: var(--t-purple-dark);
+  background-color: var(--t-purple-dark);
+  color: var(--t-paper);
+}
+
+/* the tint stands in for the embed while it loads, or if it is blocked */
+body.template .contact-map {
+  border-radius: var(--t-radius);
+  background-color: var(--t-tint);
+}
+
+body.template .contact-field input:focus,
+body.template .contact-field textarea:focus {
+  border-color: var(--t-purple);
+  outline-color: var(--t-purple);
 }

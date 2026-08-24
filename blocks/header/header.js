@@ -232,6 +232,26 @@ async function mountThemePicker(nav) {
 }
 
 /**
+ * Promotes an extra nav section to the dark audience bar above the main nav.
+ * Authors add a fourth nav section with audience links (For the home / UK
+ * business / International). Hotel templates skip this.
+ * @param {Element} header the page header
+ * @param {Element} nav the decorated nav
+ */
+function mountUtilityBar(header, nav) {
+  const extra = [...nav.children].find((section) => (
+    !['nav-brand', 'nav-sections', 'nav-tools', 'nav-hamburger'].some((name) => (
+      section.classList.contains(name)
+    ))
+  ));
+  if (!extra?.querySelector('ul, a')) return;
+  extra.classList.add('nav-utility');
+  extra.hidden = false;
+  stripButtonClasses(extra);
+  header.prepend(extra);
+}
+
+/**
  * Branded header extras (scroll state, book-now, theme picker) for themed pages.
  * @param {Element} block the header block
  */
@@ -239,10 +259,15 @@ async function decorateTemplateHeader(block) {
   const header = block.closest('header');
   if (!header) return;
   const nav = block.querySelector('nav');
+  const template = toClassName(getMetadata('template'));
   if (nav) {
-    decorateBookNow(nav);
-    // nav fragments can carry extra sections (booking modal) that break the
-    // logo / links / book-now row; the theme picker is mounted into nav-tools
+    if (template === 'template2' || template === 'wgc') {
+      decorateBookNow(nav);
+      await mountThemePicker(nav);
+    } else {
+      stripButtonClasses(nav.querySelector('.nav-tools'));
+      mountUtilityBar(header, nav);
+    }
     nav.querySelectorAll(':scope > .section').forEach((section) => {
       if (!['nav-brand', 'nav-sections', 'nav-tools'].some((name) => (
         section.classList.contains(name)
@@ -250,7 +275,6 @@ async function decorateTemplateHeader(block) {
         section.hidden = true;
       }
     });
-    await mountThemePicker(nav);
   }
   bindHeaderScroll(header, 8);
 }

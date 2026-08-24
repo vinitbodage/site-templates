@@ -12,6 +12,11 @@
   height: auto;
 }
 
+/* an authored image arrives wrapped in a paragraph; it must not add spacing */
+.intro .intro-media p {
+  margin: 0;
+}
+
 .intro .intro-copy h1,
 .intro .intro-copy h2,
 .intro .intro-copy h3 {
@@ -65,5 +70,137 @@ body.template2 .intro .intro-copy p {
 
   body.template2 .intro.image-right .intro-media {
     order: 2;
+  }
+}
+
+/*
+ * Two BT patterns share this block:
+ * - default: an alternating promo row (rounded photo + copy + pill CTA)
+ * - `statement`: the tinted, rounded purple-headline panel beside a media panel
+ */
+body.template .intro {
+  max-width: var(--t-max-width);
+  margin: 0 auto;
+  padding: var(--t-section-padding) var(--t-bleed);
+}
+
+/* stacked, the cells fill the width; shrink-to-fit would let `ch` measures
+   on the copy overflow the panel */
+body.template .intro > div {
+  gap: var(--t-gap);
+  align-items: stretch;
+}
+
+body.template .intro > div > div {
+  min-width: 0;
+}
+
+body.template .intro .intro-copy h1,
+body.template .intro .intro-copy h2,
+body.template .intro .intro-copy h3 {
+  max-width: min(22ch, 100%);
+  margin: 0 0 0.5em;
+  color: var(--t-ink);
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+body.template .intro .intro-copy p {
+  max-width: min(52ch, 100%);
+  margin: 0 0 0.6em;
+  color: var(--t-muted);
+  font-size: var(--body-font-size-s);
+  line-height: 1.55;
+}
+
+body.template .intro .intro-media picture,
+body.template .intro .intro-media img {
+  border-radius: var(--t-radius);
+}
+
+body.template .intro .intro-media img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* statement: copy sits in the lilac card, media in its own tinted card */
+body.template .intro.statement .intro-copy {
+  box-sizing: border-box;
+  border-radius: var(--t-radius);
+  padding: 28px 24px;
+  background-color: var(--t-tint);
+}
+
+body.template .intro.statement .intro-copy h1,
+body.template .intro.statement .intro-copy h2,
+body.template .intro.statement .intro-copy h3 {
+  max-width: min(14ch, 100%);
+  color: var(--t-purple);
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  line-height: 1.12;
+  text-transform: uppercase;
+}
+
+body.template .intro.statement .intro-copy p {
+  max-width: min(34ch, 100%);
+  color: var(--t-ink);
+  font-size: var(--body-font-size-s);
+  line-height: 1.6;
+}
+
+body.template .intro.statement .intro-media {
+  box-sizing: border-box;
+  border-radius: var(--t-radius);
+  padding: 16px;
+  background-color: var(--t-tint);
+}
+
+body.template .intro.statement .intro-media picture,
+body.template .intro.statement .intro-media img {
+  border-radius: var(--t-radius-sm);
+}
+
+body.template .intro.statement .intro-media img {
+  aspect-ratio: 16 / 10;
+}
+
+@media (width >= 900px) {
+  body.template .intro > div {
+    gap: 64px;
+    align-items: center;
+  }
+
+  body.template .intro > div > div {
+    flex: 1 1 46%;
+  }
+
+  body.template .intro.statement {
+    padding-block: calc(var(--t-section-padding) / 2);
+  }
+
+  body.template .intro.statement > div {
+    gap: var(--t-gap);
+    align-items: stretch;
+  }
+
+  body.template .intro.statement .intro-copy {
+    flex: 0 1 40%;
+    padding: 40px 36px;
+  }
+
+  body.template .intro.statement .intro-media {
+    flex: 1 1 56%;
+  }
+
+  /* the media fills the panel so both cards end level */
+  body.template .intro.statement .intro-media picture,
+  body.template .intro.statement .intro-media img {
+    height: 100%;
+  }
+
+  body.template .intro.statement .intro-media img {
+    aspect-ratio: auto;
+    object-fit: cover;
   }
 }

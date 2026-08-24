@@ -203,3 +203,195 @@ body.template2 main .default-content-wrapper > h2::after {
   background-color: var(--t2-amber);
   content: '';
 }
+
+/*
+ * Current site look (BT). Rewrite this `body.template` section when the
+ * next source site is cloned — do not add template3-theme.css or body.template4.
+ */
+/* stylelint-disable no-descending-specificity -- body.template and
+   body.template2 never apply on the same page. */
+body.template {
+  --t-purple: #5514b4;
+  --t-purple-dark: #3f0d8a;
+  --t-ink: #333;
+  --t-muted: #5a5a5a;
+  --t-paper: #fff;
+  --t-tint: #f4f1fa;
+  --t-tint-strong: #ebe5f5;
+  --t-line: #e2e2e2;
+  --t-footer: #ededed;
+  --t-utility: #f7f7f7;
+  --t-radius: 24px;
+  --t-radius-sm: 14px;
+
+  /* BT sets headings in the same geometric sans as body copy, at regular
+     weight — the condensed project heading font is not a match. */
+  --t-font-heading: var(--body-font-family);
+  --t-font-body: var(--body-font-family);
+  --t-utility-height: 0px;
+  --t-nav-height: 64px;
+  --t-header-height: calc(var(--t-utility-height) + var(--t-nav-height));
+  --header-height: var(--t-header-height);
+  --t-max-width: 1220px;
+  --t-bleed: 16px;
+  --t-section-padding: 32px;
+  --t-gap: 20px;
+
+  background-color: var(--t-paper);
+  color: var(--t-ink);
+  font-family: var(--t-font-body);
+}
+
+@media (width >= 900px) {
+  body.template {
+    --t-utility-height: 38px;
+    --t-nav-height: 72px;
+    --t-section-padding: 44px;
+    --t-gap: 32px;
+    --t-bleed: 24px;
+  }
+}
+
+/* headings are regular weight, never heavy or tracked-in */
+body.template main h1,
+body.template main h2,
+body.template main h3 {
+  font-family: var(--t-font-heading);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.2;
+  color: var(--t-ink);
+}
+
+body.template main h2 {
+  text-align: left;
+}
+
+/* the hotel two-tone lead and hairline rule have no BT equivalent */
+body.template .headline-lead {
+  display: inline;
+  color: inherit;
+  font-style: normal;
+  font-weight: inherit;
+}
+
+body.template .headline-rule {
+  padding-bottom: 0;
+}
+
+body.template .headline-rule::after {
+  display: none;
+}
+
+/* CTAs are filled purple pills */
+body.template main a.button:any-link {
+  border: 1px solid var(--t-purple);
+  border-radius: 999px;
+  padding: 0.7em 1.5em;
+  background-color: var(--t-purple);
+  color: var(--t-paper);
+  font-size: var(--body-font-size-xs);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: normal;
+}
+
+body.template main a.button:hover,
+body.template main a.button:focus-visible {
+  border-color: var(--t-purple-dark);
+  background-color: var(--t-purple-dark);
+  color: var(--t-paper);
+  text-decoration: none;
+}
+
+/* outline pill, used over photography */
+body.template main a.button.secondary:any-link {
+  border-color: var(--t-paper);
+  background-color: transparent;
+  color: var(--t-paper);
+}
+
+body.template main a.button.secondary:hover,
+body.template main a.button.secondary:focus-visible {
+  border-color: var(--t-paper);
+  background-color: var(--t-paper);
+  color: var(--t-ink);
+}
+
+body.template main .button-container {
+  margin: 1.5em 0 0;
+}
+
+body.template main > .section {
+  margin: 0;
+}
+
+body.template main > .section > div {
+  max-width: var(--t-max-width);
+}
+
+body.template main > .section.full-bleed > div,
+body.template main > .section.hero-container > div {
+  max-width: none;
+  padding: 0;
+}
+
+/*
+ * `panel` wraps a whole section — heading, block and trailing CTA — in the
+ * rounded lilac card BT uses for the newsroom.
+ */
+body.template main > .section.panel {
+  padding: var(--t-section-padding) var(--t-bleed);
+}
+
+/* flow-root keeps child margins inside the tint so the panel reads as one card */
+body.template main > .section.panel > div {
+  display: flow-root;
+  box-sizing: border-box;
+  max-width: var(--t-max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  background-color: var(--t-tint);
+}
+
+body.template main > .section.panel > div:first-child {
+  border-radius: var(--t-radius) var(--t-radius) 0 0;
+  padding-top: 28px;
+}
+
+body.template main > .section.panel > div:last-child {
+  border-radius: 0 0 var(--t-radius) var(--t-radius);
+  padding-bottom: 28px;
+}
+
+body.template main > .section.panel > div:only-child {
+  border-radius: var(--t-radius);
+  padding-block: 28px;
+}
+
+/* a trailing link inside a panel centres, like "Visit our Newsroom" */
+body.template main > .section.panel .default-content-wrapper:last-child {
+  text-align: center;
+}
+
+body.template main > .section.tint {
+  background-color: var(--t-tint);
+}
+
+/* the project heading tokens shrink on desktop, so section titles are set
+   directly to hold BT's ~30px section heading */
+body.template main .default-content-wrapper > h2 {
+  margin: 0 0 0.7em;
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+}
+
+body.template main .default-content-wrapper > p {
+  color: var(--t-muted);
+}
+
+@media (width >= 900px) {
+  body.template main > .section.panel > div {
+    padding-inline: 36px;
+  }
+}

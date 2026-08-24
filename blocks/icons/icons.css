@@ -99,3 +99,21 @@ body.template2 .icons .icons-label a:hover {
     height: 40px;
   }
 }
+
+body.template .icons {
+  max-width: var(--t-max-width);
+  margin: 0 auto;
+  padding-block: calc(var(--t-section-padding) * 0.4);
+}
+
+body.template .icons .icons-icon {
+  border: 2px solid var(--t-purple);
+  border-radius: 50%;
+  background-color: var(--t-fog);
+  color: var(--t-purple);
+}
+
+body.template .icons .icons-label {
+  color: var(--t-ink);
+  font-weight: 600;
+}

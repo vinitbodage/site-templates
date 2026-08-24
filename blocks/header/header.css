@@ -691,3 +691,219 @@ body.template2 header nav .nav-hamburger button {
     font-size: 11px;
   }
 }
+
+/* BT header — white bar, purple wordmark, underline links */
+body.template header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: var(--t-header-height);
+  border-bottom: 1px solid var(--t-line);
+}
+
+body.template header .nav-utility {
+  display: none;
+  background-color: var(--t-utility);
+  color: var(--t-muted);
+}
+
+@media (width >= 900px) {
+  body.template header .nav-utility {
+    display: block;
+    height: var(--t-utility-height);
+  }
+}
+
+body.template header .nav-utility .default-content-wrapper {
+  box-sizing: border-box;
+  max-width: var(--t-max-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+body.template header .nav-utility ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.template header .nav-utility li {
+  display: flex;
+  align-items: center;
+}
+
+body.template header .nav-utility a:any-link {
+  color: var(--t-muted);
+  font-size: var(--body-font-size-xs);
+  text-decoration: none;
+}
+
+body.template header .nav-utility a:hover {
+  color: var(--t-purple);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.template header .nav-wrapper {
+  position: static;
+  width: 100%;
+  height: var(--t-nav-height);
+  background: var(--t-paper);
+}
+
+body.template header.header-scrolled .nav-wrapper {
+  box-shadow: 0 1px 10px rgb(0 0 0 / 8%);
+}
+
+body.template header nav {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--t-max-width);
+  height: var(--t-nav-height);
+  margin: 0 auto;
+  padding: 0 16px;
+  color: var(--t-ink);
+  font-family: var(--t-font-body);
+  font-size: var(--body-font-size-s);
+}
+
+body.template header .nav-brand {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+/* the BT mark is a purple roundel; authors can replace it with an image */
+body.template header .nav-brand a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 42px;
+  height: 42px;
+  border: 2px solid var(--t-purple);
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--t-purple);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-transform: none;
+}
+
+body.template header .nav-brand a:hover {
+  background-color: var(--t-purple);
+  color: var(--t-paper);
+}
+
+body.template header .nav-brand img {
+  display: block;
+  width: auto;
+  height: 32px;
+}
+
+body.template header .nav-sections {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: flex-start;
+  visibility: hidden;
+}
+
+@media (width >= 900px) {
+  body.template header .nav-sections {
+    visibility: visible;
+  }
+}
+
+body.template header .nav-sections ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.template header .nav-sections .default-content-wrapper > ul > li {
+  padding: 8px 16px;
+}
+
+body.template header nav a:any-link {
+  color: var(--t-ink);
+  text-decoration: none;
+}
+
+body.template header .nav-sections a:hover {
+  color: var(--t-purple);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+body.template header .nav-tools {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+/* search sits top-right as a small purple pill, as on bt.com */
+body.template header .nav-tools a:any-link {
+  border-radius: 999px;
+  padding: 8px 18px;
+  background-color: var(--t-purple);
+  color: var(--t-paper);
+  font-size: var(--body-font-size-xs);
+}
+
+body.template header .nav-tools a:hover {
+  background-color: var(--t-purple-dark);
+  color: var(--t-paper);
+}
+
+body.template header nav .nav-hamburger button {
+  background: transparent;
+  color: var(--t-ink);
+}
+
+body.template header nav > .section:not(.nav-brand, .nav-sections, .nav-tools) {
+  display: none;
+}
+
+@media (width < 900px) {
+  body.template header nav[aria-expanded='true'] {
+    display: grid;
+    grid-template:
+      'hamburger brand' var(--t-nav-height)
+      'sections sections' 1fr
+      'tools tools' auto / auto 1fr;
+    min-height: 100dvh;
+    padding: 0 16px 24px;
+    overflow-y: auto;
+  }
+
+  body.template header nav[aria-expanded='true'] .nav-sections {
+    grid-area: sections;
+    visibility: visible;
+  }
+
+  body.template header nav[aria-expanded='true'] .nav-sections ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  body.template header nav:not([aria-expanded='true']) .nav-sections {
+    display: none;
+  }
+}

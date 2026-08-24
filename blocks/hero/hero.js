@@ -69,14 +69,15 @@ export default function decorate(block) {
     getCells(row).forEach((cell) => {
       if (isEmpty(cell)) return;
 
-      const picture = cell.querySelector('picture');
+      // an authored image may arrive bare or wrapped in a picture
+      const picture = cell.querySelector('picture') || cell.querySelector('img');
       const videoLink = [...cell.querySelectorAll('a')].find((a) => VIDEO_RE.test(a.href));
 
       if (picture || videoLink) {
         if (!media.childElementCount) moveInstrumentation(cell, media);
         if (picture) media.append(picture);
         if (videoLink) {
-          const poster = picture ? picture.querySelector('img').src : '';
+          const poster = picture ? (picture.querySelector('img') || picture).src : '';
           removeVideoLink(videoLink);
           media.append(buildVideo(videoLink.href, poster));
         }
@@ -91,11 +92,14 @@ export default function decorate(block) {
   const heading = content.querySelector('h1, h2, h3, h4, h5, h6');
   if (heading) {
     splitHeading(heading);
-    addRule(heading, { centered: !block.classList.contains('left'), light: true });
+    addRule(heading, {
+      centered: !block.classList.contains('left'),
+      light: !!media.childElementCount,
+    });
   }
 
   // the hero image is above the fold, so it loads eagerly as the LCP candidate
-  media.querySelectorAll('picture > img').forEach((img) => {
+  media.querySelectorAll('img').forEach((img) => {
     optimizePicture(img, { eager: true, width: '2000' });
   });
 

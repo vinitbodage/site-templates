@@ -47,7 +47,7 @@ function buildForm() {
  */
 function buildMapEmbed(cell) {
   const link = [...cell.querySelectorAll('a')].find((a) => MAP_RE.test(a.href));
-  const picture = cell.querySelector('picture');
+  const picture = cell.querySelector('picture') || cell.querySelector('img');
   const wrap = document.createElement('div');
   wrap.className = 'contact-map';
   moveInstrumentation(cell, wrap);
@@ -87,7 +87,7 @@ export default function decorate(block) {
     getCells(row).forEach((cell) => {
       if (isEmpty(cell)) return;
       const isMapCell = MAP_RE.test([...cell.querySelectorAll('a')].map((a) => a.href).join(' '))
-        || (cell.querySelector('picture') && !cell.textContent.trim());
+        || (cell.querySelector('img') && !cell.textContent.trim());
 
       if (isMapCell) {
         mapEl = buildMapEmbed(cell);
