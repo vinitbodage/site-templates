@@ -233,6 +233,7 @@ body.template4 {
   --t4-footer: #222;
   --t4-footer-ink: #b3b3b3;
   --t4-overlay: rgb(0 0 0 / 30%);
+  --t4-scrim: rgb(30 30 30 / 80%);
 
   /* typography — the source sets copy at 16px, where the project runs large */
   --t4-font-heading: var(--body-font-family);
@@ -351,11 +352,13 @@ body.template4 main > .section > div {
 }
 
 /* the masthead runs full bleed, with no gutter and no radius */
-body.template4 main > .section.hero-container {
+body.template4 main > .section.hero-container,
+body.template4 main > .section.video-container {
   padding: 0;
 }
 
 body.template4 main > .section.hero-container > div,
+body.template4 main > .section.video-container > div,
 body.template4 main > .section.full-bleed > div {
   max-width: none;
   padding: 0;

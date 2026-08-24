@@ -55,6 +55,76 @@
   padding: 0;
 }
 
+/*
+ * Slider variant: a masthead of video banners.
+ *
+ * Slides are laid out as a scroll-snapping row so the browser owns the
+ * animation and a keyboard or touch drag works without any script.
+ */
+.video.slider {
+  max-width: none;
+  margin: 0;
+  text-align: left;
+  position: relative;
+}
+
+.video.slider .video-slides {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+.video.slider .video-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.video.slider .video-slide {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.video.slider .video-slide-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.video.slider .video-slide-media picture,
+.video.slider .video-slide-media img,
+.video.slider .video-slide-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* the video sits over the still image and fades in once it can play */
+.video.slider .video-slide-media video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.video.slider .video-slide-media video[data-ready='true'] {
+  opacity: 1;
+}
+
+.video.slider .video-slide-media::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+}
+
+.video.slider .video-slide-content {
+  position: relative;
+  z-index: 1;
+}
+
 .video .video-placeholder-play button::before {
   content: '';
   display: block;
@@ -68,4 +138,185 @@
   top: 50%;
   left: calc(50% + 2px);
   transform: translate(-50%, -50%);
+}
+
+.video.slider .video-slider-controls {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.video.slider .video-slide-dots {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.video.slider .video-slider-controls button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video.slider .video-slides {
+    scroll-behavior: auto;
+  }
+
+  .video.slider .video-slide-media video {
+    display: none;
+  }
+}
+
+/*
+ * Axalta masthead slider.
+ *
+ * The source stacks the copy below the media on a white panel at phone widths
+ * and lays it over the media in white from tablet up, so the copy colours flip
+ * at the same breakpoint as the layout.
+ */
+body.template4 .video.slider {
+  background-color: var(--t4-ink);
+}
+
+body.template4 .video.slider .video-slide-media {
+  aspect-ratio: 7 / 6;
+}
+
+body.template4 .video.slider .video-slide-media::after {
+  background-image: linear-gradient(90deg, var(--t4-scrim), transparent);
+}
+
+body.template4 .video.slider .video-slide-content {
+  box-sizing: border-box;
+  padding: 40px var(--t4-bleed);
+  background-color: var(--t4-paper);
+}
+
+body.template4 .video.slider .video-slide-content h1,
+body.template4 .video.slider .video-slide-content h2,
+body.template4 .video.slider .video-slide-content h3 {
+  max-width: min(24ch, 100%);
+  margin: 0;
+  color: var(--t4-muted);
+  font-size: clamp(1.75rem, 4.6vw, 2.1875rem);
+  font-weight: 700;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+
+body.template4 .video.slider .video-slide-content p {
+  max-width: min(48ch, 100%);
+  margin: 0.8em 0 0;
+  color: var(--t4-muted);
+  font-size: var(--body-font-size-s);
+}
+
+body.template4 .video.slider .video-slide-content .button-container {
+  margin-top: 1.5em;
+}
+
+/* the source draws this CTA at 2px with a small radius, unlike the flat
+   rectangles used elsewhere on the site */
+body.template4 .video.slider .video-slide-content a.button:any-link {
+  border: 2px solid var(--t4-muted);
+  border-radius: 3px;
+  color: var(--t4-muted);
+}
+
+body.template4 .video.slider .video-slide-content a.button:hover,
+body.template4 .video.slider .video-slide-content a.button:focus-visible {
+  border-color: var(--t4-muted);
+  background-color: var(--t4-muted);
+  color: var(--t4-paper);
+}
+
+body.template4 .video.slider .video-slide-dots button {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--t4-paper);
+  border-radius: 50%;
+}
+
+body.template4 .video.slider .video-slide-dots button[aria-current='true'] {
+  background-color: var(--t4-paper);
+}
+
+body.template4 .video.slider .video-slide-prev,
+body.template4 .video.slider .video-slide-next {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  color: var(--t4-paper);
+  font-size: 24px;
+  line-height: 1;
+}
+
+body.template4 .video.slider .video-slide-prev::before {
+  content: '\2039';
+}
+
+body.template4 .video.slider .video-slide-next::before {
+  content: '\203a';
+}
+
+@media (width >= 768px) {
+  body.template4 .video.slider .video-slide-media {
+    aspect-ratio: auto;
+    height: 404px;
+  }
+
+  body.template4 .video.slider .video-slide-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: var(--t4-max-width);
+    margin: 0 auto;
+    background-color: transparent;
+  }
+
+  body.template4 .video.slider .video-slide-content h1,
+  body.template4 .video.slider .video-slide-content h2,
+  body.template4 .video.slider .video-slide-content h3,
+  body.template4 .video.slider .video-slide-content p {
+    color: var(--t4-paper);
+  }
+
+  body.template4 .video.slider .video-slide-content a.button:any-link {
+    border-color: var(--t4-paper);
+    color: var(--t4-paper);
+  }
+
+  body.template4 .video.slider .video-slide-content a.button:hover,
+  body.template4 .video.slider .video-slide-content a.button:focus-visible {
+    border-color: var(--t4-paper);
+    background-color: var(--t4-paper);
+    color: var(--t4-ink);
+  }
+
+  body.template4 .video.slider .video-slider-controls {
+    bottom: 24px;
+  }
+}
+
+@media (width >= 1024px) {
+  body.template4 .video.slider .video-slide-media {
+    height: 642px;
+  }
+
+  body.template4 .video.slider .video-slide-content {
+    padding-inline-start: calc(var(--t4-bleed) + 64px);
+  }
 }
