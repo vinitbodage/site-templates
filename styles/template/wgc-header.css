@@ -51,14 +51,6 @@ body.wgc header.wgc-header-scrolled nav {
   color: var(--wgc-ink);
 }
 
-body.wgc header.wgc-header-scrolled .theme-picker-toggle {
-  color: var(--wgc-ink);
-}
-
-body.wgc header.wgc-header-scrolled .theme-picker-active {
-  border-color: var(--wgc-paper);
-}
-
 /* the boilerplate treats aria-expanded="true" as the default desktop state
    (nav sections always visible), so the stacked mobile-menu layout must only
    apply below the 900px breakpoint, when aria-expanded really means "open" */
@@ -82,6 +74,22 @@ body.wgc header.wgc-header-scrolled .theme-picker-active {
 body.wgc header nav a:any-link {
   color: inherit;
   text-decoration: none;
+}
+
+body.wgc header .nav-brand a:any-link {
+  font-family: var(--wgc-font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+body.wgc header .wgc-phone a:any-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 0;
+  line-height: 1.2;
 }
 
 body.wgc header nav a:any-link:hover {
@@ -108,15 +116,6 @@ body.wgc header .nav-sections {
   align-self: center;
   justify-content: center;
   visibility: hidden;
-}
-
-body.wgc header .nav-brand a:any-link {
-  font-family: var(--wgc-font-heading);
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-transform: none;
-  white-space: nowrap;
 }
 
 body.wgc header .nav-brand img {
@@ -219,6 +218,13 @@ body.wgc header .nav-sections .default-content-wrapper > ul > li > ul > li {
   padding: 5px 10px;
 }
 
+body.wgc header .nav-tools p.wgc-phone a:any-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 0;
+  line-height: 1.2;
+}
+
 body.wgc header .nav-sections .default-content-wrapper > ul > li > ul a:any-link {
   color: var(--wgc-paper);
   font-size: var(--wgc-nav-link-size);
@@ -277,14 +283,6 @@ body.wgc header .wgc-tools-row {
   padding-right: 0;
 }
 
-body.wgc header .nav-tools p,
-body.wgc header .nav-tools .wgc-phone {
-  display: flex;
-  align-items: center;
-  margin: 0;
-}
-
-/* phone number — aligns with nav link text */
 body.wgc header .wgc-phone,
 body.wgc header .nav-tools p.wgc-phone {
   display: none;
@@ -295,12 +293,11 @@ body.wgc header .nav-tools p.wgc-phone {
   white-space: nowrap;
 }
 
-body.wgc header .wgc-phone a:any-link,
-body.wgc header .nav-tools p.wgc-phone a:any-link {
-  display: inline-flex;
+body.wgc header .nav-tools p,
+body.wgc header .nav-tools .wgc-phone {
+  display: flex;
   align-items: center;
-  padding: 10px 0;
-  line-height: 1.2;
+  margin: 0;
 }
 
 @media (width >= 900px) {
@@ -320,10 +317,6 @@ body.wgc header .wgc-book-wrap {
   gap: 8px;
   margin: 0;
   padding: 0;
-}
-
-body.wgc header .wgc-book-wrap .wgc-book-now:any-link {
-  align-self: stretch;
 }
 
 body.wgc header .wgc-book-now:any-link {
@@ -354,6 +347,10 @@ body.wgc header .wgc-book-now:focus-visible {
   background-color: var(--wgc-teal-dark);
   color: var(--wgc-paper);
   text-decoration: none;
+}
+
+body.wgc header .wgc-book-wrap .wgc-book-now:any-link {
+  align-self: stretch;
 }
 
 @media (width < 900px) {
@@ -478,6 +475,14 @@ body.wgc header .theme-picker-active {
 
 body.wgc header .theme-picker-menu {
   z-index: 200;
+}
+
+body.wgc header.wgc-header-scrolled .theme-picker-toggle {
+  color: var(--wgc-ink);
+}
+
+body.wgc header.wgc-header-scrolled .theme-picker-active {
+  border-color: var(--wgc-paper);
 }
 
 @media (width < 900px) {

@@ -161,41 +161,6 @@ body.template2 .services-copy a:any-link:focus-visible {
   text-decoration: none;
 }
 
-/* gallery CTAs: filled theme + white text; hover ghost with theme text/border */
-body.template2 main .gallery-container a.button:any-link,
-body.template2 main .gallery-container a.button.primary:any-link,
-body.template2 .gallery + .default-content-wrapper a.button:any-link,
-body.template2 .gallery-container .default-content-wrapper a.button:any-link {
-  border-color: var(--theme-color);
-  background-color: var(--theme-color);
-  color: var(--t2-paper);
-}
-
-body.template2 main .gallery-container a.button:hover,
-body.template2 main .gallery-container a.button:focus-visible,
-body.template2 main .gallery-container a.button.primary:hover,
-body.template2 main .gallery-container a.button.primary:focus-visible,
-body.template2 .gallery + .default-content-wrapper a.button:hover,
-body.template2 .gallery + .default-content-wrapper a.button:focus-visible,
-body.template2 .gallery-container .default-content-wrapper a.button:hover,
-body.template2 .gallery-container .default-content-wrapper a.button:focus-visible {
-  border-color: var(--theme-color);
-  background-color: transparent;
-  color: var(--theme-color);
-}
-
-body.template2 main a.button.secondary:any-link {
-  background-color: transparent;
-  color: var(--t2-paper);
-}
-
-body.template2 main a.button.secondary:hover,
-body.template2 main a.button.secondary:focus-visible {
-  background-color: var(--t2-paper);
-  border-color: var(--t2-paper);
-  color: var(--t2-navy-dark);
-}
-
 body.template2 .hero a.button:any-link {
   border-color: var(--t2-paper);
   background-color: transparent;
@@ -224,6 +189,51 @@ body.template2 .home-map a.button:focus-visible {
   border-color: var(--theme-color);
   background-color: var(--theme-color);
   color: var(--t2-paper);
+}
+
+/* gallery CTAs: filled theme + white text; hover ghost with theme text/border */
+body.template2 main .gallery-container a.button:any-link,
+body.template2 main .gallery-container a.button.primary:any-link {
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--t2-paper);
+}
+
+body.template2 main .gallery-container a.button:hover,
+body.template2 main .gallery-container a.button:focus-visible,
+body.template2 main .gallery-container a.button.primary:hover,
+body.template2 main .gallery-container a.button.primary:focus-visible {
+  border-color: var(--theme-color);
+  background-color: transparent;
+  color: var(--theme-color);
+}
+
+body.template2 .gallery + .default-content-wrapper a.button:any-link,
+body.template2 .gallery-container .default-content-wrapper a.button:any-link {
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--t2-paper);
+}
+
+body.template2 .gallery + .default-content-wrapper a.button:hover,
+body.template2 .gallery + .default-content-wrapper a.button:focus-visible,
+body.template2 .gallery-container .default-content-wrapper a.button:hover,
+body.template2 .gallery-container .default-content-wrapper a.button:focus-visible {
+  border-color: var(--theme-color);
+  background-color: transparent;
+  color: var(--theme-color);
+}
+
+body.template2 main a.button.secondary:any-link {
+  background-color: transparent;
+  color: var(--t2-paper);
+}
+
+body.template2 main a.button.secondary:hover,
+body.template2 main a.button.secondary:focus-visible {
+  background-color: var(--t2-paper);
+  border-color: var(--t2-paper);
+  color: var(--t2-navy-dark);
 }
 
 body.template2 main > .section {
