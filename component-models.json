@@ -56,6 +56,10 @@
           {
             "name": "Full Bleed",
             "value": "full-bleed"
+          },
+          {
+            "name": "NTT Actions",
+            "value": "ntt-actions"
           }
         ]
       }
@@ -495,6 +499,10 @@
     ]
   },
   {
+    "id": "theme-picker",
+    "fields": []
+  },
+  {
     "id": "video",
     "fields": [
       {
@@ -523,9 +531,5 @@
         "valueType": "string"
       }
     ]
-  },
-  {
-    "id": "theme-picker",
-    "fields": []
   }
 ]
