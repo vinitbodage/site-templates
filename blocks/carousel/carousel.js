@@ -1,4 +1,5 @@
 import { fetchPlaceholders } from '../../scripts/aem.js';
+import { decorateTestimonials } from '../../scripts/template/testimonials-decorate.js';
 
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
@@ -91,6 +92,11 @@ function createSlide(row, slideIndex, carouselId) {
 
 let carouselId = 0;
 export default async function decorate(block) {
+  if (document.body.classList.contains('wgc') && block.classList.contains('testimonials')) {
+    decorateTestimonials(block);
+    return;
+  }
+
   carouselId += 1;
   block.setAttribute('id', `carousel-${carouselId}`);
   const rows = block.querySelectorAll(':scope > div');

@@ -11,6 +11,7 @@
  */
 
 @import url('./wgc-header.css');
+@import url('./wgc-blocks.css');
 
 body.wgc {
   /* brand palette */
@@ -34,7 +35,7 @@ body.wgc {
   --wgc-button-border: var(--wgc-paper);
   --wgc-button-hover-bg: var(--theme-color);
   --wgc-button-hover-color: var(--wgc-paper);
-  --theme-color: #16273e;
+  --theme-color: var(--wgc-teal);
 
   /* rhythm */
   --wgc-gap: 24px;
@@ -45,6 +46,10 @@ body.wgc {
   background-color: var(--wgc-paper);
   color: var(--wgc-ink);
   font-family: var(--wgc-font-body);
+}
+
+body.wgc[data-theme='teal'] {
+  --theme-color: #3d717f;
 }
 
 body.wgc[data-theme='navy'] {
@@ -76,13 +81,13 @@ body.wgc main h3 {
   color: var(--theme-color);
 }
 
-body.wgc .wgc-home-room-dine-spa-container :is(h1, h2, h3),
-body.wgc .wgc-home-room-dine-spa .wgc-rds-copy :is(h2, h3) {
+body.wgc .columns-3-cols-container :is(h1, h2, h3),
+body.wgc .columns-3-cols > div > div :is(h2, h3) {
   color: var(--wgc-teal);
 }
 
-body.wgc .wgc-home-map-container :is(h1, h2, h3),
-body.wgc .wgc-home-map .wgc-map-panel :is(h2, h3) {
+body.wgc .home-map-container :is(h1, h2, h3),
+body.wgc .home-map .home-map-panel :is(h2, h3) {
   color: var(--wgc-paper);
 }
 
@@ -90,10 +95,10 @@ body.wgc main h2 {
   text-align: center;
 }
 
-body.wgc main .wgc-hero h1,
-body.wgc main .wgc-hero h2,
-body.wgc main .wgc-hero h3,
-body.wgc main .wgc-hero p {
+body.wgc main .hero h1,
+body.wgc main .hero h2,
+body.wgc main .hero h3,
+body.wgc main .hero p {
   color: var(--wgc-paper);
 }
 
@@ -164,43 +169,64 @@ body.wgc main a.button.primary:focus-visible {
 }
 
 /* gallery CTAs: theme fill + white text; hover ghost with theme text/border */
-body.wgc main .wgc-gallery-container a.button:any-link,
-body.wgc main .wgc-gallery-container a.button.primary:any-link {
+body.wgc main .gallery-container a.button:any-link,
+body.wgc main .gallery-container a.button.primary:any-link {
   border-color: var(--theme-color);
   background-color: var(--theme-color);
   color: var(--wgc-paper);
 }
 
-body.wgc main .wgc-gallery-container a.button:hover,
-body.wgc main .wgc-gallery-container a.button:focus-visible,
-body.wgc main .wgc-gallery-container a.button.primary:hover,
-body.wgc main .wgc-gallery-container a.button.primary:focus-visible {
+body.wgc main .gallery-container a.button:hover,
+body.wgc main .gallery-container a.button:focus-visible,
+body.wgc main .gallery-container a.button.primary:hover,
+body.wgc main .gallery-container a.button.primary:focus-visible {
   border-color: var(--theme-color);
   background-color: transparent;
   color: var(--theme-color);
 }
 
 /* home-map CTAs stay readable on the map imagery */
-body.wgc .wgc-home-map-container .wgc-map-panel a.button:any-link,
-body.wgc .wgc-home-map .wgc-map-panel a.button:any-link {
+body.wgc .home-map-container .home-map-panel a.button:any-link,
+body.wgc .home-map .home-map-panel a.button:any-link {
   border-color: var(--wgc-paper);
   background-color: transparent;
   color: var(--wgc-paper);
 }
 
-body.wgc .wgc-home-map-container .wgc-map-panel a.button:hover,
-body.wgc .wgc-home-map-container .wgc-map-panel a.button:focus-visible,
-body.wgc .wgc-home-map .wgc-map-panel a.button:hover,
-body.wgc .wgc-home-map .wgc-map-panel a.button:focus-visible {
+body.wgc .home-map-container .home-map-panel a.button:hover,
+body.wgc .home-map-container .home-map-panel a.button:focus-visible,
+body.wgc .home-map .home-map-panel a.button:hover,
+body.wgc .home-map .home-map-panel a.button:focus-visible {
   border-color: var(--theme-color);
   background-color: var(--theme-color);
   color: var(--wgc-paper);
 }
 
-/* full-bleed sections opt out of the boilerplate content gutter */
+/* full-bleed sections and live-site section rhythm */
+body.wgc main > .section.hero-container,
+body.wgc main > .section.home-map-container {
+  margin: 0;
+}
+
+body.wgc main > .section.hero-container:first-of-type {
+  margin-top: 0;
+}
+
+body.wgc main > .section.hero-container > div,
+body.wgc main > .section.home-map-container > div,
 body.wgc main > .section.full-bleed > div {
   max-width: none;
   padding: 0;
+}
+
+body.wgc main > .section.tinted {
+  margin: 0;
+  background-color: var(--wgc-sand);
+}
+
+body.wgc main > .section:not(.hero-container, .home-map-container) {
+  margin-block: 0;
+  padding-block: var(--wgc-section-padding);
 }
 
 /*

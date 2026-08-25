@@ -8,6 +8,7 @@
 export const THEME_STORAGE_KEY = 'site-theme';
 
 export const THEMES = [
+  { id: 'teal', label: 'Coastal Teal', color: '#3d717f' },
   { id: 'navy', label: 'Deep Navy Blue', color: '#16273e' },
   { id: 'sage', label: 'Sage Green', color: '#6b8f71' },
   { id: 'terracotta', label: 'Warm Terracotta', color: '#c46a4a' },
@@ -19,9 +20,9 @@ export const THEMES = [
  */
 export function getStoredTheme() {
   try {
-    return localStorage.getItem(THEME_STORAGE_KEY) || 'navy';
+    return localStorage.getItem(THEME_STORAGE_KEY) || 'teal';
   } catch {
-    return 'navy';
+    return 'teal';
   }
 }
 

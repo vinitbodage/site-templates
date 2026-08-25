@@ -1,7 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
+import { decorateAccolades, decorateCardColumns } from '../../scripts/template/cards-wgc.js';
 
-export default function decorate(block) {
-  /* change to ul, li */
+function decorateDefault(block) {
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
@@ -13,8 +13,21 @@ export default function decorate(block) {
     ul.append(li);
   });
 
-  // replace images with optimized versions
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
 
   block.replaceChildren(ul);
+}
+
+export default function decorate(block) {
+  if (document.body.classList.contains('wgc')) {
+    if (block.classList.contains('accolades')) {
+      decorateAccolades(block);
+      return;
+    }
+    if (block.classList.contains('card-columns')) {
+      decorateCardColumns(block);
+      return;
+    }
+  }
+  decorateDefault(block);
 }

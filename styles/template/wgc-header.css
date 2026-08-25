@@ -283,6 +283,12 @@ body.wgc header .wgc-tools-row {
   padding-right: 0;
 }
 
+body.wgc header .nav-tools p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
 body.wgc header .wgc-phone,
 body.wgc header .nav-tools p.wgc-phone {
   display: none;
@@ -291,13 +297,6 @@ body.wgc header .nav-tools p.wgc-phone {
   letter-spacing: 0.04em;
   line-height: 1.2;
   white-space: nowrap;
-}
-
-body.wgc header .nav-tools p,
-body.wgc header .nav-tools .wgc-phone {
-  display: flex;
-  align-items: center;
-  margin: 0;
 }
 
 @media (width >= 900px) {

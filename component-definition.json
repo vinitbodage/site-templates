@@ -169,6 +169,31 @@
           }
         },
         {
+          "title": "Testimonial",
+          "id": "testimonial-item",
+          "model": "testimonial-item",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 3,
+              "fields": [
+                {
+                  "name": "headline",
+                  "selector": "div:nth-child(1)"
+                },
+                {
+                  "name": "quote",
+                  "selector": "div:nth-child(2)"
+                },
+                {
+                  "name": "attribution",
+                  "selector": "div:nth-child(3)"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Columns",
           "id": "columns",
           "model": "columns",
@@ -227,6 +252,39 @@
           }
         },
         {
+          "title": "Gallery",
+          "id": "gallery",
+          "model": "gallery",
+          "filter": "gallery",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "Gallery Image",
+          "id": "gallery-image",
+          "model": "gallery-image",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Hero",
           "id": "hero",
           "model": "hero",
@@ -251,6 +309,31 @@
           }
         },
         {
+          "title": "Home Map",
+          "id": "home-map",
+          "model": "home-map",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div:nth-child(1)"
+                },
+                {
+                  "name": "pin",
+                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[src]"
+                },
+                {
+                  "name": "pinAlt",
+                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Quote",
           "id": "quote",
           "model": "quote",
@@ -267,6 +350,56 @@
                 {
                   "name": "author",
                   "selector": "div:nth-child(2)>div"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Room",
+          "id": "room",
+          "model": "room",
+          "filter": "room",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "Room Slide",
+          "id": "room-slide",
+          "model": "room-slide",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Room Copy",
+          "id": "room-copy",
+          "model": "room-copy",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)"
                 }
               ]
             }
@@ -377,636 +510,6 @@
                 {
                   "name": "posterImage",
                   "selector": "div>div>picture>img[src]"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Accolades",
-          "id": "wgc-accolades",
-          "model": "wgc-accolades",
-          "filter": "wgc-accolades",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1
-            }
-          }
-        },
-        {
-          "title": "WGC Accolade",
-          "id": "wgc-accolade",
-          "model": "wgc-accolade",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "link",
-                  "selector": "div:nth-child(1)>a[href]"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Accordion",
-          "id": "wgc-accordion",
-          "model": "wgc-accordion",
-          "filter": "wgc-accordion",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 3
-            }
-          }
-        },
-        {
-          "title": "WGC Accordion Heading",
-          "id": "wgc-accordion-heading",
-          "model": "wgc-accordion-heading",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "eyebrow",
-                  "selector": "div:nth-child(1)"
-                },
-                {
-                  "name": "heading",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Accordion Item",
-          "id": "wgc-accordion-item",
-          "model": "wgc-accordion-item",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 3,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "title",
-                  "selector": "div:nth-child(2)"
-                },
-                {
-                  "name": "body",
-                  "selector": "div:nth-child(3)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Amenities",
-          "id": "wgc-amenities",
-          "model": "wgc-amenities",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Columns",
-          "id": "wgc-columns",
-          "model": "wgc-columns",
-          "filter": "wgc-columns",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2
-            }
-          }
-        },
-        {
-          "title": "WGC Column",
-          "id": "wgc-column",
-          "model": "wgc-column",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "body",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Gallery",
-          "id": "wgc-gallery",
-          "model": "wgc-gallery",
-          "filter": "wgc-gallery",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1
-            }
-          }
-        },
-        {
-          "title": "WGC Gallery Image",
-          "id": "wgc-gallery-image",
-          "model": "wgc-gallery-image",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Hero",
-          "id": "wgc-hero",
-          "model": "wgc-hero",
-          "plugins": {
-            "da": {
-              "rows": 2,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>div>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>div>picture>img[alt]"
-                },
-                {
-                  "name": "video",
-                  "selector": "div:nth-child(1)>div>p>a[href]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(2)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Home Map",
-          "id": "wgc-home-map",
-          "model": "wgc-home-map",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)>div:nth-child(1)"
-                },
-                {
-                  "name": "pin",
-                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[src]"
-                },
-                {
-                  "name": "pinAlt",
-                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[alt]"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Rooms Dining Spa",
-          "id": "wgc-home-room-dine-spa",
-          "model": "wgc-home-room-dine-spa",
-          "filter": "wgc-home-room-dine-spa",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2
-            }
-          }
-        },
-        {
-          "title": "WGC Room Dining Spa Item",
-          "id": "wgc-rds-item",
-          "model": "wgc-rds-item",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Icon Strip",
-          "id": "wgc-icons",
-          "model": "wgc-icons",
-          "filter": "wgc-icons",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2
-            }
-          }
-        },
-        {
-          "title": "WGC Icon",
-          "id": "wgc-icon",
-          "model": "wgc-icon",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "icon",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "iconAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "label",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Intro Container",
-          "id": "wgc-intro-container",
-          "model": "wgc-intro-container",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Intro",
-          "id": "wgc-intro",
-          "model": "wgc-intro",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)>div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Media Mosaic",
-          "id": "wgc-media-mosaic",
-          "model": "wgc-media-mosaic",
-          "plugins": {
-            "da": {
-              "rows": 4,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "video",
-                  "selector": "div:nth-child(1)>div>p>a[href]"
-                },
-                {
-                  "name": "image1",
-                  "selector": "div:nth-child(2)>div>picture>img[src]"
-                },
-                {
-                  "name": "image1Alt",
-                  "selector": "div:nth-child(2)>div>picture>img[alt]"
-                },
-                {
-                  "name": "image2",
-                  "selector": "div:nth-child(3)>div>picture>img[src]"
-                },
-                {
-                  "name": "image2Alt",
-                  "selector": "div:nth-child(3)>div>picture>img[alt]"
-                },
-                {
-                  "name": "image3",
-                  "selector": "div:nth-child(4)>div>picture>img[src]"
-                },
-                {
-                  "name": "image3Alt",
-                  "selector": "div:nth-child(4)>div>picture>img[alt]"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Meeting Amenities",
-          "id": "wgc-meeting-amenities",
-          "model": "wgc-meeting-amenities",
-          "plugins": {
-            "da": {
-              "rows": 2,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "title",
-                  "selector": "div:nth-child(1)>div"
-                },
-                {
-                  "name": "items",
-                  "selector": "div:nth-child(2)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Meeting Feature",
-          "id": "wgc-meeting-feature",
-          "model": "wgc-meeting-feature",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)>div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Meeting Testimonials",
-          "id": "wgc-meeting-testimonials",
-          "model": "wgc-meeting-testimonials",
-          "filter": "wgc-meeting-testimonials",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 3
-            }
-          }
-        },
-        {
-          "title": "WGC Meeting Testimonial",
-          "id": "wgc-meeting-testimonial",
-          "model": "wgc-meeting-testimonial",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 3,
-              "fields": [
-                {
-                  "name": "headline",
-                  "selector": "div:nth-child(1)"
-                },
-                {
-                  "name": "quote",
-                  "selector": "div:nth-child(2)"
-                },
-                {
-                  "name": "attribution",
-                  "selector": "div:nth-child(3)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Meetings Hero",
-          "id": "wgc-meetings-hero",
-          "model": "wgc-meetings-hero",
-          "plugins": {
-            "da": {
-              "rows": 2,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>div>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>div>picture>img[alt]"
-                },
-                {
-                  "name": "video",
-                  "selector": "div:nth-child(1)>div>p>a[href]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(2)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Meetings Intro",
-          "id": "wgc-meetings-intro",
-          "model": "wgc-meetings-intro",
-          "plugins": {
-            "da": {
-              "rows": 2,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)>div"
-                },
-                {
-                  "name": "cta",
-                  "selector": "div:nth-child(2)>div>p>a[href]"
-                },
-                {
-                  "name": "ctaText",
-                  "selector": "div:nth-child(2)>div>p>a"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Planning Tools",
-          "id": "wgc-planning-tools",
-          "model": "wgc-planning-tools",
-          "plugins": {
-            "da": {
-              "rows": 2,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "title",
-                  "selector": "div:nth-child(1)>div"
-                },
-                {
-                  "name": "links",
-                  "selector": "div:nth-child(2)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Request Proposal",
-          "id": "wgc-request-proposal",
-          "model": "wgc-request-proposal",
-          "plugins": {
-            "da": {
-              "rows": 2,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>div>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>div>picture>img[alt]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(2)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Room",
-          "id": "wgc-room",
-          "model": "wgc-room",
-          "filter": "wgc-room",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1
-            }
-          }
-        },
-        {
-          "title": "WGC Room Slide",
-          "id": "wgc-room-slide",
-          "model": "wgc-room-slide",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Room Copy",
-          "id": "wgc-room-copy",
-          "model": "wgc-room-copy",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)"
                 }
               ]
             }

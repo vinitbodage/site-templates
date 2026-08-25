@@ -109,7 +109,7 @@ function autolinkModals(doc) {
 function buildAutoBlocks(main) {
   try {
     // template pages author their own hero/banner, so only plain documents get one built
-    const authoredBanner = '.hero, .wgc-hero, .wgc-intro-container, .wgc-meetings-hero, .wgc-meetings-intro';
+    const authoredBanner = '.hero, .columns.intro, .columns.intro-contact, .columns.meetings-intro';
     if (!main.querySelector(authoredBanner)) buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
