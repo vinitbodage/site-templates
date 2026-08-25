@@ -31,6 +31,22 @@
   ],
   "models": [
     {
+      "id": "cards",
+      "fields": [
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "CTA Alignment",
+          "value": "",
+          "options": [
+            { "name": "Centered (default)", "value": "" },
+            { "name": "Left-aligned", "value": "left" }
+          ]
+        }
+      ]
+    },
+    {
       "id": "card",
       "fields": [
         {
