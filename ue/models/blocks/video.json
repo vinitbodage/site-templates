@@ -16,6 +16,24 @@
           ]
         }
       }
+    },
+    {
+      "title": "Video Masthead",
+      "id": "video-slider",
+      "model": "video-slider",
+      "plugins": {
+        "da": {
+          "name": "Video (Slider)",
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>picture>img[alt]" },
+            { "name": "video", "selector": "div:nth-child(1)>p>a[href]" },
+            { "name": "content", "selector": "div:nth-child(2)" }
+          ]
+        }
+      }
     }
   ],
   "models": [
@@ -46,6 +64,41 @@
           "name": "posterImage",
           "label": "Poster Image",
           "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "video-slider",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Background Image",
+          "description": "Still image behind the headline. Also the poster/fallback shown to reduced-motion visitors and while the video loads.",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Background Image Alt"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "video",
+          "label": "Background Video (optional)",
+          "description": "Link to an .mp4 or .webm. Always muted, autoplayed and looped with no controls; fades in over the image once it can play."
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "required": true,
+          "description": "Headline (required), optional short copy, and an optional CTA button."
         }
       ]
     }
