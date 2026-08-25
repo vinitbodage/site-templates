@@ -191,7 +191,7 @@ async function loadEager(doc) {
   doc.documentElement.lang = 'en';
   hydratePageMetadata(doc);
   decorateTemplateAndTheme();
-  if (document.body.classList.contains('template2') || document.body.classList.contains('wgc')) {
+  if (document.body.classList.contains('template2') || document.body.classList.contains('template1')) {
     applyTheme(getStoredTheme());
   }
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {

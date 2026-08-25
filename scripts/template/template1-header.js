@@ -1,7 +1,7 @@
 /**
- * Wyndham Grand Clearwater header enhancements.
+ * Template 1 header enhancements.
  *
- * Applied on top of the standard header block when the page uses the wgc
+ * Applied on top of the standard header block when the page uses the template1
  * template. Adds scroll-state styling and normalises the tools area so Book
  * Now renders as a full-height teal bar instead of a boilerplate pill button.
  */
@@ -29,14 +29,14 @@ function stripThemeOption(nav) {
 function ensureBookWrap(bookLink) {
   if (!bookLink) return null;
 
-  const wrap = bookLink.closest('.wgc-book-wrap');
+  const wrap = bookLink.closest('.book-wrap');
   if (wrap && wrap.tagName !== 'P') {
     return wrap;
   }
 
   const paragraph = wrap?.tagName === 'P' ? wrap : bookLink.closest('p');
   const div = document.createElement('div');
-  div.className = 'wgc-book-wrap';
+  div.className = 'book-wrap';
 
   if (paragraph) {
     paragraph.replaceWith(div);
@@ -44,7 +44,7 @@ function ensureBookWrap(bookLink) {
     return div;
   }
 
-  if (bookLink.parentElement?.classList.contains('wgc-book-wrap')) {
+  if (bookLink.parentElement?.classList.contains('book-wrap')) {
     return bookLink.parentElement;
   }
 
@@ -76,26 +76,26 @@ function normalizeToolsRow(nav) {
   const tools = nav.querySelector('.nav-tools');
   if (!tools) return;
 
-  let row = tools.querySelector('.wgc-tools-row');
+  let row = tools.querySelector('.nav-tools-row');
   if (!row) {
     row = document.createElement('div');
-    row.className = 'wgc-tools-row';
+    row.className = 'nav-tools-row';
     tools.append(row);
   }
 
   const phoneLink = tools.querySelector('a[href^="tel:"]');
-  const phoneEl = phoneLink?.closest('p, .wgc-phone');
+  const phoneEl = phoneLink?.closest('p, .nav-phone');
   if (phoneEl && !row.contains(phoneEl)) {
-    phoneEl.classList.add('wgc-phone');
+    phoneEl.classList.add('nav-phone');
     row.append(phoneEl);
   }
 
-  const bookWrap = tools.querySelector('.wgc-book-wrap');
+  const bookWrap = tools.querySelector('.book-wrap');
   if (bookWrap && !row.contains(bookWrap)) {
     row.append(bookWrap);
   }
 
-  const bookLink = bookWrap?.querySelector('.wgc-book-now, a[href*="synxis"], a[href="#book"]');
+  const bookLink = bookWrap?.querySelector('.book-now, a[href*="synxis"], a[href="#book"]');
   tools.querySelectorAll('.theme-picker-wrapper').forEach((pickerWrap) => {
     if (bookWrap && bookLink) {
       attachPickerToBook(bookWrap, bookLink, pickerWrap);
@@ -109,7 +109,7 @@ function normalizeToolsRow(nav) {
  */
 function bindScrollState(header) {
   const onScroll = () => {
-    header.classList.toggle('wgc-header-scrolled', window.scrollY > 48);
+    header.classList.toggle('header-scrolled', window.scrollY > 48);
   };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -129,10 +129,10 @@ function normalizeTools(nav) {
     if (container) container.classList.remove('button-container');
   });
 
-  let bookLink = tools.querySelector('a[href*="synxis"], .wgc-book-now, a[href="#book"]');
+  let bookLink = tools.querySelector('a[href*="synxis"], .book-now, a[href="#book"]');
   if (!bookLink) {
     const wrap = document.createElement('div');
-    wrap.className = 'wgc-book-wrap';
+    wrap.className = 'book-wrap';
     bookLink = document.createElement('a');
     bookLink.href = BOOK_URL;
     bookLink.textContent = 'Book Now';
@@ -142,7 +142,7 @@ function normalizeTools(nav) {
     tools.append(wrap);
   }
 
-  bookLink.classList.add('wgc-book-now');
+  bookLink.classList.add('book-now');
   ensureBookWrap(bookLink);
   normalizeToolsRow(nav);
 }
@@ -164,13 +164,13 @@ async function mountThemePicker(nav) {
   const picker = buildBlock('theme-picker', '');
   pickerWrap.append(picker);
 
-  let bookLink = tools.querySelector('a[href*="synxis"], .wgc-book-now, a[href="#book"]');
+  let bookLink = tools.querySelector('a[href*="synxis"], .book-now, a[href="#book"]');
   const bookWrap = ensureBookWrap(bookLink);
-  bookLink = bookWrap?.querySelector('.wgc-book-now, a[href*="synxis"], a[href="#book"]');
+  bookLink = bookWrap?.querySelector('.book-now, a[href*="synxis"], a[href="#book"]');
   if (bookWrap && bookLink) {
     attachPickerToBook(bookWrap, bookLink, pickerWrap);
   } else {
-    (tools.querySelector('.wgc-tools-row') || tools).append(pickerWrap);
+    (tools.querySelector('.nav-tools-row') || tools).append(pickerWrap);
   }
 
   decorateBlock(picker);
@@ -179,14 +179,14 @@ async function mountThemePicker(nav) {
 }
 
 /**
- * decorate the WGC header
+ * decorate the template1 header
  * @param {Element} block the header block element
  */
-export default async function decorateWgcHeader(block) {
+export default async function decorateTemplate1Header(block) {
   const header = block.closest('header');
   if (!header) return;
 
-  header.classList.add('wgc-header');
+  header.classList.add('template1-header');
   const nav = block.querySelector('nav');
   if (!nav) return;
 

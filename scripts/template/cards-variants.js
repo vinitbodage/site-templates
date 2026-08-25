@@ -1,6 +1,6 @@
 import {
   getRows, getCells, isEmpty, optimizePicture,
-} from './wgc.js';
+} from './shared.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 
 /**
@@ -67,4 +67,56 @@ export function decorateCardColumns(block) {
   });
 
   block.replaceChildren(ul);
+}
+
+/**
+ * Benefit strip: icon above centered label.
+ * @param {Element} block
+ */
+export function decorateIconRow(block) {
+  const ul = document.createElement('ul');
+
+  getRows(block).forEach((row) => {
+    const li = document.createElement('li');
+    moveInstrumentation(row, li);
+
+    getCells(row).forEach((cell) => {
+      if (isEmpty(cell)) return;
+      const isIcon = cell.querySelector('picture, img, .icon');
+      cell.classList.add(isIcon ? 'cards-card-image' : 'cards-card-body');
+      li.append(cell);
+    });
+
+    li.querySelectorAll('.cards-card-body a.button').forEach((link) => {
+      link.classList.remove('button', 'primary', 'secondary');
+      const container = link.closest('.button-container');
+      if (container) container.classList.remove('button-container');
+    });
+
+    if (li.childElementCount) ul.append(li);
+  });
+
+  ul.querySelectorAll('.cards-card-image picture > img').forEach((img) => {
+    optimizePicture(img, { width: '200' });
+  });
+
+  block.classList.add('icon-row');
+  block.replaceChildren(ul);
+}
+
+/**
+ * True when every row is a small icon cell plus a short label cell.
+ * @param {Element} block
+ * @returns {boolean}
+ */
+export function isIconRowPattern(block) {
+  const rows = getRows(block);
+  if (!rows.length) return false;
+  return rows.every((row) => {
+    const cells = getCells(row).filter((cell) => !isEmpty(cell));
+    if (cells.length !== 2) return false;
+    const iconCell = cells.find((cell) => cell.querySelector('picture, img, .icon'));
+    const labelCell = cells.find((cell) => cell !== iconCell);
+    return iconCell && labelCell && labelCell.textContent.trim().length > 0;
+  });
 }

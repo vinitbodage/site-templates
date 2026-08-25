@@ -1,8 +1,8 @@
-import { splitHeading, addRule } from '../../scripts/template/wgc.js';
-import { decorateWgcColumns } from '../../scripts/template/columns-wgc.js';
+import { splitHeading, addRule } from '../../scripts/template/shared.js';
+import { decorateColumnVariants } from '../../scripts/template/columns-variants.js';
 
 export default function decorate(block) {
-  if (document.body.classList.contains('wgc') && decorateWgcColumns(block)) {
+  if (decorateColumnVariants(block)) {
     return;
   }
 
@@ -21,7 +21,7 @@ export default function decorate(block) {
     });
   });
 
-  if (document.body.classList.contains('wgc')) {
+  if (document.body.classList.contains('template1')) {
     block.querySelectorAll('h1, h2, h3').forEach((heading) => {
       splitHeading(heading);
       addRule(heading);

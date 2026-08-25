@@ -1,6 +1,6 @@
 import {
   getRows, getCells, isEmpty, splitHeading, addRule, createSlider, optimizePicture,
-} from '../../scripts/template/wgc.js';
+} from '../../scripts/template/shared.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 
 const EXPAND_ICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.4 21.4" aria-hidden="true"><path d="M20.79,0H.61A.61.61,0,0,0,0,.61V15.89a.61.61,0,0,0,1.21,0V1.21h19v19H5.51a.61.61,0,1,0,0,1.21H20.79a.61.61,0,0,0,.61-.61V.61A.61.61,0,0,0,20.79,0Z"/><path d="M2.59,18.75a.63.63,0,0,0,.43.17.65.65,0,0,0,.43-.17L15.15,7v6.25a.61.61,0,1,0,1.21,0V5.58a.54.54,0,0,0,0-.22h0A.63.63,0,0,0,16,5h0a.59.59,0,0,0-.22,0H8A.61.61,0,0,0,8,6.18h6.25L2.59,17.89A.6.6,0,0,0,2.59,18.75Z"/></svg>';
@@ -18,12 +18,12 @@ function buildLightboxNav(label, className, icon) {
 }
 
 function stackHeadingTail(heading) {
-  const lead = heading.querySelector('.wgc-headline-lead');
-  if (!lead || lead.nextSibling?.classList?.contains('wgc-headline-tail')) return;
+  const lead = heading.querySelector('.headline-lead');
+  if (!lead || lead.nextSibling?.classList?.contains('headline-tail')) return;
 
   if (lead.nextSibling?.nodeType === Node.TEXT_NODE) {
     const tail = document.createElement('span');
-    tail.className = 'wgc-headline-tail';
+    tail.className = 'headline-tail';
     tail.textContent = lead.nextSibling.textContent.trim();
     lead.nextSibling.replaceWith(tail);
     return;
@@ -31,7 +31,7 @@ function stackHeadingTail(heading) {
 
   if (lead.nextSibling) {
     const tail = document.createElement('span');
-    tail.className = 'wgc-headline-tail';
+    tail.className = 'headline-tail';
     while (lead.nextSibling) {
       tail.append(lead.nextSibling);
     }

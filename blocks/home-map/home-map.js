@@ -1,6 +1,6 @@
 import {
   getRows, getCells, isEmpty, splitHeading, addRule, optimizePicture,
-} from '../../scripts/template/wgc.js';
+} from '../../scripts/template/shared.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 
 /**

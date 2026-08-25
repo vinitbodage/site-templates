@@ -1,12 +1,12 @@
 .home-map {
   position: relative;
   overflow: hidden;
-  background-color: var(--wgc-teal-dark);
+  background-color: var(--t1-teal-dark);
   background-image: url('https://www.wyndhamgrandclearwater.com/assets/images/jpg/background-home-map.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: var(--wgc-paper);
+  color: var(--t1-paper);
 }
 
 .home-map::before {
@@ -20,10 +20,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--wgc-gap);
-  max-width: var(--wgc-max-width);
+  gap: var(--t1-gap);
+  max-width: var(--t1-max-width);
   margin: 0 auto;
-  padding: var(--wgc-section-padding) 24px;
+  padding: var(--t1-section-padding) 24px;
 }
 
 .home-map .home-map-panel {
@@ -33,14 +33,14 @@
 .home-map .home-map-panel h2,
 .home-map .home-map-panel h3 {
   margin: 0 0 24px;
-  color: var(--wgc-paper);
+  color: var(--t1-paper);
   font-size: var(--heading-font-size-l);
   text-align: left;
   text-transform: uppercase;
-  letter-spacing: var(--wgc-tracking-wide);
+  letter-spacing: var(--t1-tracking-wide);
 }
 
-.home-map .home-map-panel .wgc-headline-lead {
+.home-map .home-map-panel .headline-lead {
   display: block;
   font-weight: 300;
 }

@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import {
   getRows, getCells, isEmpty, optimizePicture,
-} from './wgc.js';
+} from './shared.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 
 const VIDEO_RE = /\.(mp4|webm)(\?.*)?$/i;

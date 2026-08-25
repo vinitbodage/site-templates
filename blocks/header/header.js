@@ -190,7 +190,7 @@ async function buildBreadcrumbs() {
 function ensureBookWrap(bookLink) {
   if (!bookLink) return null;
 
-  const wrap = bookLink.closest('.wgc-book-wrap, .header-book-wrap');
+  const wrap = bookLink.closest('.book-wrap, .header-book-wrap');
   if (wrap && wrap.tagName !== 'P') return wrap;
 
   const paragraph = wrap?.tagName === 'P' ? wrap : bookLink.closest('p');
@@ -243,9 +243,9 @@ async function mountThemePicker(nav) {
   const picker = buildBlock('theme-picker', '');
   pickerWrap.append(picker);
 
-  let bookLink = tools.querySelector('a[href*="synxis"], .wgc-book-now, a[href="#book"]');
+  let bookLink = tools.querySelector('a[href*="synxis"], .book-now, a[href="#book"]');
   const bookWrap = ensureBookWrap(bookLink);
-  bookLink = bookWrap?.querySelector('.wgc-book-now, a[href*="synxis"], a[href="#book"]')
+  bookLink = bookWrap?.querySelector('.book-now, a[href*="synxis"], a[href="#book"]')
     || bookLink;
   if (bookWrap && bookLink) {
     bookWrap.classList.add('header-book-wrap');
@@ -267,7 +267,7 @@ export default async function decorate(block) {
   const template = toClassName(getMetadata('template'));
   const navMeta = getMetadata('nav');
   let defaultNav = '/nav';
-  if (document.body.classList.contains('wgc') || template === 'wgc') {
+  if (document.body.classList.contains('template1') || template === 'template1') {
     defaultNav = '/template1/nav';
   } else if (template) {
     defaultNav = `/${template}/nav`;
@@ -350,11 +350,11 @@ export default async function decorate(block) {
     navWrapper.append(await buildBreadcrumbs());
   }
 
-  if (document.body.classList.contains('wgc')) {
-    const { default: decorateWgcHeader } = await import(
-      `${window.hlx.codeBasePath}/scripts/template/wgc-header.js`
+  if (document.body.classList.contains('template1')) {
+    const { default: decorateTemplate1Header } = await import(
+      `${window.hlx.codeBasePath}/scripts/template/template1-header.js`
     );
-    await decorateWgcHeader(block);
+    await decorateTemplate1Header(block);
   } else if (template === 'template2') {
     const navEl = block.querySelector('nav');
     if (navEl) await mountThemePicker(navEl);

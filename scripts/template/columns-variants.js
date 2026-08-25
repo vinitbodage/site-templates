@@ -1,6 +1,6 @@
 import {
   getRows, getCells, isEmpty, splitHeading, addRule, markEyebrow, optimizePicture,
-} from './wgc.js';
+} from './shared.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 
 const CONTACT_RE = /^(tel|mailto):/i;
@@ -8,12 +8,12 @@ const DOCUMENT_RE = /\.(pdf|docx?|xlsx?|pptx?)(\?.*)?$/i;
 const TOUR_RE = /(virtual[-\s]?tour|matterport|panoram|\b360\b)/i;
 
 function stackHeadingTail(heading) {
-  const lead = heading.querySelector('.wgc-headline-lead');
-  if (!lead || lead.nextSibling?.classList?.contains('wgc-headline-tail')) return;
+  const lead = heading.querySelector('.headline-lead');
+  if (!lead || lead.nextSibling?.classList?.contains('headline-tail')) return;
 
   if (lead.nextSibling?.nodeType === Node.TEXT_NODE) {
     const tail = document.createElement('span');
-    tail.className = 'wgc-headline-tail';
+    tail.className = 'headline-tail';
     tail.textContent = lead.nextSibling.textContent.trim();
     lead.nextSibling.replaceWith(tail);
     return;
@@ -21,7 +21,7 @@ function stackHeadingTail(heading) {
 
   if (lead.nextSibling) {
     const tail = document.createElement('span');
-    tail.className = 'wgc-headline-tail';
+    tail.className = 'headline-tail';
     while (lead.nextSibling) {
       tail.append(lead.nextSibling);
     }
@@ -63,7 +63,7 @@ function resolveIntroHeading(copy) {
     });
 
     const lead = document.createElement('span');
-    lead.className = 'wgc-headline-lead';
+    lead.className = 'headline-lead';
     lead.textContent = eyebrow.textContent.trim();
     heading.prepend(lead);
     eyebrow.remove();
@@ -81,7 +81,7 @@ function resolveIntroHeading(copy) {
     const text = prev.textContent.trim();
     if (text && !prev.querySelector('h1, h2, h3, h4')) {
       const lead = document.createElement('span');
-      lead.className = 'wgc-headline-lead';
+      lead.className = 'headline-lead';
       lead.textContent = text;
       heading.prepend(lead);
       prev.remove();
@@ -454,10 +454,10 @@ export function decorateCtaBand(block) {
 }
 
 /**
- * Routes WGC column variants to the correct decorator.
+ * Routes column variants to the correct decorator.
  * @param {Element} block
  */
-export function decorateWgcColumns(block) {
+export function decorateColumnVariants(block) {
   if (block.classList.contains('cta-band')) {
     decorateCtaBand(block);
     return true;

@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import {
   getRows, getCells, isEmpty, createSlider,
-} from './wgc.js';
+} from './shared.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 
 /**

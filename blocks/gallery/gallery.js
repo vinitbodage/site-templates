@@ -1,6 +1,6 @@
 import {
   getRows, getCells, isEmpty, optimizePicture,
-} from '../../scripts/template/wgc.js';
+} from '../../scripts/template/shared.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 import { decorateMosaic } from '../../scripts/template/mosaic-decorate.js';
 
@@ -35,7 +35,7 @@ function decorateGallery(block) {
 }
 
 export default function decorate(block) {
-  if (document.body.classList.contains('wgc') && block.classList.contains('mosaic')) {
+  if (block.classList.contains('mosaic')) {
     decorateMosaic(block);
     return;
   }

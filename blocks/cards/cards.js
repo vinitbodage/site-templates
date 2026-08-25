@@ -1,5 +1,10 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
-import { decorateAccolades, decorateCardColumns } from '../../scripts/template/cards-wgc.js';
+import {
+  decorateAccolades,
+  decorateCardColumns,
+  decorateIconRow,
+  isIconRowPattern,
+} from '../../scripts/template/cards-variants.js';
 
 function decorateDefault(block) {
   const ul = document.createElement('ul');
@@ -19,15 +24,17 @@ function decorateDefault(block) {
 }
 
 export default function decorate(block) {
-  if (document.body.classList.contains('wgc')) {
-    if (block.classList.contains('accolades')) {
-      decorateAccolades(block);
-      return;
-    }
-    if (block.classList.contains('card-columns')) {
-      decorateCardColumns(block);
-      return;
-    }
+  if (block.classList.contains('accolades')) {
+    decorateAccolades(block);
+    return;
+  }
+  if (block.classList.contains('card-columns')) {
+    decorateCardColumns(block);
+    return;
+  }
+  if (block.classList.contains('icon-row') || isIconRowPattern(block)) {
+    decorateIconRow(block);
+    return;
   }
   decorateDefault(block);
 }

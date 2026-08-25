@@ -1,0 +1,276 @@
+/*
+ * Template 1 theme.
+ *
+ * Loaded by scripts.js for pages whose `template` metadata is `template1`, so
+ * the tokens below never reach pages built on other templates. Blocks in this
+ * template read these custom properties instead of hardcoding brand values.
+ *
+ * Montserrat is the brand typeface; it is listed first so it is used where
+ * available and falls back to the project fonts rather than adding a
+ * render-blocking webfont request.
+ */
+
+@import url('./template1-header.css');
+@import url('./template1-blocks.css');
+
+body.template1 {
+  /* brand palette */
+  --t1-teal: #3d717f;
+  --t1-teal-dark: #38525d;
+  --t1-teal-muted: #56757e;
+  --t1-gold: #d9b941;
+  --t1-sand: #e8e0d3;
+  --t1-ink: #282829;
+  --t1-paper: #fff;
+  --t1-overlay: rgb(40 40 41 / 35%);
+
+  /* typography */
+  --t1-font-body: montserrat, var(--body-font-family);
+  --t1-font-heading: montserrat, var(--heading-font-family);
+  --t1-tracking-wide: 0.08em;
+
+  /* buttons — ghost on photos; fill uses the selected theme on hover */
+  --t1-button-bg: transparent;
+  --t1-button-color: var(--t1-paper);
+  --t1-button-border: var(--t1-paper);
+  --t1-button-hover-bg: var(--theme-color);
+  --t1-button-hover-color: var(--t1-paper);
+  --theme-color: var(--t1-teal);
+
+  /* rhythm */
+  --t1-gap: 24px;
+  --t1-section-padding: 48px;
+  --t1-rule-width: 135px;
+  --t1-max-width: 1200px;
+
+  background-color: var(--t1-paper);
+  color: var(--t1-ink);
+  font-family: var(--t1-font-body);
+}
+
+body.template1[data-theme='teal'] {
+  --theme-color: #3d717f;
+}
+
+body.template1[data-theme='navy'] {
+  --theme-color: #16273e;
+}
+
+body.template1[data-theme='sage'] {
+  --theme-color: #6b8f71;
+}
+
+body.template1[data-theme='terracotta'] {
+  --theme-color: #c46a4a;
+}
+
+@media (width >= 900px) {
+  body.template1 {
+    --t1-gap: 32px;
+    --t1-section-padding: 80px;
+  }
+}
+
+/* headings follow the theme picker; hero + home blocks keep their own colors */
+body.template1 main h1,
+body.template1 main h2,
+body.template1 main h3 {
+  font-family: var(--t1-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--theme-color);
+}
+
+body.template1 .columns-3-cols-container :is(h1, h2, h3),
+body.template1 .columns-3-cols > div > div :is(h2, h3) {
+  color: var(--t1-teal);
+}
+
+body.template1 .home-map-container :is(h1, h2, h3),
+body.template1 .home-map .home-map-panel :is(h2, h3) {
+  color: var(--t1-paper);
+}
+
+body.template1 main h2 {
+  text-align: center;
+}
+
+body.template1 main .hero h1,
+body.template1 main .hero h2,
+body.template1 main .hero h3,
+body.template1 main .hero p {
+  color: var(--t1-paper);
+}
+
+/* the hairline rule under a heading, opt in per block */
+body.template1 .headline-rule {
+  position: relative;
+  padding-bottom: 22px;
+}
+
+body.template1 .headline-rule::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: var(--t1-rule-width);
+  height: 1px;
+  background-color: var(--theme-color);
+  content: '';
+}
+
+body.template1 .headline-rule-centered::after {
+  right: 0;
+  margin: 0 auto;
+}
+
+body.template1 .headline-rule-light::after {
+  background-color: var(--t1-paper);
+}
+
+/*
+ * The lead half of a two-tone headline. Authors italicise the first words and
+ * the template blocks convert that run into this span.
+ */
+body.template1 .headline-lead {
+  display: block;
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* section CTAs (except home map + gallery, which keep their own CSS):
+   transparent + theme text/border; hover fills theme with white text */
+body.template1 main .button-container {
+  margin-top: 1.5em;
+}
+
+body.template1 main a.button:any-link,
+body.template1 main a.button.primary:any-link {
+  border: 1px solid var(--theme-color);
+  border-radius: 0;
+  padding: 0.9em 2.2em;
+  background-color: transparent;
+  color: var(--theme-color);
+  font-size: var(--body-font-size-xs);
+  font-weight: 500;
+  letter-spacing: var(--t1-tracking-wide);
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+body.template1 main a.button:hover,
+body.template1 main a.button:focus-visible,
+body.template1 main a.button.primary:hover,
+body.template1 main a.button.primary:focus-visible {
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--t1-paper);
+  text-decoration: none;
+}
+
+/* gallery CTAs: theme fill + white text; hover ghost with theme text/border */
+body.template1 main .gallery-container a.button:any-link,
+body.template1 main .gallery-container a.button.primary:any-link {
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--t1-paper);
+}
+
+body.template1 main .gallery-container a.button:hover,
+body.template1 main .gallery-container a.button:focus-visible,
+body.template1 main .gallery-container a.button.primary:hover,
+body.template1 main .gallery-container a.button.primary:focus-visible {
+  border-color: var(--theme-color);
+  background-color: transparent;
+  color: var(--theme-color);
+}
+
+/* home-map CTAs stay readable on the map imagery */
+body.template1 .home-map-container .home-map-panel a.button:any-link,
+body.template1 .home-map .home-map-panel a.button:any-link {
+  border-color: var(--t1-paper);
+  background-color: transparent;
+  color: var(--t1-paper);
+}
+
+body.template1 .home-map-container .home-map-panel a.button:hover,
+body.template1 .home-map-container .home-map-panel a.button:focus-visible,
+body.template1 .home-map .home-map-panel a.button:hover,
+body.template1 .home-map .home-map-panel a.button:focus-visible {
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--t1-paper);
+}
+
+/* full-bleed sections and live-site section rhythm */
+body.template1 main > .section.hero-container,
+body.template1 main > .section.home-map-container {
+  margin: 0;
+}
+
+body.template1 main > .section.hero-container:first-of-type {
+  margin-top: 0;
+}
+
+body.template1 main > .section.hero-container > div,
+body.template1 main > .section.home-map-container > div,
+body.template1 main > .section.full-bleed > div {
+  max-width: none;
+  padding: 0;
+}
+
+body.template1 main > .section.tinted {
+  margin: 0;
+  background-color: var(--t1-sand);
+}
+
+body.template1 main > .section:not(.hero-container, .home-map-container) {
+  margin-block: 0;
+  padding-block: var(--t1-section-padding);
+}
+
+/*
+ * Columns "Split heading & list" variant: gold heading on the left, teal
+ * bulleted list on the right. Stacks below 900px via the default columns
+ * layout; this only restyles type, markers, and the desktop gutter.
+ */
+body.template1 main .columns.split-list > div > div:first-child > :first-child,
+body.template1 main .columns.split-list > div > div:first-child :is(h1, h2, h3, h4) {
+  margin: 0;
+  color: var(--t1-gold);
+  font-family: var(--t1-font-heading);
+  font-weight: 600;
+  letter-spacing: var(--t1-tracking-wide);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+body.template1 main .columns.split-list > div {
+  gap: var(--t1-gap);
+}
+
+body.template1 main .columns.split-list ul {
+  margin: 0;
+  padding-inline-start: 1.1em;
+  color: var(--t1-teal);
+  font-size: var(--body-font-size-s);
+  line-height: 1.8;
+}
+
+body.template1 main .columns.split-list li::marker {
+  color: var(--t1-gold);
+}
+
+@media (width >= 900px) {
+  body.template1 main .columns.split-list > div {
+    gap: calc(var(--t1-gap) * 2);
+  }
+
+  body.template1 main .columns.split-list > div > div:first-child {
+    flex: 1 1 40%;
+  }
+
+  body.template1 main .columns.split-list > div > div:last-child {
+    flex: 1 1 50%;
+  }
+}

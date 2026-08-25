@@ -1,6 +1,6 @@
 import {
   getRows, getCells, isEmpty, splitHeading, addRule, markEyebrow, optimizePicture,
-} from '../../scripts/template/wgc.js';
+} from '../../scripts/template/shared.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 
 const VIDEO_RE = /\.(mp4|webm)(\?.*)?$/i;
@@ -40,8 +40,6 @@ function removeVideoLink(link) {
  * @param {Element} block
  */
 export default function decorate(block) {
-  if (!document.body.classList.contains('wgc')) return;
-
   const media = document.createElement('div');
   media.className = 'hero-media';
   const content = document.createElement('div');

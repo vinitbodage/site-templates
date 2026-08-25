@@ -10,8 +10,8 @@ main > .section.room-container {
 .room .room-layout {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--wgc-gap) * 1.25);
-  max-width: var(--wgc-max-width);
+  gap: calc(var(--t1-gap) * 1.25);
+  max-width: var(--t1-max-width);
   margin: 0 auto;
 }
 
@@ -112,7 +112,7 @@ main > .section.room-container {
 
 .room .room-slide-trigger:hover .room-expand svg,
 .room .room-slide-trigger:focus-visible .room-expand svg {
-  fill: var(--wgc-teal);
+  fill: var(--t1-teal);
 }
 
 .room .room-slider-nav {
@@ -127,14 +127,14 @@ main > .section.room-container {
   width: 10px;
   height: 10px;
   padding: 0;
-  border: 1px solid var(--wgc-teal);
+  border: 1px solid var(--t1-teal);
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
 }
 
 .room .room-slider-dot.is-active {
-  background-color: var(--wgc-teal);
+  background-color: var(--t1-teal);
 }
 
 .room .room-copy {
@@ -150,7 +150,7 @@ main > .section.room-container {
 .room .room-copy h4 {
   margin: 0 0 20px;
   padding-bottom: 22px;
-  color: var(--wgc-gold);
+  color: var(--t1-gold);
   font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   font-weight: 400;
   line-height: 1.2;
@@ -159,14 +159,14 @@ main > .section.room-container {
   letter-spacing: 0.12em;
 }
 
-.room .room-copy .wgc-rule::after {
-  background-color: var(--wgc-teal);
+.room .room-copy .headline-rule::after {
+  background-color: var(--t1-teal);
 }
 
-.room .room-copy .wgc-headline-lead {
+.room .room-copy .headline-lead {
   display: block;
   margin-bottom: 6px;
-  color: var(--wgc-teal-muted);
+  color: var(--t1-teal-muted);
   font-size: clamp(0.68rem, 1.1vw, 0.82rem);
   font-weight: 400;
   letter-spacing: 0.16em;
@@ -174,9 +174,9 @@ main > .section.room-container {
   text-transform: uppercase;
 }
 
-.room .room-copy .wgc-headline-tail {
+.room .room-copy .headline-tail {
   display: block;
-  color: var(--wgc-gold);
+  color: var(--t1-gold);
   font-size: inherit;
   font-weight: 400;
   letter-spacing: inherit;
@@ -186,7 +186,7 @@ main > .section.room-container {
 
 .room .room-copy p {
   margin: 0 0 1em;
-  color: var(--wgc-ink);
+  color: var(--t1-ink);
   font-size: var(--body-font-size-s);
   line-height: 1.8;
 }
@@ -354,7 +354,7 @@ body.room-lightbox-open {
   border: 1px solid #282829;
   background-color: #fff;
   color: #282829;
-  font-family: var(--wgc-font-body, montserrat, sans-serif);
+  font-family: var(--t1-font-body, montserrat, sans-serif);
   font-size: 12px;
   font-weight: 400;
   letter-spacing: normal;
@@ -411,7 +411,7 @@ body.room-lightbox-open {
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background-color: var(--wgc-teal);
+  background-color: var(--t1-teal);
   color: #fff;
   cursor: pointer;
   transform: translate(50%, -50%);

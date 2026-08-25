@@ -92,7 +92,7 @@ function createSlide(row, slideIndex, carouselId) {
 
 let carouselId = 0;
 export default async function decorate(block) {
-  if (document.body.classList.contains('wgc') && block.classList.contains('testimonials')) {
+  if (block.classList.contains('testimonials')) {
     decorateTestimonials(block);
     return;
   }

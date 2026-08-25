@@ -1,5 +1,5 @@
 /*
- * Shared helpers for the Wyndham Grand Clearwater ("wgc") template blocks.
+ * Shared helpers for template blocks.
  *
  * These exist so the five template blocks read the authored structure the same
  * way. Anything used by only one block stays in that block.
@@ -49,13 +49,13 @@ export function splitHeading(heading) {
   const em = heading.querySelector('em, i');
   if (em) {
     const lead = document.createElement('span');
-    lead.className = 'wgc-headline-lead';
+    lead.className = 'headline-lead';
     lead.append(...em.childNodes);
     em.replaceWith(lead);
     return;
   }
   const span = heading.querySelector(':scope > span');
-  if (span) span.classList.add('wgc-headline-lead');
+  if (span) span.classList.add('headline-lead');
 }
 
 /**
@@ -92,9 +92,9 @@ export function markEyebrow(container, heading, className) {
  */
 export function addRule(heading, { centered = false, light = false } = {}) {
   if (!heading) return;
-  heading.classList.add('wgc-rule');
-  if (centered) heading.classList.add('wgc-rule-centered');
-  if (light) heading.classList.add('wgc-rule-light');
+  heading.classList.add('headline-rule');
+  if (centered) heading.classList.add('headline-rule-centered');
+  if (light) heading.classList.add('headline-rule-light');
 }
 
 /**
