@@ -424,3 +424,523 @@ body.template4 .intro,
 body.template4 .columns {
   --block-loading-height: 260px;
 }
+
+/*
+ * NTT DATA look — opt in per section via section-metadata Style=ntt-actions.
+ * Palette aligned with NTT Group brand blue and nttdata.com/global/en patterns.
+ * @see https://www.nttdata.com/global/en/
+ */
+body.template4 main > .section.ntt-actions {
+  --ntt-blue: #0072bc;
+  --ntt-blue-dark: #005a94;
+  --ntt-blue-light: #e6f2fa;
+  --ntt-ink: #1d1d1d;
+  --ntt-body: #333;
+  --ntt-muted: #666;
+  --ntt-line: #d9d9d9;
+  --ntt-surface: #f7f7f7;
+  --ntt-paper: #fff;
+
+  padding: 72px 0;
+  background-color: var(--ntt-paper);
+  color: var(--ntt-body);
+}
+
+@media (width >= 900px) {
+  body.template4 main > .section.ntt-actions {
+    padding: 96px 0;
+  }
+}
+
+body.template4 main > .section.ntt-actions + .section.ntt-actions {
+  border-top: 1px solid var(--ntt-line);
+}
+
+body.template4 main > .section.ntt-actions h1,
+body.template4 main > .section.ntt-actions h2,
+body.template4 main > .section.ntt-actions h3,
+body.template4 main > .section.ntt-actions h4,
+body.template4 main > .section.ntt-actions h5,
+body.template4 main > .section.ntt-actions h6 {
+  color: var(--ntt-ink);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+body.template4 main > .section.ntt-actions .default-content-wrapper > h2 {
+  margin: 0 0 0.5em;
+  color: var(--ntt-ink);
+  font-size: clamp(1.75rem, 3.2vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+}
+
+body.template4 main > .section.ntt-actions .default-content-wrapper > p {
+  max-width: min(68ch, 100%);
+  margin-bottom: 0.75em;
+  color: var(--ntt-body);
+  font-size: var(--body-font-size-m);
+  line-height: 1.75;
+}
+
+body.template4 main > .section.ntt-actions .default-content-wrapper > p:last-child {
+  margin-bottom: 0;
+}
+
+/* NTT category eyebrow — blue uppercase label above titles (intro/text sections) */
+body.template4 main > .section.ntt-actions .default-content-wrapper > p > em,
+body.template4 main > .section.ntt-actions .intro .intro-copy > p:first-child > em {
+  display: block;
+  margin-bottom: 0.65em;
+  color: var(--ntt-blue);
+  font-size: var(--body-font-size-xs);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+body.template4 main > .section.ntt-actions .button-container {
+  margin: 1.75em 0 0;
+}
+
+/* primary CTA — filled NTT blue pill */
+body.template4 main > .section.ntt-actions a.button:any-link {
+  border: 2px solid var(--ntt-blue);
+  border-radius: 999px;
+  padding: 0.75em 1.85em;
+  background-color: var(--ntt-blue);
+  color: var(--ntt-paper);
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+body.template4 main > .section.ntt-actions a.button:hover,
+body.template4 main > .section.ntt-actions a.button:focus-visible {
+  border-color: var(--ntt-blue-dark);
+  background-color: var(--ntt-blue-dark);
+  color: var(--ntt-paper);
+}
+
+/* secondary — outline blue */
+body.template4 main > .section.ntt-actions a.button.secondary:any-link {
+  border-color: var(--ntt-blue);
+  background-color: transparent;
+  color: var(--ntt-blue);
+}
+
+body.template4 main > .section.ntt-actions a.button.secondary:hover,
+body.template4 main > .section.ntt-actions a.button.secondary:focus-visible {
+  border-color: var(--ntt-blue-dark);
+  background-color: var(--ntt-blue-dark);
+  color: var(--ntt-paper);
+}
+
+/* text links — NTT blue, no button chrome */
+body.template4 main > .section.ntt-actions .default-content-wrapper a:any-link:not(.button) {
+  color: var(--ntt-blue);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+body.template4 main > .section.ntt-actions .default-content-wrapper a:any-link:not(.button):hover {
+  color: var(--ntt-blue-dark);
+  text-decoration: underline;
+}
+
+/* action rows — three equal CTAs like nttdata.com initiative links */
+body.template4 main > .section.ntt-actions .default-content-wrapper:has(.button-container) {
+  display: grid;
+  gap: 20px;
+  justify-items: stretch;
+}
+
+body.template4 main > .section.ntt-actions .default-content-wrapper .button-container {
+  margin: 0;
+  text-align: center;
+}
+
+body.template4 main > .section.ntt-actions .default-content-wrapper .button-container a.button:any-link {
+  display: inline-block;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+@media (width >= 700px) {
+  body.template4 main > .section.ntt-actions .default-content-wrapper:has(.button-container) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* initiative cards — full-bleed image overlays like nttdata.com */
+body.template4 main > .section.ntt-actions .cards > ul {
+  gap: 20px;
+}
+
+body.template4 main > .section.ntt-actions .cards > ul > li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  aspect-ratio: 3 / 4;
+  min-height: 420px;
+  background-color: var(--ntt-ink);
+  box-shadow: none;
+}
+
+body.template4 main > .section.ntt-actions .cards > ul > li:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+body.template4 main > .section.ntt-actions .cards > ul > li > .cards-card-image,
+body.template4 main > .section.ntt-actions .cards > ul > li > .cards-card-body {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+body.template4 main > .section.ntt-actions .cards .cards-card-image {
+  position: relative;
+  min-height: 100%;
+}
+
+body.template4 main > .section.ntt-actions .cards .cards-card-image picture {
+  display: block;
+  height: 100%;
+}
+
+body.template4 main > .section.ntt-actions .cards .cards-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  aspect-ratio: unset;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+body.template4 main > .section.ntt-actions .cards > ul > li:hover .cards-card-image img {
+  transform: scale(1.04);
+}
+
+body.template4 main > .section.ntt-actions .cards .cards-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 15%) 0%,
+    rgb(0 0 0 / 45%) 50%,
+    rgb(0 0 0 / 78%) 100%
+  );
+  pointer-events: none;
+}
+
+body.template4 main > .section.ntt-actions .cards > ul > li:nth-child(1) .cards-card-image::after {
+  background: linear-gradient(
+    180deg,
+    rgb(80 20 30 / 18%) 0%,
+    rgb(80 20 30 / 52%) 50%,
+    rgb(55 12 20 / 82%) 100%
+  );
+}
+
+body.template4 main > .section.ntt-actions .cards > ul > li:nth-child(2) .cards-card-image::after {
+  background: linear-gradient(
+    180deg,
+    rgb(10 40 60 / 18%) 0%,
+    rgb(10 40 60 / 50%) 50%,
+    rgb(8 30 48 / 80%) 100%
+  );
+}
+
+body.template4 main > .section.ntt-actions .cards > ul > li:nth-child(3) .cards-card-image::after {
+  background: linear-gradient(
+    180deg,
+    rgb(5 25 70 / 22%) 0%,
+    rgb(5 25 70 / 55%) 50%,
+    rgb(4 18 52 / 85%) 100%
+  );
+}
+
+body.template4 main > .section.ntt-actions .cards .cards-card-body {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-self: end;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 24px 28px 36px;
+  pointer-events: none;
+}
+
+body.template4 main > .section.ntt-actions .cards .cards-card-body a:any-link {
+  pointer-events: auto;
+}
+
+body.template4 main > .section.ntt-actions .cards .cards-card-body h3 {
+  margin: 0 0 1.15em;
+  color: #fff;
+  font-family: georgia, 'times new roman', times, serif;
+  font-size: clamp(1.35rem, 2.3vw, 1.875rem);
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: left;
+}
+
+/* hide category labels and description copy — overlay cards are title + link only */
+body.template4 main > .section.ntt-actions .cards .cards-card-body > p:not(:has(a)) {
+  display: none;
+}
+
+body.template4 main > .section.ntt-actions .cards .cards-card-body .button-container {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+body.template4 main > .section.ntt-actions .cards .cards-card-body a.button:any-link {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  color: #fff;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+body.template4 main > .section.ntt-actions .cards .cards-card-body a.button:any-link::after {
+  content: ' \2192';
+}
+
+body.template4 main > .section.ntt-actions .cards .cards-card-body a.button:hover,
+body.template4 main > .section.ntt-actions .cards .cards-card-body a.button:focus-visible {
+  background-color: transparent;
+  color: #fff;
+  text-decoration: underline;
+}
+
+@media (width >= 900px) {
+  body.template4 main > .section.ntt-actions .cards > ul > li {
+    min-height: 480px;
+  }
+
+  body.template4 main > .section.ntt-actions .cards .cards-card-image img {
+    min-height: 480px;
+  }
+}
+
+/* intro — We're ONE NTT DATA band */
+body.template4 main > .section.ntt-actions .intro .intro-copy h1,
+body.template4 main > .section.ntt-actions .intro .intro-copy h2,
+body.template4 main > .section.ntt-actions .intro .intro-copy h3 {
+  color: var(--ntt-ink);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-weight: 700;
+  text-align: left;
+}
+
+body.template4 main > .section.ntt-actions .intro .intro-copy p {
+  color: var(--ntt-body);
+  font-size: var(--body-font-size-m);
+  line-height: 1.75;
+}
+
+body.template4 main > .section.ntt-actions .intro .intro-media picture,
+body.template4 main > .section.ntt-actions .intro .intro-media img {
+  border-radius: 0;
+}
+
+/* columns */
+body.template4 main > .section.ntt-actions .columns > div {
+  gap: 32px;
+}
+
+body.template4 main > .section.ntt-actions .columns h3 {
+  margin: 0 0 0.5em;
+  color: var(--ntt-ink);
+  font-size: var(--heading-font-size-s);
+}
+
+body.template4 main > .section.ntt-actions .columns p {
+  color: var(--ntt-body);
+  line-height: 1.7;
+}
+
+/* icons — blue accent rings */
+body.template4 main > .section.ntt-actions .icons .icons-list {
+  gap: 28px;
+}
+
+body.template4 main > .section.ntt-actions .icons .icons-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border: 2px solid var(--ntt-blue-light);
+  border-radius: 50%;
+  background-color: var(--ntt-blue-light);
+  color: var(--ntt-blue);
+}
+
+body.template4 main > .section.ntt-actions .icons .icons-icon picture,
+body.template4 main > .section.ntt-actions .icons .icons-icon img {
+  width: 36px;
+  height: 36px;
+}
+
+body.template4 main > .section.ntt-actions .icons .icons-label {
+  color: var(--ntt-ink);
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+}
+
+body.template4 main > .section.ntt-actions .icons .icons-label a:any-link {
+  color: var(--ntt-blue);
+}
+
+/* services — spotlight-style cards */
+body.template4 main > .section.ntt-actions .services {
+  max-width: var(--t4-max-width);
+  margin: 0 auto;
+  padding: 0;
+}
+
+body.template4 main > .section.ntt-actions .services .services-card {
+  border-radius: 0;
+  background-color: var(--ntt-paper);
+  box-shadow: none;
+}
+
+body.template4 main > .section.ntt-actions .services .services-card:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+body.template4 main > .section.ntt-actions .services-copy h3 {
+  color: var(--ntt-ink);
+  font-weight: 700;
+}
+
+body.template4 main > .section.ntt-actions .services-copy p {
+  color: var(--ntt-body);
+}
+
+body.template4 main > .section.ntt-actions .services-copy a:any-link {
+  color: var(--ntt-blue);
+  font-weight: 700;
+}
+
+/* accordion */
+body.template4 main > .section.ntt-actions .accordion details {
+  border-color: var(--ntt-line);
+}
+
+body.template4 main > .section.ntt-actions .accordion details summary {
+  color: var(--ntt-ink);
+  font-weight: 700;
+}
+
+body.template4 main > .section.ntt-actions .accordion details[open] summary,
+body.template4 main > .section.ntt-actions .accordion details summary:hover,
+body.template4 main > .section.ntt-actions .accordion details summary:focus {
+  background-color: var(--ntt-blue-light);
+}
+
+body.template4 main > .section.ntt-actions .accordion details summary::after {
+  border-color: var(--ntt-blue);
+}
+
+/* tabs — blue active underline */
+body.template4 main > .section.ntt-actions .tabs .tabs-list {
+  gap: 0;
+  border-bottom: 1px solid var(--ntt-line);
+}
+
+body.template4 main > .section.ntt-actions .tabs .tabs-list button {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  padding: 0.85em 1.25em;
+  background-color: transparent;
+  color: var(--ntt-muted);
+  font-weight: 700;
+}
+
+body.template4 main > .section.ntt-actions .tabs .tabs-list button[aria-selected='true'] {
+  border-bottom-color: var(--ntt-blue);
+  background-color: transparent;
+  color: var(--ntt-blue);
+}
+
+body.template4 main > .section.ntt-actions .tabs .tabs-panel {
+  margin-top: 0;
+  padding: 24px 0 0;
+  border: 0;
+  color: var(--ntt-body);
+}
+
+/* quote */
+body.template4 main > .section.ntt-actions .quote blockquote .quote-quotation {
+  color: var(--ntt-ink);
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+body.template4 main > .section.ntt-actions .quote blockquote .quote-attribution {
+  color: var(--ntt-muted);
+}
+
+/* table */
+body.template4 main > .section.ntt-actions .table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+body.template4 main > .section.ntt-actions .table th {
+  padding: 14px 16px;
+  border-bottom: 2px solid var(--ntt-blue);
+  background-color: var(--ntt-blue-light);
+  color: var(--ntt-ink);
+  font-weight: 700;
+  text-align: left;
+}
+
+body.template4 main > .section.ntt-actions .table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--ntt-line);
+  color: var(--ntt-body);
+}
+
+/* contact + form */
+body.template4 main > .section.ntt-actions .contact h3 {
+  color: var(--ntt-ink);
+}
+
+body.template4 main > .section.ntt-actions .contact a:any-link,
+body.template4 main > .section.ntt-actions .form a:any-link {
+  color: var(--ntt-blue);
+}
+
+body.template4 main > .section.ntt-actions .contact-form .contact-submit,
+body.template4 main > .section.ntt-actions .form button[type='submit'] {
+  border: 2px solid var(--ntt-blue);
+  border-radius: 999px;
+  background-color: var(--ntt-blue);
+  color: var(--ntt-paper);
+  font-weight: 700;
+}
+

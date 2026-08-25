@@ -56,6 +56,10 @@
           {
             "name": "Full Bleed",
             "value": "full-bleed"
+          },
+          {
+            "name": "NTT Actions",
+            "value": "ntt-actions"
           }
         ]
       }
