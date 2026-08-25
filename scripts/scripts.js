@@ -16,7 +16,7 @@ import {
   toClassName,
   toCamelCase,
 } from './aem.js';
-import { initThemeOption } from './template/wgc-theme.js';
+import { applyTheme, getStoredTheme } from './template/theme.js';
 
 export const NX_ORIGIN = 'https://da.live/nx';
 
@@ -191,11 +191,13 @@ async function loadEager(doc) {
   doc.documentElement.lang = 'en';
   hydratePageMetadata(doc);
   decorateTemplateAndTheme();
+  if (document.body.classList.contains('template2') || document.body.classList.contains('wgc')) {
+    applyTheme(getStoredTheme());
+  }
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     doc.body.dataset.breadcrumbs = true;
   }
   await loadTemplateStyles();
-  await initThemeOption();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);

@@ -71,7 +71,7 @@
 
 .wgc-planning-tools .wgc-planning-tools-link:hover,
 .wgc-planning-tools .wgc-planning-tools-link:focus-visible {
-  color: var(--wgc-cta, var(--wgc-teal));
+  color: var(--theme-color);
 }
 
 /*
@@ -92,7 +92,7 @@
 
 .wgc-planning-tools .wgc-planning-tools-link:hover::before,
 .wgc-planning-tools .wgc-planning-tools-link:focus-visible::before {
-  background-color: var(--wgc-cta, var(--wgc-teal));
+  background-color: var(--theme-color);
 }
 
 .wgc-planning-tools li[data-tool-type='internal'] .wgc-planning-tools-link::before {
@@ -124,15 +124,15 @@
 }
 
 .wgc-planning-tools.buttons .wgc-planning-tools-link:any-link {
-  border: 1px solid var(--wgc-cta, var(--wgc-teal));
+  border: 1px solid var(--theme-color);
   padding: 0.8em 1.4em;
-  color: var(--wgc-cta, var(--wgc-teal));
+  color: var(--theme-color);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .wgc-planning-tools.buttons .wgc-planning-tools-link:hover,
 .wgc-planning-tools.buttons .wgc-planning-tools-link:focus-visible {
-  background-color: var(--wgc-cta, var(--wgc-teal));
+  background-color: var(--theme-color);
   color: var(--wgc-paper);
 }
 

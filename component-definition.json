@@ -347,14 +347,12 @@
           }
         },
         {
-          "title": "Theme Option",
-          "id": "theme-option",
-          "model": "theme-option",
+          "title": "Theme Picker",
+          "id": "theme-picker",
+          "model": "theme-picker",
           "plugins": {
             "da": {
-              "rows": 1,
-              "columns": 1,
-              "fields": []
+              "unsafeHTML": "<div class=\"theme-picker\"><div></div></div>"
             }
           }
         },

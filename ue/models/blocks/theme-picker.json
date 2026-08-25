@@ -1,0 +1,21 @@
+{
+  "definitions": [
+    {
+      "title": "Theme Picker",
+      "id": "theme-picker",
+      "model": "theme-picker",
+      "plugins": {
+        "da": {
+          "unsafeHTML": "<div class=\"theme-picker\"><div></div></div>"
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "theme-picker",
+      "fields": []
+    }
+  ],
+  "filters": []
+}

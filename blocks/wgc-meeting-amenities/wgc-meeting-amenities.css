@@ -89,7 +89,7 @@
 
 .wgc-meeting-amenities .wgc-meeting-amenities-list a:hover,
 .wgc-meeting-amenities .wgc-meeting-amenities-list a:focus-visible {
-  color: var(--wgc-cta, var(--wgc-teal));
+  color: var(--theme-color);
 }
 
 @media (width >= 600px) {

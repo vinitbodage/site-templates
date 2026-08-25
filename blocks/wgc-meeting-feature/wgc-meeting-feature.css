@@ -31,7 +31,7 @@
 .wgc-meeting-feature .wgc-meeting-feature-copy h3,
 .wgc-meeting-feature .wgc-meeting-feature-copy h4 {
   margin-top: 0;
-  color: var(--wgc-cta, var(--wgc-teal));
+  color: var(--theme-color);
   font-size: var(--heading-font-size-l);
   text-align: left;
   text-transform: uppercase;

@@ -1,4 +1,11 @@
-import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
+import {
+  buildBlock,
+  decorateBlock,
+  fetchPlaceholders,
+  getMetadata,
+  loadBlock,
+  toClassName,
+} from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -171,13 +178,100 @@ async function buildBreadcrumbs() {
 }
 
 /**
+ * Mounts the theme picker in the header tools, aligned with the nav on the
+ * top-right. Skips when a picker is already present.
+ * @param {Element} nav the decorated nav
+ */
+/**
+ * Ensures the book CTA wrapper is a div so block-level picker markup stays valid.
+ * @param {Element} bookLink
+ * @returns {Element|null}
+ */
+function ensureBookWrap(bookLink) {
+  if (!bookLink) return null;
+
+  const wrap = bookLink.closest('.wgc-book-wrap, .header-book-wrap');
+  if (wrap && wrap.tagName !== 'P') return wrap;
+
+  const paragraph = wrap?.tagName === 'P' ? wrap : bookLink.closest('p');
+  const div = document.createElement('div');
+  div.className = 'header-book-wrap';
+
+  if (paragraph) {
+    paragraph.replaceWith(div);
+    div.append(bookLink);
+    return div;
+  }
+
+  bookLink.replaceWith(div);
+  div.append(bookLink);
+  return div;
+}
+
+/**
+ * Inserts the theme picker immediately after Book Now.
+ * @param {Element} bookWrap
+ * @param {Element} bookLink
+ * @param {Element} pickerWrap
+ */
+function attachPickerToBook(bookWrap, bookLink, pickerWrap) {
+  if (!bookWrap || !bookLink || !pickerWrap) return;
+  pickerWrap.remove();
+  bookLink.after(pickerWrap);
+  if (!bookWrap.contains(pickerWrap)) {
+    bookWrap.append(pickerWrap);
+  }
+}
+
+async function mountThemePicker(nav) {
+  if (nav.querySelector('.theme-picker')) return;
+
+  nav.querySelectorAll('.theme-option, .theme-option-wrap').forEach((el) => {
+    el.remove();
+  });
+
+  let tools = nav.querySelector('.nav-tools');
+  if (!tools) {
+    tools = document.createElement('div');
+    tools.className = 'section nav-tools';
+    tools.append(document.createElement('div'));
+    nav.append(tools);
+  }
+
+  const pickerWrap = document.createElement('div');
+  pickerWrap.className = 'theme-picker-wrapper';
+  const picker = buildBlock('theme-picker', '');
+  pickerWrap.append(picker);
+
+  let bookLink = tools.querySelector('a[href*="synxis"], .wgc-book-now, a[href="#book"]');
+  const bookWrap = ensureBookWrap(bookLink);
+  bookLink = bookWrap?.querySelector('.wgc-book-now, a[href*="synxis"], a[href="#book"]')
+    || bookLink;
+  if (bookWrap && bookLink) {
+    bookWrap.classList.add('header-book-wrap');
+    attachPickerToBook(bookWrap, bookLink, pickerWrap);
+  } else {
+    (tools.querySelector(':scope > div') || tools).append(pickerWrap);
+  }
+
+  decorateBlock(picker);
+  await loadBlock(picker);
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
   // load nav as fragment
+  const template = toClassName(getMetadata('template'));
   const navMeta = getMetadata('nav');
-  const defaultNav = document.body.classList.contains('wgc') ? '/template1/nav' : '/nav';
+  let defaultNav = '/nav';
+  if (document.body.classList.contains('wgc') || template === 'wgc') {
+    defaultNav = '/template1/nav';
+  } else if (template) {
+    defaultNav = `/${template}/nav`;
+  }
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
   const fragment = await loadFragment(navPath);
 
@@ -188,6 +282,10 @@ export default async function decorate(block) {
   if (fragment) {
     while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
   }
+
+  nav.querySelectorAll('.theme-option, .theme-option-wrap').forEach((el) => {
+    el.remove();
+  });
 
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
@@ -257,5 +355,8 @@ export default async function decorate(block) {
       `${window.hlx.codeBasePath}/scripts/template/wgc-header.js`
     );
     await decorateWgcHeader(block);
+  } else if (template === 'template2') {
+    const navEl = block.querySelector('nav');
+    if (navEl) await mountThemePicker(navEl);
   }
 }
