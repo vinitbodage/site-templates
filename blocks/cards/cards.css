@@ -88,6 +88,12 @@ body.template4 .cards .cards-card-body .button-container {
   text-align: center;
 }
 
+/* opt-in variant: CTAs flush left instead of centered, e.g. stacked
+   "primary + secondary" link pairs that read better left-aligned */
+body.template4 .cards.left .cards-card-body .button-container {
+  text-align: left;
+}
+
 @media (width >= 600px) {
   body.template4 .cards > ul {
     grid-template-columns: repeat(2, 1fr);
