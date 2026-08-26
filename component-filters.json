@@ -32,13 +32,22 @@
       "home-room-dine-spa",
       "home-map",
       "contact",
-      "theme-picker"
+      "theme-picker",
+      "breadcrumb",
+      "page-title",
+      "side-nav"
     ]
   },
   {
     "id": "accordion",
     "components": [
       "accordion-item"
+    ]
+  },
+  {
+    "id": "breadcrumb",
+    "components": [
+      "breadcrumb-item"
     ]
   },
   {
@@ -92,6 +101,12 @@
     "id": "services",
     "components": [
       "service"
+    ]
+  },
+  {
+    "id": "side-nav",
+    "components": [
+      "side-nav-item"
     ]
   },
   {

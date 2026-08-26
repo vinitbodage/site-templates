@@ -37,11 +37,12 @@
           "component": "select",
           "valueType": "string",
           "name": "classes",
-          "label": "CTA Alignment",
+          "label": "Variant",
           "value": "",
           "options": [
-            { "name": "Centered (default)", "value": "" },
-            { "name": "Left-aligned", "value": "left" }
+            { "name": "Default", "value": "" },
+            { "name": "Two columns", "value": "two-cols" },
+            { "name": "Left-aligned CTAs", "value": "left" }
           ]
         }
       ]

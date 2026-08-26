@@ -58,6 +58,14 @@
             "value": "full-bleed"
           },
           {
+            "name": "Has Sidebar",
+            "value": "has-sidebar"
+          },
+          {
+            "name": "Breadcrumb Bar",
+            "value": "breadcrumb-bar"
+          },
+          {
             "name": "NTT Actions",
             "value": "ntt-actions"
           }
@@ -87,21 +95,38 @@
     ]
   },
   {
+    "id": "breadcrumb-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "text",
+        "value": "",
+        "label": "Crumb",
+        "description": "Link ancestor pages. Leave the last crumb unlinked — it is the current page."
+      }
+    ]
+  },
+  {
     "id": "cards",
     "fields": [
       {
         "component": "select",
         "valueType": "string",
         "name": "classes",
-        "label": "CTA Alignment",
+        "label": "Variant",
         "value": "",
         "options": [
           {
-            "name": "Centered (default)",
+            "name": "Default",
             "value": ""
           },
           {
-            "name": "Left-aligned",
+            "name": "Two columns",
+            "value": "two-cols"
+          },
+          {
+            "name": "Left-aligned CTAs",
             "value": "left"
           }
         ]
@@ -426,6 +451,19 @@
     ]
   },
   {
+    "id": "page-title",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "description": "The inner-page heading. A short crimson rule is drawn beneath it."
+      }
+    ]
+  },
+  {
     "id": "quote",
     "fields": [
       {
@@ -489,6 +527,27 @@
         "value": "",
         "label": "Content",
         "description": "Service heading, short description, and an optional 'Learn more' link."
+      }
+    ]
+  },
+  {
+    "id": "side-nav-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "label",
+        "value": "",
+        "label": "Section label",
+        "description": "Parent label. Link it when the section has its own landing page."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "children",
+        "value": "",
+        "label": "Nested links",
+        "description": "A bullet list of child pages. The group that matches the current URL opens automatically."
       }
     ]
   },

@@ -1,0 +1,62 @@
+{
+  "definitions": [
+    {
+      "title": "Side Nav",
+      "id": "side-nav",
+      "model": "side-nav",
+      "filter": "side-nav",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    },
+    {
+      "title": "Side Nav Item",
+      "id": "side-nav-item",
+      "model": "side-nav-item",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "label", "selector": "div:nth-child(1)" },
+            { "name": "children", "selector": "div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "side-nav-item",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "label",
+          "value": "",
+          "label": "Section label",
+          "description": "Parent label. Link it when the section has its own landing page."
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "children",
+          "value": "",
+          "label": "Nested links",
+          "description": "A bullet list of child pages. The group that matches the current URL opens automatically."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "side-nav",
+      "components": [
+        "side-nav-item"
+      ]
+    }
+  ]
+}

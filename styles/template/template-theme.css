@@ -3,7 +3,7 @@
  *
  * Loaded by scripts.js for every page that sets `template` metadata. Each look
  * is a scope in this one file — `body.template2` for the hotel pages,
- * `body.template4` for the Axalta pages — and the scopes are mutually
+ * `body.template4` for the Northline demo pages — and the scopes are mutually
  * exclusive, so a page only ever matches one of them. Blocks read these custom
  * properties instead of hardcoding brand values. Never add a templateN-theme.css.
  *
@@ -207,31 +207,27 @@ body.template2 main .default-content-wrapper > h2::after {
   content: '';
 }
 
-/* stylelint-disable no-descending-specificity -- the hotel and Axalta looks are
-   mutually exclusive; they never match the same page. */
+/* stylelint-disable no-descending-specificity -- the hotel and Northline looks
+   are mutually exclusive; they never match the same page. */
 
 /*
- * Axalta look.
+ * Northline demo look.
  *
- * Sampled from the source: crimson #c82127 on white, near-black copy, a #222
- * footer, square corners throughout, and outline rectangular CTAs that fill on
- * hover. Section headings are regular weight and centred; only the masthead and
- * the card titles are bold.
- *
- * The brand typeface is not licensed here, so the project fonts carry the look
- * rather than adding a webfont request that would cost more than it returns.
+ * Teal #0d7377 on white, near-black copy, a light mint footer, and rounded
+ * filled CTAs. Section headings are regular weight; card titles are bold and
+ * left-aligned.
  */
 body.template4 {
   /* brand palette */
-  --t4-red: #c82127;
-  --t4-red-dark: #9e1a1f;
+  --t4-red: #0d7377;
+  --t4-red-dark: #095c5f;
   --t4-ink: #1e1e1e;
   --t4-muted: #565656;
   --t4-paper: #fff;
-  --t4-tint: #f5f5f5;
+  --t4-tint: #f0f7f7;
   --t4-line: #d7d7d7;
-  --t4-footer: #222;
-  --t4-footer-ink: #b3b3b3;
+  --t4-footer: #e8f3f3;
+  --t4-footer-ink: #3a4a4a;
   --t4-overlay: rgb(0 0 0 / 30%);
   --t4-scrim: rgb(30 30 30 / 80%);
 
@@ -260,8 +256,8 @@ body.template4 {
 
 @media (width >= 900px) {
   body.template4 {
-    --t4-utility-height: 38px;
-    --t4-nav-height: 56px;
+    --t4-utility-height: 0px;
+    --t4-nav-height: 72px;
     --t4-section-padding: 56px;
     --t4-gap: 30px;
     --t4-bleed: 24px;
@@ -281,7 +277,7 @@ body.template4 main h6 {
   line-height: 1.2;
 }
 
-/* the centred crimson section title, e.g. "More than 150 years of experience" */
+/* the centred teal section title */
 body.template4 main .default-content-wrapper > h2 {
   margin: 0 0 0.5em;
   color: var(--t4-red);
@@ -295,29 +291,32 @@ body.template4 main .default-content-wrapper > p {
   line-height: 1.6;
 }
 
-/* CTAs are square outline rectangles that fill on hover */
+/* filled teal pills — not the square outline CTAs from the client page */
 body.template4 main .button-container {
   margin: 1.4em 0 0;
 }
 
 body.template4 main a.button:any-link {
-  border: 1px solid var(--t4-red);
-  border-radius: 0;
-  padding: 0.8em 1.5em;
-  background-color: transparent;
-  color: var(--t4-red);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7em 1.35em;
+  background-color: var(--t4-red);
+  color: var(--t4-paper);
   font-size: var(--body-font-size-xs);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0;
   text-transform: none;
-  white-space: normal;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 body.template4 main a.button:hover,
 body.template4 main a.button:focus-visible {
-  border-color: var(--t4-red);
-  background-color: var(--t4-red);
+  border: 0;
+  background-color: var(--t4-red-dark);
   color: var(--t4-paper);
   text-decoration: none;
 }
@@ -423,6 +422,85 @@ body.template4 .cards {
 body.template4 .intro,
 body.template4 .columns {
   --block-loading-height: 260px;
+}
+
+/*
+ * Inner-page chrome: breadcrumb on its own row under the
+ * masthead, then a left accordion and a right column for title + body.
+ * Content wrappers default to the right column so they cannot fall into
+ * the 250px nav track.
+ */
+body.template4 main > .section.breadcrumb-bar {
+  padding-top: 16px;
+  padding-bottom: 8px;
+}
+
+body.template4 main > .section.breadcrumb-bar + .section.has-sidebar {
+  padding-top: 8px;
+}
+
+body.template4 main > .section.has-sidebar {
+  max-width: var(--t4-max-width);
+  margin-inline: auto;
+  padding-inline: var(--t4-bleed);
+}
+
+body.template4 main > .section.has-sidebar > div {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.template4 main > .section.has-sidebar > .side-nav-wrapper {
+  margin-bottom: 1.5em;
+}
+
+body.template4 main > .section.has-sidebar > .page-title-wrapper {
+  margin-bottom: 1.25em;
+}
+
+/* in-column headings stay left and teal; only page-title is centred */
+body.template4 main > .section.has-sidebar .default-content-wrapper > h2 {
+  margin: 1.6em 0 0.45em;
+  color: var(--t4-red);
+  font-family: var(--t4-font-body);
+  font-size: clamp(1.5rem, 2.6vw, 1.85rem);
+  font-weight: 400;
+  text-align: left;
+}
+
+body.template4 main > .section.has-sidebar .default-content-wrapper > .button-container {
+  margin-top: 1.6em;
+  text-align: left;
+}
+
+@media (width >= 900px) {
+  body.template4 main > .section.has-sidebar {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    column-gap: 48px;
+    align-items: start;
+  }
+
+  body.template4 main > .section.has-sidebar > div {
+    grid-column: 2;
+  }
+
+  body.template4 main > .section.has-sidebar > .side-nav-wrapper {
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 0;
+  }
+
+  /* if a breadcrumb is still authored in this section, keep it above both columns */
+  body.template4 main > .section.has-sidebar > .breadcrumb-wrapper {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  body.template4 main > .section.has-sidebar:has(.breadcrumb-wrapper) > .side-nav-wrapper {
+    grid-row: 2;
+  }
 }
 
 /*
@@ -943,4 +1021,3 @@ body.template4 main > .section.ntt-actions .form button[type='submit'] {
   color: var(--ntt-paper);
   font-weight: 700;
 }
-

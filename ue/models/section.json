@@ -30,6 +30,14 @@
               "value": "full-bleed"
             },
             {
+              "name": "Has Sidebar",
+              "value": "has-sidebar"
+            },
+            {
+              "name": "Breadcrumb Bar",
+              "value": "breadcrumb-bar"
+            },
+            {
               "name": "NTT Actions",
               "value": "ntt-actions"
             }
@@ -66,7 +74,10 @@
         "home-room-dine-spa",
         "home-map",
         "contact",
-        "theme-picker"
+        "theme-picker",
+        "breadcrumb",
+        "page-title",
+        "side-nav"
       ]
     }
   ]

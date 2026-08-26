@@ -193,7 +193,7 @@ body.template2 .hero.light .hero-media::after {
 }
 
 /*
- * Axalta masthead — a full-bleed photograph with square corners, white bold
+ * Northline masthead — a full-bleed photograph with square corners, white bold
  * copy held to the container gutter on the left, and an outline white CTA.
  */
 body.template4 .hero {
@@ -217,7 +217,7 @@ body.template4 .hero .hero-media::after {
   background-image: linear-gradient(90deg, rgb(0 0 0 / 55%), rgb(0 0 0 / 15%));
 }
 
-/* a text-only masthead reads on the brand crimson instead of a photo */
+/* a text-only masthead reads on the brand teal instead of a photo */
 body.template4 .hero:not(:has(.hero-media)) {
   background-color: var(--t4-red);
 }
