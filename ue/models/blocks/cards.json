@@ -37,11 +37,12 @@
           "component": "select",
           "valueType": "string",
           "name": "classes",
-          "label": "Layout",
+          "label": "Variant",
           "value": "",
           "options": [
             { "name": "Default", "value": "" },
-            { "name": "Two columns", "value": "two-cols" }
+            { "name": "Two columns", "value": "two-cols" },
+            { "name": "Left-aligned CTAs", "value": "left" }
           ]
         }
       ]

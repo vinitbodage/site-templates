@@ -36,6 +36,10 @@
             {
               "name": "Breadcrumb Bar",
               "value": "breadcrumb-bar"
+            },
+            {
+              "name": "NTT Actions",
+              "value": "ntt-actions"
             }
           ]
         }
@@ -64,6 +68,7 @@
         "table",
         "text",
         "video",
+        "video-slider",
         "product-recommendations",
         "gallery",
         "home-room-dine-spa",

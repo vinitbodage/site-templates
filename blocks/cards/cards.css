@@ -101,6 +101,18 @@ body.template4 .cards .cards-card-body a.button:any-link::after {
   font-weight: 500;
 }
 
+/* opt-in variant: CTAs flush left instead of centered, e.g. stacked
+   "primary + secondary" link pairs that read better left-aligned */
+body.template4 .cards.left .cards-card-body .button-container {
+  text-align: left;
+}
+
+@media (width >= 600px) {
+  body.template4 .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (width >= 700px) {
   body.template4 .cards > ul > li {
     grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
