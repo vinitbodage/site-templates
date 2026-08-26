@@ -56,6 +56,10 @@
           {
             "name": "Full Bleed",
             "value": "full-bleed"
+          },
+          {
+            "name": "Tinted",
+            "value": "tinted"
           }
         ]
       }
@@ -79,6 +83,32 @@
         "label": "Text",
         "valueType": "string",
         "required": true
+      }
+    ]
+  },
+  {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Style",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Accolades strip",
+            "value": "accolades"
+          },
+          {
+            "name": "Image columns",
+            "value": "card-columns"
+          }
+        ]
       }
     ]
   },
@@ -109,6 +139,49 @@
     ]
   },
   {
+    "id": "carousel",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Style",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Testimonials",
+            "value": "testimonials"
+          }
+        ]
+      },
+      {
+        "component": "multiselect",
+        "valueType": "string",
+        "name": "testimonialOptions",
+        "label": "Testimonial options",
+        "description": "Only applies when Style is Testimonials.",
+        "options": [
+          {
+            "name": "Show all, stacked",
+            "value": "stacked"
+          },
+          {
+            "name": "Show all, two per row",
+            "value": "grid"
+          },
+          {
+            "name": "Paper background",
+            "value": "paper"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "carousel-item",
     "fields": [
       {
@@ -129,6 +202,32 @@
         "name": "text",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "testimonial-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "headline",
+        "value": "",
+        "label": "Headline"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "quote",
+        "value": "",
+        "label": "Quote"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "attribution",
+        "value": "",
+        "label": "Attribution"
       }
     ]
   },
@@ -161,6 +260,30 @@
           {
             "name": "Split heading & list",
             "value": "split-list"
+          },
+          {
+            "name": "Intro band",
+            "value": "intro"
+          },
+          {
+            "name": "Intro with contact",
+            "value": "intro-contact"
+          },
+          {
+            "name": "Checklist amenities",
+            "value": "checklist"
+          },
+          {
+            "name": "Feature band",
+            "value": "feature"
+          },
+          {
+            "name": "Planning tools",
+            "value": "planning-tools"
+          },
+          {
+            "name": "Request proposal CTA",
+            "value": "cta-band"
           }
         ]
       }
@@ -179,6 +302,47 @@
         "name": "url",
         "label": "Fragment URL",
         "required": true
+      }
+    ]
+  },
+  {
+    "id": "gallery",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Style",
+        "value": "",
+        "options": [
+          {
+            "name": "Mosaic grid",
+            "value": ""
+          },
+          {
+            "name": "Media mosaic (video + lightbox)",
+            "value": "mosaic"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gallery-image",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
       }
     ]
   },
@@ -209,6 +373,34 @@
     ]
   },
   {
+    "id": "home-map",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading, inset hotel photo, body copy, and Explore call to action. Italicise the opening words of the heading for the lighter lead line."
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "pin",
+        "label": "Map Pin Image",
+        "description": "Optional pin graphic overlaid on the map background.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "pinAlt",
+        "label": "Map Pin Alt",
+        "multi": false
+      }
+    ]
+  },
+  {
     "id": "quote",
     "fields": [
       {
@@ -223,6 +415,59 @@
         "name": "author",
         "label": "Author",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "room",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Image Position",
+        "value": "",
+        "options": [
+          {
+            "name": "Image left",
+            "value": ""
+          },
+          {
+            "name": "Image right",
+            "value": "image-right"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "room-slide",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "room-copy",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content"
       }
     ]
   },
@@ -303,859 +548,6 @@
         "name": "posterImage",
         "label": "Poster Image",
         "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "wgc-accolades",
-    "fields": [
-      {
-        "component": "multiselect",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Options",
-        "options": [
-          {
-            "name": "Muted until hovered",
-            "value": "mono"
-          },
-          {
-            "name": "Compact",
-            "value": "compact"
-          },
-          {
-            "name": "Dark background",
-            "value": "dark"
-          },
-          {
-            "name": "Two rows",
-            "value": "two-row"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "wgc-accolade",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Logo",
-        "description": "Award or accolade badge. SVGs are delivered untouched.",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Logo Alt",
-        "description": "Names the award. Reused as the link's accessible name.",
-        "multi": false
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "link",
-        "label": "Link (optional)",
-        "description": "Wraps the logo in a link, usually to the awarding body."
-      }
-    ]
-  },
-  {
-    "id": "wgc-accordion",
-    "fields": []
-  },
-  {
-    "id": "wgc-accordion-heading",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "eyebrow",
-        "label": "Eyebrow",
-        "description": "Small line above the heading, e.g. Spa Services. CSS displays it in uppercase."
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "heading",
-        "label": "Heading",
-        "description": "Main heading, e.g. At Pallavi Luxury Spa. CSS displays it in uppercase.",
-        "required": true
-      }
-    ]
-  },
-  {
-    "id": "wgc-accordion-item",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "title",
-        "label": "Title",
-        "description": "Label on the teal trigger bar, e.g. How To Spa.",
-        "required": true
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "body",
-        "value": "",
-        "label": "Body",
-        "description": "Content shown when this item is open. Use italics for the intro line and headings for sections such as Booking or Cancellations.",
-        "required": true
-      }
-    ]
-  },
-  {
-    "id": "wgc-amenities",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Section heading and a bullet list of amenities."
-      }
-    ]
-  },
-  {
-    "id": "wgc-columns",
-    "fields": []
-  },
-  {
-    "id": "wgc-column",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "body",
-        "value": "",
-        "label": "Body",
-        "description": "Column heading, copy, and an optional call to action."
-      }
-    ]
-  },
-  {
-    "id": "wgc-gallery",
-    "fields": []
-  },
-  {
-    "id": "wgc-gallery-image",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      }
-    ]
-  },
-  {
-    "id": "wgc-hero",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Background Image",
-        "description": "Still image behind the headline. Also used as the video poster.",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Background Image Alt",
-        "multi": false
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "video",
-        "label": "Background Video (optional)",
-        "description": "Link to an .mp4 or .webm. Fades in over the image once it can play."
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Headline, optional intro copy, and an optional call to action. Italicise the opening words of the headline to render them as the lighter lead line."
-      }
-    ]
-  },
-  {
-    "id": "wgc-home-map",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Heading, inset hotel photo, body copy, and Explore call to action. Italicise the opening words of the heading for the lighter lead line."
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "pin",
-        "label": "Map Pin Image",
-        "description": "Optional pin graphic overlaid on the map background.",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "pinAlt",
-        "label": "Map Pin Alt",
-        "multi": false
-      }
-    ]
-  },
-  {
-    "id": "wgc-home-room-dine-spa",
-    "fields": []
-  },
-  {
-    "id": "wgc-rds-item",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Heading and call to action. Italicise the opening words of the heading for the lighter lead line. Put the copy cell before the image cell to render copy above the image."
-      }
-    ]
-  },
-  {
-    "id": "wgc-icons",
-    "fields": []
-  },
-  {
-    "id": "wgc-icon",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "icon",
-        "label": "Icon",
-        "description": "SVG or small raster image. SVGs are delivered untouched.",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "iconAlt",
-        "label": "Icon Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "label",
-        "value": "",
-        "label": "Label",
-        "description": "Short benefit label. Add a link to make the benefit clickable."
-      }
-    ]
-  },
-  {
-    "id": "wgc-intro-container",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Centered headline and intro copy. Put the eyebrow and title in one H1/H2 (italicise the eyebrow), or use two rows: eyebrow row then title + paragraph row."
-      }
-    ]
-  },
-  {
-    "id": "wgc-intro",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Heading, body copy, and an optional call to action. Italicise the opening words of the heading to render them as the lighter lead line."
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Image Position",
-        "value": "",
-        "options": [
-          {
-            "name": "Image left",
-            "value": ""
-          },
-          {
-            "name": "Image right",
-            "value": "image-right"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "wgc-media-mosaic",
-    "fields": [
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "video",
-        "label": "Video",
-        "description": "Link to an .mp4 or .webm. Plays muted, looping, and inline in the tall left tile.",
-        "required": true
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image1",
-        "label": "Top image",
-        "multi": false,
-        "required": true
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "image1Alt",
-        "label": "Top image alt",
-        "required": true
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image2",
-        "label": "Bottom-left image",
-        "multi": false,
-        "required": true
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "image2Alt",
-        "label": "Bottom-left image alt",
-        "required": true
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image3",
-        "label": "Bottom-right image",
-        "multi": false,
-        "required": true
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "image3Alt",
-        "label": "Bottom-right image alt",
-        "required": true
-      }
-    ]
-  },
-  {
-    "id": "wgc-meeting-amenities",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "title",
-        "value": "",
-        "label": "Heading",
-        "description": "Section heading, with optional supporting copy below it. Italicise the opening words to render them as the lighter lead line."
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "items",
-        "value": "",
-        "label": "Amenities",
-        "description": "A bullet list of what the meeting package includes. It splits into two columns on wider screens."
-      },
-      {
-        "component": "multiselect",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Options",
-        "options": [
-          {
-            "name": "Single column list",
-            "value": "single-col"
-          },
-          {
-            "name": "Check marks",
-            "value": "checklist"
-          },
-          {
-            "name": "Paper background",
-            "value": "paper"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "wgc-meeting-feature",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "description": "Photograph of the space, the catering or the event.",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Heading, body copy, and an optional call to action. Italicise the opening words of the heading to render them as the lighter lead line."
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Image Position",
-        "value": "",
-        "options": [
-          {
-            "name": "Image left",
-            "value": ""
-          },
-          {
-            "name": "Image right",
-            "value": "image-right"
-          }
-        ]
-      },
-      {
-        "component": "multiselect",
-        "valueType": "string",
-        "name": "classes_style",
-        "label": "Options",
-        "options": [
-          {
-            "name": "Wide image",
-            "value": "wide"
-          },
-          {
-            "name": "Overlap copy",
-            "value": "overlap"
-          },
-          {
-            "name": "Paper background",
-            "value": "paper"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "wgc-meeting-testimonials",
-    "fields": [
-      {
-        "component": "multiselect",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Options",
-        "description": "Leave the layout options clear for the one-at-a-time carousel.",
-        "options": [
-          {
-            "name": "Show all, stacked",
-            "value": "stacked"
-          },
-          {
-            "name": "Show all, two per row",
-            "value": "grid"
-          },
-          {
-            "name": "Paper background",
-            "value": "paper"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "wgc-meeting-testimonial",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "headline",
-        "value": "",
-        "label": "Headline",
-        "description": "The one line from the quote worth leading with."
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "quote",
-        "value": "",
-        "label": "Quote",
-        "description": "The testimonial in full."
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "attribution",
-        "value": "",
-        "label": "Attribution",
-        "description": "Who said it, such as the company followed by the person and their role. Italicise the company name to set it on its own line as the citation."
-      }
-    ]
-  },
-  {
-    "id": "wgc-meetings-hero",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Background Image",
-        "description": "Still image behind the page heading. Also used as the video poster.",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Background Image Alt",
-        "multi": false
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "video",
-        "label": "Background Video (optional)",
-        "description": "Link to an .mp4 or .webm. Fades in over the image once it can play."
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "An optional short label such as Plan An Event on its own line, then the page heading. Italicise the opening words of the heading to render them as the lighter lead line."
-      },
-      {
-        "component": "multiselect",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Options",
-        "options": [
-          {
-            "name": "Short",
-            "value": "short"
-          },
-          {
-            "name": "Align left",
-            "value": "left"
-          },
-          {
-            "name": "Light overlay",
-            "value": "light"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "wgc-meetings-intro",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Heading and intro copy. Italicise the opening words of the heading to render them as the lighter lead line. A phone number linked as tel: stays inline as a contact detail rather than becoming a button."
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "cta",
-        "label": "Call To Action Link",
-        "description": "Where the closing button goes, such as the request for proposal form."
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "ctaText",
-        "label": "Call To Action Text",
-        "multi": false
-      },
-      {
-        "component": "multiselect",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Options",
-        "options": [
-          {
-            "name": "Paper background",
-            "value": "paper"
-          },
-          {
-            "name": "Narrow",
-            "value": "narrow"
-          },
-          {
-            "name": "No rule under heading",
-            "value": "no-rule"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "wgc-planning-tools",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "title",
-        "value": "",
-        "label": "Heading",
-        "description": "Section heading, with optional supporting copy below it. Italicise the opening words to render them as the lighter lead line."
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "links",
-        "value": "",
-        "label": "Resources",
-        "description": "A bullet list of linked planner resources such as the virtual tour, property information, banquet menus and capacity chart. Each one picks up its icon from where it points, and documents and off-site links open in a new tab."
-      },
-      {
-        "component": "multiselect",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Options",
-        "options": [
-          {
-            "name": "Two column list",
-            "value": "two-col"
-          },
-          {
-            "name": "Heading above list",
-            "value": "stacked"
-          },
-          {
-            "name": "Show as buttons",
-            "value": "buttons"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "wgc-request-proposal",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Background Image (optional)",
-        "description": "Turns the band into a photographic panel. Pair it with the photograph option so the text renders light.",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Background Image Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Heading, a line of copy carrying the phone number, and the proposal link. A phone number linked as tel: stays inline as a contact detail rather than becoming a button."
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Background",
-        "value": "",
-        "options": [
-          {
-            "name": "Sand",
-            "value": ""
-          },
-          {
-            "name": "Teal",
-            "value": "teal"
-          },
-          {
-            "name": "Dark teal",
-            "value": "dark"
-          },
-          {
-            "name": "Photograph",
-            "value": "image"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes_layout",
-        "label": "Layout",
-        "value": "",
-        "options": [
-          {
-            "name": "Centered",
-            "value": ""
-          },
-          {
-            "name": "Heading beside button",
-            "value": "split"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "wgc-room",
-    "fields": [
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Image Position",
-        "value": "",
-        "options": [
-          {
-            "name": "Image left",
-            "value": ""
-          },
-          {
-            "name": "Image right",
-            "value": "image-right"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "wgc-room-slide",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      }
-    ]
-  },
-  {
-    "id": "wgc-room-copy",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Room name, description, and an optional Book Now call to action. Put copy in the left column and images in the right column to flip the layout, or use the block Image Position option."
       }
     ]
   }

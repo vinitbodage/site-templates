@@ -27,9 +27,53 @@
           ]
         }
       }
+    },
+    {
+      "title": "Testimonial",
+      "id": "testimonial-item",
+      "model": "testimonial-item",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 3,
+          "fields": [
+            { "name": "headline", "selector": "div:nth-child(1)" },
+            { "name": "quote", "selector": "div:nth-child(2)" },
+            { "name": "attribution", "selector": "div:nth-child(3)" }
+          ]
+        }
+      }
     }
   ],
   "models": [
+    {
+      "id": "carousel",
+      "fields": [
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Style",
+          "value": "",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "Testimonials", "value": "testimonials" }
+          ]
+        },
+        {
+          "component": "multiselect",
+          "valueType": "string",
+          "name": "testimonialOptions",
+          "label": "Testimonial options",
+          "description": "Only applies when Style is Testimonials.",
+          "options": [
+            { "name": "Show all, stacked", "value": "stacked" },
+            { "name": "Show all, two per row", "value": "grid" },
+            { "name": "Paper background", "value": "paper" }
+          ]
+        }
+      ]
+    },
     {
       "id": "carousel-item",
       "fields": [
@@ -53,12 +97,38 @@
           "valueType": "string"
         }
       ]
+    },
+    {
+      "id": "testimonial-item",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "headline",
+          "value": "",
+          "label": "Headline"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "quote",
+          "value": "",
+          "label": "Quote"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "attribution",
+          "value": "",
+          "label": "Attribution"
+        }
+      ]
     }
   ],
   "filters": [
     {
       "id": "carousel",
-      "components": ["carousel-item"]
+      "components": ["carousel-item", "testimonial-item"]
     }
   ]
 }

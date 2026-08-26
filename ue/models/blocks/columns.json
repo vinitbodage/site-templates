@@ -69,6 +69,30 @@
             {
               "name": "Split heading & list",
               "value": "split-list"
+            },
+            {
+              "name": "Intro band",
+              "value": "intro"
+            },
+            {
+              "name": "Intro with contact",
+              "value": "intro-contact"
+            },
+            {
+              "name": "Checklist amenities",
+              "value": "checklist"
+            },
+            {
+              "name": "Feature band",
+              "value": "feature"
+            },
+            {
+              "name": "Planning tools",
+              "value": "planning-tools"
+            },
+            {
+              "name": "Request proposal CTA",
+              "value": "cta-band"
             }
           ]
         }

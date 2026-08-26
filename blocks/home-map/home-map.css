@@ -1,0 +1,103 @@
+.home-map {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--t1-teal-dark);
+  background-image: url('https://www.wyndhamgrandclearwater.com/assets/images/jpg/background-home-map.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--t1-paper);
+}
+
+.home-map::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(40 40 41 / 55%) 0%, rgb(40 40 41 / 15%) 55%, transparent 100%);
+  content: '';
+}
+
+.home-map .home-map-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--t1-gap);
+  max-width: var(--t1-max-width);
+  margin: 0 auto;
+  padding: var(--t1-section-padding) 24px;
+}
+
+.home-map .home-map-panel {
+  max-width: 28rem;
+}
+
+.home-map .home-map-panel h2,
+.home-map .home-map-panel h3 {
+  margin: 0 0 24px;
+  color: var(--t1-paper);
+  font-size: var(--heading-font-size-l);
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: var(--t1-tracking-wide);
+}
+
+.home-map .home-map-panel .headline-lead {
+  display: block;
+  font-weight: 300;
+}
+
+.home-map .home-map-pin {
+  display: none;
+}
+
+.home-map .home-map-pin picture,
+.home-map .home-map-pin img {
+  display: block;
+  width: 72px;
+  height: auto;
+}
+
+.home-map .home-map-panel picture img {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin: 24px 0;
+}
+
+.home-map .home-map-panel p {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+  line-height: 1.8;
+}
+
+.home-map .home-map-panel .button-container {
+  margin-top: 32px;
+}
+
+@media (width >= 900px) {
+  .home-map .home-map-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 520px;
+    padding-inline: 32px;
+  }
+
+  .home-map .home-map-panel h2,
+  .home-map .home-map-panel h3 {
+    font-size: var(--heading-font-size-xl);
+  }
+
+  .home-map .home-map-pin {
+    display: block;
+    flex: 0 0 auto;
+    align-self: flex-end;
+    margin-right: 8%;
+    margin-bottom: 12%;
+  }
+
+  .home-map .home-map-pin picture,
+  .home-map .home-map-pin img {
+    width: 96px;
+  }
+}

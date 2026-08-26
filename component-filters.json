@@ -15,35 +15,17 @@
       "embed",
       "fragment",
       "form",
+      "gallery",
       "hero",
+      "home-map",
       "image",
       "quote",
+      "room",
       "search",
       "tabs",
       "table",
       "text",
       "video",
-      "product-recommendations",
-      "wgc-hero",
-      "wgc-intro",
-      "wgc-icons",
-      "wgc-columns",
-      "wgc-gallery",
-      "wgc-home-room-dine-spa",
-      "wgc-home-map",
-      "wgc-accordion",
-      "wgc-media-mosaic",
-      "wgc-intro-container",
-      "wgc-amenities",
-      "wgc-room",
-      "wgc-meetings-hero",
-      "wgc-meetings-intro",
-      "wgc-accolades",
-      "wgc-meeting-amenities",
-      "wgc-planning-tools",
-      "wgc-meeting-feature",
-      "wgc-meeting-testimonials",
-      "wgc-request-proposal",
       "theme-picker"
     ]
   },
@@ -62,7 +44,8 @@
   {
     "id": "carousel",
     "components": [
-      "carousel-item"
+      "carousel-item",
+      "testimonial-item"
     ]
   },
   {
@@ -83,6 +66,19 @@
     ]
   },
   {
+    "id": "gallery",
+    "components": [
+      "gallery-image"
+    ]
+  },
+  {
+    "id": "room",
+    "components": [
+      "room-slide",
+      "room-copy"
+    ]
+  },
+  {
     "id": "table",
     "rte": {
       "toolbar": {
@@ -99,56 +95,6 @@
     "id": "tabs",
     "components": [
       "tabs-item"
-    ]
-  },
-  {
-    "id": "wgc-accolades",
-    "components": [
-      "wgc-accolade"
-    ]
-  },
-  {
-    "id": "wgc-accordion",
-    "components": [
-      "wgc-accordion-heading",
-      "wgc-accordion-item"
-    ]
-  },
-  {
-    "id": "wgc-columns",
-    "components": [
-      "wgc-column"
-    ]
-  },
-  {
-    "id": "wgc-gallery",
-    "components": [
-      "wgc-gallery-image"
-    ]
-  },
-  {
-    "id": "wgc-home-room-dine-spa",
-    "components": [
-      "wgc-rds-item"
-    ]
-  },
-  {
-    "id": "wgc-icons",
-    "components": [
-      "wgc-icon"
-    ]
-  },
-  {
-    "id": "wgc-meeting-testimonials",
-    "components": [
-      "wgc-meeting-testimonial"
-    ]
-  },
-  {
-    "id": "wgc-room",
-    "components": [
-      "wgc-room-slide",
-      "wgc-room-copy"
     ]
   }
 ]

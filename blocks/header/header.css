@@ -355,7 +355,7 @@ body.template2 header .nav-tools p {
 }
 
 body.template2 header .header-book-wrap,
-body.template2 header .wgc-book-wrap {
+body.template1 header .book-wrap {
   display: inline-flex;
   flex: 0 0 auto;
   flex-flow: row nowrap;

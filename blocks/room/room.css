@@ -1,0 +1,436 @@
+main > .section.room-container {
+  margin: 0;
+}
+
+.room {
+  margin: 50px 0;
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+
+.room .room-layout {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--t1-gap) * 1.25);
+  max-width: var(--t1-max-width);
+  margin: 0 auto;
+}
+
+.room .room-media,
+.room .room-copy {
+  flex: 1 1 50%;
+}
+
+.room .room-media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.room .room-slider-viewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 570px;
+  margin-inline: auto;
+}
+
+.room .room-slider-track {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.room .room-slider-track > li {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.room .room-copy ul {
+  margin: 1.75em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.room .room-copy > ul > li {
+  margin: 0;
+}
+
+.room .room-slider-track > li.is-active,
+.room .room-slider-track > li:only-child {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.room .room-slider-track > li:not(.is-active, :only-child) {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.room .room-slider-track .room-slide-trigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: inherit;
+  font: inherit;
+}
+
+.room .room-slider-track picture,
+.room .room-slider-track img {
+  display: block;
+  width: 100%;
+  max-width: 570px;
+  height: auto;
+  aspect-ratio: 570 / 519;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.room .room-expand {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  pointer-events: none;
+}
+
+.room .room-expand svg {
+  width: 40px;
+  height: 40px;
+  fill: #fff;
+  transition: fill 0.3s ease;
+}
+
+.room .room-slide-trigger:hover .room-expand svg,
+.room .room-slide-trigger:focus-visible .room-expand svg {
+  fill: var(--t1-teal);
+}
+
+.room .room-slider-nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 0;
+}
+
+.room .room-slider-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid var(--t1-teal);
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.room .room-slider-dot.is-active {
+  background-color: var(--t1-teal);
+}
+
+.room .room-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-inline: 8px;
+}
+
+.room .room-copy h1,
+.room .room-copy h2,
+.room .room-copy h3,
+.room .room-copy h4 {
+  margin: 0 0 20px;
+  padding-bottom: 22px;
+  color: var(--t1-gold);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.room .room-copy .headline-rule::after {
+  background-color: var(--t1-teal);
+}
+
+.room .room-copy .headline-lead {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--t1-teal-muted);
+  font-size: clamp(0.68rem, 1.1vw, 0.82rem);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.room .room-copy .headline-tail {
+  display: block;
+  color: var(--t1-gold);
+  font-size: inherit;
+  font-weight: 400;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+}
+
+.room .room-copy p {
+  margin: 0 0 1em;
+  color: var(--t1-ink);
+  font-size: var(--body-font-size-s);
+  line-height: 1.8;
+}
+
+.room .room-copy p:empty {
+  display: none;
+  margin: 0;
+}
+
+.room .room-copy .button-container {
+  margin-top: 1.75em;
+}
+
+/* reference-style scroll reveal: panels slide toward centre */
+.room .room-panel {
+  transition:
+    transform 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1.05s ease;
+}
+
+.room .room-panel.hide-object {
+  opacity: 0;
+}
+
+.room .room-panel.hide-object.fade-in-left {
+  transform: translateX(-8%);
+}
+
+.room .room-panel.hide-object.fade-in-right {
+  transform: translateX(8%);
+}
+
+.room .room-panel.show-object {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (width >= 900px) {
+  .room {
+    padding-inline: clamp(32px, 5vw, 72px);
+  }
+
+  .room .room-layout {
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(32px, 4vw, 64px);
+  }
+
+  .room .room-media {
+    flex: 0 1 570px;
+    width: 50%;
+    max-width: 570px;
+  }
+
+  .room.image-right .room-media {
+    order: 1;
+  }
+
+  .room .room-copy {
+    flex: 1 1 45%;
+    max-width: 430px;
+    padding-inline: clamp(16px, 3vw, 48px);
+  }
+
+  .room .room-copy h1,
+  .room .room-copy h2,
+  .room .room-copy h3,
+  .room .room-copy h4 {
+    font-size: 1.85rem;
+    letter-spacing: 0.14em;
+  }
+
+
+}
+
+@media (width < 900px) {
+  .room .room-panel.hide-object.fade-in-left {
+    transform: translate(-6%, 24px);
+  }
+
+  .room .room-panel.hide-object.fade-in-right {
+    transform: translate(6%, 24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .room .room-panel.hide-object {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .room .room-slider-track > li {
+    transition: none;
+  }
+}
+
+/* image lightbox popup */
+body.room-lightbox-open {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+}
+
+.room-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 40px);
+  background-color: rgb(0 0 0 / 78%);
+}
+
+.room-lightbox-panel {
+  position: relative;
+  box-sizing: border-box;
+  width: min(1100px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: clamp(32px, 4vw, 48px);
+  background-color: #fff;
+}
+
+.room-lightbox-viewport {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.room-lightbox-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 160px);
+  object-fit: contain;
+}
+
+.room-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #a8a8a8;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: color 0.3s ease-in-out;
+}
+
+.room-lightbox-nav-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 12px;
+}
+
+.room-lightbox-nav-label {
+  position: absolute;
+  top: 50%;
+  padding: 4px 8px;
+  border: 1px solid #282829;
+  background-color: #fff;
+  color: #282829;
+  font-family: var(--t1-font-body, montserrat, sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.2;
+  text-transform: none;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.room-lightbox-prev {
+  left: 16px;
+}
+
+.room-lightbox-prev .room-lightbox-nav-label {
+  left: calc(100% + 10px);
+}
+
+.room-lightbox-next {
+  right: 16px;
+  flex-direction: row-reverse;
+}
+
+.room-lightbox-next .room-lightbox-nav-label {
+  right: calc(100% + 10px);
+}
+
+.room-lightbox-nav:hover,
+.room-lightbox-nav:focus-visible {
+  color: #fff;
+}
+
+.room-lightbox-nav:hover .room-lightbox-nav-label,
+.room-lightbox-nav:focus-visible .room-lightbox-nav-label {
+  opacity: 1;
+  visibility: visible;
+}
+
+.room-lightbox-nav[hidden] {
+  display: none;
+}
+
+.room-lightbox-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: var(--t1-teal);
+  color: #fff;
+  cursor: pointer;
+  transform: translate(50%, -50%);
+}
+
+.room-lightbox-close::before,
+.room-lightbox-close::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: currentcolor;
+}
+
+.room-lightbox-close::before {
+  transform: rotate(45deg);
+}
+
+.room-lightbox-close::after {
+  transform: rotate(-45deg);
+}
