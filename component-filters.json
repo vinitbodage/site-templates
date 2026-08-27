@@ -31,7 +31,10 @@
       "home-room-dine-spa",
       "home-map",
       "contact",
-      "theme-picker"
+      "theme-picker",
+      "news-filters",
+      "news-list",
+      "news-sidebar"
     ]
   },
   {
@@ -85,6 +88,24 @@
     "id": "icons",
     "components": [
       "icon-item"
+    ]
+  },
+  {
+    "id": "news-filters",
+    "components": [
+      "news-filter-group"
+    ]
+  },
+  {
+    "id": "news-list",
+    "components": [
+      "news-item"
+    ]
+  },
+  {
+    "id": "news-sidebar",
+    "components": [
+      "news-sidebar-panel"
     ]
   },
   {

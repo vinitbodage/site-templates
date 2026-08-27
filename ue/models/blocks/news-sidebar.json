@@ -1,0 +1,63 @@
+{
+  "definitions": [
+    {
+      "title": "News Sidebar",
+      "id": "news-sidebar",
+      "model": "news-sidebar",
+      "filter": "news-sidebar",
+      "plugins": {
+        "da": {
+          "rows": 3,
+          "columns": 1
+        }
+      }
+    },
+    {
+      "title": "News Sidebar Panel",
+      "id": "news-sidebar-panel",
+      "model": "news-sidebar-panel",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "heading", "selector": "div:nth-child(1)" },
+            { "name": "body", "selector": "div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "news-sidebar",
+      "fields": []
+    },
+    {
+      "id": "news-sidebar-panel",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "heading",
+          "label": "Heading",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "body",
+          "label": "Body",
+          "valueType": "string",
+          "description": "About copy, contact details, or RSS links."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "news-sidebar",
+      "components": [
+        "news-sidebar-panel"
+      ]
+    }
+  ]
+}

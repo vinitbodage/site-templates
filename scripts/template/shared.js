@@ -34,7 +34,9 @@ export function getCells(row) {
  */
 export function isEmpty(cell) {
   if (!cell) return true;
-  if (cell.querySelector('picture, img, a, video, iframe')) return false;
+  if (cell.querySelector('picture, img, a, video, iframe, input, select, textarea, button')) {
+    return false;
+  }
   return !cell.textContent.trim();
 }
 

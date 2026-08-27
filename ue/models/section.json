@@ -28,6 +28,22 @@
             {
               "name": "Full Bleed",
               "value": "full-bleed"
+            },
+            {
+              "name": "Newsroom",
+              "value": "newsroom"
+            },
+            {
+              "name": "Newsroom Header",
+              "value": "newsroom-header"
+            },
+            {
+              "name": "Newsroom Content",
+              "value": "newsroom-content"
+            },
+            {
+              "name": "NTT Actions",
+              "value": "ntt-actions"
             }
           ]
         }
@@ -61,7 +77,10 @@
         "home-room-dine-spa",
         "home-map",
         "contact",
-        "theme-picker"
+        "theme-picker",
+        "news-filters",
+        "news-list",
+        "news-sidebar"
       ]
     }
   ]

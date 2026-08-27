@@ -1,0 +1,75 @@
+{
+  "definitions": [
+    {
+      "title": "News Filters",
+      "id": "news-filters",
+      "model": "news-filters",
+      "filter": "news-filters",
+      "plugins": {
+        "da": {
+          "rows": 4,
+          "columns": 2
+        }
+      }
+    },
+    {
+      "title": "News Filter Group",
+      "id": "news-filter-group",
+      "model": "news-filter-group",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "label", "selector": "div:nth-child(1)" },
+            { "name": "options", "selector": "div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "news-filters",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "label": "Layout",
+          "valueType": "string",
+          "options": [
+            { "name": "Dropdown filters", "value": "" },
+            { "name": "Toolbar header", "value": "toolbar" },
+            { "name": "News type links", "value": "types" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "news-filter-group",
+      "fields": [
+        {
+          "component": "text",
+          "name": "label",
+          "label": "Label",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "options",
+          "label": "Options",
+          "valueType": "string",
+          "description": "Link list for years, months, topics, or news types."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "news-filters",
+      "components": [
+        "news-filter-group"
+      ]
+    }
+  ]
+}
