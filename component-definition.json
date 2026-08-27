@@ -514,6 +514,63 @@
               ]
             }
           }
+        },
+        {
+          "title": "Book Now Modal",
+          "id": "book-now-modal",
+          "model": "book-now-modal",
+          "plugins": {
+            "da": {
+              "rows": 11,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "bookingUrl",
+                  "selector": "div:nth-child(1)>div>a[href]"
+                },
+                {
+                  "name": "title",
+                  "selector": "div:nth-child(2)>div"
+                },
+                {
+                  "name": "closeLabel",
+                  "selector": "div:nth-child(3)>div"
+                },
+                {
+                  "name": "checkInLabel",
+                  "selector": "div:nth-child(4)>div"
+                },
+                {
+                  "name": "checkOutLabel",
+                  "selector": "div:nth-child(5)>div"
+                },
+                {
+                  "name": "adultsLabel",
+                  "selector": "div:nth-child(6)>div"
+                },
+                {
+                  "name": "kidsLabel",
+                  "selector": "div:nth-child(7)>div"
+                },
+                {
+                  "name": "roomsLabel",
+                  "selector": "div:nth-child(8)>div"
+                },
+                {
+                  "name": "promoLabel",
+                  "selector": "div:nth-child(9)>div"
+                },
+                {
+                  "name": "submitLabel",
+                  "selector": "div:nth-child(10)>div"
+                },
+                {
+                  "name": "footerNote",
+                  "selector": "div:nth-child(11)>div"
+                }
+              ]
+            }
+          }
         }
       ]
     }
