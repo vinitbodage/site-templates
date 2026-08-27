@@ -463,6 +463,109 @@
           }
         },
         {
+          "title": "News Filters",
+          "id": "news-filters",
+          "model": "news-filters",
+          "filter": "news-filters",
+          "plugins": {
+            "da": {
+              "rows": 4,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "News Filter Group",
+          "id": "news-filter-group",
+          "model": "news-filter-group",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "label",
+                  "selector": "div:nth-child(1)"
+                },
+                {
+                  "name": "options",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "News List",
+          "id": "news-list",
+          "model": "news-list",
+          "filter": "news-list",
+          "plugins": {
+            "da": {
+              "rows": 3,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "News Item",
+          "id": "news-item",
+          "model": "news-item",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "News Sidebar",
+          "id": "news-sidebar",
+          "model": "news-sidebar",
+          "filter": "news-sidebar",
+          "plugins": {
+            "da": {
+              "rows": 3,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "News Sidebar Panel",
+          "id": "news-sidebar-panel",
+          "model": "news-sidebar-panel",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "heading",
+                  "selector": "div:nth-child(1)"
+                },
+                {
+                  "name": "body",
+                  "selector": "div:nth-child(2)"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Page Title",
           "id": "page-title",
           "model": "page-title",

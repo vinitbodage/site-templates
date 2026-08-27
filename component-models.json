@@ -66,6 +66,18 @@
             "value": "breadcrumb-bar"
           },
           {
+            "name": "Newsroom",
+            "value": "newsroom"
+          },
+          {
+            "name": "Newsroom Header",
+            "value": "newsroom-header"
+          },
+          {
+            "name": "Newsroom Content",
+            "value": "newsroom-content"
+          },
+          {
             "name": "NTT Actions",
             "value": "ntt-actions"
           }
@@ -447,6 +459,102 @@
             "value": "image-right"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "news-filters",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Layout",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Dropdown filters",
+            "value": ""
+          },
+          {
+            "name": "Toolbar header",
+            "value": "toolbar"
+          },
+          {
+            "name": "News type links",
+            "value": "types"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "news-filter-group",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "options",
+        "label": "Options",
+        "valueType": "string",
+        "description": "Link list for years, months, topics, or news types."
+      }
+    ]
+  },
+  {
+    "id": "news-list",
+    "fields": []
+  },
+  {
+    "id": "news-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Thumbnail",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Meta line (type · date), linked title, and optional excerpt."
+      }
+    ]
+  },
+  {
+    "id": "news-sidebar",
+    "fields": []
+  },
+  {
+    "id": "news-sidebar-panel",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "heading",
+        "label": "Heading",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "body",
+        "label": "Body",
+        "valueType": "string",
+        "description": "About copy, contact details, or RSS links."
       }
     ]
   },

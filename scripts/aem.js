@@ -591,7 +591,13 @@ function decorateBlock(block) {
  * @param {Element} main The container element
  */
 function decorateBlocks(main) {
-  main.querySelectorAll('div.section > div > div').forEach(decorateBlock);
+  main.querySelectorAll('div.section > div > div').forEach((candidate) => {
+    if (candidate.classList.length) {
+      decorateBlock(candidate);
+      return;
+    }
+    candidate.querySelectorAll(':scope > div[class]').forEach(decorateBlock);
+  });
 }
 
 /**

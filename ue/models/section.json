@@ -38,6 +38,18 @@
               "value": "breadcrumb-bar"
             },
             {
+              "name": "Newsroom",
+              "value": "newsroom"
+            },
+            {
+              "name": "Newsroom Header",
+              "value": "newsroom-header"
+            },
+            {
+              "name": "Newsroom Content",
+              "value": "newsroom-content"
+            },
+            {
               "name": "NTT Actions",
               "value": "ntt-actions"
             }
@@ -77,7 +89,10 @@
         "theme-picker",
         "breadcrumb",
         "page-title",
-        "side-nav"
+        "side-nav",
+        "news-filters",
+        "news-list",
+        "news-sidebar"
       ]
     }
   ]

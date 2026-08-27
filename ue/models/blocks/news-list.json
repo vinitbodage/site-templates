@@ -1,0 +1,73 @@
+{
+  "definitions": [
+    {
+      "title": "News List",
+      "id": "news-list",
+      "model": "news-list",
+      "filter": "news-list",
+      "plugins": {
+        "da": {
+          "rows": 3,
+          "columns": 1
+        }
+      }
+    },
+    {
+      "title": "News Item",
+      "id": "news-item",
+      "model": "news-item",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>picture>img[alt]" },
+            { "name": "content", "selector": "div:nth-child(2)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "news-list",
+      "fields": []
+    },
+    {
+      "id": "news-item",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Thumbnail",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt",
+          "multi": false
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content",
+          "description": "Meta line (type · date), linked title, and optional excerpt."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "news-list",
+      "components": [
+        "news-item"
+      ]
+    }
+  ]
+}

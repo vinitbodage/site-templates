@@ -35,7 +35,10 @@
       "theme-picker",
       "breadcrumb",
       "page-title",
-      "side-nav"
+      "side-nav",
+      "news-filters",
+      "news-list",
+      "news-sidebar"
     ]
   },
   {
@@ -95,6 +98,24 @@
     "id": "icons",
     "components": [
       "icon-item"
+    ]
+  },
+  {
+    "id": "news-filters",
+    "components": [
+      "news-filter-group"
+    ]
+  },
+  {
+    "id": "news-list",
+    "components": [
+      "news-item"
+    ]
+  },
+  {
+    "id": "news-sidebar",
+    "components": [
+      "news-sidebar-panel"
     ]
   },
   {
