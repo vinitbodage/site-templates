@@ -4,7 +4,7 @@ import {
   fetchPlaceholders,
   getMetadata,
   loadBlock,
-  toClassName,
+  normalizeTemplateName,
 } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
@@ -223,6 +223,39 @@ function attachPickerToBook(bookWrap, bookLink, pickerWrap) {
   }
 }
 
+/**
+ * Removes legacy UE blocks (book-now modal, theme-option, empty columns) from
+ * nav fragments so they do not break the three-column header layout.
+ * @param {Element} nav
+ */
+function stripLegacyNavSections(nav) {
+  if (!nav) return;
+  nav.querySelectorAll(':scope > div').forEach((section) => {
+    if (section.classList.contains('nav-hamburger')) return;
+    const hasPrimaryNav = section.querySelector(':scope ul');
+    const hasPrimaryTools = section.querySelector('a[href^="tel:"], a[href*="synxis"]');
+    const hasLegacyBlock = section.querySelector(
+      '.book-now, .book-now-modal, .theme-option, .theme-option-wrap',
+    );
+    if (hasLegacyBlock && !hasPrimaryNav && !hasPrimaryTools) {
+      section.remove();
+    }
+  });
+  nav.querySelectorAll('.theme-option, .theme-option-wrap, .book-now-modal').forEach((el) => {
+    el.closest(':scope > div')?.remove();
+  });
+}
+
+/**
+ * Decorative header logos should not expose long property names to screen readers.
+ * @param {Element} nav
+ */
+function fixBrandLogo(nav) {
+  nav?.querySelectorAll('.nav-brand img').forEach((img) => {
+    img.alt = '';
+  });
+}
+
 async function mountThemePicker(nav) {
   if (nav.querySelector('.theme-picker')) return;
 
@@ -264,10 +297,10 @@ async function mountThemePicker(nav) {
  */
 export default async function decorate(block) {
   // load nav as fragment
-  const template = toClassName(getMetadata('template'));
+  const template = normalizeTemplateName(getMetadata('template'));
   const navMeta = getMetadata('nav');
   let defaultNav = '/nav';
-  if (document.body.classList.contains('template1') || template === 'template1') {
+  if (template === 'template1') {
     defaultNav = '/template1/nav';
   } else if (template) {
     defaultNav = `/${template}/nav`;
@@ -283,6 +316,8 @@ export default async function decorate(block) {
     while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
   }
 
+  stripLegacyNavSections(nav);
+
   nav.querySelectorAll('.theme-option, .theme-option-wrap').forEach((el) => {
     el.remove();
   });
@@ -294,6 +329,7 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
+  fixBrandLogo(nav);
   const brandLink = navBrand?.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
@@ -350,7 +386,7 @@ export default async function decorate(block) {
     navWrapper.append(await buildBreadcrumbs());
   }
 
-  if (document.body.classList.contains('template1')) {
+  if (template === 'template1') {
     const { default: decorateTemplate1Header } = await import(
       `${window.hlx.codeBasePath}/scripts/template/template1-header.js`
     );

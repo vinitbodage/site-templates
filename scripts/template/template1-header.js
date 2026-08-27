@@ -15,8 +15,27 @@ const BOOK_URL = 'https://be-p2.synxis.com/?chain=5136&hotel=80554&src=SBE&theme
  * @param {Element} nav the decorated nav element
  */
 function stripThemeOption(nav) {
-  nav.querySelectorAll('.theme-option, .theme-option-wrap').forEach((el) => {
+  nav.querySelectorAll('.theme-option, .theme-option-wrap, .book-now-modal').forEach((el) => {
     el.remove();
+  });
+  nav.querySelectorAll(':scope > div').forEach((section) => {
+    if (section.classList.contains('nav-hamburger')) return;
+    const hasPrimaryNav = section.querySelector(':scope ul');
+    const hasPrimaryTools = section.querySelector('a[href^="tel:"], a[href*="synxis"]');
+    const hasLegacyBlock = section.querySelector('.book-now, .book-now-modal, .theme-option');
+    if (hasLegacyBlock && !hasPrimaryNav && !hasPrimaryTools) {
+      section.remove();
+    }
+  });
+}
+
+/**
+ * Decorative header logos should not expose long property names to screen readers.
+ * @param {Element} nav
+ */
+function fixBrandLogo(nav) {
+  nav?.querySelectorAll('.nav-brand img, .nav-brand a img').forEach((img) => {
+    img.alt = '';
   });
 }
 
@@ -191,6 +210,7 @@ export default async function decorateTemplate1Header(block) {
   if (!nav) return;
 
   stripThemeOption(nav);
+  fixBrandLogo(nav);
   normalizeTools(nav);
   await mountThemePicker(nav);
   normalizeToolsRow(nav);
