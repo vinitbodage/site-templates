@@ -20,10 +20,13 @@ function isMediaAccordionRow(row) {
  * @param {Element} block
  */
 function promoteAccordionHeading(block) {
-  const parent = block.parentElement;
-  if (!parent || block.querySelector('h1, h2, h3, h4')) return;
+  if (block.querySelector('h1, h2, h3, h4')) return;
 
-  const heading = parent.querySelector(':scope > h1, :scope > h2, :scope > h3, :scope > h4');
+  const section = block.closest('.section');
+  const heading = section
+    ? [...section.querySelectorAll('h1, h2, h3, h4')].find((el) => !block.contains(el))
+    : block.parentElement?.querySelector(':scope > h1, :scope > h2, :scope > h3, :scope > h4');
+
   if (!heading) return;
 
   const row = document.createElement('div');
@@ -31,6 +34,7 @@ function promoteAccordionHeading(block) {
   cell.append(heading);
   row.append(cell);
   block.prepend(row);
+  heading.closest('.default-content-wrapper')?.remove();
 }
 
 /**

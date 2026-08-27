@@ -1,5 +1,6 @@
 import { fetchPlaceholders } from '../../scripts/aem.js';
-import { decorateTestimonials } from '../../scripts/template/testimonials-decorate.js';
+import { decorateTestimonials, isTestimonialRow } from '../../scripts/template/testimonials-decorate.js';
+import { getRows } from '../../scripts/template/shared.js';
 
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
@@ -92,15 +93,18 @@ function createSlide(row, slideIndex, carouselId) {
 
 let carouselId = 0;
 export default async function decorate(block) {
-  if (block.classList.contains('testimonials')) {
+  const rows = getRows(block);
+  const looksLikeTestimonials = rows.filter((row) => isTestimonialRow(row)).length >= 2;
+  if (block.classList.contains('testimonials') || looksLikeTestimonials) {
+    block.classList.add('testimonials');
     decorateTestimonials(block);
     return;
   }
 
   carouselId += 1;
   block.setAttribute('id', `carousel-${carouselId}`);
-  const rows = block.querySelectorAll(':scope > div');
-  const isSingleSlide = rows.length < 2;
+  const slideRows = block.querySelectorAll(':scope > div');
+  const isSingleSlide = slideRows.length < 2;
 
   const placeholders = await fetchPlaceholders();
 
@@ -133,7 +137,7 @@ export default async function decorate(block) {
     container.append(slideNavButtons);
   }
 
-  rows.forEach((row, idx) => {
+  slideRows.forEach((row, idx) => {
     const slide = createSlide(row, idx, carouselId);
     slidesWrapper.append(slide);
 
@@ -141,7 +145,7 @@ export default async function decorate(block) {
       const indicator = document.createElement('li');
       indicator.classList.add('carousel-slide-indicator');
       indicator.dataset.targetSlide = idx;
-      indicator.innerHTML = `<button type="button" aria-label="${placeholders.showSlide || 'Show Slide'} ${idx + 1} ${placeholders.of || 'of'} ${rows.length}"></button>`;
+      indicator.innerHTML = `<button type="button" aria-label="${placeholders.showSlide || 'Show Slide'} ${idx + 1} ${placeholders.of || 'of'} ${slideRows.length}"></button>`;
       slideIndicators.append(indicator);
     }
     row.remove();
