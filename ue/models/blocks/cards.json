@@ -31,6 +31,23 @@
   ],
   "models": [
     {
+      "id": "cards",
+      "fields": [
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Variant",
+          "value": "",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "Two columns", "value": "two-cols" },
+            { "name": "Left-aligned CTAs", "value": "left" }
+          ]
+        }
+      ]
+    },
+    {
       "id": "card",
       "fields": [
         {

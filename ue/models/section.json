@@ -40,6 +40,12 @@
             {
               "name": "Newsroom Content",
               "value": "newsroom-content"
+              "name": "Has Sidebar",
+              "value": "has-sidebar"
+            },
+            {
+              "name": "Breadcrumb Bar",
+              "value": "breadcrumb-bar"
             },
             {
               "name": "NTT Actions",
@@ -72,6 +78,7 @@
         "table",
         "text",
         "video",
+        "video-slider",
         "product-recommendations",
         "gallery",
         "home-room-dine-spa",
@@ -81,6 +88,9 @@
         "news-filters",
         "news-list",
         "news-sidebar"
+        "breadcrumb",
+        "page-title",
+        "side-nav"
       ]
     }
   ]

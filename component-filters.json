@@ -26,6 +26,7 @@
       "table",
       "text",
       "video",
+      "video-slider",
       "product-recommendations",
       "gallery",
       "home-room-dine-spa",
@@ -35,12 +36,21 @@
       "news-filters",
       "news-list",
       "news-sidebar"
+      "breadcrumb",
+      "page-title",
+      "side-nav"
     ]
   },
   {
     "id": "accordion",
     "components": [
       "accordion-item"
+    ]
+  },
+  {
+    "id": "breadcrumb",
+    "components": [
+      "breadcrumb-item"
     ]
   },
   {
@@ -112,6 +122,12 @@
     "id": "services",
     "components": [
       "service"
+    ]
+  },
+  {
+    "id": "side-nav",
+    "components": [
+      "side-nav-item"
     ]
   },
   {
