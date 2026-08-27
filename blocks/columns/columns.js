@@ -1,6 +1,7 @@
 import {
   splitHeading, addRule, getRows, getCells, isEmpty,
 } from '../../scripts/template/shared.js';
+import { loadCSS } from '../../scripts/aem.js';
 import { decorateColumnVariants } from '../../scripts/template/columns-variants.js';
 import decorateAccordion from '../accordion/accordion.js';
 
@@ -20,8 +21,6 @@ function isMediaAccordionRow(row) {
  * @param {Element} block
  */
 function promoteAccordionHeading(block) {
-  if (block.querySelector('h1, h2, h3, h4')) return;
-
   const section = block.closest('.section');
   const heading = section
     ? [...section.querySelectorAll('h1, h2, h3, h4')].find((el) => !block.contains(el))
@@ -50,10 +49,12 @@ function shouldUseMediaAccordion(block) {
   return mediaRows.length >= 2;
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
   if (shouldUseMediaAccordion(block)) {
     promoteAccordionHeading(block);
+    block.classList.remove('columns-2-cols', 'columns-3-cols', 'columns-4-cols');
     block.classList.add('accordion', 'media');
+    await loadCSS(`${window.hlx.codeBasePath}/blocks/accordion/accordion.css`);
     decorateAccordion(block);
     return;
   }

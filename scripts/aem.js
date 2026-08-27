@@ -298,7 +298,7 @@ function createOptimizedPicture(
 
 function normalizeTemplateName(name) {
   const slug = toClassName(name);
-  if (slug === 'wgc') return 'template1';
+  if (slug === 'wgc' || slug === 'beach') return 'template1';
   return slug;
 }
 
@@ -306,7 +306,7 @@ function normalizeTemplateName(name) {
  * Set template (page structure) and theme (page styles).
  */
 function decorateTemplateAndTheme() {
-  document.body.classList.remove('wgc');
+  document.body.classList.remove('wgc', 'beach');
   const template = normalizeTemplateName(getMetadata('template'));
   if (template) document.body.classList.add(template);
   const theme = getMetadata('theme');

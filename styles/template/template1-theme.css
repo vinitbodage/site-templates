@@ -46,6 +46,7 @@ body.template1 {
   background-color: var(--t1-paper);
   color: var(--t1-ink);
   font-family: var(--t1-font-body);
+  overflow-x: clip;
 }
 
 body.template1[data-theme='teal'] {
@@ -203,8 +204,13 @@ body.template1 .home-map .home-map-panel a.button:focus-visible {
 }
 
 /* full-bleed sections and live-site section rhythm */
+body.template1 main > .section {
+  margin-inline: 0;
+}
+
 body.template1 main > .section.hero-container,
-body.template1 main > .section.home-map-container {
+body.template1 main > .section.home-map-container,
+body.template1 main > .section.full-bleed {
   margin: 0;
 }
 
@@ -224,9 +230,23 @@ body.template1 main > .section.tinted {
   background-color: var(--t1-sand);
 }
 
-body.template1 main > .section:not(.hero-container, .home-map-container) {
+body.template1 main > .section:not(.hero-container, .home-map-container, .full-bleed) {
   margin-block: 0;
   padding-block: var(--t1-section-padding);
+}
+
+/* hero CTA — ghost white button on the video band */
+body.template1 .hero .hero-content a.button:any-link {
+  border-color: var(--t1-paper);
+  background-color: transparent;
+  color: var(--t1-paper);
+}
+
+body.template1 .hero .hero-content a.button:hover,
+body.template1 .hero .hero-content a.button:focus-visible {
+  border-color: var(--theme-color);
+  background-color: var(--theme-color);
+  color: var(--t1-paper);
 }
 
 /*

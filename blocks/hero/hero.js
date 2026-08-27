@@ -2,6 +2,7 @@ import {
   getRows, getCells, isEmpty, splitHeading, addRule, markEyebrow, optimizePicture,
 } from '../../scripts/template/shared.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
+import { markCta, stackHeadingTail } from '../../scripts/template/columns-variants.js';
 
 const VIDEO_RE = /\.(mp4|webm)(\?.*)?$/i;
 
@@ -23,6 +24,7 @@ function buildVideo(href, poster) {
 
   video.addEventListener('canplay', () => {
     video.dataset.ready = 'true';
+    video.play().catch(() => {});
   }, { once: true });
 
   return video;
@@ -72,8 +74,10 @@ export default function decorate(block) {
   markEyebrow(content, heading, 'hero-eyebrow');
   if (heading) {
     splitHeading(heading);
+    stackHeadingTail(heading);
     addRule(heading, { centered: !block.classList.contains('left'), light: true });
   }
+  markCta(content);
 
   media.querySelectorAll('picture > img').forEach((img) => {
     optimizePicture(img, { eager: true, width: '2000' });

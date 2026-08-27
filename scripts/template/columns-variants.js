@@ -7,7 +7,7 @@ const CONTACT_RE = /^(tel|mailto):/i;
 const DOCUMENT_RE = /\.(pdf|docx?|xlsx?|pptx?)(\?.*)?$/i;
 const TOUR_RE = /(virtual[-\s]?tour|matterport|panoram|\b360\b)/i;
 
-function stackHeadingTail(heading) {
+export function stackHeadingTail(heading) {
   const lead = heading.querySelector('.headline-lead');
   if (!lead || lead.nextSibling?.classList?.contains('headline-tail')) return;
 
@@ -38,7 +38,7 @@ function markContactLinks(copy, className = 'intro-contact') {
   });
 }
 
-function markCta(copy) {
+export function markCta(copy) {
   const buttons = [...copy.querySelectorAll('a.button')]
     .filter((link) => !CONTACT_RE.test(link.getAttribute('href') || ''));
   const cta = buttons[buttons.length - 1];

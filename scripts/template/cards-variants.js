@@ -100,6 +100,16 @@ export function decorateIconRow(block) {
     optimizePicture(img, { width: '200' });
   });
 
+  ul.querySelectorAll('.cards-card-body').forEach((body) => {
+    if (body.querySelector('p, h2, h3, h4')) return;
+    const text = body.textContent.trim();
+    if (!text) return;
+    body.textContent = '';
+    const p = document.createElement('p');
+    p.textContent = text;
+    body.append(p);
+  });
+
   block.classList.add('icon-row');
   block.replaceChildren(ul);
 }
