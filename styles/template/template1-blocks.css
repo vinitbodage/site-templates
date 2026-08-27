@@ -880,7 +880,7 @@ main > .section.columns.intro-container {
 
 .carousel.testimonials .testimonials-header :is(h1, h2, h3, h4) {
   margin: 0;
-  color: var(--t1-gold);
+  color: var(--theme-color);
   font-family: var(--t1-font-heading);
   font-size: var(--heading-font-size-l);
   font-weight: 600;
@@ -927,7 +927,7 @@ main > .section.columns.intro-container {
 
 .carousel.testimonials .testimonial-headline {
   margin: 0 0 1.1em;
-  color: var(--t1-gold);
+  color: var(--theme-color);
   font-family: var(--t1-font-heading);
   font-size: clamp(1.05rem, 2.2vw, 1.4rem);
   font-weight: 600;
@@ -1957,7 +1957,7 @@ body.template1 .accordion.media .accordion-eyebrow {
 
 body.template1 .accordion.media .accordion-header h2 {
   margin: 0;
-  color: var(--t1-gold);
+  color: var(--theme-color);
   font-family: var(--t1-font-heading);
   font-size: var(--heading-font-size-l);
   font-weight: 600;
@@ -1973,7 +1973,7 @@ body.template1 .accordion.media .accordion-item-title {
   justify-content: center;
   min-height: 72px;
   padding: 20px 56px;
-  background-color: var(--t1-teal);
+  background-color: var(--theme-color);
   color: var(--t1-paper);
   text-align: center;
   transition: background-color 0.2s ease;
@@ -2005,7 +2005,7 @@ body.template1 .accordion.media .accordion-item-title::after {
   height: 28px;
   border-radius: 50%;
   background-color: var(--t1-paper);
-  color: var(--t1-teal);
+  color: var(--theme-color);
   font-size: 22px;
   font-weight: 400;
   line-height: 1;
@@ -2014,16 +2014,16 @@ body.template1 .accordion.media .accordion-item-title::after {
 
 body.template1 .accordion.media .accordion-item-summary:hover .accordion-item-title,
 body.template1 .accordion.media .accordion-item-summary:focus-visible .accordion-item-title {
-  background-color: var(--t1-teal-dark);
+  background-color: color-mix(in srgb, var(--theme-color) 82%, black);
 }
 
 body.template1 .accordion.media details.accordion-item[open] .accordion-item-title {
-  background-color: var(--t1-teal-dark);
+  background-color: color-mix(in srgb, var(--theme-color) 82%, black);
 }
 
 body.template1 .accordion.media details.accordion-item[open] .accordion-item-title::after {
   content: '−';
-  color: var(--t1-teal-dark);
+  color: color-mix(in srgb, var(--theme-color) 82%, black);
 }
 
 body.template1 .accordion.media .accordion-item-summary:focus {
@@ -2104,14 +2104,69 @@ body.template1 .cards.icon-row {
   padding-inline: 24px;
 }
 
-body.template1 .cards.icon-row > ul > li {
-  gap: 16px;
+body.template1 .cards.icon-row > ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-body.template1 .cards.icon-row .cards-card-body,
-body.template1 .cards.icon-row .cards-card-body :is(p, h2, h3, h4) {
-  color: var(--t1-teal);
+body.template1 .cards.icon-row > ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border: 0;
+  padding: 8px 12px;
+  background: transparent;
+  text-align: center;
+}
+
+body.template1 .cards.icon-row .cards-card-image {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  line-height: 0;
+}
+
+body.template1 .cards.icon-row .cards-card-image picture,
+body.template1 .cards.icon-row .cards-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+body.template1 .cards.icon-row .cards-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: var(--theme-color);
   font-family: var(--t1-font-heading);
+  font-size: var(--body-font-size-xs);
+  font-weight: 500;
+  letter-spacing: var(--t1-tracking-wide);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+body.template1 .cards.icon-row .cards-card-body :is(p, h2, h3, h4) {
+  margin: 0;
+  width: 100%;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: center;
+  text-transform: inherit;
 }
 
 /* columns flex must not fight the media accordion layout */
@@ -2124,14 +2179,28 @@ body.template1 .columns.accordion.media > details.accordion-item {
   width: 100%;
 }
 
+@media (width >= 600px) {
+  body.template1 .cards.icon-row > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 @media (width >= 900px) {
   body.template1 .cards.icon-row {
     padding-inline: 32px;
   }
+
+  body.template1 .cards.icon-row > ul {
+    gap: 48px;
+  }
+
+  body.template1 .cards.icon-row .cards-card-image {
+    width: 80px;
+  }
 }
 
 body.template1 .columns.feature .feature-copy :is(h1, h2, h3, h4) {
-  color: var(--t1-gold);
+  color: var(--theme-color);
   font-family: var(--t1-font-heading);
   font-weight: 600;
   text-transform: uppercase;
@@ -2148,7 +2217,7 @@ body.template1 .columns.feature .feature-copy .headline-tail {
 }
 
 body.template1 .columns.feature .feature-copy .headline-rule::after {
-  background-color: var(--t1-gold);
+  background-color: var(--theme-color);
 }
 
 body.template1 .gallery-container {
@@ -2157,7 +2226,7 @@ body.template1 .gallery-container {
 
 body.template1 .gallery-container :is(h1, h2, h3) {
   margin-bottom: 0.75em;
-  color: var(--t1-gold);
+  color: var(--theme-color);
   font-weight: 600;
   letter-spacing: var(--t1-tracking-wide);
   text-transform: uppercase;

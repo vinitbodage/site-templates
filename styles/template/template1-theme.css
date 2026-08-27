@@ -84,7 +84,7 @@ body.template1 main h3 {
 
 body.template1 .columns-3-cols-container :is(h1, h2, h3),
 body.template1 .columns-3-cols > div > div :is(h2, h3) {
-  color: var(--t1-teal);
+  color: var(--theme-color);
 }
 
 body.template1 .home-map-container :is(h1, h2, h3),
@@ -146,7 +146,10 @@ body.template1 main .button-container {
 }
 
 body.template1 main a.button:any-link,
-body.template1 main a.button.primary:any-link {
+body.template1 main a.button.primary:any-link,
+body.template1 main .intro-copy a:any-link,
+body.template1 main .feature-copy a:any-link,
+body.template1 main .columns.feature a:any-link {
   border: 1px solid var(--theme-color);
   border-radius: 0;
   padding: 0.9em 2.2em;
@@ -162,7 +165,13 @@ body.template1 main a.button.primary:any-link {
 body.template1 main a.button:hover,
 body.template1 main a.button:focus-visible,
 body.template1 main a.button.primary:hover,
-body.template1 main a.button.primary:focus-visible {
+body.template1 main a.button.primary:focus-visible,
+body.template1 main .intro-copy a:any-link:hover,
+body.template1 main .intro-copy a:any-link:focus-visible,
+body.template1 main .feature-copy a:any-link:hover,
+body.template1 main .feature-copy a:any-link:focus-visible,
+body.template1 main .columns.feature a:any-link:hover,
+body.template1 main .columns.feature a:any-link:focus-visible {
   border-color: var(--theme-color);
   background-color: var(--theme-color);
   color: var(--t1-paper);
@@ -257,7 +266,7 @@ body.template1 .hero .hero-content a.button:focus-visible {
 body.template1 main .columns.split-list > div > div:first-child > :first-child,
 body.template1 main .columns.split-list > div > div:first-child :is(h1, h2, h3, h4) {
   margin: 0;
-  color: var(--t1-gold);
+  color: var(--theme-color);
   font-family: var(--t1-font-heading);
   font-weight: 600;
   letter-spacing: var(--t1-tracking-wide);
