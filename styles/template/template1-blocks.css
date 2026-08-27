@@ -452,7 +452,7 @@ main > .section.columns.intro-container {
 
 .mosaic-dialog {
   position: relative;
-  width: calc(100vw - 32px);
+  width: min(1100px, calc(100% - 32px));
   max-width: 1100px;
   max-height: calc(100dvh - 48px);
   padding: 40px 36px 28px;
@@ -610,7 +610,7 @@ main > .section.columns.intro-container {
   }
 
   .mosaic-dialog {
-    width: calc(100vw - 64px);
+    width: min(1100px, calc(100% - 64px));
     padding: 48px 56px 36px;
   }
 
@@ -1799,10 +1799,11 @@ body.template1 .hero {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  width: 100%;
   min-height: 70vh;
   overflow: hidden;
-  border-radius: 0% 0% 50% 50% / 0% 0% 6% 6%;
-  background-color: transparent;
+  border-radius: 0 0 50% 50% / 0 0 6% 6%;
+  background-color: var(--t1-teal-dark);
   color: var(--t1-paper);
   text-align: center;
   padding: 0;
@@ -1834,17 +1835,22 @@ body.template1 .hero.light .hero-media::after {
 }
 
 body.template1 .hero .hero-media picture,
-body.template1 .hero .hero-media img,
-body.template1 .hero .hero-media video {
+body.template1 .hero .hero-media img {
   display: block;
   width: 100%;
   height: 100%;
+  min-height: 70vh;
   object-fit: cover;
 }
 
 body.template1 .hero .hero-media video {
+  display: block;
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 70vh;
+  object-fit: cover;
   opacity: 0;
   transition: opacity 0.6s ease;
 }
@@ -1870,6 +1876,16 @@ body.template1 .hero .hero-content h2 {
   letter-spacing: var(--t1-tracking-wide);
 }
 
+body.template1 .hero .hero-content .headline-lead {
+  display: block;
+  font-weight: 300;
+}
+
+body.template1 .hero .hero-content .headline-tail {
+  display: block;
+  font-weight: 600;
+}
+
 body.template1 .hero.left .hero-content h1,
 body.template1 .hero.left .hero-content h2 {
   margin-inline: 0;
@@ -1889,6 +1905,12 @@ body.template1 .hero.left .hero-content p {
   body.template1 .hero {
     min-height: 88vh;
     align-items: center;
+  }
+
+  body.template1 .hero .hero-media picture,
+  body.template1 .hero .hero-media img,
+  body.template1 .hero .hero-media video {
+    min-height: 88vh;
   }
 
   body.template1 .hero.short {
@@ -2069,6 +2091,43 @@ body.template1 main > .section.carousel-container {
 body.template1 main > .section.accordion-container,
 body.template1 main > .section.columns-container:has(.accordion.media) {
   padding-block: var(--t1-section-padding);
+}
+
+/* icon benefit strip */
+body.template1 main > .section.icons-container {
+  padding-block: calc(var(--t1-section-padding) * 0.65);
+}
+
+body.template1 .cards.icon-row {
+  max-width: var(--t1-max-width);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+body.template1 .cards.icon-row > ul > li {
+  gap: 16px;
+}
+
+body.template1 .cards.icon-row .cards-card-body,
+body.template1 .cards.icon-row .cards-card-body :is(p, h2, h3, h4) {
+  color: var(--t1-teal);
+  font-family: var(--t1-font-heading);
+}
+
+/* columns flex must not fight the media accordion layout */
+body.template1 .columns.accordion.media > .accordion-header {
+  display: block;
+}
+
+body.template1 .columns.accordion.media > details.accordion-item {
+  display: block;
+  width: 100%;
+}
+
+@media (width >= 900px) {
+  body.template1 .cards.icon-row {
+    padding-inline: 32px;
+  }
 }
 
 body.template1 .columns.feature .feature-copy :is(h1, h2, h3, h4) {
