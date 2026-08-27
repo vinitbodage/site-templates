@@ -395,4 +395,10 @@ export default async function decorate(block) {
     const navEl = block.querySelector('nav');
     if (navEl) await mountThemePicker(navEl);
   }
+
+  const { default: decorateSiteHeader } = await import(
+    `${window.hlx.codeBasePath}/scripts/template/site-header.js`
+  );
+  await decorateSiteHeader(block);
+  
 }
