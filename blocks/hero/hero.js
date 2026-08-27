@@ -82,4 +82,8 @@ export default function decorate(block) {
   if (media.childElementCount || content.childElementCount) {
     block.replaceChildren(...[media, content].filter((el) => el.childElementCount));
   }
+
+  if (document.body.classList.contains('template1')) {
+    block.closest('main > .section')?.classList.add('hero-container');
+  }
 }

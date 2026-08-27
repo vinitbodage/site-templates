@@ -273,10 +273,15 @@ export function decorateFeature(block) {
   const heading = copy.querySelector('h1, h2, h3, h4');
   if (heading) {
     splitHeading(heading);
+    stackHeadingTail(heading);
     addRule(heading);
   }
 
   markCta(copy);
+
+  if (document.body.classList.contains('template1') && block.classList.contains('image-right')) {
+    block.classList.add('overlap');
+  }
 
   media.querySelectorAll('picture > img').forEach((img) => {
     optimizePicture(img, { width: '900' });

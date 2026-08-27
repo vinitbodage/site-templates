@@ -296,19 +296,26 @@ function createOptimizedPicture(
   return picture;
 }
 
+function normalizeTemplateName(name) {
+  const slug = toClassName(name);
+  if (slug === 'wgc') return 'template1';
+  return slug;
+}
+
 /**
  * Set template (page structure) and theme (page styles).
  */
 function decorateTemplateAndTheme() {
-  const addClasses = (element, classes) => {
-    classes.split(',').forEach((c) => {
-      element.classList.add(toClassName(c.trim()));
-    });
-  };
-  const template = getMetadata('template');
-  if (template) addClasses(document.body, template);
+  document.body.classList.remove('wgc');
+  const template = normalizeTemplateName(getMetadata('template'));
+  if (template) document.body.classList.add(template);
   const theme = getMetadata('theme');
-  if (theme) addClasses(document.body, theme);
+  if (theme) {
+    theme.split(',').forEach((c) => {
+      const slug = toClassName(c.trim());
+      if (slug) document.body.classList.add(slug);
+    });
+  }
 }
 
 /**
@@ -688,6 +695,7 @@ export {
   loadScript,
   loadSection,
   loadSections,
+  normalizeTemplateName,
   readBlockConfig,
   sampleRUM,
   setup,

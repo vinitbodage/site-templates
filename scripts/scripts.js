@@ -15,6 +15,7 @@ import {
   readBlockConfig,
   toClassName,
   toCamelCase,
+  normalizeTemplateName,
 } from './aem.js';
 import { applyTheme, getStoredTheme } from './template/theme.js';
 
@@ -82,7 +83,7 @@ async function loadFonts() {
  * Keeps template tokens out of pages built on a different template.
  */
 async function loadTemplateStyles() {
-  const template = toClassName(getMetadata('template'));
+  const template = normalizeTemplateName(getMetadata('template'));
   if (!template) return;
   try {
     await loadCSS(`${window.hlx.codeBasePath}/styles/template/${template}-theme.css`);
@@ -191,7 +192,8 @@ async function loadEager(doc) {
   doc.documentElement.lang = 'en';
   hydratePageMetadata(doc);
   decorateTemplateAndTheme();
-  if (document.body.classList.contains('template2') || document.body.classList.contains('template1')) {
+  const pageTemplate = normalizeTemplateName(getMetadata('template'));
+  if (pageTemplate === 'template2' || pageTemplate === 'template1') {
     applyTheme(getStoredTheme());
   }
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {

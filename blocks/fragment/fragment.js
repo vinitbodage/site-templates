@@ -21,9 +21,9 @@ function stripThemeOption(root) {
   if (!root) return;
   root.querySelectorAll(':scope > div').forEach((section) => {
     const blockName = section.querySelector(':scope > div > div')?.textContent?.trim().toLowerCase();
-    if (blockName === 'theme-option') section.remove();
+    if (blockName === 'theme-option' || blockName === 'book-now-modal') section.remove();
   });
-  root.querySelectorAll('.theme-option, .theme-option-wrap').forEach((el) => {
+  root.querySelectorAll('.theme-option, .theme-option-wrap, .book-now-modal').forEach((el) => {
     el.remove();
   });
 }

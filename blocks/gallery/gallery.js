@@ -35,6 +35,13 @@ function decorateGallery(block) {
 }
 
 export default function decorate(block) {
+  if (document.body.classList.contains('template1') && !block.classList.contains('mosaic')) {
+    const rows = getRows(block).filter((row) => !getCells(row).every(isEmpty));
+    if (rows.length >= 3) {
+      block.classList.add('mosaic');
+    }
+  }
+
   if (block.classList.contains('mosaic')) {
     decorateMosaic(block);
     return;
