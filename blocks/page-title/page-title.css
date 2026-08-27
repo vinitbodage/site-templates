@@ -1,0 +1,32 @@
+.page-title {
+  --block-loading-height: 72px;
+
+  text-align: center;
+}
+
+.page-title h1,
+.page-title h2,
+.page-title h3 {
+  margin: 0;
+}
+
+body.template4 .page-title h1,
+body.template4 .page-title h2,
+body.template4 .page-title h3 {
+  color: var(--t4-red);
+  font-family: var(--t4-font-body);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+body.template4 .page-title h1::after,
+body.template4 .page-title h2::after,
+body.template4 .page-title h3::after {
+  display: block;
+  width: 4.5em;
+  height: 2px;
+  margin: 0.55em auto 0;
+  background-color: var(--t4-red);
+  content: '';
+}

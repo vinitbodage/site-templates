@@ -1,0 +1,34 @@
+{
+  "definitions": [
+    {
+      "title": "Page Title",
+      "id": "page-title",
+      "model": "page-title",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "title", "selector": "div:nth-child(1)>div" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "page-title",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "title",
+          "value": "",
+          "label": "Title",
+          "description": "The inner-page heading. A short crimson rule is drawn beneath it."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

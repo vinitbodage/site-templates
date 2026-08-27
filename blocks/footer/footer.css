@@ -80,47 +80,67 @@ body.template2 footer .footer a:hover {
   }
 }
 
-/* stylelint-disable no-descending-specificity -- the hotel and Axalta looks are
-   mutually exclusive; they never match the same page. */
+/* stylelint-disable no-descending-specificity -- the hotel and Northline looks
+   are mutually exclusive; they never match the same page. */
 
 /*
- * Axalta footer — a #222 band holding a right-aligned social row, a five-column
- * sitemap, then the trademark line and the privacy link.
+ * Northline footer — a light mint panel with a teal top rule, three
+ * sentence-case columns, and a slim copyright strip. Not a dark sitemap.
  */
 body.template4 footer {
+  margin-top: 0;
+  border-top: 4px solid var(--t4-red);
   background-color: var(--t4-footer);
-  font-size: var(--body-font-size-xs);
+  font-size: var(--body-font-size-s);
 }
 
 body.template4 footer .footer {
-  background-color: var(--t4-footer);
+  background-color: transparent;
   color: var(--t4-footer-ink);
 }
 
-/* a descendant selector: fragment sections do not always land as children */
+body.template4 footer .footer > div {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
 body.template4 footer .footer .section {
   box-sizing: border-box;
   max-width: var(--t4-max-width);
   margin: 0 auto;
-  padding: 22px var(--t4-bleed);
+  padding: 40px var(--t4-bleed);
 }
 
-body.template4 footer .footer .section + .section {
-  border-top: 1px solid rgb(255 255 255 / 12%);
+body.template4 footer .footer .section:last-child {
+  border-top: 0;
+  padding-block: 16px 20px;
+  background-color: var(--t4-red-dark);
+  color: rgb(255 255 255 / 82%);
+  max-width: none;
+  text-align: center;
+  font-size: var(--body-font-size-xs);
+}
+
+body.template4 footer .footer .section:last-child p {
+  margin: 0;
+  max-width: var(--t4-max-width);
+  margin-inline: auto;
+  padding-inline: var(--t4-bleed);
 }
 
 body.template4 footer .footer h3 {
   margin: 0 0 12px;
-  color: var(--t4-footer-ink);
-  font-size: var(--body-font-size-xs);
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  color: var(--t4-ink);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 body.template4 footer .footer p {
-  margin: 0 0 6px;
-  line-height: 1.6;
+  margin: 0 0 8px;
+  line-height: 1.65;
 }
 
 body.template4 footer .footer ul {
@@ -129,58 +149,35 @@ body.template4 footer .footer ul {
   list-style: none;
 }
 
-body.template4 footer .footer ul + ul {
-  margin-top: 22px;
-}
-
 body.template4 footer .footer li {
-  margin-bottom: 7px;
-}
-
-body.template4 footer .footer strong {
-  color: var(--t4-paper);
-  font-weight: 700;
+  margin-bottom: 8px;
 }
 
 body.template4 footer .footer a:any-link {
-  color: var(--t4-footer-ink);
+  color: var(--t4-red-dark);
   text-decoration: none;
 }
 
 body.template4 footer .footer a:hover {
-  color: var(--t4-paper);
+  color: var(--t4-red);
   text-decoration: underline;
 }
 
-/* the sitemap is a grid, so it pairs up on tablets instead of running as one
-   very long single column */
+body.template4 footer .footer .section:last-child a:any-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
 body.template4 footer .footer .columns > div {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--t4-gap);
+  gap: 28px;
+  align-items: start;
 }
 
-body.template4 footer .footer .section.social {
-  text-align: right;
-}
-
-body.template4 footer .footer .section.legal a:any-link {
-  text-decoration: underline;
-}
-
-body.template4 footer .footer .section.centered {
-  text-align: center;
-}
-
-@media (width >= 600px) {
+@media (width >= 700px) {
   body.template4 footer .footer .columns > div {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (width >= 900px) {
-  body.template4 footer .footer .columns > div {
-    grid-template-columns: repeat(5, 1fr);
-    align-items: start;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
   }
 }

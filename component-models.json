@@ -58,6 +58,14 @@
             "value": "full-bleed"
           },
           {
+            "name": "Has Sidebar",
+            "value": "has-sidebar"
+          },
+          {
+            "name": "Breadcrumb Bar",
+            "value": "breadcrumb-bar"
+          },
+          {
             "name": "Newsroom",
             "value": "newsroom"
           },
@@ -95,6 +103,45 @@
         "label": "Text",
         "valueType": "string",
         "required": true
+      }
+    ]
+  },
+  {
+    "id": "breadcrumb-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "text",
+        "value": "",
+        "label": "Crumb",
+        "description": "Link ancestor pages. Leave the last crumb unlinked — it is the current page."
+      }
+    ]
+  },
+  {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Variant",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Two columns",
+            "value": "two-cols"
+          },
+          {
+            "name": "Left-aligned CTAs",
+            "value": "left"
+          }
+        ]
       }
     ]
   },
@@ -512,6 +559,19 @@
     ]
   },
   {
+    "id": "page-title",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "description": "The inner-page heading. A short crimson rule is drawn beneath it."
+      }
+    ]
+  },
+  {
     "id": "quote",
     "fields": [
       {
@@ -579,6 +639,27 @@
     ]
   },
   {
+    "id": "side-nav-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "label",
+        "value": "",
+        "label": "Section label",
+        "description": "Parent label. Link it when the section has its own landing page."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "children",
+        "value": "",
+        "label": "Nested links",
+        "description": "A bullet list of child pages. The group that matches the current URL opens automatically."
+      }
+    ]
+  },
+  {
     "id": "table",
     "fields": [
       {
@@ -637,6 +718,41 @@
         "name": "posterImage",
         "label": "Poster Image",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "video-slider",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Background Image",
+        "description": "Still image behind the headline. Also the poster/fallback shown to reduced-motion visitors and while the video loads.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Background Image Alt"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "video",
+        "label": "Background Video (optional)",
+        "description": "Link to an .mp4 or .webm. Always muted, autoplayed and looped with no controls; fades in over the image once it can play."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "required": true,
+        "description": "Headline (required), optional short copy, and an optional CTA button."
       }
     ]
   }
