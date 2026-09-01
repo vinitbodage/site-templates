@@ -193,8 +193,18 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
+  await loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
+
+  if (
+    doc.querySelector('.book-now, [data-book-now], .book-now-modal')
+    || window.location.hash === '#book-now-modal'
+  ) {
+    const { bindBookNowTriggers } = await import(
+      `${window.hlx.codeBasePath}/blocks/book-now-modal/book-now-modal.js`
+    );
+    bindBookNowTriggers(doc);
+  }
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
