@@ -1,0 +1,338 @@
+body.book-now-open {
+    overflow: hidden;
+  }
+  
+  .book-now-modal-config {
+    display: none;
+  }
+  
+  /* full-viewport overlay — scroll lives on the scene edge */
+  .book-now-dialog {
+    overscroll-behavior: none;
+    overflow: hidden;
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--book-now-text, var(--brand-paper, #fff));
+    font-family: var(--book-now-font, montserrat, sans-serif);
+  }
+  
+  .book-now-dialog::backdrop {
+    background: transparent;
+  }
+  
+  .book-now-scene {
+    position: relative;
+    overflow: hidden auto;
+    width: 100%;
+    height: 100dvh;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .book-now-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: var(--brand-teal-dark, #38525d);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgb(217 185 65 / 12%) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 20% 20%, rgb(255 255 255 / 8%) 0%, transparent 45%),
+      linear-gradient(160deg, var(--brand-teal-dark, #38525d) 0%, var(--brand-teal, #3d717f) 55%, var(--brand-teal-muted, #56757e) 100%);
+    pointer-events: none;
+  }
+
+  .book-now-backdrop::after {
+    position: absolute;
+    inset: 0;
+    background: rgb(61 113 127 / 20%);
+    content: '';
+  }
+  
+  /* close — fixed top right */
+  .book-now-close {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    border: 0;
+    padding: 8px 0;
+    background: transparent;
+    color: var(--book-now-text, #fff);
+    font-family: inherit;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    cursor: pointer;
+  }
+  
+  .book-now-close-x {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+  
+  .book-now-close:hover,
+  .book-now-close:focus {
+    background: transparent;
+  }
+
+  .book-now-close:focus-visible {
+    outline: 2px solid var(--book-now-text, #fff);
+    outline-offset: 4px;
+  }
+  
+  /* centred content — no inner scroll; scene scrolls at viewport edge */
+  .book-now-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding: 75px 32px 48px;
+  }
+  
+  .book-now-content h2 {
+    margin: 0 0 60px;
+    color: var(--book-now-text, #fff);
+    font-family: inherit;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  /* date rows — label left, date centred */
+  .book-now-dates {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto 48px;
+  }
+  
+  .book-now-date-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: end;
+    gap: 16px;
+    margin-bottom: 0;
+    padding: 24px 0 20px;
+    border-bottom: 1px solid var(--book-now-border, rgb(255 255 255 / 60%));
+    cursor: pointer;
+  }
+  
+  .book-now-date-row:first-child {
+    margin-bottom: 20px;
+  }
+  
+  .book-now-date-row:last-child {
+    margin-bottom: 40px;
+  }
+  
+  .book-now-date-row:focus-visible {
+    outline: 2px solid var(--book-now-text, #fff);
+    outline-offset: 4px;
+  }
+  
+  .book-now-date-row label {
+    grid-column: 1;
+    justify-self: start;
+    color: var(--book-now-text, #fff);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: var(--brand-tracking-wide, 0.08em);
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  
+  .book-now-date-display {
+    grid-column: 2;
+    justify-self: center;
+    color: var(--book-now-text, #fff);
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-align: center;
+    pointer-events: none;
+  }
+  
+  .book-now-date-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  
+  /* occupancy row — adults, kids, rooms, promo */
+  .book-now-occupancy {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+    margin-bottom: 40px;
+  }
+  
+  @media (width >= 600px) {
+    .book-now-occupancy {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .book-now-occupancy-field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--book-now-border, rgb(255 255 255 / 60%));
+  }
+  
+  .book-now-occupancy-field label {
+    color: var(--book-now-text, #fff);
+    font-size: var(--body-font-size-xs, 0.75rem);
+    font-weight: 400;
+    letter-spacing: var(--brand-tracking-wide, 0.08em);
+    text-transform: uppercase;
+  }
+  
+  .book-now-occupancy-field select,
+  .book-now-promo-field input {
+    appearance: none;
+    width: 100%;
+    border: 0;
+    padding: 0 20px 0 0;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right center;
+    color: var(--book-now-text, #fff);
+    font-family: inherit;
+    font-size: var(--body-font-size-s, 0.875rem);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  
+  .book-now-promo-field input {
+    background: none;
+    text-transform: none;
+  }
+  
+  .book-now-occupancy-field select:focus-visible,
+  .book-now-promo-field input:focus-visible {
+    outline: 2px solid var(--book-now-text, #fff);
+    outline-offset: 4px;
+  }
+  
+  .book-now-occupancy-field select option {
+    color: var(--brand-ink, #282829);
+  }
+  
+  .field-error {
+    display: block;
+    margin-top: 4px;
+    color: #ffb4b4;
+    font-size: var(--body-font-size-xs, 0.75rem);
+  }
+  
+  .book-now-date-row:has([aria-invalid='true']) {
+    border-bottom-color: #ffb4b4;
+  }
+  
+  .book-now-occupancy-field select[aria-invalid='true'] {
+    border-bottom-color: #ffb4b4;
+  }
+  
+  /* submit */
+  .book-now-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  
+  .book-now-submit {
+    min-width: 240px;
+    margin: 0;
+    border: 1px solid var(--book-now-text, #fff);
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--book-now-text, #fff);
+    font-family: inherit;
+    font-size: var(--body-font-size-xs, 0.75rem);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .book-now-submit:hover,
+  .book-now-submit:focus-visible {
+    background-color: var(--book-now-text, #fff);
+    color: var(--brand-teal-dark, #38525d);
+    outline: none;
+  }
+  
+  /* footer note */
+  .book-now-footer-note {
+    margin: 0;
+    color: var(--book-now-text, #fff);
+    font-size: var(--body-font-size-xs, 0.75rem);
+    letter-spacing: 0.03em;
+    text-align: center;
+  }
+  
+  .book-now-footer-note a:any-link {
+    color: var(--book-now-text, #fff);
+    text-decoration: underline;
+  }
+  
+  .book-now-footer-note a:hover,
+  .book-now-footer-note a:focus-visible {
+    color: var(--book-now-text, #fff);
+    font-weight: 700;
+    text-decoration: underline;
+  }
+  
+  .book-now-footer-note span {
+    margin-inline: 8px;
+    opacity: 0.6;
+  }
+  
+  @media (width >= 900px) {
+    .book-now-content {
+      padding-inline: 48px;
+    }
+  
+    .book-now-close {
+      top: 32px;
+      right: 48px;
+    }
+  }
+  
+  @media (width < 600px) {
+    .book-now-footer-note span {
+      display: none;
+    }
+  
+    .book-now-footer-note {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
