@@ -149,6 +149,27 @@
     ]
   },
   {
+    "id": "contact",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "details",
+        "value": "",
+        "label": "Contact Details",
+        "description": "Heading plus address, phone, email, and hours. A contact form is added automatically."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "map",
+        "value": "",
+        "label": "Map",
+        "description": "Paste a Google Maps embed link, or add a static map image instead."
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
@@ -165,7 +186,11 @@
     ]
   },
   {
-    "id": "hero",
+    "id": "gallery",
+    "fields": []
+  },
+  {
+    "id": "gallery-image",
     "fields": [
       {
         "component": "reference",
@@ -178,15 +203,199 @@
         "component": "text",
         "valueType": "string",
         "name": "imageAlt",
-        "label": "Alt",
-        "value": ""
+        "label": "Image Alt",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Background Image",
+        "description": "Still image behind the headline. Also used as the video poster.",
+        "multi": false
       },
       {
         "component": "text",
-        "name": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Background Image Alt",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "video",
+        "label": "Background Video (optional)",
+        "description": "Link to an .mp4 or .webm. Fades in over the image once it can play."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
         "value": "",
-        "label": "Text",
-        "valueType": "string"
+        "label": "Content",
+        "description": "Headline, optional intro copy, and an optional call to action. Italicise the opening words of the headline to render them as the lighter lead line."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Size",
+        "value": "",
+        "options": [
+          {
+            "name": "Full (home banner)",
+            "value": ""
+          },
+          {
+            "name": "Compact (inner page header)",
+            "value": "compact"
+          },
+          {
+            "name": "Short",
+            "value": "short"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "home-map",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading, inset hotel photo, body copy, and Explore call to action. Italicise the opening words of the heading for the lighter lead line."
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "pin",
+        "label": "Map Pin Image",
+        "description": "Optional pin graphic overlaid on the map background.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "pinAlt",
+        "label": "Map Pin Alt",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "home-room-dine-spa",
+    "fields": []
+  },
+  {
+    "id": "home-room-dine-spa-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading and call to action. Italicise the opening words of the heading for the lighter lead line. Put the copy cell before the image cell to render copy above the image."
+      }
+    ]
+  },
+  {
+    "id": "icons",
+    "fields": []
+  },
+  {
+    "id": "icon-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "description": "SVG or small raster image. SVGs are delivered untouched.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "iconAlt",
+        "label": "Icon Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "label",
+        "value": "",
+        "label": "Label",
+        "description": "Short benefit label. Add a link to make the benefit clickable."
+      }
+    ]
+  },
+  {
+    "id": "intro",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Heading, body copy, and an optional call to action. Italicise the opening words of the heading to render them as the lighter lead line."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Image Position",
+        "value": "",
+        "options": [
+          {
+            "name": "Image left",
+            "value": ""
+          },
+          {
+            "name": "Image right",
+            "value": "image-right"
+          }
+        ]
       }
     ]
   },
@@ -227,6 +436,37 @@
     ]
   },
   {
+    "id": "services",
+    "fields": []
+  },
+  {
+    "id": "service",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "value": "",
+        "label": "Content",
+        "description": "Service heading, short description, and an optional 'Learn more' link."
+      }
+    ]
+  },
+  {
     "id": "table",
     "fields": [
       {
@@ -251,178 +491,6 @@
         "name": "content",
         "label": "Content",
         "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "template2-contact",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "details",
-        "value": "",
-        "label": "Contact Details",
-        "description": "Heading plus address, phone, email, and hours. A contact form is added automatically."
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "map",
-        "value": "",
-        "label": "Map",
-        "description": "Paste a Google Maps embed link, or add a static map image instead."
-      }
-    ]
-  },
-  {
-    "id": "template2-hero",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Background Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Background Image Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Headline, optional intro copy, and an optional call to action. Italicise the opening words of the headline to render them as the amber lead line."
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Size",
-        "value": "",
-        "options": [
-          {
-            "name": "Full (home banner)",
-            "value": ""
-          },
-          {
-            "name": "Compact (inner page header)",
-            "value": "compact"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "template2-icons",
-    "fields": []
-  },
-  {
-    "id": "template2-icon",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "icon",
-        "label": "Icon",
-        "description": "SVG or small raster image. SVGs are delivered untouched.",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "iconAlt",
-        "label": "Icon Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "label",
-        "value": "",
-        "label": "Label",
-        "description": "Short benefit or amenity label. Add a link to make the item clickable."
-      }
-    ]
-  },
-  {
-    "id": "template2-intro",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Heading, body copy, and an optional call to action. Italicise the opening words of the heading to render them as the amber lead line."
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Image Position",
-        "value": "",
-        "options": [
-          {
-            "name": "Image left",
-            "value": ""
-          },
-          {
-            "name": "Image right",
-            "value": "image-right"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "template2-services",
-    "fields": []
-  },
-  {
-    "id": "template2-service",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Service heading, short description, and an optional 'Learn more' link."
       }
     ]
   },
@@ -453,230 +521,6 @@
         "name": "posterImage",
         "label": "Poster Image",
         "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "wgc-columns",
-    "fields": []
-  },
-  {
-    "id": "wgc-column",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "body",
-        "value": "",
-        "label": "Body",
-        "description": "Column heading, copy, and an optional call to action."
-      }
-    ]
-  },
-  {
-    "id": "wgc-gallery",
-    "fields": []
-  },
-  {
-    "id": "wgc-gallery-image",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      }
-    ]
-  },
-  {
-    "id": "wgc-hero",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Background Image",
-        "description": "Still image behind the headline. Also used as the video poster.",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Background Image Alt",
-        "multi": false
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "video",
-        "label": "Background Video (optional)",
-        "description": "Link to an .mp4 or .webm. Fades in over the image once it can play."
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Headline, optional intro copy, and an optional call to action. Italicise the opening words of the headline to render them as the lighter lead line."
-      }
-    ]
-  },
-  {
-    "id": "wgc-home-map",
-    "fields": [
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Heading, inset hotel photo, body copy, and Explore call to action. Italicise the opening words of the heading for the lighter lead line."
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "pin",
-        "label": "Map Pin Image",
-        "description": "Optional pin graphic overlaid on the map background.",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "pinAlt",
-        "label": "Map Pin Alt",
-        "multi": false
-      }
-    ]
-  },
-  {
-    "id": "wgc-home-room-dine-spa",
-    "fields": []
-  },
-  {
-    "id": "wgc-rds-item",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Heading and call to action. Italicise the opening words of the heading for the lighter lead line. Put the copy cell before the image cell to render copy above the image."
-      }
-    ]
-  },
-  {
-    "id": "wgc-icons",
-    "fields": []
-  },
-  {
-    "id": "wgc-icon",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "icon",
-        "label": "Icon",
-        "description": "SVG or small raster image. SVGs are delivered untouched.",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "iconAlt",
-        "label": "Icon Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "label",
-        "value": "",
-        "label": "Label",
-        "description": "Short benefit label. Add a link to make the benefit clickable."
-      }
-    ]
-  },
-  {
-    "id": "wgc-intro",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Image Alt",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Content",
-        "description": "Heading, body copy, and an optional call to action. Italicise the opening words of the heading to render them as the lighter lead line."
-      },
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "classes",
-        "label": "Image Position",
-        "value": "",
-        "options": [
-          {
-            "name": "Image left",
-            "value": ""
-          },
-          {
-            "name": "Image right",
-            "value": "image-right"
-          }
-        ]
       }
     ]
   },
@@ -753,5 +597,7 @@
         "description": "Optional links and text below the submit button."
       }
     ]
+    "id": "theme-picker",
+    "fields": []
   }
 ]

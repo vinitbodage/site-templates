@@ -1,0 +1,89 @@
+.home-room-dine-spa .home-room-dine-spa-list {
+  display: grid;
+  gap: var(--t2-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-room-dine-spa .home-room-dine-spa-list > li {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-room-dine-spa .home-room-dine-spa-media picture,
+.home-room-dine-spa .home-room-dine-spa-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.home-room-dine-spa .home-room-dine-spa-copy {
+  padding-top: 24px;
+}
+
+.home-room-dine-spa .home-room-dine-spa-copy h2,
+.home-room-dine-spa .home-room-dine-spa-copy h3 {
+  margin: 0 0 16px;
+  color: var(--t2-accent);
+  font-size: var(--heading-font-size-m);
+  line-height: 1.3;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: var(--t2-tracking-wide);
+}
+
+.home-room-dine-spa .home-room-dine-spa-copy .headline-lead {
+  display: block;
+  font-size: var(--heading-font-size-s);
+  font-weight: 300;
+}
+
+.home-room-dine-spa .home-room-dine-spa-copy .button-container {
+  margin-top: 8px;
+}
+
+/* centre pillar on the source site leads with copy, then the image */
+.home-room-dine-spa .home-room-dine-spa-list > li.copy-first {
+  flex-direction: column-reverse;
+}
+
+.home-room-dine-spa .home-room-dine-spa-list > li.copy-first .home-room-dine-spa-copy {
+  padding-top: 0;
+  padding-bottom: 24px;
+}
+
+@media (width >= 900px) {
+  .home-room-dine-spa {
+    padding-block: var(--t2-section-padding);
+  }
+
+  .home-room-dine-spa .home-room-dine-spa-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .home-room-dine-spa .home-room-dine-spa-list > li {
+    padding-inline: 12px;
+  }
+
+  .home-room-dine-spa .home-room-dine-spa-list > li:first-child {
+    padding-left: 0;
+  }
+
+  .home-room-dine-spa .home-room-dine-spa-list > li:last-child {
+    padding-right: 0;
+  }
+
+  .home-room-dine-spa .home-room-dine-spa-media picture,
+  .home-room-dine-spa .home-room-dine-spa-media img {
+    aspect-ratio: 4 / 5;
+  }
+
+  .home-room-dine-spa .home-room-dine-spa-copy h2,
+  .home-room-dine-spa .home-room-dine-spa-copy h3 {
+    font-size: var(--heading-font-size-l);
+  }
+}

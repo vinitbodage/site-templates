@@ -1,0 +1,77 @@
+.gallery .gallery-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gallery .gallery-list > li {
+  position: relative;
+  flex: 1 1 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.gallery .gallery-list > li > a {
+  display: block;
+  height: 100%;
+}
+
+.gallery picture,
+.gallery img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.gallery a:hover img,
+.gallery a:focus-visible img {
+  transform: scale(1.04);
+}
+
+/*
+ * Above the fold of the mosaic the source design pairs a wide image with a
+ * narrow one and flips the ratio on the second row. Each pair sums to 100%
+ * once the flex gap is accounted for, so the rows stay flush with no dead space.
+ */
+@media (width >= 900px) {
+  .gallery .gallery-list {
+    gap: 20px;
+  }
+
+  .gallery .gallery-list > li {
+    height: 300px;
+  }
+
+  .gallery .gallery-list > li:nth-child(4n + 1) {
+    flex: 0 0 calc(58% - 20px);
+  }
+
+  .gallery .gallery-list > li:nth-child(4n + 2) {
+    flex: 0 0 42%;
+  }
+
+  .gallery .gallery-list > li:nth-child(4n + 3) {
+    flex: 0 0 calc(33% - 20px);
+  }
+
+  .gallery .gallery-list > li:nth-child(4n) {
+    flex: 0 0 67%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery picture,
+  .gallery img {
+    transition: none;
+  }
+
+  .gallery a:hover img,
+  .gallery a:focus-visible img {
+    transform: none;
+  }
+}

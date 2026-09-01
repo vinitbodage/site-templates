@@ -322,3 +322,372 @@ header .breadcrumbs ol li[aria-current] {
     padding: 0 32px;
   }
 }
+
+/* stylelint-disable no-descending-specificity -- branded header and the
+   boilerplate header are mutually exclusive; they never match the same page. */
+
+/* branded header — overrides boilerplate layout */
+body.template2 header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: var(--t2-header-height);
+}
+
+body.template2 header .nav-wrapper {
+  position: static;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: var(--t2-navy);
+  transition: box-shadow 0.3s ease;
+}
+
+body.template2 header.header-scrolled .nav-wrapper {
+  box-shadow: 0 2px 14px rgb(13 24 38 / 25%);
+}
+
+body.template2 header nav {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--t2-max-width, 1240px);
+  height: var(--t2-header-height);
+  margin: 0 auto;
+  padding: 0;
+  color: var(--t2-paper);
+  font-family: var(--t2-font-body);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+body.template2 header .nav-brand {
+  display: flex;
+  grid-area: brand;
+  flex: 0 0 auto;
+  align-items: center;
+  max-width: 55%;
+  height: 100%;
+  padding-left: 24px;
+  overflow: hidden;
+}
+
+body.template2 header .nav-brand img {
+  display: block;
+  width: auto;
+  max-width: 200px;
+  height: auto;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+body.template2 header .nav-brand p {
+  margin: 0;
+}
+
+body.template2 header nav a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+body.template2 header nav a:any-link:hover {
+  color: var(--t2-amber);
+}
+
+body.template2 header .nav-brand a:any-link,
+body.template2 header .nav-brand a:hover {
+  color: var(--t2-paper);
+  font-family: var(--t2-font-heading);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+body.template2 header .nav-sections {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+
+@media (width >= 900px) {
+  body.template2 header .nav-sections {
+    visibility: visible;
+  }
+}
+
+body.template2 header .nav-sections ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+body.template2 header .nav-sections .default-content-wrapper > ul > li {
+  position: relative;
+  padding: 8px 14px;
+}
+
+body.template2 header .nav-sections .default-content-wrapper > ul > li > ul {
+  border-radius: 4px;
+  background-color: var(--t2-navy-dark);
+  padding: 12px 0;
+}
+
+body.template2 header .nav-sections .default-content-wrapper > ul > li > ul::before {
+  border-bottom-color: var(--t2-navy-dark);
+}
+
+body.template2 header .nav-sections .default-content-wrapper > ul > li > ul > li {
+  padding: 6px 20px;
+}
+
+body.template2 header .nav-sections .default-content-wrapper > ul > li > ul a:any-link {
+  color: var(--t2-paper);
+  font-weight: 400;
+}
+
+body.template2 header nav > .section:not(.nav-brand, .nav-sections, .nav-tools) {
+  display: none;
+}
+
+body.template2 header .nav-tools {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+}
+
+body.template2 header .theme-picker-wrapper {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  align-self: stretch;
+  padding-right: 20px;
+}
+
+body.template2 header .theme-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+body.template2 header .theme-picker-toggle {
+  min-width: 0;
+  min-height: 0;
+  padding: 2px;
+  border: 0;
+  background-color: transparent;
+  color: var(--t2-paper);
+  box-shadow: none;
+}
+
+body.template2 header .theme-picker-toggle:hover,
+body.template2 header .theme-picker-toggle:focus-visible {
+  border: 0;
+  background-color: transparent;
+  color: var(--t2-paper);
+  opacity: 0.85;
+}
+
+body.template2 header .theme-picker-toggle .icon {
+  width: 24px;
+  height: 24px;
+}
+
+body.template2 header .theme-picker-active {
+  right: -1px;
+  bottom: -1px;
+  width: 11px;
+  height: 11px;
+  border-color: var(--t2-navy);
+}
+
+body.template2 header .theme-picker-menu {
+  z-index: 200;
+}
+
+body.template2 header .nav-tools .default-content-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+body.template2 header .nav-tools p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+body.template2 header .nav-tools p:not(.book-wrap) {
+  display: none;
+  padding-right: 20px;
+  font-weight: 500;
+}
+
+@media (width >= 1100px) {
+  body.template2 header .nav-tools p:not(.book-wrap) {
+    display: flex;
+  }
+}
+
+body.template2 header .book-wrap {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding-right: 12px;
+}
+
+body.template2 header .book-now:any-link {
+  border-radius: 999px;
+  padding: 0.7em 1.6em;
+  background-color: var(--t2-amber);
+  color: var(--t2-navy-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+body.template2 header .book-now:hover,
+body.template2 header .book-now:focus-visible {
+  background-color: var(--t2-amber-dark);
+  color: var(--t2-navy-dark);
+  text-decoration: none;
+}
+
+body.template2 header nav .nav-hamburger {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+body.template2 header nav .nav-hamburger button {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  line-height: 1;
+}
+
+@media (width >= 900px) {
+  body.template2 header nav .nav-hamburger {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+@media (width < 900px) {
+  body.template2 header nav[aria-expanded='true'] {
+    display: grid;
+    grid-template:
+      'hamburger brand' var(--t2-header-height)
+      'sections sections' 1fr
+      'tools tools' auto / auto 1fr;
+    align-items: center;
+    gap: 0;
+    min-height: 100dvh;
+    padding: 0 16px 24px;
+    overflow-y: auto;
+  }
+
+  body.template2 header nav[aria-expanded='true'] .nav-sections {
+    grid-area: sections;
+    align-self: start;
+    width: 100%;
+    padding-top: 16px;
+    visibility: visible;
+  }
+
+  body.template2 header nav[aria-expanded='true'] .nav-sections ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    white-space: normal;
+  }
+
+  body.template2 header nav[aria-expanded='true'] .theme-picker-wrapper {
+    padding-right: 0;
+    justify-content: flex-end;
+  }
+
+  body.template2 header nav[aria-expanded='true'] .nav-tools {
+    grid-area: tools;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    padding-top: 16px;
+  }
+
+  body.template2 header nav[aria-expanded='true'] .book-wrap {
+    padding-right: 0;
+  }
+
+  body.template2 header nav[aria-expanded='true'] .book-now:any-link {
+    width: 100%;
+    text-align: center;
+  }
+
+  body.template2 header nav:not([aria-expanded='true']) .nav-sections {
+    display: none;
+  }
+
+  body.template2 header nav:not([aria-expanded='true']) .nav-brand {
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 0;
+    max-width: none;
+    padding-left: 0;
+  }
+
+  body.template2 header nav:not([aria-expanded='true']) .nav-brand a:any-link {
+    overflow: hidden;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  body.template2 header nav:not([aria-expanded='true']) .nav-tools {
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  body.template2 header nav:not([aria-expanded='true']) .book-wrap {
+    display: flex;
+    padding-right: 8px;
+  }
+
+  body.template2 header nav:not([aria-expanded='true']) .theme-picker-wrapper {
+    padding-right: 12px;
+  }
+
+  body.template2 header nav:not([aria-expanded='true']) .theme-picker-toggle .icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  body.template2 header nav:not([aria-expanded='true']) .book-now:any-link {
+    padding: 0.6em 1.1em;
+    font-size: 11px;
+  }
+}

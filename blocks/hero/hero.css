@@ -3,20 +3,24 @@
   padding: 0;
 }
 
-.hero {
+/* stylelint-disable no-descending-specificity -- the branded hero and the
+   boilerplate hero are mutually exclusive; they never match the same page. */
+
+/* boilerplate hero — used on pages that do not load a branded template */
+body:not(.template2) .hero {
   position: relative;
   padding: 40px 24px;
   min-height: 300px;
 }
 
-.hero h1 {
+body:not(.template2) .hero h1 {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   color: var(--background-color);
 }
 
-.hero picture {
+body:not(.template2) .hero picture {
   position: absolute;
   z-index: -1;
   inset: 0;
@@ -24,14 +28,172 @@
   box-sizing: border-box;
 }
 
-.hero img {
+body:not(.template2) .hero img {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
 @media (width >= 900px) {
-  .hero {
+  body:not(.template2) .hero {
     padding: 40px 32px;
+  }
+}
+
+/* shared media/content layers used by branded templates */
+.hero .hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.hero .hero-media::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+}
+
+.hero .hero-media picture,
+.hero .hero-media img,
+.hero .hero-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero .hero-media video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.hero .hero-media video[data-ready='true'] {
+  opacity: 1;
+}
+
+.hero .hero-content {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  padding: var(--t2-section-padding, 48px) 24px;
+}
+
+.hero .hero-content h1,
+.hero .hero-content h2 {
+  margin: 0 auto;
+  color: inherit;
+}
+
+.hero .hero-content p {
+  margin: 1em auto 0;
+  max-width: 52ch;
+  font-size: var(--body-font-size-s);
+}
+
+body.template2 .hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  overflow: hidden;
+  background-color: var(--t2-navy-dark);
+  color: var(--t2-paper);
+  text-align: center;
+}
+
+body.template2 .hero.compact {
+  min-height: 32vh;
+}
+
+body.template2 .hero .hero-media::after {
+  background-color: var(--t2-overlay);
+}
+
+body.template2 .hero .hero-content {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  max-width: var(--t2-max-width);
+  padding: var(--t2-section-padding) 24px;
+  overflow-wrap: break-word;
+}
+
+body.template2 .hero .hero-content h1,
+body.template2 .hero .hero-content h2 {
+  max-width: 100%;
+  color: var(--t2-paper);
+  font-size: var(--heading-font-size-xl);
+}
+
+body.template2 .hero .hero-content p {
+  max-width: 100%;
+}
+
+body.template2 .hero.compact .hero-content {
+  padding-block: 40px;
+}
+
+body.template2 .hero.compact .hero-content h1,
+body.template2 .hero.compact .hero-content h2 {
+  font-size: var(--heading-font-size-l);
+}
+
+body.template2 .hero.short {
+  min-height: 45vh;
+}
+
+body.template2 .hero.left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+body.template2 .hero.left .hero-content h1,
+body.template2 .hero.left .hero-content h2,
+body.template2 .hero.left .hero-content p {
+  margin-inline: 0;
+}
+
+body.template2 .hero.light .hero-media::after {
+  background-color: rgb(255 255 255 / 15%);
+}
+
+@media (width >= 900px) {
+  body.template2 .hero {
+    min-height: 78vh;
+  }
+
+  body.template2 .hero.compact {
+    min-height: 38vh;
+  }
+
+  body.template2 .hero .hero-content {
+    padding-inline: 32px;
+  }
+
+  body.template2 .hero .hero-content h1,
+  body.template2 .hero .hero-content h2 {
+    max-width: 22ch;
+    font-size: var(--heading-font-size-xxl);
+  }
+
+  body.template2 .hero .hero-content p {
+    max-width: 52ch;
+  }
+
+  body.template2 .hero.compact .hero-content h1,
+  body.template2 .hero.compact .hero-content h2 {
+    font-size: var(--heading-font-size-xl);
+  }
+
+  body.template2 .hero.short {
+    min-height: 55vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero-media video {
+    display: none;
   }
 }

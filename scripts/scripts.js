@@ -16,6 +16,43 @@ import {
   toClassName,
   toCamelCase,
 } from './aem.js';
+import { applyTheme, getStoredTheme } from './template/theme.js';
+
+/** Origin for da.live NX assets loaded by sidekick and preview tooling. */
+export const NX_ORIGIN = 'https://da.live/nx';
+
+/**
+ * Authored pages that still use the old prefixed block names
+ * (`template2-hero`, `wgc-intro`, …) are rewritten to the unprefixed folders
+ * so those blocks load. The first class token must stay the block name.
+ */
+const LEGACY_BLOCK_NAMES = {
+  'template2-hero': 'hero',
+  'template2-intro': 'intro',
+  'template2-icons': 'icons',
+  'template2-services': 'services',
+  'template2-contact': 'contact',
+  'wgc-hero': 'hero',
+  'wgc-intro': 'intro',
+  'wgc-icons': 'icons',
+  'wgc-columns': 'columns',
+  'wgc-gallery': 'gallery',
+  'wgc-home-map': 'home-map',
+  'wgc-home-room-dine-spa': 'home-room-dine-spa',
+};
+
+/**
+ * Rewrites leftover prefixed block class names to the current folders.
+ * @param {Element} main The container element
+ */
+function remapLegacyBlockNames(main) {
+  Object.entries(LEGACY_BLOCK_NAMES).forEach(([from, to]) => {
+    main.querySelectorAll(`.${from}`).forEach((el) => {
+      const rest = [...el.classList].filter((name) => name !== from && name !== to);
+      el.className = [to, ...rest].join(' ');
+    });
+  });
+}
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -45,17 +82,14 @@ async function loadFonts() {
 }
 
 /**
- * Loads the stylesheet for the page's template, when the template ships one.
- * Keeps template tokens out of pages built on a different template.
+ * Loads the branded theme for any page that sets `template` metadata.
+ * One stylesheet (`template-theme.css`) owns the tokens every block reads.
  */
 async function loadTemplateStyles() {
   const template = toClassName(getMetadata('template'));
   if (!template) return;
-  try {
-    await loadCSS(`${window.hlx.codeBasePath}/styles/template/${template}-theme.css`);
-  } catch (e) {
-    // this template ships no stylesheet of its own
-  }
+  document.body.classList.add(template);
+  await loadCSS(`${window.hlx.codeBasePath}/styles/template/template-theme.css`);
 }
 
 function autolinkModals(doc) {
@@ -76,7 +110,7 @@ function autolinkModals(doc) {
 function buildAutoBlocks(main) {
   try {
     // template pages author their own hero, so only plain documents get one built
-    if (!main.querySelector('.hero, .wgc-hero, .template2-hero')) buildHeroBlock(main);
+    if (!main.querySelector('.hero')) buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -144,6 +178,7 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
+  remapLegacyBlockNames(main);
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
@@ -156,6 +191,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   doc.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  applyTheme(getStoredTheme());
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     doc.body.dataset.breadcrumbs = true;
   }

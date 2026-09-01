@@ -17,25 +17,21 @@
       "form",
       "hero",
       "image",
+      "intro",
+      "icons",
       "quote",
       "search",
+      "services",
       "tabs",
       "table",
       "text",
       "video",
       "product-recommendations",
-      "wgc-hero",
-      "wgc-intro",
-      "wgc-icons",
-      "wgc-columns",
-      "wgc-gallery",
-      "wgc-home-room-dine-spa",
-      "wgc-home-map",
-      "template2-hero",
-      "template2-intro",
-      "template2-icons",
-      "template2-services",
-      "template2-contact",
+      "gallery",
+      "home-room-dine-spa",
+      "home-map",
+      "contact",
+      "theme-picker",
       "book-now-modal"
     ]
   },
@@ -75,6 +71,30 @@
     ]
   },
   {
+    "id": "gallery",
+    "components": [
+      "gallery-image"
+    ]
+  },
+  {
+    "id": "home-room-dine-spa",
+    "components": [
+      "home-room-dine-spa-item"
+    ]
+  },
+  {
+    "id": "icons",
+    "components": [
+      "icon-item"
+    ]
+  },
+  {
+    "id": "services",
+    "components": [
+      "service"
+    ]
+  },
+  {
     "id": "table",
     "rte": {
       "toolbar": {
@@ -91,42 +111,6 @@
     "id": "tabs",
     "components": [
       "tabs-item"
-    ]
-  },
-  {
-    "id": "template2-icons",
-    "components": [
-      "template2-icon"
-    ]
-  },
-  {
-    "id": "template2-services",
-    "components": [
-      "template2-service"
-    ]
-  },
-  {
-    "id": "wgc-columns",
-    "components": [
-      "wgc-column"
-    ]
-  },
-  {
-    "id": "wgc-gallery",
-    "components": [
-      "wgc-gallery-image"
-    ]
-  },
-  {
-    "id": "wgc-home-room-dine-spa",
-    "components": [
-      "wgc-rds-item"
-    ]
-  },
-  {
-    "id": "wgc-icons",
-    "components": [
-      "wgc-icon"
     ]
   }
 ]

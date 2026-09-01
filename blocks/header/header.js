@@ -1,4 +1,11 @@
-import { fetchPlaceholders, getMetadata, toClassName } from '../../scripts/aem.js';
+import {
+  buildBlock,
+  decorateBlock,
+  fetchPlaceholders,
+  getMetadata,
+  loadBlock,
+  toClassName,
+} from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -145,6 +152,109 @@ async function buildBreadcrumbsFromNavTree(nav, currentUrl) {
   return crumbs;
 }
 
+/**
+ * Strips platform button classes so a link renders as plain text.
+ * @param {Element} root the subtree to clean
+ */
+function stripButtonClasses(root) {
+  if (!root) return;
+  root.querySelectorAll('a.button').forEach((link) => {
+    link.classList.remove('button', 'primary', 'secondary');
+    link.closest('.button-container')?.classList.remove('button-container');
+  });
+}
+
+/**
+ * Adds a scroll-state class once the visitor moves away from the top.
+ * @param {Element} header the page header element
+ * @param {number} threshold scrollY at which the header is considered scrolled
+ */
+function bindHeaderScroll(header, threshold) {
+  const onScroll = () => {
+    header.classList.toggle('header-scrolled', window.scrollY > threshold);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+/**
+ * Promotes the reserve/book link in the tools area to a branded button.
+ * @param {Element} nav the decorated nav
+ */
+function decorateBookNow(nav) {
+  const tools = nav.querySelector('.nav-tools');
+  if (!tools) return;
+
+  stripButtonClasses(tools);
+
+  const links = [...tools.querySelectorAll('a')];
+  const bookLink = tools.querySelector('a.book-now')
+    || links.find((a) => /synxis/i.test(a.href))
+    || links.find((a) => /book|reserve/i.test(a.textContent))
+    || links.find((a) => !/^(tel:|mailto:)/i.test(a.getAttribute('href') || ''))
+    || links[0];
+  if (!bookLink) return;
+  bookLink.classList.add('book-now');
+  const bookWrap = bookLink.closest('p') || bookLink.parentElement;
+  if (bookWrap) bookWrap.classList.add('book-wrap');
+}
+
+/**
+ * Mounts the theme picker in the header tools, aligned with the nav on the
+ * top-right. Skips when a picker is already present.
+ * @param {Element} nav the decorated nav
+ */
+async function mountThemePicker(nav) {
+  if (nav.querySelector('.theme-picker')) return;
+
+  let tools = nav.querySelector('.nav-tools');
+  if (!tools) {
+    tools = document.createElement('div');
+    tools.className = 'section nav-tools';
+    tools.append(document.createElement('div'));
+    nav.append(tools);
+  }
+
+  const pickerWrap = document.createElement('div');
+  pickerWrap.className = 'theme-picker-wrapper';
+  const picker = buildBlock('theme-picker', '');
+  pickerWrap.append(picker);
+
+  const bookWrap = tools.querySelector('.book-wrap');
+  if (bookWrap) {
+    bookWrap.after(pickerWrap);
+  } else {
+    (tools.querySelector(':scope > div') || tools).append(pickerWrap);
+  }
+
+  decorateBlock(picker);
+  await loadBlock(picker);
+}
+
+/**
+ * Branded header extras (scroll state, book-now, theme picker) for themed pages.
+ * @param {Element} block the header block
+ */
+async function decorateTemplateHeader(block) {
+  const header = block.closest('header');
+  if (!header) return;
+  const nav = block.querySelector('nav');
+  if (nav) {
+    decorateBookNow(nav);
+    // nav fragments can carry extra sections (booking modal) that break the
+    // logo / links / book-now row; the theme picker is mounted into nav-tools
+    nav.querySelectorAll(':scope > .section').forEach((section) => {
+      if (!['nav-brand', 'nav-sections', 'nav-tools'].some((name) => (
+        section.classList.contains(name)
+      ))) {
+        section.hidden = true;
+      }
+    });
+    await mountThemePicker(nav);
+  }
+  bindHeaderScroll(header, 8);
+}
+
 async function buildBreadcrumbs() {
   const breadcrumbs = document.createElement('nav');
   breadcrumbs.className = 'breadcrumbs';
@@ -253,14 +363,5 @@ export default async function decorate(block) {
     navWrapper.append(await buildBreadcrumbs());
   }
 
-  if (template) {
-    try {
-      const { default: decorateTemplateHeader } = await import(
-        `${window.hlx.codeBasePath}/scripts/template/${template}-header.js`
-      );
-      decorateTemplateHeader(block);
-    } catch (e) {
-      // this template ships no header script of its own
-    }
-  }
+  if (template) await decorateTemplateHeader(block);
 }
