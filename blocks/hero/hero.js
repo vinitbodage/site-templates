@@ -1,5 +1,6 @@
 import {
   getRows, getCells, isEmpty, splitHeading, addRule, markEyebrow, optimizePicture,
+  fixRelativeMediaUrls, resolveContentUrl,
 } from '../../scripts/template/shared.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 import { markCta, stackHeadingTail } from '../../scripts/template/columns-variants.js';
@@ -56,11 +57,18 @@ export default function decorate(block) {
 
       if (picture || videoLink) {
         if (!media.childElementCount) moveInstrumentation(cell, media);
-        if (picture) media.append(picture);
+        if (picture) {
+          fixRelativeMediaUrls(picture);
+          media.append(picture);
+        }
         if (videoLink) {
-          const poster = picture ? picture.querySelector('img').src : '';
+          const posterImg = picture?.querySelector('img');
+          const poster = posterImg
+            ? resolveContentUrl(posterImg.getAttribute('src') || posterImg.src)
+            : '';
+          const href = resolveContentUrl(videoLink.getAttribute('href'));
           removeVideoLink(videoLink);
-          media.append(buildVideo(videoLink.href, poster));
+          media.append(buildVideo(href, poster));
         }
         return;
       }
