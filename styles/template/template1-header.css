@@ -329,7 +329,7 @@ body.template1 header .book-now:any-link {
   border: 0;
   border-radius: 0;
   padding: 0 24px;
-  background-color: var(--t1-teal);
+  background-color: var(--theme-color);
   color: var(--t1-paper);
   font-size: var(--t1-nav-link-size);
   font-weight: 700;
@@ -343,7 +343,7 @@ body.template1 header .book-now:any-link {
 
 body.template1 header .book-now:hover,
 body.template1 header .book-now:focus-visible {
-  background-color: var(--t1-teal-dark);
+  background-color: color-mix(in srgb, var(--theme-color) 82%, black);
   color: var(--t1-paper);
   text-decoration: none;
 }

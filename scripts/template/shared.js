@@ -5,8 +5,81 @@
  * way. Anything used by only one block stays in that block.
  */
 
-import { createOptimizedPicture } from '../aem.js';
+import { createOptimizedPicture, getMetadata, normalizeTemplateName } from '../aem.js';
 import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
+
+/**
+ * Returns the site content root (e.g. `/template1`) for resolving `./media_*` paths.
+ * Subpages like `/template1/accommodations` must load media from the content root,
+ * not from the current page path.
+ * @returns {string}
+ */
+export function getContentBasePath() {
+  const navMeta = getMetadata('nav');
+  if (navMeta) {
+    const navPath = new URL(navMeta, window.location.href).pathname;
+    const slash = navPath.lastIndexOf('/');
+    if (slash > 0) return navPath.slice(0, slash);
+  }
+  const template = normalizeTemplateName(getMetadata('template'));
+  if (template) return `/${template}`;
+  if (window.hlx?.codeBasePath) return window.hlx.codeBasePath;
+  const segments = window.location.pathname.split('/').filter(Boolean);
+  if (segments.length >= 2) return `/${segments[0]}`;
+  return '';
+}
+
+/**
+ * Resolves a relative content asset URL against the site content root.
+ * @param {string} src authored src or href
+ * @returns {string}
+ */
+export function resolveContentUrl(src) {
+  if (!src || src.startsWith('data:') || /^https?:\/\//i.test(src)) return src;
+  if (src.startsWith('/')) return src;
+  const base = getContentBasePath();
+  if (!base) return new URL(src, window.location.href).href;
+  if (src.startsWith('./')) return `${base}/${src.slice(2)}`;
+  return `${base}/${src}`;
+}
+
+function rewriteSrcset(srcset, base) {
+  if (!srcset || !base) return srcset;
+  return srcset.split(',').map((part) => {
+    const trimmed = part.trim();
+    if (!trimmed) return trimmed;
+    const spaceIdx = trimmed.search(/\s/);
+    const url = spaceIdx === -1 ? trimmed : trimmed.slice(0, spaceIdx);
+    const descriptor = spaceIdx === -1 ? '' : trimmed.slice(spaceIdx);
+    if (url.startsWith('./')) return `${base}/${url.slice(2)}${descriptor}`;
+    return trimmed;
+  }).join(', ');
+}
+
+/**
+ * Rewrites `./media_*` URLs in pictures and media links to the content root.
+ * @param {Element} root element to search within
+ */
+export function fixRelativeMediaUrls(root) {
+  const base = getContentBasePath();
+  if (!base) return;
+
+  root.querySelectorAll('picture source[srcset]').forEach((source) => {
+    source.setAttribute('srcset', rewriteSrcset(source.getAttribute('srcset'), base));
+  });
+
+  root.querySelectorAll('picture img[src], img[src]').forEach((img) => {
+    const src = img.getAttribute('src');
+    if (src?.startsWith('./')) img.setAttribute('src', resolveContentUrl(src));
+  });
+
+  root.querySelectorAll('a[href]').forEach((link) => {
+    const href = link.getAttribute('href');
+    if (href?.startsWith('./') && /\.(mp4|webm|png|jpe?g|gif|webp)(\?.*)?$/i.test(href)) {
+      link.setAttribute('href', resolveContentUrl(href));
+    }
+  });
+}
 
 /**
  * Returns the authored rows of a block.
@@ -202,16 +275,25 @@ export function optimizePicture(img, { eager = false, width = '750' } = {}) {
   const picture = img.closest('picture');
   if (!picture) return;
 
-  const { origin } = new URL(img.src, window.location.href);
+  fixRelativeMediaUrls(picture);
+
+  if (picture.querySelector('source[srcset*="optimize=medium"]')) {
+    img.setAttribute('loading', eager ? 'eager' : 'lazy');
+    if (eager) img.setAttribute('fetchpriority', 'high');
+    return;
+  }
+
+  const src = resolveContentUrl(img.getAttribute('src') || img.src);
+  const { origin } = new URL(src, window.location.href);
   const optimizable = origin === window.location.origin
-    && !img.src.toLowerCase().includes('.svg');
+    && !src.toLowerCase().includes('.svg');
 
   if (!optimizable) {
     img.setAttribute('loading', eager ? 'eager' : 'lazy');
     return;
   }
 
-  const optimized = createOptimizedPicture(img.src, img.alt, eager, [{ width }]);
+  const optimized = createOptimizedPicture(src, img.alt, eager, [{ width }]);
   moveInstrumentation(img, optimized.querySelector('img'));
   picture.replaceWith(optimized);
 }
