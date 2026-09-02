@@ -245,7 +245,7 @@ async function loadLazy(doc) {
     );
     bindBookNowTriggers(doc);
   }
-  
+
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 }

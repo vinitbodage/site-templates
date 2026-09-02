@@ -400,5 +400,4 @@ export default async function decorate(block) {
     `${window.hlx.codeBasePath}/scripts/template/site-header.js`
   );
   await decorateSiteHeader(block);
-  
 }
