@@ -233,6 +233,23 @@
     ]
   },
   {
+    "id": "form",
+    "fields": [
+      {
+        "component": "text",
+        "name": "urlText",
+        "label": "Form URL Text"
+      },
+      {
+        "component": "text",
+        "name": "url",
+        "label": "Form definition URL",
+        "description": "Link to a spreadsheet JSON or an AEM Adaptive Form guideContainer.model.json",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
