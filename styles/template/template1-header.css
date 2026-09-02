@@ -268,13 +268,6 @@ body.template1 header .nav-sections .default-content-wrapper > ul > li > ul > li
   text-align: center;
 }
 
-body.template1 header .nav-tools p.nav-phone a:any-link {
-  display: inline-flex;
-  align-items: center;
-  padding: 0;
-  line-height: 1.2;
-}
-
 body.template1 header .nav-sections .default-content-wrapper > ul > li > ul a:any-link {
   display: block;
   padding: 4px 0;
@@ -354,8 +347,7 @@ body.template1 header .nav-sections .nav-drop > p {
   margin: 0;
 }
 
-body.template1 header .nav-phone,
-body.template1 header .nav-tools p.nav-phone {
+body.template1 header .nav-phone {
   display: none;
   align-items: center;
   height: var(--t1-header-height);
@@ -367,8 +359,7 @@ body.template1 header .nav-tools p.nav-phone {
 }
 
 @media (width >= 900px) {
-  body.template1 header .nav-phone,
-  body.template1 header .nav-tools p.nav-phone {
+  body.template1 header .nav-phone {
     display: flex;
   }
 }
