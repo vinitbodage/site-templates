@@ -39,6 +39,13 @@ body.template2 {
   --t2-accent: var(--theme-color);
   --t2-accent-dark: var(--t2-navy-dark);
 
+  /* Adaptive Forms tokens (Forms EDS) */
+  --button-primary-color: var(--t2-accent);
+  --button-primary-hover-color: var(--t2-accent-dark);
+  --label-color: var(--t2-ink);
+  --border-color: #c5c0b6;
+  --form-error-color: #c46a4a;
+
   background-color: var(--t2-paper);
   color: var(--t2-ink);
   font-family: var(--t2-font-body);
@@ -248,6 +255,13 @@ body.template4 {
   --t4-header-height: calc(var(--t4-utility-height) + var(--t4-nav-height));
   --header-height: var(--t4-header-height);
   --theme-color: var(--t4-red);
+
+  /* Adaptive Forms tokens (Forms EDS) */
+  --button-primary-color: var(--t4-red);
+  --button-primary-hover-color: var(--t4-red-dark);
+  --label-color: var(--t4-muted);
+  --border-color: var(--t4-line);
+  --form-error-color: #b42318;
 
   background-color: var(--t4-paper);
   color: var(--t4-ink);

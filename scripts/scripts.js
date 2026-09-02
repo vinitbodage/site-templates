@@ -272,6 +272,8 @@ async function loadPage() {
 if (/\.(stage-ue|ue)\.da\.live$/.test(window.location.hostname)) {
   // eslint-disable-next-line import/no-unresolved
   await import(`${window.hlx.codeBasePath}/ue/scripts/ue.js`).then(({ default: ue }) => ue());
+  const { handleEditorSelect } = await import(`${window.hlx.codeBasePath}/scripts/form-editor-support.js`);
+  document.querySelector('main')?.addEventListener('aue:ui-select', handleEditorSelect);
 }
 
 loadPage();

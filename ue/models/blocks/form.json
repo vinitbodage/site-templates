@@ -1,0 +1,91 @@
+{
+  "definitions": [
+    {
+      "title": "Adaptive Form",
+      "id": "form",
+      "model": "form",
+      "filter": "form",
+      "plugins": {
+        "da": {
+          "unsafeHTML": "<div class=\"form\"><div><div><p><a href=\"\">Form definition URL</a></p></div></div></div>",
+          "fields": [
+            { "name": "url", "selector": "div>div>p>a[href]" },
+            { "name": "urlText", "selector": "div>div>p>a" }
+          ]
+        },
+        "xwalk": {
+          "page": {
+            "resourceType": "fd/franklin/components/form/v1/form",
+            "template": {
+              "fieldType": "form",
+              "fd:version": "2.1"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "form",
+      "fields": [
+        {
+          "component": "text",
+          "name": "urlText",
+          "label": "Form URL Text"
+        },
+        {
+          "component": "text",
+          "name": "url",
+          "label": "Form definition URL",
+          "description": "Link to a spreadsheet JSON or an AEM Adaptive Form guideContainer.model.json",
+          "required": true
+        },
+        {
+          "component": "text",
+          "name": "customFunctionsPath",
+          "label": "Form Specific Custom Functions Path",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "style",
+          "label": "Form Specific styles path",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "form",
+      "components": [
+        "captcha",
+        "checkbox",
+        "checkbox-group",
+        "date-input",
+        "drop-down",
+        "email",
+        "file-input",
+        "form-accordion",
+        "form-button",
+        "form-fragment",
+        "form-image",
+        "form-modal",
+        "form-reset-button",
+        "form-submit-button",
+        "number-input",
+        "panel",
+        "password",
+        "plain-text",
+        "radio-group",
+        "rating",
+        "telephone-input",
+        "text-input",
+        "tnc",
+        "wizard",
+        "range"
+      ]
+    }
+  ]
+}

@@ -29,6 +29,18 @@
           "...": "./blocks/*.json#/definitions"
         }
       ]
+    },
+    {
+      "title": "Form Fields",
+      "id": "form-fields",
+      "components": [
+        {
+          "...": "../../blocks/form/models/form-components/_*.json#/definitions"
+        },
+        {
+          "...": "../../blocks/form/components/*/_*.json#/definitions"
+        }
+      ]
     }
   ]
 }
