@@ -2,6 +2,6 @@ Please always provide the [GitHub issue(s)](../issues) your PR is for, as well a
 
 Fix #<gh-issue-id>
 
-Test URLs:
-- Before: https://main--aem-block-collection--adobe.hlx.page
-- After: https://<branch>--aem-block-collection--adobe.hlx.page
+URL for testing:
+
+- https://<branch-with-dashes>--site-templates--vinitbodage.aem.page/
