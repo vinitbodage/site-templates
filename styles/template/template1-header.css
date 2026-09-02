@@ -190,7 +190,8 @@ body.template1 header .nav-sections .default-content-wrapper > ul > li {
   text-align: center;
 }
 
-body.template1 header .nav-sections .default-content-wrapper > ul > li > a {
+body.template1 header .nav-sections .default-content-wrapper > ul > li > a,
+body.template1 header .nav-sections .default-content-wrapper > ul > li > p > a {
   display: inline-flex;
   align-items: center;
   min-height: var(--t1-header-height);
@@ -198,64 +199,84 @@ body.template1 header .nav-sections .default-content-wrapper > ul > li > a {
   line-height: 1.2;
 }
 
-/* dropdown chevron on items with submenus */
+body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop > a,
+body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop > p > a {
+  gap: 6px;
+}
+
+/* dropdown chevron on the parent link only — kill boilerplate li::after caret */
+body.template1 header nav .nav-sections .default-content-wrapper > ul > li.nav-drop::after,
+body.template1 header nav .nav-sections .nav-drop::after {
+  display: none !important;
+  position: static !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  content: none !important;
+}
+
+body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop > a::after,
+body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop > p > a::after {
+  content: '';
+  display: block;
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  margin: 0;
+  border: solid currentcolor;
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg) translateY(-1px);
+}
+
+body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop[aria-expanded='true'] > a::after,
+body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop[aria-expanded='true'] > p > a::after {
+  border-width: 1.5px 1.5px 0 0;
+  transform: rotate(-45deg) translateY(1px);
+}
+
 body.template1 header .nav-sections .nav-drop {
-  gap: 4px;
+  gap: 0;
   padding-right: 0;
 }
 
-body.template1 header .nav-sections .nav-drop::after {
-  position: relative;
-  top: auto;
-  right: auto;
-  flex-shrink: 0;
-  align-self: center;
-  width: 5px;
-  height: 5px;
-  margin-top: -1px;
-  border-width: 1.5px 1.5px 0 0;
-  transform: rotate(135deg);
+body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop {
+  height: var(--t1-header-height);
 }
 
-body.template1 header .nav-sections .nav-drop[aria-expanded='true']::after {
-  top: auto;
-  bottom: auto;
-  margin-top: 1px;
-  transform: rotate(315deg);
-}
-
-/* Teal flyout menus with a centred triangle */
+/* Teal flyout menus — flush under the parent link, no caret arrow */
 body.template1 header .nav-sections .default-content-wrapper > ul > li > ul {
-  padding: 20px 0;
+  padding: 12px 0;
   border-radius: 0;
   background-color: #407380;
 }
 
-body.template1 header .nav-sections .default-content-wrapper > ul > li > ul::before {
-  border-bottom-color: #407380;
-  border-left-width: 40px;
-  border-right-width: 40px;
-  top: -13px;
-  left: 50%;
-  margin-left: -40px;
+body.template1 header .nav-sections ul > li > ul::before {
+  display: none !important;
+  visibility: hidden;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  content: none !important;
 }
 
 body.template1 header .nav-sections .default-content-wrapper > ul > li > ul > li {
-  padding: 5px 10px;
-}
-
-body.template1 header .nav-tools p.nav-phone a:any-link {
-  display: inline-flex;
-  align-items: center;
-  padding: 0;
-  line-height: 1.2;
+  padding: 6px 20px;
+  text-align: center;
 }
 
 body.template1 header .nav-sections .default-content-wrapper > ul > li > ul a:any-link {
+  display: block;
+  padding: 4px 0;
   color: var(--t1-paper);
   font-size: var(--t1-nav-link-size);
   font-weight: 400;
+  text-align: center;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 body.template1 header .nav-sections .default-content-wrapper > ul > li > ul a:any-link:hover {
@@ -264,12 +285,15 @@ body.template1 header .nav-sections .default-content-wrapper > ul > li > ul a:an
 
 @media (width >= 900px) {
   body.template1 header .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
-    top: calc(var(--t1-header-height) - 8px);
+    top: 100%;
     left: 50%;
-    width: 200px;
-    margin-left: -100px;
-    padding: 20px 0;
+    width: auto;
+    min-width: 200px;
+    margin-left: 0;
+    padding: 12px 0;
     background-color: #407380;
+    transform: translateX(-50%);
+    z-index: 110;
   }
 }
 
@@ -316,8 +340,14 @@ body.template1 header .nav-tools p {
   margin: 0;
 }
 
-body.template1 header .nav-phone,
-body.template1 header .nav-tools p.nav-phone {
+body.template1 header .nav-sections .nav-drop > p {
+  display: inline-flex;
+  align-items: center;
+  height: auto;
+  margin: 0;
+}
+
+body.template1 header .nav-phone {
   display: none;
   align-items: center;
   height: var(--t1-header-height);
@@ -329,8 +359,7 @@ body.template1 header .nav-tools p.nav-phone {
 }
 
 @media (width >= 900px) {
-  body.template1 header .nav-phone,
-  body.template1 header .nav-tools p.nav-phone {
+  body.template1 header .nav-phone {
     display: flex;
   }
 }

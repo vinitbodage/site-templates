@@ -222,6 +222,33 @@ body.template1 main > .section.intro-container {
   padding-block: 0;
 }
 
+body.template1 main > .section.default-container,
+body.template1 main > .section.amenities-container {
+  margin-block: 0;
+  padding-block: 0 90px;
+}
+
+body.template1 main > .section.default-container-after-intro,
+body.template1 main > .section.intro-container + .section.default-container,
+body.template1 main > .section.intro-container + .section.amenities-container {
+  padding-top: 0;
+}
+
+/* amenities — default-container policy sections */
+body.template1 .amenities .amenities-item h2,
+body.template1 .amenities .amenities-item h3,
+body.template1 .amenities .amenities-item h4 {
+  color: var(--theme-color);
+}
+
+body.template1 .amenities .sym-inline-list {
+  color: var(--t1-teal-muted);
+}
+
+body.template1 .amenities .sym-inline-list li::before {
+  background-color: var(--theme-color);
+}
+
 body.template1 main > .section.hero-container,
 body.template1 main > .section.home-map-container,
 body.template1 main > .section.full-bleed {

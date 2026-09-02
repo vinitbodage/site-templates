@@ -87,6 +87,22 @@
     ]
   },
   {
+    "id": "amenities",
+    "fields": []
+  },
+  {
+    "id": "amenity-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content",
+        "label": "Title & content",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "cards",
     "fields": [
       {
@@ -322,6 +338,10 @@
           {
             "name": "Media mosaic (video + lightbox)",
             "value": "mosaic"
+          },
+          {
+            "name": "Award badges (hotel-info footer)",
+            "value": "badges"
           }
         ]
       }
