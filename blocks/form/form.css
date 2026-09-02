@@ -63,7 +63,8 @@
     --form-card-transition: all 0.15s ease-in-out;
 }
 
-* {
+.form,
+.form * {
     box-sizing: border-box;
 }
 

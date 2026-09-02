@@ -23,26 +23,24 @@ This specific repo has been _slightly_ modified to be compatible with DA's live 
 1. Open the `{repo}` folder in your favorite code editor and buil something.
 1. **Recommended:** Install common npm packages like linting and testing: `npm i`.
 
-## AEM Forms on Edge Delivery Services
+## Forms on da.live
 
-This repo includes the [AEM Forms EDS](https://github.com/adobe-rnd/aem-boilerplate-forms) runtime (`blocks/form/`). Authors can drop an **Adaptive Form** block on any page — including `template2` and `template4` — and point it at either:
+This repo includes the [AEM Forms EDS](https://github.com/adobe-rnd/aem-boilerplate-forms) runtime (`blocks/form/`), authored as a **DA document block** (a link to the form definition), not as nested XWalk form fields.
 
-- an AEM Adaptive Form model: `.../guideContainer.model.json`
+Authors can drop a **Form** block on any page — including `template2` and `template4` — and point it at either:
+
 - a document-based (spreadsheet) form JSON
-
-### Prerequisites
-
-- Node.js 18.3 or newer
-- AEM Cloud Service 2024.8 or newer (release `17465+`) when using Adaptive Forms authored in AEM
-- `npm i` so the bundled `@aemforms/af-core` runtime and Rollup update scripts are available
+- a published AEM Adaptive Form model: `.../guideContainer.model.json`
 
 ### Author a form on a page
 
-1. In DA / Universal Editor, add an **Adaptive Form** block to a section.
-2. Set **Form definition URL** to the published form JSON.
-3. Publish the page. The form block fetches the definition, renders fields, runs the rule engine, and submits to Adobe Forms (`https://forms.adobe.com/adobe/forms/af/submit/`).
+1. In [da.live](https://da.live/start), add a **Form** block to a section.
+2. Set the block link to the published form JSON.
+3. Preview / publish. The block fetches the definition, renders fields, and submits to Adobe Forms (`https://forms.adobe.com/adobe/forms/af/submit/`).
 
-Document-based forms still work: the block detects a spreadsheet definition and uses the document rule engine instead of the Adaptive Forms worker.
+Spreadsheet definitions use the document rule engine. Adaptive Form JSON uses the Forms EDS worker.
+
+Form structure is authored in the spreadsheet or in AEM Forms — not as nested field components in the DA page.
 
 ### Custom form components
 
@@ -50,7 +48,7 @@ Document-based forms still work: the block detects a spreadsheet definition and 
 npm run create:custom-component
 ```
 
-That scaffolds JS, CSS, and UE JSON under `blocks/form/components/` and updates `blocks/form/mappings.js`.
+That scaffolds JS, CSS, and JSON under `blocks/form/components/` and updates `blocks/form/mappings.js`.
 
 ### Refresh the Adaptive Forms runtime
 
@@ -64,8 +62,6 @@ This re-bundles `@aemforms/af-core`, `@aemforms/af-formatters`, and `@adobe/json
 
 | Path | Role |
 |------|------|
-| `blocks/form/` | Adaptive Forms + document-based form runtime |
-| `scripts/form-editor-support.js` | Universal Editor form authoring |
-| `scripts/editor-support.js` | AEM UE (xwalk) patch handler |
-| `ue/models/blocks/form.json` | DA / UE Adaptive Form block |
+| `blocks/form/` | Form runtime (spreadsheet + Adaptive Forms) |
+| `ue/models/blocks/form.json` | DA Form block (URL link) |
 | `rollup/` | Runtime bundler configs |
