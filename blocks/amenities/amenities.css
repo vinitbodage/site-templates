@@ -1,0 +1,139 @@
+/* Amenities / default-container — hotel-info policy sections */
+
+.amenities.default-container {
+  background-color: var(--t1-paper, #fff);
+}
+
+.amenities .container {
+  box-sizing: border-box;
+  max-width: var(--t1-max-width, 1200px);
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+.amenities .amenities-inner {
+  max-width: 66.666%;
+  margin: 0 auto;
+}
+
+.amenities .amenities-item {
+  margin: 0;
+}
+
+.amenities .amenities-item h2,
+.amenities .amenities-item h3,
+.amenities .amenities-item h4 {
+  margin: 30px 0 16px;
+  color: var(--t1-ink, #282829);
+  font-family: var(--t1-font-heading, montserrat, sans-serif);
+  font-size: var(--heading-font-size-m, 1.125rem);
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: left;
+  text-transform: none;
+}
+
+.amenities .amenities-item:first-child :is(h2, h3, h4):first-child {
+  margin-top: 0;
+}
+
+.amenities .amenities-item p {
+  margin: 0 0 16px;
+  color: var(--t1-ink, #282829);
+  font-size: var(--body-font-size-s, 0.875rem);
+  line-height: 1.85;
+}
+
+.amenities .amenities-item p:last-child {
+  margin-bottom: 0;
+}
+
+.amenities .sym-inline-list {
+  list-style: none;
+  margin: 0 0 60px;
+  padding: 0;
+  columns: 1;
+  column-gap: 32px;
+  color: var(--t1-teal, #3d717f);
+}
+
+.amenities .amenities-item:last-child .sym-inline-list {
+  margin-bottom: 0;
+}
+
+.amenities .sym-inline-list li {
+  position: relative;
+  margin: 0 0 8px;
+  padding-left: 15px;
+  break-inside: avoid;
+  font-size: var(--body-font-size-s, 0.875rem);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.amenities .sym-inline-list li::before {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--t1-gold, #d9b941);
+  content: '';
+}
+
+.amenities .sym-inline-list li::marker {
+  content: none;
+}
+
+.amenities a:any-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.amenities a:any-link:hover,
+.amenities a:any-link:focus-visible {
+  color: var(--theme-color, var(--t1-teal, #3d717f));
+}
+
+main > .section.default-container,
+main > .section.amenities-container {
+  padding-bottom: 90px;
+}
+
+main > .section.default-container-after-intro,
+main > .section.intro-container + .section.default-container,
+main > .section.intro-container + .section.amenities-container {
+  padding-top: 0;
+}
+
+@media (width >= 600px) {
+  .amenities .sym-inline-list {
+    columns: 2;
+  }
+}
+
+@media (width >= 900px) {
+  .amenities .container {
+    padding-inline: 32px;
+  }
+
+  .amenities .amenities-item h2,
+  .amenities .amenities-item h3,
+  .amenities .amenities-item h4 {
+    font-size: var(--heading-font-size-l, 1.25rem);
+  }
+
+  .amenities .amenities-item p,
+  .amenities .sym-inline-list li {
+    font-size: var(--body-font-size-m, 1rem);
+  }
+}
+
+@media (width < 768px) {
+  .amenities .amenities-inner {
+    max-width: 100%;
+  }
+}

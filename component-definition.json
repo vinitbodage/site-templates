@@ -95,6 +95,35 @@
           }
         },
         {
+          "title": "Amenities",
+          "id": "amenities",
+          "model": "amenities",
+          "filter": "amenities",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "Amenity Item",
+          "id": "amenity-item",
+          "model": "amenity-item",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Cards",
           "id": "cards",
           "model": "cards",

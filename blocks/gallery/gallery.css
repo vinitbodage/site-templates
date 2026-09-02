@@ -19,8 +19,8 @@
   height: 100%;
 }
 
-.gallery picture,
-.gallery img {
+.gallery:not(.badges, .images-footer) picture,
+.gallery:not(.badges, .images-footer) img {
   display: block;
   width: 100%;
   height: 100%;
@@ -28,8 +28,8 @@
   transition: transform 0.6s ease;
 }
 
-.gallery a:hover img,
-.gallery a:focus-visible img {
+.gallery:not(.badges, .images-footer) a:hover img,
+.gallery:not(.badges, .images-footer) a:focus-visible img {
   transform: scale(1.04);
 }
 
@@ -60,13 +60,78 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gallery picture,
-  .gallery img {
+  .gallery:not(.badges, .images-footer) picture,
+  .gallery:not(.badges, .images-footer) img {
     transition: none;
   }
 
-  .gallery a:hover img,
-  .gallery a:focus-visible img {
+  .gallery:not(.badges, .images-footer) a:hover img,
+  .gallery:not(.badges, .images-footer) a:focus-visible img {
     transform: none;
+  }
+}
+
+/* Award badges — hotel-info images-footer layout */
+/* stylelint-disable no-descending-specificity -- badge logos override grid image sizing */
+.gallery.badges,
+.gallery.images-footer {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--t1-max-width, 1200px);
+  margin: 30px auto 0;
+  padding: 1em 24px 1.3em;
+}
+
+.gallery.badges .images-footer-block,
+.gallery.images-footer .images-footer-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px 20px;
+  margin: 0 auto;
+}
+
+.gallery.badges .images-footer-item,
+.gallery.images-footer .images-footer-item {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery.badges picture,
+.gallery.images-footer picture,
+.gallery.badges img,
+.gallery.images-footer img {
+  display: block;
+  width: auto;
+  max-width: 200px;
+  height: auto;
+  max-height: 89px;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.gallery.badges a:any-link,
+.gallery.images-footer a:any-link {
+  display: block;
+  line-height: 0;
+}
+
+.gallery.badges a:hover img,
+.gallery.badges a:focus-visible img,
+.gallery.images-footer a:hover img,
+.gallery.images-footer a:focus-visible img {
+  opacity: 0.5;
+  transform: none;
+}
+
+/* stylelint-enable no-descending-specificity */
+
+@media (width >= 900px) {
+  .gallery.badges,
+  .gallery.images-footer {
+    padding-inline: 32px;
   }
 }

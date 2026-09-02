@@ -40,7 +40,8 @@
           "value": "",
           "options": [
             { "name": "Mosaic grid", "value": "" },
-            { "name": "Media mosaic (video + lightbox)", "value": "mosaic" }
+            { "name": "Media mosaic (video + lightbox)", "value": "mosaic" },
+            { "name": "Award badges (hotel-info footer)", "value": "badges" }
           ]
         }
       ]

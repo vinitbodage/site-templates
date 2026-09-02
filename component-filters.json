@@ -17,6 +17,7 @@
       "form",
       "gallery",
       "hero",
+      "amenities",
       "home-map",
       "image",
       "quote",
@@ -33,6 +34,12 @@
     "id": "accordion",
     "components": [
       "accordion-item"
+    ]
+  },
+  {
+    "id": "amenities",
+    "components": [
+      "amenity-item"
     ]
   },
   {
