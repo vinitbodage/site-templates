@@ -453,11 +453,65 @@ body.template2 header .nav-sections .default-content-wrapper > ul > li > ul::bef
 
 body.template2 header .nav-sections .default-content-wrapper > ul > li > ul > li {
   padding: 6px 20px;
+  transition: background-color 0.2s ease;
+}
+
+body.template2 header .nav-sections .default-content-wrapper > ul > li > ul > li:hover,
+body.template2 header .nav-sections .default-content-wrapper > ul > li > ul > li:focus-within {
+  background-color: rgb(255 255 255 / 10%);
 }
 
 body.template2 header .nav-sections .default-content-wrapper > ul > li > ul a:any-link {
+  display: block;
   color: var(--t2-paper);
   font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+body.template2 header .nav-sections .default-content-wrapper > ul > li > ul a:any-link:hover,
+body.template2 header .nav-sections .default-content-wrapper > ul > li > ul a:any-link:focus-visible {
+  color: var(--t2-amber);
+}
+
+@media (width >= 900px) {
+  body.template2 header .nav-sections .default-content-wrapper > ul > li.nav-drop {
+    padding-right: 28px;
+  }
+
+  body.template2 header .nav-sections .nav-drop::after {
+    top: 50%;
+    right: 10px;
+    bottom: auto;
+    transform: translateY(-50%) rotate(135deg);
+    width: 6px;
+    height: 6px;
+  }
+
+  body.template2 header .nav-sections .nav-drop[aria-expanded='true']::after {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%) rotate(315deg);
+  }
+
+  body.template2 header .nav-sections .default-content-wrapper > ul > li > ul {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    width: max-content;
+    min-width: 220px;
+    transform: translateX(-50%);
+  }
+
+  body.template2 header .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  body.template2 header .nav-sections .default-content-wrapper > ul > li > ul::before {
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 body.template2 header nav > .section:not(.nav-brand, .nav-sections, .nav-tools) {
