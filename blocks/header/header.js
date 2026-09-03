@@ -348,6 +348,8 @@ export default async function decorate(block) {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
+          // template1 uses hover/focus-within for desktop flyouts; parent links navigate on click
+          if (template === 'template1') return;
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');

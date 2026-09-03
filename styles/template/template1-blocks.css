@@ -474,12 +474,19 @@ main > .section.columns.intro-container {
   border-radius: 0;
   padding: 0;
   background: transparent;
+  color: inherit;
   cursor: pointer;
+}
+
+.mosaic-open:hover,
+.mosaic-open:focus,
+.mosaic-open:focus-visible {
+  background: transparent;
 }
 
 .mosaic-tile:has(.mosaic-open:hover) :is(img, video),
 .mosaic-tile:has(.mosaic-open:focus-visible) :is(img, video) {
-  transform: scale(1.04);
+  transform: scale(1.08);
 }
 
 .mosaic-open:focus {
