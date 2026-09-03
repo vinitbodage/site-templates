@@ -33,8 +33,9 @@ body.template2 {
   --t2-header-height: 84px;
   --header-height: var(--t2-header-height);
   --theme-color: #16273e;
+  --t2-header-bg: var(--theme-color);
   --t2-accent: var(--theme-color);
-  --t2-accent-dark: var(--t2-navy-dark);
+  --t2-accent-dark: color-mix(in srgb, var(--theme-color) 72%, #000);
 
   background-color: var(--t2-paper);
   color: var(--t2-ink);

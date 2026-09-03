@@ -381,8 +381,8 @@ body.template2 header .nav-wrapper {
   width: 100%;
   height: 100%;
   overflow: visible;
-  background: var(--t2-navy);
-  transition: box-shadow 0.3s ease;
+  background: var(--t2-header-bg);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body.template2 header.header-scrolled .nav-wrapper {
@@ -489,12 +489,13 @@ body.template2 header .nav-sections .default-content-wrapper > ul > li > p > a:a
 
 body.template2 header .nav-sections .default-content-wrapper > ul > li > ul {
   border-radius: 4px;
-  background-color: var(--t2-navy-dark);
+  background-color: var(--t2-accent-dark);
   padding: 12px 0;
+  transition: background-color 0.3s ease;
 }
 
 body.template2 header .nav-sections .default-content-wrapper > ul > li > ul::before {
-  border-bottom-color: var(--t2-navy-dark);
+  border-bottom-color: var(--t2-accent-dark);
 }
 
 body.template2 header .nav-sections .default-content-wrapper > ul > li > ul > li {
@@ -641,7 +642,7 @@ body.template2 header .theme-picker-active {
   bottom: -1px;
   width: 11px;
   height: 11px;
-  border-color: var(--t2-navy);
+  border-color: var(--t2-header-bg);
 }
 
 body.template2 header .theme-picker-menu {
