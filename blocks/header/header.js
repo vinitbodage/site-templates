@@ -30,17 +30,20 @@ function closeOnEscape(e) {
 
 function closeOnFocusLost(e) {
   const nav = e.currentTarget;
-  if (!nav.contains(e.relatedTarget)) {
-    const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections, false);
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections, false);
+  // Defer so click handlers can finish; relatedTarget is often null on mouse click.
+  setTimeout(() => {
+    if (!nav.contains(document.activeElement)) {
+      const navSections = nav.querySelector('.nav-sections');
+      const navSectionExpanded = navSections?.querySelector('[aria-expanded="true"]');
+      if (navSectionExpanded && isDesktop.matches) {
+        // eslint-disable-next-line no-use-before-define
+        toggleAllNavSections(navSections, false);
+      } else if (!isDesktop.matches) {
+        // eslint-disable-next-line no-use-before-define
+        toggleMenu(nav, navSections, false);
+      }
     }
-  }
+  }, 0);
 }
 
 function openOnKeydown(e) {
@@ -67,6 +70,56 @@ function toggleAllNavSections(sections, expanded = false) {
   if (!sections) return;
   sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
     section.setAttribute('aria-expanded', expanded);
+    section.querySelector('.nav-drop-toggle')?.setAttribute('aria-expanded', expanded);
+  });
+}
+
+/**
+ * Toggles one dropdown section open or closed.
+ * @param {Element} navSection the nav item with a submenu
+ * @param {Element} navSections the nav sections container
+ */
+function toggleNavDrop(navSection, navSections) {
+  const expanded = navSection.getAttribute('aria-expanded') === 'true';
+  toggleAllNavSections(navSections);
+  navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  navSection.querySelector('.nav-drop-toggle')?.setAttribute(
+    'aria-expanded',
+    expanded ? 'false' : 'true',
+  );
+}
+
+/**
+ * Adds a dedicated submenu toggle so the parent link can still navigate.
+ * @param {Element} navSection the nav item with a submenu
+ * @param {Element} navSections the nav sections container
+ */
+function decorateNavDrop(navSection, navSections) {
+  const submenu = navSection.querySelector(':scope > ul');
+  if (!submenu) return;
+
+  navSection.classList.add('nav-drop');
+  if (navSection.querySelector('.nav-drop-toggle')) return;
+
+  const parentLink = navSection.querySelector(':scope > a, :scope > p > a');
+  if (!parentLink) return;
+
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'nav-drop-toggle';
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-haspopup', 'true');
+  toggle.setAttribute('aria-label', `${parentLink.textContent.trim()} submenu`);
+
+  const linkWrap = parentLink.parentElement?.tagName === 'P'
+    ? parentLink.parentElement
+    : parentLink;
+  linkWrap.after(toggle);
+
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleNavDrop(navSection, navSections);
   });
 }
 
@@ -88,6 +141,11 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   const navDrops = navSections.querySelectorAll('.nav-drop');
   if (isDesktop.matches) {
     navDrops.forEach((drop) => {
+      if (drop.querySelector('.nav-drop-toggle')) {
+        drop.removeAttribute('tabindex');
+        drop.removeEventListener('focus', focusNavSection);
+        return;
+      }
       if (!drop.hasAttribute('tabindex')) {
         drop.setAttribute('tabindex', 0);
         drop.addEventListener('focus', focusNavSection);
@@ -322,14 +380,7 @@ export default async function decorate(block) {
       a.closest('.button-container')?.classList.remove('button-container');
     });
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        }
-      });
+      decorateNavDrop(navSection, navSections);
     });
   }
 
