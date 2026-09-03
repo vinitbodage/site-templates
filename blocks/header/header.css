@@ -219,6 +219,47 @@ header nav .nav-sections ul > li > ul > li {
     transform: rotate(315deg);
   }
 
+  header nav .nav-sections .nav-drop:has(.nav-drop-toggle) {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding-right: 0;
+    cursor: default;
+  }
+
+  header nav .nav-sections .nav-drop:has(.nav-drop-toggle)::after {
+    display: none;
+  }
+
+  header nav .nav-sections .nav-drop-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 6px 4px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  header nav .nav-sections .nav-drop-toggle::after {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border: solid currentcolor;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  header nav .nav-sections .nav-drop[aria-expanded='true'] .nav-drop-toggle::after {
+    transform: rotate(-135deg);
+  }
+
   header nav .nav-sections ul {
     display: flex;
     align-items: center;
@@ -480,7 +521,11 @@ body.template2 header .nav-sections .default-content-wrapper > ul > li > ul a:an
 
 @media (width >= 900px) {
   body.template2 header .nav-sections .default-content-wrapper > ul > li.nav-drop {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
     padding-right: 14px;
+    cursor: default;
   }
 
   body.template2 header .nav-sections .nav-drop::after {
@@ -490,29 +535,30 @@ body.template2 header .nav-sections .default-content-wrapper > ul > li > ul a:an
 
   body.template2 header .nav-sections .nav-drop > a,
   body.template2 header .nav-sections .nav-drop > p > a {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
+    display: inline;
     padding-right: 0;
   }
 
-  body.template2 header .nav-sections .nav-drop > a::after,
-  body.template2 header .nav-sections .nav-drop > p > a::after {
-    content: '';
-    display: block;
-    flex: 0 0 6px;
+  body.template2 header .nav-sections .nav-drop-toggle {
+    padding: 4px 2px;
+  }
+
+  body.template2 header .nav-sections .nav-drop-toggle::after {
     width: 6px;
     height: 6px;
-    border: solid currentcolor;
     border-width: 0 1.5px 1.5px 0;
     transform: rotate(45deg);
     margin-top: -2px;
   }
 
-  body.template2 header .nav-sections .nav-drop[aria-expanded='true'] > a::after,
-  body.template2 header .nav-sections .nav-drop[aria-expanded='true'] > p > a::after {
+  body.template2 header .nav-sections .nav-drop[aria-expanded='true'] .nav-drop-toggle::after {
     margin-top: 1px;
     transform: rotate(-135deg);
+  }
+
+  body.template2 header .nav-sections .nav-drop-toggle:hover::after,
+  body.template2 header .nav-sections .nav-drop-toggle:focus-visible::after {
+    border-color: var(--t2-amber);
   }
 
   body.template2 header .nav-sections .default-content-wrapper > ul > li > ul {
