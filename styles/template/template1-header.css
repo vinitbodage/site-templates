@@ -222,18 +222,22 @@ body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop 
   content: '';
   display: block;
   flex-shrink: 0;
+  align-self: flex-start;
   width: 5px;
   height: 5px;
-  margin: 0;
+  margin: calc((var(--t1-header-height) - var(--t1-nav-link-size) * 1.2) / 2) 0 0;
   border: solid currentcolor;
   border-width: 0 1.5px 1.5px 0;
-  transform: rotate(45deg) translateY(-1px);
+  transform: rotate(45deg);
 }
 
-body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop[aria-expanded='true'] > a::after,
-body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop[aria-expanded='true'] > p > a::after {
+body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop:is(
+  :hover,
+  :focus-within,
+  [aria-expanded='true']
+) > :is(a, p > a)::after {
   border-width: 1.5px 1.5px 0 0;
-  transform: rotate(-45deg) translateY(1px);
+  transform: rotate(-45deg);
 }
 
 body.template1 header .nav-sections .nav-drop {
@@ -245,11 +249,11 @@ body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop 
   height: var(--t1-header-height);
 }
 
-/* Teal flyout menus — flush under the parent link, no caret arrow */
+/* Gold flyout menus — flush under the parent link, no caret arrow */
 body.template1 header .nav-sections .default-content-wrapper > ul > li > ul {
   padding: 12px 0;
   border-radius: 0;
-  background-color: #407380;
+  background-color: var(--t1-gold);
 }
 
 body.template1 header .nav-sections ul > li > ul::before {
@@ -280,18 +284,21 @@ body.template1 header .nav-sections .default-content-wrapper > ul > li > ul a:an
 }
 
 body.template1 header .nav-sections .default-content-wrapper > ul > li > ul a:any-link:hover {
-  color: var(--t1-gold);
+  color: #16273e;
 }
 
 @media (width >= 900px) {
-  body.template1 header .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
+  body.template1 header .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul,
+  body.template1 header .nav-sections .default-content-wrapper > ul > li.nav-drop:is(:hover, :focus-within) > ul {
+    display: block;
+    position: absolute;
     top: 100%;
     left: 50%;
     width: auto;
     min-width: 200px;
     margin-left: 0;
     padding: 12px 0;
-    background-color: #407380;
+    background-color: var(--t1-gold);
     transform: translateX(-50%);
     z-index: 110;
   }

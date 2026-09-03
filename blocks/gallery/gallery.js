@@ -63,6 +63,8 @@ function decorateGallery(block) {
   });
 
   ul.querySelectorAll('a').forEach((link) => {
+    link.classList.remove('button', 'primary', 'secondary');
+    link.closest('.button-container')?.classList.remove('button-container');
     const img = link.querySelector('img');
     if (img && img.alt && !link.getAttribute('aria-label')) {
       link.setAttribute('aria-label', img.alt);

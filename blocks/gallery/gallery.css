@@ -19,6 +19,29 @@
   height: 100%;
 }
 
+.gallery:not(.badges, .images-footer) a:any-link {
+  display: block;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 0;
+  text-decoration: none;
+  white-space: normal;
+}
+
+.gallery:not(.badges, .images-footer) a:any-link:hover,
+.gallery:not(.badges, .images-footer) a:any-link:focus-visible {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: none;
+}
+
 .gallery:not(.badges, .images-footer) picture,
 .gallery:not(.badges, .images-footer) img {
   display: block;
@@ -28,9 +51,9 @@
   transition: transform 0.6s ease;
 }
 
-.gallery:not(.badges, .images-footer) a:hover img,
-.gallery:not(.badges, .images-footer) a:focus-visible img {
-  transform: scale(1.04);
+.gallery:not(.badges, .images-footer) .gallery-list > li:hover img,
+.gallery:not(.badges, .images-footer) .gallery-list > li:focus-within img {
+  transform: scale(1.08);
 }
 
 @media (width >= 900px) {
@@ -65,8 +88,8 @@
     transition: none;
   }
 
-  .gallery:not(.badges, .images-footer) a:hover img,
-  .gallery:not(.badges, .images-footer) a:focus-visible img {
+  .gallery:not(.badges, .images-footer) .gallery-list > li:hover img,
+  .gallery:not(.badges, .images-footer) .gallery-list > li:focus-within img {
     transform: none;
   }
 }

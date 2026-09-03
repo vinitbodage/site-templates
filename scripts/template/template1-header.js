@@ -198,6 +198,28 @@ async function mountThemePicker(nav) {
 }
 
 /**
+ * Desktop flyouts open on hover/focus-within; parent links navigate on click.
+ * @param {Element} nav the decorated nav element
+ */
+function bindDesktopNavHover(nav) {
+  const mq = window.matchMedia('(min-width: 900px)');
+  const navSections = nav.querySelector('.nav-sections');
+  if (!navSections) return;
+
+  const syncDesktopDropBehavior = () => {
+    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li.nav-drop').forEach((drop) => {
+      if (mq.matches) {
+        drop.removeAttribute('tabindex');
+        drop.removeAttribute('aria-expanded');
+      }
+    });
+  };
+
+  syncDesktopDropBehavior();
+  mq.addEventListener('change', syncDesktopDropBehavior);
+}
+
+/**
  * decorate the template1 header
  * @param {Element} block the header block element
  */
@@ -214,5 +236,6 @@ export default async function decorateTemplate1Header(block) {
   normalizeTools(nav);
   await mountThemePicker(nav);
   normalizeToolsRow(nav);
+  bindDesktopNavHover(nav);
   bindScrollState(header);
 }
