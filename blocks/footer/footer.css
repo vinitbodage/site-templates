@@ -20,7 +20,8 @@ footer .footer p {
 }
 
 body.template2 footer {
-  background-color: var(--t2-navy-dark);
+  background-color: var(--t2-accent-dark);
+  transition: background-color 0.3s ease;
 }
 
 body.template2 footer .footer {
@@ -29,8 +30,9 @@ body.template2 footer .footer {
   box-sizing: border-box;
   max-width: var(--t2-max-width);
   margin: 0 auto;
-  background-color: var(--t2-navy-dark);
+  background-color: var(--t2-accent-dark);
   color: rgb(255 255 255 / 75%);
+  transition: background-color 0.3s ease;
 }
 
 body.template2 footer .footer > .section {
