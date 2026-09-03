@@ -30,17 +30,20 @@ function closeOnEscape(e) {
 
 function closeOnFocusLost(e) {
   const nav = e.currentTarget;
-  if (!nav.contains(e.relatedTarget)) {
-    const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections, false);
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections, false);
+  // Defer so click handlers can finish; relatedTarget is often null on mouse click.
+  setTimeout(() => {
+    if (!nav.contains(document.activeElement)) {
+      const navSections = nav.querySelector('.nav-sections');
+      const navSectionExpanded = navSections?.querySelector('[aria-expanded="true"]');
+      if (navSectionExpanded && isDesktop.matches) {
+        // eslint-disable-next-line no-use-before-define
+        toggleAllNavSections(navSections, false);
+      } else if (!isDesktop.matches) {
+        // eslint-disable-next-line no-use-before-define
+        toggleMenu(nav, navSections, false);
+      }
     }
-  }
+  }, 0);
 }
 
 function openOnKeydown(e) {
@@ -323,12 +326,20 @@ export default async function decorate(block) {
     });
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      navSection.addEventListener('click', (e) => {
+        if (!isDesktop.matches) return;
+
+        const submenu = navSection.querySelector(':scope > ul');
+        if (submenu?.contains(e.target)) return;
+
+        const parentLink = navSection.querySelector(':scope > a, :scope > p > a');
+        if (parentLink?.contains(e.target)) {
+          e.preventDefault();
         }
+
+        const expanded = navSection.getAttribute('aria-expanded') === 'true';
+        toggleAllNavSections(navSections);
+        navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
       });
     });
   }

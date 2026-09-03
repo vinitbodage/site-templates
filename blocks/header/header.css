@@ -522,9 +522,11 @@ body.template2 header .nav-sections .default-content-wrapper > ul > li > ul a:an
     width: max-content;
     min-width: 220px;
     transform: translateX(-50%);
+    z-index: 10;
   }
 
   body.template2 header .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
+    display: block;
     left: 50%;
     transform: translateX(-50%);
   }
