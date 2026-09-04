@@ -196,11 +196,18 @@ async function loadEager(doc) {
     doc.body.dataset.breadcrumbs = true;
   }
   await loadTemplateStyles();
+  const header = doc.querySelector('header');
+  const headerPromise = header ? loadHeader(header) : Promise.resolve();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
     doc.body.classList.add('appear');
-    await loadSection(main.querySelector('.section'), waitForFirstImage);
+    await Promise.all([
+      loadSection(main.querySelector('.section'), waitForFirstImage),
+      headerPromise,
+    ]);
+  } else {
+    await headerPromise;
   }
 
   sampleRUM.enhance();
@@ -229,7 +236,6 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  await loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
 
   if (
