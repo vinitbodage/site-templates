@@ -13,6 +13,47 @@ import {
 } from '../../scripts/aem.js';
 
 /**
+ * Wraps top-level fragment rows with the section structure nav expects,
+ * without running the full page decoration pipeline.
+ * @param {Element} root the parsed fragment container
+ */
+function wrapNavFragmentSections(root) {
+  [...root.children].forEach((section) => {
+    if (section.tagName !== 'DIV') return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'default-content-wrapper';
+    wrapper.append(...section.childNodes);
+    section.replaceChildren(wrapper);
+    section.classList.add('section');
+  });
+}
+
+/**
+ * Loads a navigation fragment with minimal decoration for faster header paint.
+ * @param {string} path The path to the fragment
+ * @returns {HTMLElement} The root element of the fragment
+ */
+export async function loadNavFragment(path) {
+  if (!path) return null;
+  const resp = await fetch(`${path}.plain.html`);
+  if (!resp.ok) return null;
+
+  const main = document.createElement('main');
+  main.innerHTML = await resp.text();
+
+  const resetAttributeBase = (tag, attr) => {
+    main.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((elem) => {
+      elem[attr] = new URL(elem.getAttribute(attr), new URL(path, window.location)).href;
+    });
+  };
+  resetAttributeBase('img', 'src');
+  resetAttributeBase('source', 'srcset');
+
+  wrapNavFragmentSections(main);
+  return main;
+}
+
+/**
  * Loads a fragment.
  * @param {string} path The path to the fragment
  * @returns {HTMLElement} The root element of the fragment

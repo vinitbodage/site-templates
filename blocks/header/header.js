@@ -6,7 +6,7 @@ import {
   loadBlock,
   toClassName,
 } from '../../scripts/aem.js';
-import { loadFragment } from '../fragment/fragment.js';
+import { loadNavFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -308,7 +308,7 @@ async function decorateTemplateHeader(block) {
         section.hidden = true;
       }
     });
-    await mountThemePicker(nav);
+    mountThemePicker(nav);
   }
   bindHeaderScroll(header, 8);
 }
@@ -348,7 +348,7 @@ export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const defaultNav = template ? `/${template}/nav` : '/nav';
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
-  const fragment = await loadFragment(navPath);
+  const fragment = await loadNavFragment(navPath);
 
   // decorate nav DOM
   block.textContent = '';
