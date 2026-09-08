@@ -1,0 +1,55 @@
+{
+  "definitions": [
+    {
+      "title": "Form",
+      "id": "form",
+      "model": "form",
+      "plugins": {
+        "da": {
+          "unsafeHTML": "<div class=\"form\"><div><div><p><a href=\"/forms/contact.json\">Form definition</a></p><p><a href=\"/forms/contact.json\">Submit</a></p></div></div></div>",
+          "fields": [
+            { "name": "formUrl", "selector": "div>div>p:nth-child(1)>a[href]" },
+            { "name": "formUrlText", "selector": "div>div>p:nth-child(1)>a" },
+            { "name": "submitUrl", "selector": "div>div>p:nth-child(2)>a[href]" },
+            { "name": "submitUrlText", "selector": "div>div>p:nth-child(2)>a" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "form",
+      "fields": [
+        {
+          "component": "text",
+          "name": "formUrlText",
+          "label": "Form definition label",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "formUrl",
+          "label": "Form definition URL",
+          "description": "Path to the da.live spreadsheet JSON that defines the fields (for example /forms/contact.json).",
+          "valueType": "string",
+          "required": true
+        },
+        {
+          "component": "text",
+          "name": "submitUrlText",
+          "label": "Submit label",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "submitUrl",
+          "label": "Submit URL",
+          "description": "Same spreadsheet path writes submissions to the incoming sheet, which is editable in da.live Excel.",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

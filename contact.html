@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="script-src 'nonce-aem' 'strict-dynamic' 'unsafe-inline' http: https:; base-uri 'self'; object-src 'none';"
+    move-to-http-header="true"
+  >
+  <title>Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script nonce="aem" src="/scripts/aem.js" type="module"></script>
+  <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
+  <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+  <header></header>
+  <main>
+    <div>
+      <h1>Contact</h1>
+      <p>This form is defined by the <a href="/forms/contact.json">contact spreadsheet</a>. Edit that sheet in da.live Excel to change fields. Submissions are written to the <code>incoming</code> sheet.</p>
+    </div>
+    <div>
+      <div class="form">
+        <div>
+          <div>
+            <p><a href="/forms/contact.json">Form definition</a></p>
+            <p><a href="/forms/contact.json">Submit</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+</html>

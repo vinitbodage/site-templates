@@ -19,12 +19,17 @@ function generateFieldId(fd, suffix = '') {
   return `${slug}${idSuffix}`;
 }
 
+function isMandatory(fd) {
+  const value = `${fd.Mandatory || ''}`.toLowerCase();
+  return value === 'true' || value === 'x';
+}
+
 function createLabel(fd) {
   const label = document.createElement('label');
   label.id = generateFieldId(fd, '-label');
   label.textContent = fd.Label || fd.Name;
   label.setAttribute('for', fd.Id);
-  if (fd.Mandatory.toLowerCase() === 'true' || fd.Mandatory.toLowerCase() === 'x') {
+  if (isMandatory(fd)) {
     label.dataset.required = true;
   }
   return label;
@@ -33,7 +38,7 @@ function createLabel(fd) {
 function setCommonAttributes(field, fd) {
   field.id = fd.Id;
   field.name = fd.Name;
-  field.required = fd.Mandatory && (fd.Mandatory.toLowerCase() === 'true' || fd.Mandatory.toLowerCase() === 'x');
+  field.required = isMandatory(fd);
   field.placeholder = fd.Placeholder;
   field.value = fd.Value;
 }
@@ -228,7 +233,7 @@ const FIELD_CREATOR_FUNCTIONS = {
 
 export default async function createField(fd, form) {
   fd.Id = fd.Id || generateFieldId(fd);
-  const type = fd.Type.toLowerCase();
+  const type = `${fd.Type || 'text'}`.toLowerCase();
   const createFieldFunc = FIELD_CREATOR_FUNCTIONS[type] || createInput;
   const fieldElements = await createFieldFunc(fd, form);
 
