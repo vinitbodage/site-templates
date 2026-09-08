@@ -210,7 +210,31 @@ function appendIncoming(sheet, payload) {
   return next;
 }
 
+const DA_TOKEN_KEY = 'da-form-write-token';
+
+async function getSdkToken() {
+  try {
+    const sdk = await Promise.race([
+      import('https://da.live/nx/utils/sdk.js').then((mod) => mod.default),
+      new Promise((_, reject) => { setTimeout(() => reject(new Error('timeout')), 2000); }),
+    ]);
+    const { token } = await sdk;
+    return `${token || ''}`.trim();
+  } catch (e) {
+    return '';
+  }
+}
+
 async function getDaWriteToken() {
+  const stored = `${window.localStorage?.getItem(DA_TOKEN_KEY) || ''}`.trim();
+  if (stored) return stored;
+
+  const sdkToken = await getSdkToken();
+  if (sdkToken) {
+    window.localStorage?.setItem(DA_TOKEN_KEY, sdkToken);
+    return sdkToken;
+  }
+
   try {
     const resp = await fetch('/forms/da-submit.json');
     if (!resp.ok) return '';
@@ -223,6 +247,39 @@ async function getDaWriteToken() {
   }
 }
 
+function showTokenPrompt(form, payload) {
+  form.dataset.pendingPayload = JSON.stringify(payload);
+  let prompt = form.querySelector('.da-token-prompt');
+  if (!prompt) {
+    prompt = document.createElement('div');
+    prompt.className = 'da-token-prompt';
+    prompt.innerHTML = `
+      <p>Connect da.live once to save rows to the incoming sheet.</p>
+      <label for="da-form-token">da.live token</label>
+      <input id="da-form-token" name="da-form-token" type="password" autocomplete="off" placeholder="Paste IMS token from da.live">
+      <button class="button" type="button">Save and send</button>
+    `;
+    const input = prompt.querySelector('input');
+    prompt.querySelector('button').addEventListener('click', () => {
+      const token = input.value.trim();
+      if (!token) {
+        setFormMessage(form, 'error', 'Paste a da.live token, then click Save and send.');
+        return;
+      }
+      window.localStorage?.setItem(DA_TOKEN_KEY, token);
+      prompt.remove();
+      handleSubmit(form);
+    });
+    form.append(prompt);
+  }
+  prompt.querySelector('input')?.focus();
+  setFormMessage(
+    form,
+    'error',
+    'Open da.live, DevTools → Network, click any admin.da.live request, copy the Authorization token (without "Bearer ").',
+  );
+}
+
 async function previewDaSheet(org, site, pathname) {
   const path = pathname.replace(/\.json$/, '');
   try {
@@ -233,20 +290,21 @@ async function previewDaSheet(org, site, pathname) {
 }
 
 async function submitToDaLive(pathname, payload) {
+  const token = await getDaWriteToken();
+  if (!token) {
+    return { ok: false, status: 401, statusText: 'Missing da.live token' };
+  }
   const { org, site } = siteContext();
   const sheetResp = await fetch(pathname);
   if (!sheetResp.ok) {
     throw new Error(`Unable to load sheet: ${sheetResp.status}`);
   }
   const sheet = appendIncoming(await sheetResp.json(), payload);
-  const token = await getDaWriteToken();
   const body = new FormData();
   body.append('data', new Blob([JSON.stringify(sheet)], { type: 'application/json' }));
-  const headers = {};
-  if (token) headers.Authorization = `Bearer ${token}`;
   const response = await fetch(`https://admin.da.live/source/${org}/${site}${pathname}`, {
     method: 'POST',
-    headers,
+    headers: { Authorization: `Bearer ${token}` },
     body,
   });
   if (response.ok) {
@@ -273,7 +331,14 @@ async function handleSubmit(form) {
     if (submit) submit.disabled = true;
     setFormMessage(form, '', '');
 
-    const payload = generatePayload(form);
+    let payload = generatePayload(form);
+    if (form.dataset.pendingPayload) {
+      try {
+        payload = { ...JSON.parse(form.dataset.pendingPayload), ...payload };
+      } catch (e) {
+        payload = generatePayload(form);
+      }
+    }
     const action = form.dataset.action || '';
     const useDaSheet = !action
       || action.includes('admin.hlx.page')
@@ -283,6 +348,7 @@ async function handleSubmit(form) {
       ? await submitToDaLive(form.dataset.sheet, payload)
       : await postFormData(action, payload);
     if (response.ok) {
+      delete form.dataset.pendingPayload;
       if (form.dataset.confirmation) {
         window.location.href = form.dataset.confirmation;
         return;
@@ -290,11 +356,7 @@ async function handleSubmit(form) {
       form.reset();
       setFormMessage(form, 'success', 'Thank you. Your response was saved to the da.live spreadsheet.');
     } else if (response.status === 401) {
-      setFormMessage(
-        form,
-        'error',
-        'da.live needs a write token. Open /forms/da-submit in da.live, paste an IMS token in the token column, then Preview that sheet.',
-      );
+      showTokenPrompt(form, payload);
     } else {
       throw new Error(`${response.status} ${response.statusText}`);
     }

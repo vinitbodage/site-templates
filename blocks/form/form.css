@@ -185,3 +185,16 @@
   background-color: #fdecea;
   color: #8a1c13;
 }
+
+.form .da-token-prompt {
+  display: grid;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 1em;
+  border: 1px solid var(--dark-color);
+  border-radius: 4px;
+}
+
+.form .da-token-prompt .button {
+  max-width: max-content;
+}
