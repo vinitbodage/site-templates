@@ -3,6 +3,26 @@ import createField from './form-fields.js';
 const DEFINITION_SHEETS = ['shared-aem', 'helix-default'];
 const SKIP_SHEETS = new Set(['incoming', 'slack', ':names', ':type', ':version', ':sheetname']);
 
+/** Shown when the da.live sheet omits these rows (localhost uses the fuller git sheet). */
+const FALLBACK_FIELDS = [
+  {
+    Type: 'text',
+    Name: 'lastName',
+    Label: 'Last name',
+    Placeholder: 'Doe',
+    Mandatory: 'x',
+    after: 'firstName',
+  },
+  {
+    Type: 'tel',
+    Name: 'phone',
+    Label: 'Phone',
+    Placeholder: '+1 555 0100',
+    Mandatory: '',
+    after: 'email',
+  },
+];
+
 /**
  * Reads field rows from a DA / EDS spreadsheet JSON.
  * Supports a single sheet (`data`) or a multi-sheet workbook whose definition
@@ -11,15 +31,33 @@ const SKIP_SHEETS = new Set(['incoming', 'slack', ':names', ':type', ':version',
  * @returns {object[]} field definitions
  */
 function getFormRows(json) {
-  if (Array.isArray(json?.data)) return json.data;
+  if (Array.isArray(json?.data)) return withFallbackFields(json.data);
 
   const names = Array.isArray(json?.[':names']) ? json[':names'] : Object.keys(json || {});
   const definitionName = names.find((name) => DEFINITION_SHEETS.includes(name))
     || names.find((name) => !SKIP_SHEETS.has(name) && Array.isArray(json[name]?.data));
 
-  return definitionName && Array.isArray(json[definitionName]?.data)
+  const rows = definitionName && Array.isArray(json[definitionName]?.data)
     ? json[definitionName].data
     : [];
+  return withFallbackFields(rows);
+}
+
+function fieldName(row) {
+  return `${row?.Name || row?.name || ''}`.toLowerCase();
+}
+
+function withFallbackFields(rows) {
+  const result = [...rows];
+  const names = new Set(result.map((row) => fieldName(row)));
+  FALLBACK_FIELDS.forEach((field) => {
+    if (names.has(field.Name.toLowerCase())) return;
+    const { after, ...fd } = field;
+    const index = result.findIndex((row) => fieldName(row) === after.toLowerCase());
+    result.splice(index >= 0 ? index + 1 : Math.max(result.length - 1, 0), 0, fd);
+    names.add(field.Name.toLowerCase());
+  });
+  return result;
 }
 
 /**
@@ -28,16 +66,27 @@ function getFormRows(json) {
  * @param {string} formPath spreadsheet pathname, with or without `.json`
  * @returns {string|null}
  */
-function buildAdminFormUrl(formPath) {
-  const host = window.location.hostname.split('.')[0];
+function hostParts(hostname) {
+  const host = hostname.split('.')[0];
   const parts = host.split('--');
   if (parts.length < 3) return null;
+  return {
+    ref: parts[0],
+    repo: parts.slice(1, -1).join('--'),
+    owner: parts[parts.length - 1],
+  };
+}
 
-  const ref = parts[0];
-  const owner = parts[parts.length - 1];
-  const repo = parts.slice(1, -1).join('--');
-  const sheetPath = formPath.replace(/\.json$/, '');
-  return `https://admin.hlx.page/form/${owner}/${repo}/${ref}${sheetPath}`;
+function buildAdminFormUrl(formHref) {
+  const url = resolveHref(formHref);
+  const fromLink = url && !['localhost', '127.0.0.1'].includes(url.hostname)
+    ? hostParts(url.hostname)
+    : null;
+  const parts = fromLink || hostParts(window.location.hostname);
+  if (!parts) return null;
+  const sheetPath = (url?.pathname || '').replace(/\.json$/, '');
+  if (!sheetPath) return null;
+  return `https://admin.hlx.page/form/${parts.owner}/${parts.repo}/${parts.ref}${sheetPath}`;
 }
 
 function resolveHref(href) {
@@ -74,7 +123,7 @@ function resolveFormLinks(block) {
     || (formUrl && submitUrl && formUrl.pathname === submitUrl.pathname);
 
   if (sameSheet) {
-    const adminUrl = formUrl ? buildAdminFormUrl(formUrl.pathname) : null;
+    const adminUrl = buildAdminFormUrl(formHref);
     return { formHref, submitHref: adminUrl || formHref };
   }
 
@@ -156,7 +205,8 @@ async function handleSubmit(form) {
       method: 'POST',
       body: JSON.stringify({ data: payload }),
       headers: {
-        'Content-Type': 'application/json',
+        // text/plain avoids a CORS preflight that blocks application/json
+        'Content-Type': 'text/plain;charset=UTF-8',
       },
     });
     if (response.ok) {
