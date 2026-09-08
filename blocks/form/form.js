@@ -124,6 +124,7 @@ async function createForm(formHref, submitHref) {
 
   const form = document.createElement('form');
   form.dataset.action = submitHref;
+  form.dataset.sheet = pathname;
 
   const fields = await Promise.all(rows.map((fd) => createField(fd, form)));
   fields.forEach((field) => {
@@ -174,50 +175,93 @@ function setFormMessage(form, type, text) {
   message.textContent = text || '';
 }
 
-function incomingPayload(payload) {
-  const data = { ...payload };
-  Object.keys(payload).forEach((key) => {
-    data[key.toLowerCase()] = payload[key];
-  });
-  return data;
+function siteContext() {
+  const parts = window.location.hostname.split('.')[0].split('--');
+  if (parts.length >= 3) {
+    return { org: parts[parts.length - 1], site: parts.slice(1, -1).join('--') };
+  }
+  return { org: 'vinitbodage', site: 'site-templates' };
 }
 
-function submitTargets(action) {
-  const withJson = action.endsWith('.json') ? action : `${action}.json`;
-  return [...new Set([
-    withJson,
-    withJson.replace('admin.hlx.page', 'admin.aem.page'),
-    action,
-  ])];
+function appendIncoming(sheet, payload) {
+  const next = JSON.parse(JSON.stringify(sheet || {}));
+  if (!next[':names']) next[':names'] = ['shared-aem', 'incoming'];
+  if (!next[':names'].includes('incoming')) next[':names'].push('incoming');
+  next[':type'] = 'multi-sheet';
+  if (!next.incoming) next.incoming = { total: 0, offset: 0, limit: 0, data: [] };
+
+  const headers = new Set();
+  (next.incoming.data || []).forEach((row) => Object.keys(row).forEach((key) => headers.add(key)));
+  Object.keys(payload).forEach((key) => headers.add(key));
+
+  const row = {};
+  headers.forEach((key) => {
+    const match = Object.keys(payload).find((name) => name.toLowerCase() === key.toLowerCase());
+    row[key] = match ? payload[match] : '';
+  });
+
+  const data = (next.incoming.data || [])
+    .filter((entry) => Object.values(entry).some((value) => `${value}`.trim()));
+  data.push(row);
+  next.incoming.data = data;
+  next.incoming.total = data.length;
+  next.incoming.limit = data.length;
+  next.incoming.offset = 0;
+  return next;
+}
+
+async function getDaWriteToken() {
+  try {
+    const resp = await fetch('/forms/da-submit.json');
+    if (!resp.ok) return '';
+    const json = await resp.json();
+    const rows = json.data || json['helix-default']?.data || [];
+    const row = rows.find((entry) => entry.token || entry.Token || entry.value);
+    return `${row?.token || row?.Token || row?.value || json.token || ''}`.trim();
+  } catch (e) {
+    return '';
+  }
+}
+
+async function previewDaSheet(org, site, pathname) {
+  const path = pathname.replace(/\.json$/, '');
+  try {
+    await fetch(`https://admin.hlx.page/preview/${org}/${site}/main${path}`, { method: 'POST' });
+  } catch (e) {
+    // Preview can fail without Sidekick auth; the da.live sheet is still updated.
+  }
+}
+
+async function submitToDaLive(pathname, payload) {
+  const { org, site } = siteContext();
+  const sheetResp = await fetch(pathname);
+  if (!sheetResp.ok) {
+    throw new Error(`Unable to load sheet: ${sheetResp.status}`);
+  }
+  const sheet = appendIncoming(await sheetResp.json(), payload);
+  const token = await getDaWriteToken();
+  const body = new FormData();
+  body.append('data', new Blob([JSON.stringify(sheet)], { type: 'application/json' }));
+  const headers = {};
+  if (token) headers.Authorization = `Bearer ${token}`;
+  const response = await fetch(`https://admin.da.live/source/${org}/${site}${pathname}`, {
+    method: 'POST',
+    headers,
+    body,
+  });
+  if (response.ok) {
+    await previewDaSheet(org, site, pathname);
+  }
+  return response;
 }
 
 async function postFormData(action, payload) {
-  const body = JSON.stringify({ data: incomingPayload(payload) });
-  let lastResponse = null;
-  const attempts = [
-    { headers: { 'Content-Type': 'application/json' } },
-    { headers: { 'Content-Type': 'text/plain;charset=UTF-8' } },
-  ];
-
-  const targets = submitTargets(action);
-  /* eslint-disable no-await-in-loop */
-  for (let i = 0; i < targets.length; i += 1) {
-    for (let j = 0; j < attempts.length; j += 1) {
-      try {
-        const response = await fetch(targets[i], {
-          method: 'POST',
-          body,
-          headers: attempts[j].headers,
-        });
-        lastResponse = response;
-        if (response.ok) return response;
-      } catch (e) {
-        lastResponse = lastResponse || { ok: false, status: 0, statusText: e.message };
-      }
-    }
-  }
-  /* eslint-enable no-await-in-loop */
-  return lastResponse || { ok: false, status: 0, statusText: 'No response' };
+  const body = JSON.stringify({ data: payload });
+  return fetch(action, {
+    method: 'POST',
+    body,
+    headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+  });
 }
 
 async function handleSubmit(form) {
@@ -230,23 +274,22 @@ async function handleSubmit(form) {
     setFormMessage(form, '', '');
 
     const payload = generatePayload(form);
-    if (!form.dataset.action) {
-      setFormMessage(
-        form,
-        'error',
-        'Thank you. The form was submitted, but da.live sheets cannot store rows. The old form API returns 404. Use a SharePoint or Google Sheet with an incoming tab to save data.',
-      );
-      form.reset();
-      return;
-    }
-    const response = await postFormData(form.dataset.action, payload);
+    const response = form.dataset.action
+      ? await postFormData(form.dataset.action, payload)
+      : await submitToDaLive(form.dataset.sheet, payload);
     if (response.ok) {
       if (form.dataset.confirmation) {
         window.location.href = form.dataset.confirmation;
         return;
       }
       form.reset();
-      setFormMessage(form, 'success', 'Thank you. Your response was saved to the spreadsheet.');
+      setFormMessage(form, 'success', 'Thank you. Your response was saved to the da.live spreadsheet.');
+    } else if (response.status === 401) {
+      setFormMessage(
+        form,
+        'error',
+        'da.live needs a write token. Open /forms/da-submit in da.live, paste an IMS token in the token column, then Preview that sheet.',
+      );
     } else {
       throw new Error(`${response.status} ${response.statusText}`);
     }
