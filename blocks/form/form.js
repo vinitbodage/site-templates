@@ -274,9 +274,14 @@ async function handleSubmit(form) {
     setFormMessage(form, '', '');
 
     const payload = generatePayload(form);
-    const response = form.dataset.action
-      ? await postFormData(form.dataset.action, payload)
-      : await submitToDaLive(form.dataset.sheet, payload);
+    const action = form.dataset.action || '';
+    const useDaSheet = !action
+      || action.includes('admin.hlx.page')
+      || action.includes('admin.aem.page')
+      || action.endsWith('.json');
+    const response = useDaSheet
+      ? await submitToDaLive(form.dataset.sheet, payload)
+      : await postFormData(action, payload);
     if (response.ok) {
       if (form.dataset.confirmation) {
         window.location.href = form.dataset.confirmation;
