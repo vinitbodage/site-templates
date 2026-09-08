@@ -66,31 +66,6 @@ function withFallbackFields(rows) {
  * @param {string} formPath spreadsheet pathname, with or without `.json`
  * @returns {string|null}
  */
-function hostParts(hostname) {
-  const host = hostname.split('.')[0];
-  const parts = host.split('--');
-  if (parts.length < 3) return null;
-  return {
-    ref: parts[0],
-    repo: parts.slice(1, -1).join('--'),
-    owner: parts[parts.length - 1],
-  };
-}
-
-function isLocalHost(hostname) {
-  return hostname === 'localhost' || hostname === '127.0.0.1';
-}
-
-function buildAdminFormUrl(formHref) {
-  const url = resolveHref(formHref);
-  const fromLink = url && !isLocalHost(url.hostname) ? hostParts(url.hostname) : null;
-  const parts = fromLink || hostParts(window.location.hostname);
-  if (!parts || !url?.pathname) return null;
-  const sheetPath = url.pathname.endsWith('.json') ? url.pathname : `${url.pathname}.json`;
-  // Incoming writes go to the content site (main), not the code-branch preview host.
-  return `https://admin.hlx.page/form/${parts.owner}/${parts.repo}/main${sheetPath}`;
-}
-
 function jsonUrlFromAnchor(anchor) {
   const text = anchor.textContent.trim();
   if (/^https?:\/\//i.test(text) && text.includes('.json')) return text;
@@ -131,8 +106,8 @@ function resolveFormLinks(block) {
     || (formUrl && submitUrl && formUrl.pathname === submitUrl.pathname);
 
   if (sameSheet) {
-    const adminUrl = buildAdminFormUrl(formHref);
-    return { formHref, submitHref: adminUrl || formHref };
+    // da.live sheets cannot be written by the retired Helix /form API (404).
+    return { formHref, submitHref: '' };
   }
 
   return { formHref, submitHref: explicitSubmit };
@@ -255,6 +230,15 @@ async function handleSubmit(form) {
     setFormMessage(form, '', '');
 
     const payload = generatePayload(form);
+    if (!form.dataset.action) {
+      setFormMessage(
+        form,
+        'error',
+        'Thank you. The form was submitted, but da.live sheets cannot store rows. The old form API returns 404. Use a SharePoint or Google Sheet with an incoming tab to save data.',
+      );
+      form.reset();
+      return;
+    }
     const response = await postFormData(form.dataset.action, payload);
     if (response.ok) {
       if (form.dataset.confirmation) {
