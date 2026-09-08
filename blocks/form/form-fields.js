@@ -1,5 +1,22 @@
 import { toClassName } from '../../scripts/aem.js';
 
+const FIELD_KEYS = ['Type', 'Name', 'Label', 'Placeholder', 'Mandatory', 'Options', 'Value', 'Style', 'Fieldset', 'Id'];
+
+function pickFieldValue(fd, name) {
+  if (fd[name] != null && fd[name] !== '') return fd[name];
+  const found = Object.keys(fd).find((key) => key.toLowerCase() === name.toLowerCase());
+  return found != null ? fd[found] : '';
+}
+
+function normalizeField(fd) {
+  const normalized = { ...fd };
+  FIELD_KEYS.forEach((key) => {
+    normalized[key] = pickFieldValue(fd, key);
+  });
+  if (!normalized.Type) normalized.Type = 'text';
+  return normalized;
+}
+
 function createFieldWrapper(fd) {
   const fieldWrapper = document.createElement('div');
   if (fd.Style) fieldWrapper.className = fd.Style;
@@ -87,20 +104,21 @@ const createSelect = async (fd) => {
     ph.setAttribute('disabled', '');
   }
 
-  if (fd.Options) {
+  const optionSource = fd.Options || fd.options;
+  if (optionSource) {
     let options = [];
-    if (fd.Options.startsWith('https://')) {
-      const optionsUrl = new URL(fd.Options);
+    if (`${optionSource}`.startsWith('https://')) {
+      const optionsUrl = new URL(optionSource);
       const resp = await fetch(`${optionsUrl.pathname}${optionsUrl.search}`);
       const json = await resp.json();
       json.data.forEach((opt) => {
         options.push({
-          text: opt.Option,
-          value: opt.Value || opt.Option,
+          text: opt.Option || opt.option,
+          value: opt.Value || opt.value || opt.Option || opt.option,
         });
       });
     } else {
-      options = fd.Options.split(',').map((opt) => ({
+      options = `${optionSource}`.split(',').map((opt) => ({
         text: opt.trim(),
         value: opt.trim().toLowerCase(),
       }));
@@ -232,10 +250,11 @@ const FIELD_CREATOR_FUNCTIONS = {
 };
 
 export default async function createField(fd, form) {
-  fd.Id = fd.Id || generateFieldId(fd);
-  const type = `${fd.Type || 'text'}`.toLowerCase();
+  const field = normalizeField(fd);
+  field.Id = field.Id || generateFieldId(field);
+  const type = `${field.Type}`.toLowerCase();
   const createFieldFunc = FIELD_CREATOR_FUNCTIONS[type] || createInput;
-  const fieldElements = await createFieldFunc(fd, form);
+  const fieldElements = await createFieldFunc(field, form);
 
   return fieldElements.fieldWrapper;
 }
