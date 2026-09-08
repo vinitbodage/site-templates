@@ -77,16 +77,24 @@ function hostParts(hostname) {
   };
 }
 
+function isLocalHost(hostname) {
+  return hostname === 'localhost' || hostname === '127.0.0.1';
+}
+
 function buildAdminFormUrl(formHref) {
   const url = resolveHref(formHref);
-  const fromLink = url && !['localhost', '127.0.0.1'].includes(url.hostname)
-    ? hostParts(url.hostname)
-    : null;
+  const fromLink = url && !isLocalHost(url.hostname) ? hostParts(url.hostname) : null;
   const parts = fromLink || hostParts(window.location.hostname);
-  if (!parts) return null;
-  const sheetPath = (url?.pathname || '').replace(/\.json$/, '');
-  if (!sheetPath) return null;
-  return `https://admin.hlx.page/form/${parts.owner}/${parts.repo}/${parts.ref}${sheetPath}`;
+  if (!parts || !url?.pathname) return null;
+  const sheetPath = url.pathname.endsWith('.json') ? url.pathname : `${url.pathname}.json`;
+  // Incoming writes go to the content site (main), not the code-branch preview host.
+  return `https://admin.hlx.page/form/${parts.owner}/${parts.repo}/main${sheetPath}`;
+}
+
+function jsonUrlFromAnchor(anchor) {
+  const text = anchor.textContent.trim();
+  if (/^https?:\/\//i.test(text) && text.includes('.json')) return text;
+  return anchor.href;
 }
 
 function resolveHref(href) {
@@ -111,7 +119,7 @@ function isJsonHref(href) {
  */
 function resolveFormLinks(block) {
   const hrefs = [...block.querySelectorAll('a')]
-    .map((anchor) => anchor.href)
+    .map((anchor) => jsonUrlFromAnchor(anchor))
     .filter(Boolean);
   const formHref = hrefs.find(isJsonHref);
   if (!formHref) return null;
@@ -191,6 +199,52 @@ function setFormMessage(form, type, text) {
   message.textContent = text || '';
 }
 
+function incomingPayload(payload) {
+  const data = { ...payload };
+  Object.keys(payload).forEach((key) => {
+    data[key.toLowerCase()] = payload[key];
+  });
+  return data;
+}
+
+function submitTargets(action) {
+  const withJson = action.endsWith('.json') ? action : `${action}.json`;
+  return [...new Set([
+    withJson,
+    withJson.replace('admin.hlx.page', 'admin.aem.page'),
+    action,
+  ])];
+}
+
+async function postFormData(action, payload) {
+  const body = JSON.stringify({ data: incomingPayload(payload) });
+  let lastResponse = null;
+  const attempts = [
+    { headers: { 'Content-Type': 'application/json' } },
+    { headers: { 'Content-Type': 'text/plain;charset=UTF-8' } },
+  ];
+
+  const targets = submitTargets(action);
+  /* eslint-disable no-await-in-loop */
+  for (let i = 0; i < targets.length; i += 1) {
+    for (let j = 0; j < attempts.length; j += 1) {
+      try {
+        const response = await fetch(targets[i], {
+          method: 'POST',
+          body,
+          headers: attempts[j].headers,
+        });
+        lastResponse = response;
+        if (response.ok) return response;
+      } catch (e) {
+        lastResponse = lastResponse || { ok: false, status: 0, statusText: e.message };
+      }
+    }
+  }
+  /* eslint-enable no-await-in-loop */
+  return lastResponse || { ok: false, status: 0, statusText: 'No response' };
+}
+
 async function handleSubmit(form) {
   if (form.getAttribute('data-submitting') === 'true') return;
 
@@ -201,14 +255,7 @@ async function handleSubmit(form) {
     setFormMessage(form, '', '');
 
     const payload = generatePayload(form);
-    const response = await fetch(form.dataset.action, {
-      method: 'POST',
-      body: JSON.stringify({ data: payload }),
-      headers: {
-        // text/plain avoids a CORS preflight that blocks application/json
-        'Content-Type': 'text/plain;charset=UTF-8',
-      },
-    });
+    const response = await postFormData(form.dataset.action, payload);
     if (response.ok) {
       if (form.dataset.confirmation) {
         window.location.href = form.dataset.confirmation;
@@ -217,8 +264,7 @@ async function handleSubmit(form) {
       form.reset();
       setFormMessage(form, 'success', 'Thank you. Your response was saved to the spreadsheet.');
     } else {
-      const error = await response.text();
-      throw new Error(error);
+      throw new Error(`${response.status} ${response.statusText}`);
     }
   } catch (e) {
     // eslint-disable-next-line no-console
