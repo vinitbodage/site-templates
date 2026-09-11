@@ -141,6 +141,12 @@ export default async function decorate(block) {
     row.remove();
   });
 
+  const firstImg = slidesWrapper.querySelector('img');
+  if (firstImg) {
+    firstImg.loading = 'eager';
+    firstImg.fetchPriority = 'high';
+  }
+
   container.append(slidesWrapper);
   block.prepend(container);
 

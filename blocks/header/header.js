@@ -1,4 +1,4 @@
-import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
+import { fetchPlaceholders, getMetadata, toClassName } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -176,8 +176,11 @@ async function buildBreadcrumbs() {
  */
 export default async function decorate(block) {
   // load nav as fragment
+  const template = toClassName(getMetadata('template'));
   const navMeta = getMetadata('nav');
-  const defaultNav = document.body.classList.contains('wgc') ? '/template1/nav' : '/nav';
+  const defaultNav = document.body.classList.contains('wgc')
+    ? '/template1/nav'
+    : (template ? `/${template}/nav` : '/nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
   const fragment = await loadFragment(navPath);
 
@@ -227,6 +230,12 @@ export default async function decorate(block) {
     const search = navTools.querySelector('a[href*="search"]');
     if (search && search.textContent === '') {
       search.setAttribute('aria-label', 'Search');
+    }
+    if (document.body.classList.contains('template')) {
+      navTools.querySelectorAll('a.button').forEach((a) => {
+        a.classList.remove('button', 'primary', 'secondary');
+        a.closest('.button-container')?.classList.remove('button-container');
+      });
     }
   }
 

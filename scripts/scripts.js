@@ -84,6 +84,10 @@ async function loadFonts() {
 async function loadTemplateStyles() {
   const template = toClassName(getMetadata('template'));
   if (!template) return;
+  if (template === 'template') {
+    await loadCSS(`${window.hlx.codeBasePath}/styles/template/template-theme.css`);
+    return;
+  }
   try {
     await loadCSS(`${window.hlx.codeBasePath}/styles/template/${template}-theme.css`);
   } catch (e) {

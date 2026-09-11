@@ -69,6 +69,14 @@
             {
               "name": "Split heading & list",
               "value": "split-list"
+            },
+            {
+              "name": "Booking bar",
+              "value": "booking"
+            },
+            {
+              "name": "Contact bar",
+              "value": "contact-bar"
             }
           ]
         }
