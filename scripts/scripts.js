@@ -22,6 +22,33 @@ import { applyTheme, getStoredTheme } from './template/theme.js';
 export const NX_ORIGIN = 'https://da.live/nx';
 
 /**
+ * Standalone accessibility picker package (separate repo).
+ * Override with <meta name="a11y-picker-src" content="..."> or window.A11Y_PICKER_SRC.
+ */
+export const A11Y_PICKER_SRC = 'https://cdn.jsdelivr.net/gh/Sushmadayanand1997/a11y-picker@main/src/embed.js';
+
+/**
+ * @returns {string} embed module URL
+ */
+function getA11yPickerSrc() {
+  return getMetadata('a11y-picker-src')
+    || window.A11Y_PICKER_SRC
+    || A11Y_PICKER_SRC;
+}
+
+/**
+ * Mounts the accessibility embed on template2 pages (fixed bottom-right).
+ * @param {Document} doc the page document
+ */
+async function mountAccessibilityPicker(doc) {
+  if (!doc.body.classList.contains('template2')) return;
+  if (doc.querySelector('.a11y-picker-embed')) return;
+
+  // eslint-disable-next-line import/no-unresolved
+  const { initA11yPicker } = await import(getA11yPickerSrc());
+  await initA11yPicker({ doc, restore: true });
+}
+/**
  * Authored pages that still use the old prefixed block names
  * (`template2-hero`, `wgc-intro`, …) are rewritten to the unprefixed folders
  * so those blocks load. The first class token must stay the block name.
@@ -231,6 +258,7 @@ async function loadLazy(doc) {
 
   await loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
+  await mountAccessibilityPicker(doc);
 
   if (
     doc.querySelector('.book-now, [data-book-now], .book-now-modal')
