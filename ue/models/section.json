@@ -28,6 +28,10 @@
             {
               "name": "Full Bleed",
               "value": "full-bleed"
+            },
+            {
+              "name": "Tinted",
+              "value": "tinted"
             }
           ]
         }
@@ -45,32 +49,20 @@
         "embed",
         "fragment",
         "form",
+        "gallery",
         "hero",
+        "amenities",
+        "home-map",
         "image",
         "quote",
+        "room",
         "search",
         "tabs",
         "table",
         "text",
         "video",
-        "product-recommendations",
-        "wgc-hero",
-        "wgc-intro",
-        "wgc-icons",
-        "wgc-columns",
-        "wgc-gallery",
         "photo-gallery",
-        "wgc-home-room-dine-spa",
-        "wgc-home-map",
-        "wgc-accordion",
-        "wgc-media-mosaic",
-        "wgc-intro-container",
-        "wgc-amenities",
-        "wgc-room",
-        "book-now-modal",
-        "wgc-hotel-intro",
-        "wgc-hotel-policies",
-        "theme-option"
+        "theme-picker"
       ]
     }
   ]

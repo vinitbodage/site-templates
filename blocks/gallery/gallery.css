@@ -1,0 +1,160 @@
+.gallery .gallery-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gallery .gallery-list > li {
+  position: relative;
+  flex: 1 1 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.gallery .gallery-list > li > a {
+  display: block;
+  height: 100%;
+}
+
+.gallery:not(.badges, .images-footer) a:any-link {
+  display: block;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 0;
+  text-decoration: none;
+  white-space: normal;
+}
+
+.gallery:not(.badges, .images-footer) a:any-link:hover,
+.gallery:not(.badges, .images-footer) a:any-link:focus-visible {
+  background-color: transparent;
+  color: inherit;
+  text-decoration: none;
+}
+
+.gallery:not(.badges, .images-footer) picture,
+.gallery:not(.badges, .images-footer) img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.gallery:not(.badges, .images-footer) .gallery-list > li:hover img,
+.gallery:not(.badges, .images-footer) .gallery-list > li:focus-within img {
+  transform: scale(1.08);
+}
+
+@media (width >= 900px) {
+  .gallery .gallery-list {
+    gap: 20px;
+  }
+
+  .gallery .gallery-list > li {
+    height: 300px;
+  }
+
+  .gallery .gallery-list > li:nth-child(4n + 1) {
+    flex: 0 0 calc(58% - 20px);
+  }
+
+  .gallery .gallery-list > li:nth-child(4n + 2) {
+    flex: 0 0 42%;
+  }
+
+  .gallery .gallery-list > li:nth-child(4n + 3) {
+    flex: 0 0 calc(33% - 20px);
+  }
+
+  .gallery .gallery-list > li:nth-child(4n) {
+    flex: 0 0 67%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery:not(.badges, .images-footer) picture,
+  .gallery:not(.badges, .images-footer) img {
+    transition: none;
+  }
+
+  .gallery:not(.badges, .images-footer) .gallery-list > li:hover img,
+  .gallery:not(.badges, .images-footer) .gallery-list > li:focus-within img {
+    transform: none;
+  }
+}
+
+/* Award badges — hotel-info images-footer layout */
+/* stylelint-disable no-descending-specificity -- badge logos override grid image sizing */
+.gallery.badges,
+.gallery.images-footer {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--t1-max-width, 1200px);
+  margin: 30px auto 0;
+  padding: 1em 24px 1.3em;
+}
+
+.gallery.badges .images-footer-block,
+.gallery.images-footer .images-footer-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px 20px;
+  margin: 0 auto;
+}
+
+.gallery.badges .images-footer-item,
+.gallery.images-footer .images-footer-item {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery.badges picture,
+.gallery.images-footer picture,
+.gallery.badges img,
+.gallery.images-footer img {
+  display: block;
+  width: auto;
+  max-width: 200px;
+  height: auto;
+  max-height: 89px;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.gallery.badges a:any-link,
+.gallery.images-footer a:any-link {
+  display: block;
+  line-height: 0;
+}
+
+.gallery.badges a:hover img,
+.gallery.badges a:focus-visible img,
+.gallery.images-footer a:hover img,
+.gallery.images-footer a:focus-visible img {
+  opacity: 0.5;
+  transform: none;
+}
+
+/* stylelint-enable no-descending-specificity */
+
+@media (width >= 900px) {
+  .gallery.badges,
+  .gallery.images-footer {
+    padding-inline: 32px;
+  }
+}

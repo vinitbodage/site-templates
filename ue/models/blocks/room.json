@@ -1,0 +1,103 @@
+{
+  "definitions": [
+    {
+      "title": "Room",
+      "id": "room",
+      "model": "room",
+      "filter": "room",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1
+        }
+      }
+    },
+    {
+      "title": "Room Slide",
+      "id": "room-slide",
+      "model": "room-slide",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>picture>img[alt]" }
+          ]
+        }
+      }
+    },
+    {
+      "title": "Room Copy",
+      "id": "room-copy",
+      "model": "room-copy",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            { "name": "content", "selector": "div:nth-child(1)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "room",
+      "fields": [
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Image Position",
+          "value": "",
+          "options": [
+            { "name": "Image left", "value": "" },
+            { "name": "Image right", "value": "image-right" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "room-slide",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt",
+          "multi": false
+        }
+      ]
+    },
+    {
+      "id": "room-copy",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "value": "",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "room",
+      "components": [
+        "room-slide",
+        "room-copy"
+      ]
+    }
+  ]
+}

@@ -59,3 +59,87 @@
   border-top: 1px solid #dadada;
   background-color: var(--background-color);
 }
+
+/* media accordion — layout overrides for the default chevron/border styles */
+.accordion.media details.accordion-item {
+  border: 0;
+}
+
+.accordion.media details.accordion-item + details.accordion-item {
+  margin-top: 8px;
+}
+
+.accordion.media details.accordion-item summary {
+  padding: 0;
+  overflow: visible;
+}
+
+.accordion.media details.accordion-item summary::after {
+  display: none;
+}
+
+.accordion.media details.accordion-item summary:hover,
+.accordion.media details.accordion-item summary:focus,
+.accordion.media details.accordion-item[open] summary {
+  background-color: transparent;
+}
+
+.accordion.media .accordion-item-summary {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion.media .accordion-item-summary::-webkit-details-marker,
+.accordion.media .accordion-item-summary::marker {
+  display: none;
+  content: '';
+}
+
+.accordion.media .accordion-item-media picture,
+.accordion.media .accordion-item-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* stylelint-disable no-descending-specificity -- media accordion overrides base chrome */
+.accordion.media .accordion-item-body {
+  border-top: 0;
+  background-color: transparent;
+}
+
+.accordion.media details.accordion-item[open] .accordion-item-body {
+  border-top: 0;
+  background-color: transparent;
+}
+/* stylelint-enable no-descending-specificity */
+
+@media (width >= 900px) {
+  .accordion.media .accordion-item-summary {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .accordion.media .accordion-item-media {
+    flex: 0 0 40%;
+    max-width: 40%;
+    overflow: hidden;
+  }
+
+  .accordion.media .accordion-item-media picture,
+  .accordion.media .accordion-item-media img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .accordion.media .accordion-item-title {
+    flex: 1 1 60%;
+    min-height: 0;
+  }
+}

@@ -1,11 +1,9 @@
 import { loadCSS } from '../../scripts/aem.js';
 import {
   setBookingBaseUrl, buildBookingUrl,
-} from '../../scripts/template/wgc-booking.js';
+} from '../../scripts/template/booking.js';
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
-
-const BG_IMAGE = 'https://www.wyndhamgrandclearwater.com/assets/images/png/background-booking-widget.png';
 
 const DEFAULT_LABELS = {
   title: 'Select Your Date',
@@ -98,6 +96,24 @@ function parseLabels(block) {
 let dialogEl = null;
 let lastTrigger = null;
 let focusTrapHandler = null;
+
+const BOOK_NOW_HASH = '#book-now-modal';
+
+/** Removes the book-now hash from the URL without adding a history entry. */
+function clearBookNowHash() {
+  if (window.location.hash !== BOOK_NOW_HASH) return;
+  window.history.replaceState(null, '', window.location.pathname + window.location.search);
+}
+
+/** Syncs the book-now hash into the URL without adding a history entry. */
+function setBookNowHash() {
+  if (window.location.hash === BOOK_NOW_HASH) return;
+  window.history.replaceState(
+    null,
+    '',
+    `${window.location.pathname}${window.location.search}${BOOK_NOW_HASH}`,
+  );
+}
 
 /**
  * @param {string} isoDate YYYY-MM-DD
@@ -295,7 +311,7 @@ function buildDialog(labels) {
 
   dialog.innerHTML = `
     <div class="book-now-scene">
-      <div class="book-now-backdrop" style="--book-now-bg-image: url('${BG_IMAGE}')" aria-hidden="true"></div>
+      <div class="book-now-backdrop" aria-hidden="true"></div>
       <button type="button" class="book-now-close" aria-label="${escapeHtml(labels.close)} booking form">
         <span aria-hidden="true">${escapeHtml(labels.close)}</span>
         <span class="book-now-close-x" aria-hidden="true">X</span>
@@ -372,6 +388,7 @@ function buildDialog(labels) {
   dialog.addEventListener('close', () => {
     document.body.classList.remove('book-now-open');
     unbindFocusTrap(dialog);
+    clearBookNowHash();
     if (lastTrigger) {
       lastTrigger.focus();
       lastTrigger = null;
@@ -406,12 +423,27 @@ export async function openBookNowModal(trigger) {
   dialogEl.showModal();
   document.body.classList.add('book-now-open');
   bindFocusTrap(dialogEl);
+  setBookNowHash();
 
   const firstField = dialogEl.querySelector('.book-now-date-row');
   firstField?.focus();
 }
 
+const BOOK_NOW_TRIGGER = '.book-now, [data-book-now], .book-now-modal';
+
 let triggersBound = false;
+
+/**
+ * @param {Element} trigger
+ * @returns {boolean}
+ */
+function shouldOpenBookNowModal(trigger) {
+  if (trigger.hasAttribute('data-book-now')) return true;
+  if (trigger.classList.contains('book-now')) return true;
+  const href = trigger.getAttribute('href') || '';
+  const hash = trigger.hash || (href.startsWith('#') ? href : '');
+  return hash === BOOK_NOW_HASH;
+}
 
 /**
  * Wires Book Now triggers on the page via event delegation.
@@ -420,12 +452,21 @@ let triggersBound = false;
 export function bindBookNowTriggers(root = document) {
   if (triggersBound) return;
   triggersBound = true;
+
   root.addEventListener('click', (e) => {
-    const trigger = e.target.closest('.wgc-book-now, [data-book-now]');
-    if (!trigger) return;
+    const trigger = e.target.closest(BOOK_NOW_TRIGGER);
+    if (!trigger || !shouldOpenBookNowModal(trigger)) return;
     e.preventDefault();
     openBookNowModal(trigger);
   });
+
+  const openFromHash = () => {
+    if (window.location.hash === BOOK_NOW_HASH && !dialogEl?.open) {
+      openBookNowModal();
+    }
+  };
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
 }
 
 /**

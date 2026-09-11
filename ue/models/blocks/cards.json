@@ -31,6 +31,23 @@
   ],
   "models": [
     {
+      "id": "cards",
+      "fields": [
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "label": "Style",
+          "value": "",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "Accolades strip", "value": "accolades" },
+            { "name": "Image columns", "value": "card-columns" }
+          ]
+        }
+      ]
+    },
+    {
       "id": "card",
       "fields": [
         {

@@ -15,38 +15,32 @@
       "embed",
       "fragment",
       "form",
+      "gallery",
       "hero",
+      "amenities",
+      "home-map",
       "image",
       "quote",
+      "room",
       "search",
       "tabs",
       "table",
       "text",
       "video",
-      "product-recommendations",
-      "wgc-hero",
-      "wgc-intro",
-      "wgc-icons",
-      "wgc-columns",
-      "wgc-gallery",
       "photo-gallery",
-      "wgc-home-room-dine-spa",
-      "wgc-home-map",
-      "wgc-accordion",
-      "wgc-media-mosaic",
-      "wgc-intro-container",
-      "wgc-amenities",
-      "wgc-room",
-      "book-now-modal",
-      "wgc-hotel-intro",
-      "wgc-hotel-policies",
-      "theme-option"
+      "theme-picker"
     ]
   },
   {
     "id": "accordion",
     "components": [
       "accordion-item"
+    ]
+  },
+  {
+    "id": "amenities",
+    "components": [
+      "amenity-item"
     ]
   },
   {
@@ -58,7 +52,8 @@
   {
     "id": "carousel",
     "components": [
-      "carousel-item"
+      "carousel-item",
+      "testimonial-item"
     ]
   },
   {
@@ -79,11 +74,24 @@
     ]
   },
   {
+    "id": "gallery",
+    "components": [
+      "gallery-image"
+    ]
+  },
+  {
     "id": "photo-gallery",
     "components": [
       "photo-gallery-filter",
       "photo-gallery-video",
       "photo-gallery-image"
+    ]
+  },
+  {
+    "id": "room",
+    "components": [
+      "room-slide",
+      "room-copy"
     ]
   },
   {
@@ -113,33 +121,9 @@
     ]
   },
   {
-    "id": "wgc-columns",
-    "components": [
-      "wgc-column"
-    ]
-  },
-  {
-    "id": "wgc-gallery",
-    "components": [
-      "wgc-gallery-image"
-    ]
-  },
-  {
-    "id": "wgc-home-room-dine-spa",
-    "components": [
-      "wgc-rds-item"
-    ]
-  },
-  {
     "id": "wgc-hotel-policies",
     "components": [
       "wgc-hotel-policy-item"
-    ]
-  },
-  {
-    "id": "wgc-icons",
-    "components": [
-      "wgc-icon"
     ]
   },
   {

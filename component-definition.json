@@ -95,6 +95,35 @@
           }
         },
         {
+          "title": "Amenities",
+          "id": "amenities",
+          "model": "amenities",
+          "filter": "amenities",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "Amenity Item",
+          "id": "amenity-item",
+          "model": "amenity-item",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Book Now Modal",
           "id": "book-now-modal",
           "model": "book-now-modal",
@@ -226,6 +255,31 @@
           }
         },
         {
+          "title": "Testimonial",
+          "id": "testimonial-item",
+          "model": "testimonial-item",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 3,
+              "fields": [
+                {
+                  "name": "headline",
+                  "selector": "div:nth-child(1)"
+                },
+                {
+                  "name": "quote",
+                  "selector": "div:nth-child(2)"
+                },
+                {
+                  "name": "attribution",
+                  "selector": "div:nth-child(3)"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Columns",
           "id": "columns",
           "model": "columns",
@@ -284,6 +338,39 @@
           }
         },
         {
+          "title": "Gallery",
+          "id": "gallery",
+          "model": "gallery",
+          "filter": "gallery",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "Gallery Image",
+          "id": "gallery-image",
+          "model": "gallery-image",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Hero",
           "id": "hero",
           "model": "hero",
@@ -302,6 +389,31 @@
                 {
                   "name": "text",
                   "selector": "div>div>h1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Home Map",
+          "id": "home-map",
+          "model": "home-map",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)>div:nth-child(1)"
+                },
+                {
+                  "name": "pin",
+                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[src]"
+                },
+                {
+                  "name": "pinAlt",
+                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[alt]"
                 }
               ]
             }
@@ -417,6 +529,56 @@
           }
         },
         {
+          "title": "Room",
+          "id": "room",
+          "model": "room",
+          "filter": "room",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "Room Slide",
+          "id": "room-slide",
+          "model": "room-slide",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Room Copy",
+          "id": "room-copy",
+          "model": "room-copy",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 1,
+              "fields": [
+                {
+                  "name": "content",
+                  "selector": "div:nth-child(1)"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Search",
           "id": "search",
           "model": "search",
@@ -491,14 +653,12 @@
           }
         },
         {
-          "title": "Theme Option",
-          "id": "theme-option",
-          "model": "theme-option",
+          "title": "Theme Picker",
+          "id": "theme-picker",
+          "model": "theme-picker",
           "plugins": {
             "da": {
-              "rows": 1,
-              "columns": 1,
-              "fields": []
+              "unsafeHTML": "<div class=\"theme-picker\"><div></div></div>"
             }
           }
         },
@@ -608,167 +768,6 @@
           }
         },
         {
-          "title": "WGC Columns",
-          "id": "wgc-columns",
-          "model": "wgc-columns",
-          "filter": "wgc-columns",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2
-            }
-          }
-        },
-        {
-          "title": "WGC Column",
-          "id": "wgc-column",
-          "model": "wgc-column",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "body",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Gallery",
-          "id": "wgc-gallery",
-          "model": "wgc-gallery",
-          "filter": "wgc-gallery",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1
-            }
-          }
-        },
-        {
-          "title": "WGC Gallery Image",
-          "id": "wgc-gallery-image",
-          "model": "wgc-gallery-image",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Hero",
-          "id": "wgc-hero",
-          "model": "wgc-hero",
-          "plugins": {
-            "da": {
-              "rows": 2,
-              "columns": 1,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>div>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>div>picture>img[alt]"
-                },
-                {
-                  "name": "video",
-                  "selector": "div:nth-child(1)>div>p>a[href]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(2)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Home Map",
-          "id": "wgc-home-map",
-          "model": "wgc-home-map",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)>div:nth-child(1)"
-                },
-                {
-                  "name": "pin",
-                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[src]"
-                },
-                {
-                  "name": "pinAlt",
-                  "selector": "div:nth-child(1)>div:nth-child(2)>picture>img[alt]"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Rooms Dining Spa",
-          "id": "wgc-home-room-dine-spa",
-          "model": "wgc-home-room-dine-spa",
-          "filter": "wgc-home-room-dine-spa",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2
-            }
-          }
-        },
-        {
-          "title": "WGC Room Dining Spa Item",
-          "id": "wgc-rds-item",
-          "model": "wgc-rds-item",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
           "title": "WGC Hotel Intro",
           "id": "wgc-hotel-intro",
           "model": "wgc-hotel-intro",
@@ -821,43 +820,6 @@
           }
         },
         {
-          "title": "WGC Icon Strip",
-          "id": "wgc-icons",
-          "model": "wgc-icons",
-          "filter": "wgc-icons",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2
-            }
-          }
-        },
-        {
-          "title": "WGC Icon",
-          "id": "wgc-icon",
-          "model": "wgc-icon",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "icon",
-                  "selector": "div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "iconAlt",
-                  "selector": "div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "label",
-                  "selector": "div:nth-child(2)"
-                }
-              ]
-            }
-          }
-        },
-        {
           "title": "WGC Intro Container",
           "id": "wgc-intro-container",
           "model": "wgc-intro-container",
@@ -869,31 +831,6 @@
                 {
                   "name": "content",
                   "selector": "div:nth-child(1)>div"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "WGC Intro",
-          "id": "wgc-intro",
-          "model": "wgc-intro",
-          "plugins": {
-            "da": {
-              "rows": 1,
-              "columns": 2,
-              "fields": [
-                {
-                  "name": "image",
-                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[src]"
-                },
-                {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(1)>div:nth-child(1)>picture>img[alt]"
-                },
-                {
-                  "name": "content",
-                  "selector": "div:nth-child(1)>div:nth-child(2)"
                 }
               ]
             }

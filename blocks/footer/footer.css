@@ -18,3 +18,176 @@ footer .footer p {
     padding: 40px 32px 24px;
   }
 }
+
+/*
+ * Template 1 — sand column band with a theme-color top rule and a teal legal
+ * strip. Supports flat da.live authoring (H3 panels) and explicit columns.
+ */
+body.template1 footer {
+  margin-top: 0;
+  background-color: transparent;
+}
+
+body.template1 footer .footer {
+  box-sizing: border-box;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: var(--t1-teal-muted);
+  font-size: var(--body-font-size-xs);
+}
+
+body.template1 footer .footer > .section,
+body.template1 footer .footer > div {
+  max-width: none;
+  margin: 0;
+}
+
+body.template1 footer .footer > .section:not(.footer-legal) {
+  position: relative;
+  padding: 56px 24px 48px;
+  background: linear-gradient(180deg, var(--t1-sand) 0%, #f3ebe1 100%);
+}
+
+body.template1 footer .footer > .section:not(.footer-legal)::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--theme-color) 0%,
+    var(--t1-gold) 50%,
+    var(--theme-color) 100%
+  );
+  content: '';
+}
+
+body.template1 footer .footer h3 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--t1-gold);
+  color: var(--theme-color);
+  font-family: var(--t1-font-heading);
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  letter-spacing: var(--t1-tracking-wide);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+body.template1 footer .footer .footer-column:first-child h3,
+body.template1 footer .footer > .section.footer-columns-section > div:first-child h3 {
+  font-size: var(--body-font-size-s);
+  color: var(--t1-teal-dark);
+}
+
+body.template1 footer .footer p {
+  margin: 0 0 10px;
+  line-height: 1.7;
+}
+
+body.template1 footer .footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.template1 footer .footer li {
+  margin-bottom: 10px;
+}
+
+body.template1 footer .footer a:any-link {
+  color: var(--t1-teal);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+body.template1 footer .footer a:any-link:hover,
+body.template1 footer .footer a:any-link:focus-visible {
+  color: var(--t1-gold);
+  text-decoration: underline;
+}
+
+body.template1 footer .footer > .section.footer-legal {
+  padding: 18px 24px;
+  background-color: var(--theme-color);
+  color: rgb(255 255 255 / 78%);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+body.template1 footer .footer > .section.footer-legal a:any-link {
+  color: rgb(255 255 255 / 90%);
+  text-decoration: none;
+}
+
+body.template1 footer .footer > .section.footer-legal a:any-link:hover,
+body.template1 footer .footer > .section.footer-legal a:any-link:focus-visible {
+  color: var(--t1-gold);
+  text-decoration: underline;
+}
+
+body.template1 footer .footer > .section.footer-legal p {
+  max-width: var(--t1-max-width);
+  margin: 0 auto;
+}
+
+@media (width >= 700px) {
+  body.template1 footer .footer > .section.footer-columns-section .footer-columns,
+  body.template1 footer .footer > .section.footer-columns-section:not(:has(.footer-columns)) {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+    max-width: var(--t1-max-width);
+    margin: 0 auto;
+  }
+
+  body.template1 footer .footer.footer-multi-section {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+    max-width: var(--t1-max-width);
+    margin: 0 auto;
+    padding: 56px 24px 48px;
+    background: linear-gradient(180deg, var(--t1-sand) 0%, #f3ebe1 100%);
+  }
+
+  body.template1 footer .footer.footer-multi-section > .section:not(.footer-legal) {
+    padding: 0;
+    background: transparent;
+  }
+
+  body.template1 footer .footer.footer-multi-section > .section:not(.footer-legal)::before {
+    content: none;
+  }
+
+  body.template1 footer .footer.footer-multi-section::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--theme-color) 0%,
+      var(--t1-gold) 50%,
+      var(--theme-color) 100%
+    );
+    content: '';
+  }
+
+  body.template1 footer .footer.footer-multi-section > .section.footer-legal {
+    grid-column: 1 / -1;
+    max-width: none;
+    margin-top: 8px;
+    padding: 18px 24px;
+  }
+}

@@ -1,4 +1,11 @@
-import { fetchPlaceholders, getMetadata, toClassName } from '../../scripts/aem.js';
+import {
+  buildBlock,
+  decorateBlock,
+  fetchPlaceholders,
+  getMetadata,
+  loadBlock,
+  normalizeTemplateName,
+} from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -171,16 +178,133 @@ async function buildBreadcrumbs() {
 }
 
 /**
+ * Mounts the theme picker in the header tools, aligned with the nav on the
+ * top-right. Skips when a picker is already present.
+ * @param {Element} nav the decorated nav
+ */
+/**
+ * Ensures the book CTA wrapper is a div so block-level picker markup stays valid.
+ * @param {Element} bookLink
+ * @returns {Element|null}
+ */
+function ensureBookWrap(bookLink) {
+  if (!bookLink) return null;
+
+  const wrap = bookLink.closest('.book-wrap, .header-book-wrap');
+  if (wrap && wrap.tagName !== 'P') return wrap;
+
+  const paragraph = wrap?.tagName === 'P' ? wrap : bookLink.closest('p');
+  const div = document.createElement('div');
+  div.className = 'header-book-wrap';
+
+  if (paragraph) {
+    paragraph.replaceWith(div);
+    div.append(bookLink);
+    return div;
+  }
+
+  bookLink.replaceWith(div);
+  div.append(bookLink);
+  return div;
+}
+
+/**
+ * Inserts the theme picker immediately after Book Now.
+ * @param {Element} bookWrap
+ * @param {Element} bookLink
+ * @param {Element} pickerWrap
+ */
+function attachPickerToBook(bookWrap, bookLink, pickerWrap) {
+  if (!bookWrap || !bookLink || !pickerWrap) return;
+  pickerWrap.remove();
+  bookLink.after(pickerWrap);
+  if (!bookWrap.contains(pickerWrap)) {
+    bookWrap.append(pickerWrap);
+  }
+}
+
+/**
+ * Removes legacy UE blocks (book-now modal, theme-option, empty columns) from
+ * nav fragments so they do not break the three-column header layout.
+ * @param {Element} nav
+ */
+function stripLegacyNavSections(nav) {
+  if (!nav) return;
+  nav.querySelectorAll(':scope > div').forEach((section) => {
+    if (section.classList.contains('nav-hamburger')) return;
+    const hasPrimaryNav = section.querySelector(':scope ul');
+    const hasPrimaryTools = section.querySelector('a[href^="tel:"], a[href*="synxis"]');
+    const hasLegacyBlock = section.querySelector(
+      '.book-now, .book-now-modal, .theme-option, .theme-option-wrap',
+    );
+    if (hasLegacyBlock && !hasPrimaryNav && !hasPrimaryTools) {
+      section.remove();
+    }
+  });
+  nav.querySelectorAll('.theme-option, .theme-option-wrap, .book-now-modal').forEach((el) => {
+    el.closest(':scope > div')?.remove();
+  });
+}
+
+/**
+ * Decorative header logos should not expose long property names to screen readers.
+ * @param {Element} nav
+ */
+function fixBrandLogo(nav) {
+  nav?.querySelectorAll('.nav-brand img').forEach((img) => {
+    img.alt = '';
+  });
+}
+
+async function mountThemePicker(nav) {
+  if (nav.querySelector('.theme-picker')) return;
+
+  nav.querySelectorAll('.theme-option, .theme-option-wrap').forEach((el) => {
+    el.remove();
+  });
+
+  let tools = nav.querySelector('.nav-tools');
+  if (!tools) {
+    tools = document.createElement('div');
+    tools.className = 'section nav-tools';
+    tools.append(document.createElement('div'));
+    nav.append(tools);
+  }
+
+  const pickerWrap = document.createElement('div');
+  pickerWrap.className = 'theme-picker-wrapper';
+  const picker = buildBlock('theme-picker', '');
+  pickerWrap.append(picker);
+
+  let bookLink = tools.querySelector('a[href*="synxis"], .book-now, a[href="#book"]');
+  const bookWrap = ensureBookWrap(bookLink);
+  bookLink = bookWrap?.querySelector('.book-now, a[href*="synxis"], a[href="#book"]')
+    || bookLink;
+  if (bookWrap && bookLink) {
+    bookWrap.classList.add('header-book-wrap');
+    attachPickerToBook(bookWrap, bookLink, pickerWrap);
+  } else {
+    (tools.querySelector(':scope > div') || tools).append(pickerWrap);
+  }
+
+  decorateBlock(picker);
+  await loadBlock(picker);
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
   // load nav as fragment
-  const template = toClassName(getMetadata('template'));
+  const template = normalizeTemplateName(getMetadata('template'));
   const navMeta = getMetadata('nav');
-  const defaultNav = document.body.classList.contains('wgc')
-    ? '/template1/nav'
-    : (template ? `/${template}/nav` : '/nav');
+  let defaultNav = '/nav';
+  if (template === 'template1') {
+    defaultNav = '/template1/nav';
+  } else if (template) {
+    defaultNav = `/${template}/nav`;
+  }
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
   const fragment = await loadFragment(navPath);
 
@@ -192,6 +316,12 @@ export default async function decorate(block) {
     while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
   }
 
+  stripLegacyNavSections(nav);
+
+  nav.querySelectorAll('.theme-option, .theme-option-wrap').forEach((el) => {
+    el.remove();
+  });
+
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
@@ -199,6 +329,7 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
+  fixBrandLogo(nav);
   const brandLink = navBrand?.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
@@ -217,6 +348,8 @@ export default async function decorate(block) {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
+          // template1 uses hover/focus-within for desktop flyouts; parent links navigate on click
+          if (template === 'template1') return;
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
@@ -261,10 +394,18 @@ export default async function decorate(block) {
     navWrapper.append(await buildBreadcrumbs());
   }
 
-  if (document.body.classList.contains('wgc')) {
-    const { default: decorateWgcHeader } = await import(
-      `${window.hlx.codeBasePath}/scripts/template/wgc-header.js`
+  if (template === 'template1') {
+    const { default: decorateTemplate1Header } = await import(
+      `${window.hlx.codeBasePath}/scripts/template/template1-header.js`
     );
-    await decorateWgcHeader(block);
+    await decorateTemplate1Header(block);
+  } else if (template === 'template2') {
+    const navEl = block.querySelector('nav');
+    if (navEl) await mountThemePicker(navEl);
   }
+
+  const { default: decorateSiteHeader } = await import(
+    `${window.hlx.codeBasePath}/scripts/template/site-header.js`
+  );
+  await decorateSiteHeader(block);
 }

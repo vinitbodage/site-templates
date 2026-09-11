@@ -1,0 +1,59 @@
+{
+  "definitions": [
+    {
+      "title": "Amenities",
+      "id": "amenities",
+      "model": "amenities",
+      "filter": "amenities",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1
+        }
+      }
+    },
+    {
+      "title": "Amenity Item",
+      "id": "amenity-item",
+      "model": "amenity-item",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 1,
+          "fields": [
+            {
+              "name": "content",
+              "selector": "div:nth-child(1)"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "amenities",
+      "fields": []
+    },
+    {
+      "id": "amenity-item",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content",
+          "label": "Title & content",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "amenities",
+      "components": [
+        "amenity-item"
+      ]
+    }
+  ]
+}

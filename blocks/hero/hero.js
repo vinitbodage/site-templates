@@ -1,31 +1,103 @@
-export default function decorate(block) {
-  const cell = block.querySelector(':scope > div > div');
-  if (!cell) return;
+import {
+  getRows, getCells, isEmpty, splitHeading, addRule, markEyebrow, optimizePicture,
+  fixRelativeMediaUrls, resolveContentUrl,
+} from '../../scripts/template/shared.js';
+import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
+import { markCta, stackHeadingTail } from '../../scripts/template/columns-variants.js';
 
+const VIDEO_RE = /\.(mp4|webm)(\?.*)?$/i;
+
+function buildVideo(href, poster) {
+  const video = document.createElement('video');
+  video.muted = true;
+  video.autoplay = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.preload = 'metadata';
+  video.tabIndex = -1;
+  video.setAttribute('aria-hidden', 'true');
+  if (poster) video.poster = poster;
+
+  const source = document.createElement('source');
+  source.src = href;
+  source.type = href.toLowerCase().includes('.webm') ? 'video/webm' : 'video/mp4';
+  video.append(source);
+
+  video.addEventListener('canplay', () => {
+    video.dataset.ready = 'true';
+    video.play().catch(() => {});
+  }, { once: true });
+
+  return video;
+}
+
+function removeVideoLink(link) {
+  const holder = link.closest('p');
+  link.remove();
+  if (holder && !holder.textContent.trim() && !holder.querySelector('picture, img')) {
+    holder.remove();
+  }
+}
+
+/**
+ * @param {Element} block
+ */
+export default function decorate(block) {
   const media = document.createElement('div');
   media.className = 'hero-media';
   const content = document.createElement('div');
   content.className = 'hero-content';
 
-  [...cell.children].forEach((child) => {
-    if (child.querySelector('picture, img') && !child.querySelector('h1, h2, h3, a.button')) {
-      media.append(child);
-      return;
-    }
-    const picture = child.matches('picture, img') ? child : null;
-    if (picture) {
-      media.append(picture);
-      return;
-    }
-    content.append(child);
+  getRows(block).forEach((row) => {
+    getCells(row).forEach((cell) => {
+      if (isEmpty(cell)) return;
+
+      const picture = cell.querySelector('picture, img');
+      const videoLink = [...cell.querySelectorAll('a')].find((a) => VIDEO_RE.test(a.href));
+
+      if (picture || videoLink) {
+        if (!media.childElementCount) moveInstrumentation(cell, media);
+        if (picture) {
+          if (picture.matches('picture')) fixRelativeMediaUrls(picture);
+          media.append(picture.closest('p') && picture.tagName === 'IMG' ? picture.closest('p') : picture);
+        }
+        if (videoLink) {
+          const posterImg = picture?.querySelector('img');
+          const poster = posterImg
+            ? resolveContentUrl(posterImg.getAttribute('src') || posterImg.src)
+            : '';
+          const href = resolveContentUrl(videoLink.getAttribute('href'));
+          removeVideoLink(videoLink);
+          media.append(buildVideo(href, poster));
+        }
+        return;
+      }
+
+      if (!content.childElementCount) moveInstrumentation(cell, content);
+      content.append(...cell.childNodes);
+    });
   });
 
-  const img = media.querySelector('img');
-  if (img) {
+  const heading = content.querySelector('h1, h2, h3, h4, h5, h6');
+  markEyebrow(content, heading, 'hero-eyebrow');
+  if (heading) {
+    splitHeading(heading);
+    stackHeadingTail(heading);
+    addRule(heading, { centered: !block.classList.contains('left'), light: true });
+  }
+  markCta(content);
+
+  media.querySelectorAll('picture > img, img').forEach((img) => {
+    optimizePicture(img, { eager: true, width: '2000' });
     img.loading = 'eager';
     img.fetchPriority = 'high';
+  });
+
+  if (media.childElementCount || content.childElementCount) {
+    block.replaceChildren(...[media, content].filter((el) => el.childElementCount));
   }
 
-  const nodes = [media, content].filter((el) => el.childElementCount);
-  if (nodes.length) block.replaceChildren(...nodes);
+  if (document.body.classList.contains('template1')) {
+    block.closest('main > .section')?.classList.add('hero-container');
+  }
 }

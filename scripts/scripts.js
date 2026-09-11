@@ -15,8 +15,9 @@ import {
   readBlockConfig,
   toClassName,
   toCamelCase,
+  normalizeTemplateName,
 } from './aem.js';
-import { initThemeOption } from './template/wgc-theme.js';
+import { applyTheme, getStoredTheme } from './template/theme.js';
 
 export const NX_ORIGIN = 'https://da.live/nx';
 
@@ -82,7 +83,7 @@ async function loadFonts() {
  * Keeps template tokens out of pages built on a different template.
  */
 async function loadTemplateStyles() {
-  const template = toClassName(getMetadata('template'));
+  const template = normalizeTemplateName(getMetadata('template'));
   if (!template) return;
   if (template === 'template') {
     await loadCSS(`${window.hlx.codeBasePath}/styles/template/template-theme.css`);
@@ -113,7 +114,8 @@ function autolinkModals(doc) {
 function buildAutoBlocks(main) {
   try {
     // template pages author their own hero/banner, so only plain documents get one built
-    if (!main.querySelector('.hero, .wgc-hero, .wgc-intro-container')) buildHeroBlock(main);
+    const authoredBanner = '.hero, .intro, .columns.intro, .columns.intro-contact, .columns.meetings-intro';
+    if (!main.querySelector(authoredBanner)) buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -194,11 +196,14 @@ async function loadEager(doc) {
   doc.documentElement.lang = 'en';
   hydratePageMetadata(doc);
   decorateTemplateAndTheme();
+  const pageTemplate = normalizeTemplateName(getMetadata('template'));
+  if (pageTemplate === 'template2' || pageTemplate === 'template1') {
+    applyTheme(getStoredTheme());
+  }
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     doc.body.dataset.breadcrumbs = true;
   }
   await loadTemplateStyles();
-  await initThemeOption();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
@@ -236,8 +241,8 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   if (
-    doc.body.classList.contains('wgc')
-    || doc.querySelector('.wgc-book-now, [data-book-now], .book-now-modal')
+    doc.querySelector('.book-now, [data-book-now], .book-now-modal')
+    || window.location.hash === '#book-now-modal'
   ) {
     const { bindBookNowTriggers } = await import(
       `${window.hlx.codeBasePath}/blocks/book-now-modal/book-now-modal.js`
