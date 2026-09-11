@@ -85,7 +85,7 @@ async function loadFonts() {
 async function loadTemplateStyles() {
   const template = normalizeTemplateName(getMetadata('template'));
   if (!template) return;
-  if (template === 'template') {
+  if (template === 'template' || template === 'template3') {
     await loadCSS(`${window.hlx.codeBasePath}/styles/template/template-theme.css`);
     return;
   }

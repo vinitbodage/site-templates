@@ -364,7 +364,8 @@ export default async function decorate(block) {
     if (search && search.textContent === '') {
       search.setAttribute('aria-label', 'Search');
     }
-    if (document.body.classList.contains('template')) {
+    if (document.body.classList.contains('template')
+      || document.body.classList.contains('template3')) {
       navTools.querySelectorAll('a.button').forEach((a) => {
         a.classList.remove('button', 'primary', 'secondary');
         a.closest('.button-container')?.classList.remove('button-container');

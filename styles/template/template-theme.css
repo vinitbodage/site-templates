@@ -1,14 +1,14 @@
 /*
  * Default template look.
  *
- * Loaded when page metadata `template` is `template`. Tokens are read by
+ * Loaded when page metadata `template` is `template` or `template3`.
  * header, footer, hero, carousel, cards, tabs, columns, quote, and gallery.
  */
 
 /* stylelint-disable no-descending-specificity -- header, footer, and block
    rules in this file never match the same node; they share a body scope. */
 
-body.template {
+:is(body.template, body.template3) {
   --t-gold: #f7c411;
   --t-gold-edge: #9e811a;
   --t-navy: #313a45;
@@ -52,36 +52,36 @@ body.template {
   font-size: 16px;
 }
 
-body.template h1,
-body.template h2,
-body.template h3,
-body.template h4,
-body.template h5,
-body.template h6 {
+:is(body.template, body.template3) h1,
+:is(body.template, body.template3) h2,
+:is(body.template, body.template3) h3,
+:is(body.template, body.template3) h4,
+:is(body.template, body.template3) h5,
+:is(body.template, body.template3) h6 {
   font-family: var(--t-heading);
   font-weight: 400;
   color: var(--t-ink);
   text-transform: uppercase;
 }
 
-body.template h1 {
+:is(body.template, body.template3) h1 {
   font-size: var(--heading-font-size-xxl);
 }
 
-body.template h3 {
+:is(body.template, body.template3) h3 {
   font-size: var(--heading-font-size-l);
 }
 
-body.template a:any-link {
+:is(body.template, body.template3) a:any-link {
   color: var(--link-color);
 }
 
-body.template a:any-link:hover {
+:is(body.template, body.template3) a:any-link:hover {
   color: var(--link-hover-color);
 }
 
-body.template a.button:any-link,
-body.template button.button {
+:is(body.template, body.template3) a.button:any-link,
+:is(body.template, body.template3) button.button {
   border: 0;
   border-radius: 0;
   background-color: var(--t-gold);
@@ -95,45 +95,45 @@ body.template button.button {
   text-transform: uppercase;
 }
 
-body.template a.button:any-link:hover,
-body.template button.button:hover {
+:is(body.template, body.template3) a.button:any-link:hover,
+:is(body.template, body.template3) button.button:hover {
   background-color: #000;
   border-color: #000;
   color: var(--t-gold);
 }
 
-body.template main > .section {
+:is(body.template, body.template3) main > .section {
   margin: 0;
   padding: var(--t-section-padding) 0;
 }
 
-body.template main > .section > div {
+:is(body.template, body.template3) main > .section > div {
   max-width: var(--t-max-width);
 }
 
-body.template main > .section.full-bleed,
-body.template main > .section.carousel-container:first-of-type,
-body.template main > .section.hero-container:first-of-type,
-body.template main > .section:has(.carousel):has(.columns.booking) {
+:is(body.template, body.template3) main > .section.full-bleed,
+:is(body.template, body.template3) main > .section.carousel-container:first-of-type,
+:is(body.template, body.template3) main > .section.hero-container:first-of-type,
+:is(body.template, body.template3) main > .section:has(.carousel):has(.columns.booking) {
   padding: 0;
 }
 
-body.template main > .section.full-bleed > div,
-body.template main > .section.carousel-container:first-of-type > div,
-body.template main > .section.hero-container:first-of-type > div,
-body.template main > .section:has(.carousel):has(.columns.booking) > .carousel-wrapper {
+:is(body.template, body.template3) main > .section.full-bleed > div,
+:is(body.template, body.template3) main > .section.carousel-container:first-of-type > div,
+:is(body.template, body.template3) main > .section.hero-container:first-of-type > div,
+:is(body.template, body.template3) main > .section:has(.carousel):has(.columns.booking) > .carousel-wrapper {
   max-width: none;
   padding: 0;
 }
 
-body.template main > .section:not(:first-child) .block:not([data-block-status='loaded']) {
+:is(body.template, body.template3) main > .section:not(:first-child) .block:not([data-block-status='loaded']) {
   min-height: var(--block-loading-height);
   background: linear-gradient(90deg, var(--t-fog), var(--t-paper), var(--t-fog));
   background-size: 200% 100%;
   animation: t-shimmer 1.2s ease-in-out infinite;
 }
 
-body.template main > .section:not(:first-child) .block:not([data-block-status='loaded']) > * {
+:is(body.template, body.template3) main > .section:not(:first-child) .block:not([data-block-status='loaded']) > * {
   display: none;
 }
 
@@ -143,13 +143,13 @@ body.template main > .section:not(:first-child) .block:not([data-block-status='l
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.template main > .section:not(:first-child) .block:not([data-block-status='loaded']) {
+  :is(body.template, body.template3) main > .section:not(:first-child) .block:not([data-block-status='loaded']) {
     animation: none;
   }
 }
 
 /* header */
-body.template header {
+:is(body.template, body.template3) header {
   position: sticky;
   top: 0;
   z-index: 300;
@@ -158,13 +158,13 @@ body.template header {
   border-bottom: 1px solid var(--t-line);
 }
 
-body.template header .nav-wrapper {
+:is(body.template, body.template3) header .nav-wrapper {
   position: relative;
   overflow: visible;
   background-color: var(--t-paper);
 }
 
-body.template header nav {
+:is(body.template, body.template3) header nav {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
@@ -176,7 +176,7 @@ body.template header nav {
   gap: 0;
 }
 
-body.template header .nav-brand {
+:is(body.template, body.template3) header .nav-brand {
   display: flex;
   flex: 0 0 auto;
   flex-basis: auto;
@@ -184,15 +184,15 @@ body.template header .nav-brand {
   gap: 16px;
 }
 
-body.template header nav .nav-brand {
+:is(body.template, body.template3) header nav .nav-brand {
   flex-basis: auto;
 }
 
-body.template header .nav-brand p {
+:is(body.template, body.template3) header .nav-brand p {
   margin: 0;
 }
 
-body.template header .nav-brand a:any-link {
+:is(body.template, body.template3) header .nav-brand a:any-link {
   color: var(--t-ink);
   font-family: var(--t-heading);
   font-size: 22px;
@@ -204,11 +204,11 @@ body.template header .nav-brand a:any-link {
   border-right: 1px solid var(--t-line);
 }
 
-body.template header .nav-brand a:any-link span {
+:is(body.template, body.template3) header .nav-brand a:any-link span {
   color: var(--t-gold);
 }
 
-body.template header .nav-brand ul {
+:is(body.template, body.template3) header .nav-brand ul {
   display: flex;
   gap: 14px;
   margin: 0;
@@ -218,7 +218,7 @@ body.template header .nav-brand ul {
   text-transform: uppercase;
 }
 
-body.template header .nav-brand ul a:any-link {
+:is(body.template, body.template3) header .nav-brand ul a:any-link {
   border: 0;
   padding: 0;
   color: #000;
@@ -228,7 +228,7 @@ body.template header .nav-brand ul a:any-link {
   text-transform: uppercase;
 }
 
-body.template header .nav-sections {
+:is(body.template, body.template3) header .nav-sections {
   display: flex;
   flex: 1 1 auto;
   align-items: center;
@@ -236,7 +236,7 @@ body.template header .nav-sections {
   visibility: visible;
 }
 
-body.template header .nav-sections ul {
+:is(body.template, body.template3) header .nav-sections ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -246,8 +246,8 @@ body.template header .nav-sections ul {
   list-style: none;
 }
 
-body.template header .nav-sections .default-content-wrapper > ul > li > a,
-body.template header .nav-sections .default-content-wrapper > ul > li.nav-drop {
+:is(body.template, body.template3) header .nav-sections .default-content-wrapper > ul > li > a,
+:is(body.template, body.template3) header .nav-sections .default-content-wrapper > ul > li.nav-drop {
   color: #000;
   font-family: var(--t-nav);
   font-size: 14px;
@@ -258,22 +258,22 @@ body.template header .nav-sections .default-content-wrapper > ul > li.nav-drop {
   text-decoration: none;
 }
 
-body.template header .nav-sections a:any-link {
+:is(body.template, body.template3) header .nav-sections a:any-link {
   color: #000;
   text-decoration: none;
 }
 
-body.template header .nav-sections a:any-link:hover {
+:is(body.template, body.template3) header .nav-sections a:any-link:hover {
   color: #16b4ef;
 }
 
-body.template header nav .nav-sections .nav-drop::after {
+:is(body.template, body.template3) header nav .nav-sections .nav-drop::after {
   top: 1.15em;
   right: 6px;
   border-color: currentcolor;
 }
 
-body.template header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
+:is(body.template, body.template3) header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
   display: block;
   position: absolute;
   left: 0;
@@ -285,15 +285,15 @@ body.template header nav .nav-sections .default-content-wrapper > ul > li[aria-e
   z-index: 20;
 }
 
-body.template header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
+:is(body.template, body.template3) header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
   display: none;
 }
 
-body.template header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
+:is(body.template, body.template3) header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
   padding: 0;
 }
 
-body.template header nav .nav-sections .default-content-wrapper > ul > li > ul a:any-link {
+:is(body.template, body.template3) header nav .nav-sections .default-content-wrapper > ul > li > ul a:any-link {
   display: block;
   padding: 14px 34px;
   color: var(--t-paper);
@@ -302,11 +302,11 @@ body.template header nav .nav-sections .default-content-wrapper > ul > li > ul a
   text-transform: uppercase;
 }
 
-body.template header nav .nav-sections .default-content-wrapper > ul > li > ul a:any-link:hover {
+:is(body.template, body.template3) header nav .nav-sections .default-content-wrapper > ul > li > ul a:any-link:hover {
   color: var(--t-cyan);
 }
 
-body.template header .nav-tools {
+:is(body.template, body.template3) header .nav-tools {
   display: flex;
   align-items: center;
   align-self: stretch;
@@ -316,7 +316,7 @@ body.template header .nav-tools {
   background-color: var(--t-phone);
 }
 
-body.template header .nav-tools::after {
+:is(body.template, body.template3) header .nav-tools::after {
   position: absolute;
   top: 0;
   left: 100%;
@@ -326,11 +326,11 @@ body.template header .nav-tools::after {
   content: '';
 }
 
-body.template:has(main .carousel) header .nav-tools {
+:is(body.template, body.template3):has(main .carousel) header .nav-tools {
   background-color: var(--t-cyan);
 }
 
-body.template header .nav-tools a:any-link {
+:is(body.template, body.template3) header .nav-tools a:any-link {
   color: var(--t-paper);
   font-size: 20px;
   font-weight: 400;
@@ -339,7 +339,7 @@ body.template header .nav-tools a:any-link {
   white-space: nowrap;
 }
 
-body.template header .nav-tools a:any-link::before {
+:is(body.template, body.template3) header .nav-tools a:any-link::before {
   display: inline-block;
   width: 18px;
   height: 18px;
@@ -350,47 +350,47 @@ body.template header .nav-tools a:any-link::before {
 }
 
 @media (width < 900px) {
-  body.template {
+  :is(body.template, body.template3) {
     --t-header-height: 64px;
   }
 
-  body.template header nav {
+  :is(body.template, body.template3) header nav {
     display: grid;
     padding: 0 16px;
   }
 
-  body.template header .nav-brand ul,
-  body.template header .nav-tools,
-  body.template header .nav-sections {
+  :is(body.template, body.template3) header .nav-brand ul,
+  :is(body.template, body.template3) header .nav-tools,
+  :is(body.template, body.template3) header .nav-sections {
     display: none;
     visibility: hidden;
   }
 
-  body.template header nav[aria-expanded='true'] .nav-sections,
-  body.template header nav[aria-expanded='true'] .nav-tools,
-  body.template header nav[aria-expanded='true'] .nav-brand ul {
+  :is(body.template, body.template3) header nav[aria-expanded='true'] .nav-sections,
+  :is(body.template, body.template3) header nav[aria-expanded='true'] .nav-tools,
+  :is(body.template, body.template3) header nav[aria-expanded='true'] .nav-brand ul {
     display: flex;
     visibility: visible;
     flex-direction: column;
     align-items: flex-start;
   }
 
-  body.template header nav[aria-expanded='true'] .nav-tools {
+  :is(body.template, body.template3) header nav[aria-expanded='true'] .nav-tools {
     background: transparent;
     padding: 16px 0;
   }
 
-  body.template header nav[aria-expanded='true'] .nav-tools::after {
+  :is(body.template, body.template3) header nav[aria-expanded='true'] .nav-tools::after {
     display: none;
   }
 
-  body.template header nav[aria-expanded='true'] .nav-tools a:any-link {
+  :is(body.template, body.template3) header nav[aria-expanded='true'] .nav-tools a:any-link {
     color: var(--t-ink);
   }
 }
 
 /* hero / inner title banner */
-body.template .hero {
+:is(body.template, body.template3) .hero {
   position: relative;
   display: flex;
   align-items: center;
@@ -402,14 +402,14 @@ body.template .hero {
   color: var(--t-paper);
 }
 
-body.template .hero.compact {
+:is(body.template, body.template3) .hero.compact {
   min-height: 320px;
   padding: 0;
 }
 
-body.template .hero .hero-media,
-body.template .hero picture,
-body.template .hero img {
+:is(body.template, body.template3) .hero .hero-media,
+:is(body.template, body.template3) .hero picture,
+:is(body.template, body.template3) .hero img {
   position: absolute;
   z-index: 0;
   inset: 0;
@@ -419,11 +419,11 @@ body.template .hero img {
   object-fit: cover;
 }
 
-body.template .hero .hero-media p {
+:is(body.template, body.template3) .hero .hero-media p {
   margin: 0;
 }
 
-body.template .hero .hero-media::after {
+:is(body.template, body.template3) .hero .hero-media::after {
   position: absolute;
   z-index: 1;
   inset: 0;
@@ -431,7 +431,7 @@ body.template .hero .hero-media::after {
   content: '';
 }
 
-body.template .hero .hero-content {
+:is(body.template, body.template3) .hero .hero-content {
   position: relative;
   z-index: 2;
   box-sizing: border-box;
@@ -442,12 +442,12 @@ body.template .hero .hero-content {
   text-align: center;
 }
 
-body.template .hero.compact .hero-content {
+:is(body.template, body.template3) .hero.compact .hero-content {
   padding: 150px 24px 70px;
 }
 
-body.template .hero h1,
-body.template .hero h2 {
+:is(body.template, body.template3) .hero h1,
+:is(body.template, body.template3) .hero h2 {
   margin: 0;
   color: var(--t-paper);
   font-size: clamp(2rem, 4vw, 2.75rem);
@@ -457,15 +457,15 @@ body.template .hero h2 {
   text-transform: uppercase;
 }
 
-body.template .hero.compact h1,
-body.template .hero.compact h2 {
+:is(body.template, body.template3) .hero.compact h1,
+:is(body.template, body.template3) .hero.compact h2 {
   position: relative;
   display: inline-block;
   padding-bottom: 40px;
 }
 
-body.template .hero.compact h1::after,
-body.template .hero.compact h2::after {
+:is(body.template, body.template3) .hero.compact h1::after,
+:is(body.template, body.template3) .hero.compact h2::after {
   position: absolute;
   left: 50%;
   bottom: -8px;
@@ -477,19 +477,19 @@ body.template .hero.compact h2::after {
 }
 
 /* carousel masthead */
-body.template .carousel .carousel-slide {
+:is(body.template, body.template3) .carousel .carousel-slide {
   min-height: 320px;
   justify-content: center;
 }
 
-body.template main > .section:has(.carousel):has(.columns.booking) .carousel .carousel-slide {
+:is(body.template, body.template3) main > .section:has(.carousel):has(.columns.booking) .carousel .carousel-slide {
   min-height: min(70vw, 560px);
 }
 
-body.template .carousel .carousel-slide .carousel-slide-image,
-body.template .carousel .carousel-slide .carousel-slide-image p,
-body.template .carousel .carousel-slide .carousel-slide-image picture,
-body.template .carousel .carousel-slide .carousel-slide-image img {
+:is(body.template, body.template3) .carousel .carousel-slide .carousel-slide-image,
+:is(body.template, body.template3) .carousel .carousel-slide .carousel-slide-image p,
+:is(body.template, body.template3) .carousel .carousel-slide .carousel-slide-image picture,
+:is(body.template, body.template3) .carousel .carousel-slide .carousel-slide-image img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -497,11 +497,11 @@ body.template .carousel .carousel-slide .carousel-slide-image img {
   margin: 0;
 }
 
-body.template .carousel .carousel-slide .carousel-slide-image img {
+:is(body.template, body.template3) .carousel .carousel-slide .carousel-slide-image img {
   object-fit: cover;
 }
 
-body.template .carousel .carousel-slide .carousel-slide-content {
+:is(body.template, body.template3) .carousel .carousel-slide .carousel-slide-content {
   z-index: 1;
   margin: 0 8%;
   padding: 0;
@@ -510,8 +510,8 @@ body.template .carousel .carousel-slide .carousel-slide-content {
   color: var(--t-ink);
 }
 
-body.template .carousel .carousel-slide .carousel-slide-content h1,
-body.template .carousel .carousel-slide .carousel-slide-content h2 {
+:is(body.template, body.template3) .carousel .carousel-slide .carousel-slide-content h1,
+:is(body.template, body.template3) .carousel .carousel-slide .carousel-slide-content h2 {
   margin: 0 0 0.2em;
   color: var(--t-ink);
   font-size: clamp(1.8rem, 4vw, 3rem);
@@ -520,38 +520,38 @@ body.template .carousel .carousel-slide .carousel-slide-content h2 {
   text-transform: uppercase;
 }
 
-body.template .carousel .carousel-slide .carousel-slide-content a.button:any-link {
+:is(body.template, body.template3) .carousel .carousel-slide .carousel-slide-content a.button:any-link {
   margin-top: 12px;
 }
 
-body.template main > .section:has(.carousel):has(.columns.booking) .carousel .carousel-slide-indicators {
+:is(body.template, body.template3) main > .section:has(.carousel):has(.columns.booking) .carousel .carousel-slide-indicators {
   display: none;
 }
 
-body.template main > .section:has(.carousel):has(.columns.booking) .carousel .carousel-navigation-buttons {
+:is(body.template, body.template3) main > .section:has(.carousel):has(.columns.booking) .carousel .carousel-navigation-buttons {
   inset: auto auto 28px 50%;
   width: 72px;
   transform: translateX(-50%);
 }
 
-body.template main > .section:has(.carousel):has(.columns.booking) .carousel .carousel-navigation-buttons button {
+:is(body.template, body.template3) main > .section:has(.carousel):has(.columns.booking) .carousel .carousel-navigation-buttons button {
   width: 26px;
   height: 31px;
   border-radius: 0;
   background-color: var(--t-navy);
 }
 
-body.template main > .section:has(.carousel):has(.columns.booking) .carousel .carousel-navigation-buttons button:hover {
+:is(body.template, body.template3) main > .section:has(.carousel):has(.columns.booking) .carousel .carousel-navigation-buttons button:hover {
   background-color: #23b0eb;
 }
 
 /* booking bar overlays the masthead */
-body.template main > .section:has(.carousel):has(.columns.booking) {
+:is(body.template, body.template3) main > .section:has(.carousel):has(.columns.booking) {
   position: relative;
   overflow: visible;
 }
 
-body.template main > .section:has(.carousel) > .columns-wrapper:has(.columns.booking) {
+:is(body.template, body.template3) main > .section:has(.carousel) > .columns-wrapper:has(.columns.booking) {
   position: relative;
   z-index: 5;
   max-width: var(--t-max-width);
@@ -560,7 +560,7 @@ body.template main > .section:has(.carousel) > .columns-wrapper:has(.columns.boo
 }
 
 @media (width >= 900px) {
-  body.template main > .section:has(.carousel) > .columns-wrapper:has(.columns.booking) {
+  :is(body.template, body.template3) main > .section:has(.carousel) > .columns-wrapper:has(.columns.booking) {
     position: absolute;
     top: 24px;
     left: 50%;
@@ -572,7 +572,7 @@ body.template main > .section:has(.carousel) > .columns-wrapper:has(.columns.boo
   }
 }
 
-body.template .columns.booking {
+:is(body.template, body.template3) .columns.booking {
   position: relative;
   margin: 0;
   min-height: 94px;
@@ -580,7 +580,7 @@ body.template .columns.booking {
   color: var(--t-paper);
 }
 
-body.template .columns.booking > div {
+:is(body.template, body.template3) .columns.booking > div {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px 16px;
@@ -590,11 +590,11 @@ body.template .columns.booking > div {
 }
 
 @media (width >= 900px) {
-  body.template .columns.booking > div {
+  :is(body.template, body.template3) .columns.booking > div {
     grid-template-columns: 1.3fr 1fr 1fr 0.8fr 0.8fr 0.8fr auto;
   }
 
-  body.template .columns.booking > div > .columns-img-col {
+  :is(body.template, body.template3) .columns.booking > div > .columns-img-col {
     display: block;
     grid-column: 7;
     grid-row: 1;
@@ -604,49 +604,49 @@ body.template .columns.booking > div {
   }
 }
 
-body.template .columns.booking > div > div {
+:is(body.template, body.template3) .columns.booking > div > div {
   min-width: 0;
   border-right: 1px solid #475362;
   padding-right: 12px;
 }
 
-body.template .columns.booking > div > div:nth-last-child(-n + 2) {
+:is(body.template, body.template3) .columns.booking > div > div:nth-last-child(-n + 2) {
   border-right: 0;
 }
 
-body.template .columns.booking h6,
-body.template .columns.booking p {
+:is(body.template, body.template3) .columns.booking h6,
+:is(body.template, body.template3) .columns.booking p {
   margin: 0;
   color: var(--t-paper);
   text-transform: uppercase;
 }
 
-body.template .columns.booking h6 {
+:is(body.template, body.template3) .columns.booking h6 {
   font-family: var(--t-body);
   font-size: 15px;
   font-weight: 600;
 }
 
-body.template .columns.booking p {
+:is(body.template, body.template3) .columns.booking p {
   font-family: var(--t-body);
   font-size: 13px;
   font-weight: 400;
   color: #aab8ca;
 }
 
-body.template .columns.booking > div > div:first-child p {
+:is(body.template, body.template3) .columns.booking > div > div:first-child p {
   color: var(--t-paper);
   font-size: 30px;
   font-weight: 700;
   line-height: 25px;
 }
 
-body.template .columns.booking a.button:any-link {
+:is(body.template, body.template3) .columns.booking a.button:any-link {
   display: inline-block;
   padding: 13px 22px;
 }
 
-body.template .columns.booking .columns-img-col {
+:is(body.template, body.template3) .columns.booking .columns-img-col {
   position: absolute;
   right: 0;
   top: 100%;
@@ -656,25 +656,25 @@ body.template .columns.booking .columns-img-col {
   border: 0;
 }
 
-body.template .columns.booking .columns-img-col img {
+:is(body.template, body.template3) .columns.booking .columns-img-col img {
   display: block;
   width: 100%;
   height: auto;
 }
 
 @media (width < 900px) {
-  body.template .columns.booking .columns-img-col {
+  :is(body.template, body.template3) .columns.booking .columns-img-col {
     display: none;
   }
 
-  body.template .columns.booking > div > div {
+  :is(body.template, body.template3) .columns.booking > div > div {
     border-right: 0;
   }
 }
 
 /* section titles */
-body.template main .default-content-wrapper > h2,
-body.template main .default-content-wrapper > h3 {
+:is(body.template, body.template3) main .default-content-wrapper > h2,
+:is(body.template, body.template3) main .default-content-wrapper > h3 {
   position: relative;
   display: table;
   margin: 0 auto 55px;
@@ -683,8 +683,8 @@ body.template main .default-content-wrapper > h3 {
   font-weight: 400;
 }
 
-body.template main .default-content-wrapper > h2::after,
-body.template main .default-content-wrapper > h3::after {
+:is(body.template, body.template3) main .default-content-wrapper > h2::after,
+:is(body.template, body.template3) main .default-content-wrapper > h3::after {
   position: absolute;
   left: 50%;
   bottom: -8px;
@@ -695,8 +695,8 @@ body.template main .default-content-wrapper > h3::after {
   content: '';
 }
 
-body.template main .default-content-wrapper > h2 + p,
-body.template main .default-content-wrapper > h3 + p {
+:is(body.template, body.template3) main .default-content-wrapper > h2 + p,
+:is(body.template, body.template3) main .default-content-wrapper > h3 + p {
   max-width: 54ch;
   margin: 0 auto 40px;
   color: var(--t-muted);
@@ -704,37 +704,37 @@ body.template main .default-content-wrapper > h3 + p {
 }
 
 /* room cards */
-body.template .cards > ul {
+:is(body.template, body.template3) .cards > ul {
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 20px;
 }
 
-body.template .cards > ul > li {
+:is(body.template, body.template3) .cards > ul > li {
   border: 0;
   background: transparent;
 }
 
-body.template .cards.rooms > ul > li {
+:is(body.template, body.template3) .cards.rooms > ul > li {
   overflow: hidden;
 }
 
-body.template .cards .cards-card-image {
+:is(body.template, body.template3) .cards .cards-card-image {
   position: relative;
   line-height: 0;
 }
 
-body.template .cards .cards-card-image p {
+:is(body.template, body.template3) .cards .cards-card-image p {
   margin: 0;
 }
 
-body.template .cards .cards-card-image img,
-body.template .cards .cards-card-image picture img {
+:is(body.template, body.template3) .cards .cards-card-image img,
+:is(body.template, body.template3) .cards .cards-card-image picture img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 
-body.template .cards.rooms .cards-card-image::after {
+:is(body.template, body.template3) .cards.rooms .cards-card-image::after {
   position: absolute;
   inset: 0;
   background-color: var(--t-gold);
@@ -743,17 +743,17 @@ body.template .cards.rooms .cards-card-image::after {
   content: '';
 }
 
-body.template .cards.rooms > ul > li:hover .cards-card-image::after {
+:is(body.template, body.template3) .cards.rooms > ul > li:hover .cards-card-image::after {
   opacity: 0.88;
 }
 
-body.template .cards .cards-card-body {
+:is(body.template, body.template3) .cards .cards-card-body {
   margin: 12px 0 0;
 }
 
-body.template .cards .cards-card-body h3,
-body.template .cards .cards-card-body h5,
-body.template .cards .cards-card-body h6 {
+:is(body.template, body.template3) .cards .cards-card-body h3,
+:is(body.template, body.template3) .cards .cards-card-body h5,
+:is(body.template, body.template3) .cards .cards-card-body h6 {
   margin: 0 0 4px;
   color: var(--t-ink);
   font-family: var(--t-nav);
@@ -762,14 +762,14 @@ body.template .cards .cards-card-body h6 {
   text-transform: none;
 }
 
-body.template .cards .cards-card-body p {
+:is(body.template, body.template3) .cards .cards-card-body p {
   margin: 0 0 8px;
   color: var(--t-muted);
   font-family: var(--t-nav);
   font-size: 18px;
 }
 
-body.template .cards.rooms .cards-card-body a.button:any-link {
+:is(body.template, body.template3) .cards.rooms .cards-card-body a.button:any-link {
   background: transparent;
   border: 0;
   color: var(--t-ink);
@@ -778,22 +778,22 @@ body.template .cards.rooms .cards-card-body a.button:any-link {
   padding: 0;
 }
 
-body.template .cards.rooms .cards-card-body a.button:any-link:hover {
+:is(body.template, body.template3) .cards.rooms .cards-card-body a.button:any-link:hover {
   color: #16b4ef;
 }
 
 /* tabs / facilities */
-body.template main > .section:has(.tabs) {
+:is(body.template, body.template3) main > .section:has(.tabs) {
   padding: 90px 0 110px;
   background: var(--t-navy) url('https://demoxml.com/html/hotelbooking/img/hotel-facilities-bg.jpg') center / cover fixed;
 }
 
-body.template main > .section:has(.tabs) .default-content-wrapper > h2,
-body.template main > .section:has(.tabs) .default-content-wrapper > h3 {
+:is(body.template, body.template3) main > .section:has(.tabs) .default-content-wrapper > h2,
+:is(body.template, body.template3) main > .section:has(.tabs) .default-content-wrapper > h3 {
   color: var(--t-paper);
 }
 
-body.template .tabs .tabs-list {
+:is(body.template, body.template3) .tabs .tabs-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -803,8 +803,8 @@ body.template .tabs .tabs-list {
   overflow: visible;
 }
 
-body.template .tabs .tabs-list button,
-body.template .tabs .tabs-tab {
+:is(body.template, body.template3) .tabs .tabs-list button,
+:is(body.template, body.template3) .tabs .tabs-tab {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -825,24 +825,24 @@ body.template .tabs .tabs-tab {
   cursor: pointer;
 }
 
-body.template .tabs .tabs-list button[aria-selected='true'],
-body.template .tabs .tabs-tab[aria-selected='true'] {
+:is(body.template, body.template3) .tabs .tabs-list button[aria-selected='true'],
+:is(body.template, body.template3) .tabs .tabs-tab[aria-selected='true'] {
   background: var(--t-paper);
   color: #58bee8;
 }
 
-body.template .tabs .tabs-tab img,
-body.template .tabs .tabs-list button img {
+:is(body.template, body.template3) .tabs .tabs-tab img,
+:is(body.template, body.template3) .tabs .tabs-list button img {
   width: auto;
   height: 36px;
   object-fit: contain;
 }
 
-body.template .tabs .tabs-panel[aria-hidden='true'] {
+:is(body.template, body.template3) .tabs .tabs-panel[aria-hidden='true'] {
   display: none;
 }
 
-body.template .tabs .tabs-panel {
+:is(body.template, body.template3) .tabs .tabs-panel {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
@@ -855,20 +855,20 @@ body.template .tabs .tabs-panel {
 }
 
 @media (width >= 900px) {
-  body.template .tabs .tabs-panel {
+  :is(body.template, body.template3) .tabs .tabs-panel {
     grid-template-columns: 5fr 7fr;
     padding: 55px;
   }
 }
 
-body.template .tabs .tabs-panel img {
+:is(body.template, body.template3) .tabs .tabs-panel img {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 
-body.template .tabs .tabs-panel h6 {
+:is(body.template, body.template3) .tabs .tabs-panel h6 {
   margin: 14px 0;
   color: var(--t-ink);
   font-family: var(--t-body);
@@ -877,17 +877,17 @@ body.template .tabs .tabs-panel h6 {
   text-transform: uppercase;
 }
 
-body.template .tabs .tabs-panel h3 {
+:is(body.template, body.template3) .tabs .tabs-panel h3 {
   margin: 0 0 27px;
 }
 
-body.template .tabs .tabs-panel p {
+:is(body.template, body.template3) .tabs .tabs-panel p {
   margin: 0 0 20px;
   line-height: 25px;
 }
 
 /* news + showcase + quotes row */
-body.template .columns.home-bottom img {
+:is(body.template, body.template3) .columns.home-bottom img {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -897,156 +897,156 @@ body.template .columns.home-bottom img {
   margin: 8px 0;
 }
 
-body.template .columns.home-bottom h5 {
+:is(body.template, body.template3) .columns.home-bottom h5 {
   margin-bottom: 24px;
 }
 
-body.template .cards.news > ul {
+:is(body.template, body.template3) .cards.news > ul {
   grid-template-columns: 1fr;
   gap: 28px;
 }
 
 @media (width >= 900px) {
-  body.template .cards.news > ul {
+  :is(body.template, body.template3) .cards.news > ul {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-body.template .cards.news > ul > li {
+:is(body.template, body.template3) .cards.news > ul > li {
   display: block;
 }
 
-body.template .quote blockquote {
+:is(body.template, body.template3) .quote blockquote {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-body.template .quote .quote-quotation p {
+:is(body.template, body.template3) .quote .quote-quotation p {
   color: var(--t-muted);
   font-style: italic;
 }
 
-body.template .quote .quote-attribution {
+:is(body.template, body.template3) .quote .quote-attribution {
   margin-top: 16px;
   font-weight: 700;
 }
 
 /* contact bar */
-body.template .columns.contact-bar {
+:is(body.template, body.template3) .columns.contact-bar {
   background-color: var(--t-navy);
   color: var(--t-paper);
 }
 
-body.template main > .section:has(.columns.contact-bar) {
+:is(body.template, body.template3) main > .section:has(.columns.contact-bar) {
   padding: 0;
 }
 
-body.template .columns.contact-bar > div {
+:is(body.template, body.template3) .columns.contact-bar > div {
   align-items: center;
   padding: 28px 0;
 }
 
-body.template .columns.contact-bar h6,
-body.template .columns.contact-bar p,
-body.template .columns.contact-bar a:any-link {
+:is(body.template, body.template3) .columns.contact-bar h6,
+:is(body.template, body.template3) .columns.contact-bar p,
+:is(body.template, body.template3) .columns.contact-bar a:any-link {
   margin: 0;
   color: var(--t-paper);
 }
 
-body.template .columns.contact-bar h6 {
+:is(body.template, body.template3) .columns.contact-bar h6 {
   font-family: var(--t-body);
   font-size: 13px;
   letter-spacing: 0.08em;
 }
 
-body.template .columns.contact-bar a.button:any-link {
+:is(body.template, body.template3) .columns.contact-bar a.button:any-link {
   background-color: var(--t-cyan);
   color: var(--t-paper);
 }
 
-body.template .columns.contact-bar a.button:any-link:hover {
+:is(body.template, body.template3) .columns.contact-bar a.button:any-link:hover {
   background-color: var(--t-paper);
   color: var(--t-cyan);
 }
 
 /* footer */
-body.template footer {
+:is(body.template, body.template3) footer {
   background-color: var(--t-footer);
   color: #d5d7d8;
 }
 
-body.template footer .footer > div,
-body.template footer .footer div > .section > div {
+:is(body.template, body.template3) footer .footer > div,
+:is(body.template, body.template3) footer .footer div > .section > div {
   max-width: var(--t-max-width);
   padding: 56px 24px 24px;
 }
 
-body.template footer h5,
-body.template footer strong {
+:is(body.template, body.template3) footer h5,
+:is(body.template, body.template3) footer strong {
   margin: 0 0 20px;
   color: var(--t-paper);
   font-family: var(--t-heading);
 }
 
-body.template footer a:any-link {
+:is(body.template, body.template3) footer a:any-link {
   color: #d5d7d8;
   text-decoration: none;
 }
 
-body.template footer a:any-link:hover {
+:is(body.template, body.template3) footer a:any-link:hover {
   color: #16b4ef;
 }
 
-body.template footer ul {
+:is(body.template, body.template3) footer ul {
   margin: 0;
   padding: 0;
   list-style: none;
   columns: 2;
 }
 
-body.template footer li {
+:is(body.template, body.template3) footer li {
   margin-bottom: 10px;
 }
 
-body.template footer .footer div > .section:last-child {
+:is(body.template, body.template3) footer .footer div > .section:last-child {
   border-top: 1px solid rgb(255 255 255 / 8%);
   padding-top: 0;
   text-align: center;
 }
 
-body.template footer .footer div > .section:last-child > div {
+:is(body.template, body.template3) footer .footer div > .section:last-child > div {
   padding-top: 20px;
   padding-bottom: 24px;
 }
 
-body.template footer img {
+:is(body.template, body.template3) footer img {
   max-width: 100%;
 }
 
 /* staff / about icon lists */
-body.template .cards.staff > ul > li {
+:is(body.template, body.template3) .cards.staff > ul > li {
   overflow: hidden;
 }
 
-body.template .columns.facilities img {
+:is(body.template, body.template3) .columns.facilities img {
   width: 32px;
   height: 32px;
   object-fit: contain;
 }
 
-body.template .embed iframe,
-body.template .embed > div {
+:is(body.template, body.template3) .embed iframe,
+:is(body.template, body.template3) .embed > div {
   min-height: 374px;
 }
 
 /* gallery */
-body.template .photo-gallery-filter-list li {
+:is(body.template, body.template3) .photo-gallery-filter-list li {
   font-family: var(--t-nav);
   font-size: 13px;
 }
 
-body.template .photo-gallery-filter-list li.active a {
+:is(body.template, body.template3) .photo-gallery-filter-list li.active a {
   color: var(--t-cyan);
   text-decoration: none;
 }
