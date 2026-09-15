@@ -2,6 +2,7 @@ import createField from './form-fields.js';
 
 const DEFINITION_SHEETS = ['shared-aem', 'helix-default'];
 const SKIP_SHEETS = new Set(['incoming', 'slack', ':names', ':type', ':version', ':sheetname']);
+const SKIP_CAPTURE_TYPES = new Set(['heading', 'plaintext', 'confirmation', 'fieldset', 'submit']);
 
 /**
  * Reads field rows from a DA / EDS spreadsheet JSON.
@@ -116,14 +117,20 @@ function generatePayload(form) {
   const payload = {};
 
   [...form.elements].forEach((field) => {
-    if (field.name && field.type !== 'submit' && !field.disabled) {
-      if (field.type === 'radio') {
-        if (field.checked) payload[field.name] = field.value;
-      } else if (field.type === 'checkbox') {
-        if (field.checked) payload[field.name] = payload[field.name] ? `${payload[field.name]},${field.value}` : field.value;
-      } else {
-        payload[field.name] = field.value;
+    if (!field.name || field.type === 'submit' || field.disabled) return;
+    if (field.type === 'radio') {
+      if (field.checked) payload[field.name] = field.value;
+      else if (!(field.name in payload)) payload[field.name] = '';
+    } else if (field.type === 'checkbox') {
+      if (field.checked) {
+        payload[field.name] = payload[field.name]
+          ? `${payload[field.name]},${field.value}`
+          : field.value;
+      } else if (!(field.name in payload)) {
+        payload[field.name] = '';
       }
+    } else {
+      payload[field.name] = field.value;
     }
   });
   return payload;
@@ -145,6 +152,13 @@ function siteContext() {
   return { org: 'vinitbodage', site: 'site-templates' };
 }
 
+function addIncomingHeader(headers, seen, key) {
+  const name = `${key || ''}`.trim();
+  if (!name || seen.has(name.toLowerCase())) return;
+  seen.add(name.toLowerCase());
+  headers.push(name);
+}
+
 function appendIncoming(sheet, payload) {
   const next = JSON.parse(JSON.stringify(sheet || {}));
   if (!next[':names']) next[':names'] = ['shared-aem', 'incoming'];
@@ -152,9 +166,17 @@ function appendIncoming(sheet, payload) {
   next[':type'] = 'multi-sheet';
   if (!next.incoming) next.incoming = { total: 0, offset: 0, limit: 0, data: [] };
 
-  const headers = new Set();
-  (next.incoming.data || []).forEach((row) => Object.keys(row).forEach((key) => headers.add(key)));
-  Object.keys(payload).forEach((key) => headers.add(key));
+  const headers = [];
+  const seen = new Set();
+  getFormRows(next).forEach((field) => {
+    const type = `${field.Type || field.type || ''}`.toLowerCase();
+    if (SKIP_CAPTURE_TYPES.has(type)) return;
+    addIncomingHeader(headers, seen, field.Name || field.name);
+  });
+  (next.incoming.data || []).forEach((entry) => {
+    Object.keys(entry).forEach((key) => addIncomingHeader(headers, seen, key));
+  });
+  Object.keys(payload).forEach((key) => addIncomingHeader(headers, seen, key));
 
   const row = {};
   headers.forEach((key) => {
