@@ -164,7 +164,14 @@ function appendIncoming(sheet, payload) {
   if (!next[':names']) next[':names'] = ['shared-aem', 'incoming'];
   if (!next[':names'].includes('incoming')) next[':names'].push('incoming');
   next[':type'] = 'multi-sheet';
-  if (!next.incoming) next.incoming = { total: 0, offset: 0, limit: 0, data: [] };
+  if (!next.incoming) {
+    next.incoming = {
+      total: 0,
+      offset: 0,
+      limit: 0,
+      data: [],
+    };
+  }
 
   const headers = [];
   const seen = new Set();
@@ -199,6 +206,7 @@ const DA_TOKEN_KEY = 'da-form-write-token';
 async function getSdkToken() {
   try {
     const sdk = await Promise.race([
+      // eslint-disable-next-line import/no-unresolved
       import('https://da.live/nx/utils/sdk.js').then((mod) => mod.default),
       new Promise((_, reject) => { setTimeout(() => reject(new Error('timeout')), 2000); }),
     ]);
@@ -252,6 +260,7 @@ function showTokenPrompt(form, payload) {
       }
       window.localStorage?.setItem(DA_TOKEN_KEY, token);
       prompt.remove();
+      // eslint-disable-next-line no-use-before-define
       handleSubmit(form);
     });
     form.append(prompt);
