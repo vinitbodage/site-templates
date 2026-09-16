@@ -22,6 +22,7 @@ body.template5 {
   --t5-font-body: 'Manrope', 'Segoe UI', sans-serif;
   --t5-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --theme-color: var(--t5-champagne);
+  --a11y-brand-color: var(--t5-champagne);
   --background-color: var(--t5-paper);
   --text-color: var(--t5-ink);
   --link-color: var(--t5-slate);
