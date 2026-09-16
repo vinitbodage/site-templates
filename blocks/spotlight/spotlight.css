@@ -18,7 +18,7 @@
   content: '';
   position: absolute;
   inset: 1.1rem;
-  border: 1px solid rgb(196 165 116 / 35%);
+  border: 1px solid color-mix(in srgb, var(--theme-color, #c4a574) 40%, transparent);
   pointer-events: none;
 }
 
@@ -48,7 +48,7 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--t5-champagne, #c4a574);
+  color: var(--theme-color, #c4a574);
   font-style: normal;
 }
 
@@ -75,13 +75,13 @@
 }
 
 .spotlight-copy a.button {
-  border-color: var(--t5-champagne, #c4a574);
+  border-color: var(--theme-color, #c4a574);
   background: transparent;
   color: var(--t5-paper, #f7f5f2);
 }
 
 .spotlight-copy a.button:hover {
-  background: var(--t5-champagne, #c4a574);
+  background: var(--theme-color, #c4a574);
   color: var(--t5-ink, #0e1116);
 }
 
@@ -104,7 +104,7 @@
   font-size: clamp(3.5rem, 8vw, 6.5rem);
   line-height: 0.9;
   letter-spacing: -0.03em;
-  color: var(--t5-champagne, #c4a574);
+  color: var(--theme-color, #c4a574);
 }
 
 .spotlight-stat span {

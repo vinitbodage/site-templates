@@ -32,8 +32,8 @@
   inset: auto 0 0 auto;
   width: 38%;
   height: 38%;
-  border-top: 1px solid var(--t5-champagne, #c4a574);
-  border-left: 1px solid var(--t5-champagne, #c4a574);
+  border-top: 1px solid var(--theme-color, #c4a574);
+  border-left: 1px solid var(--theme-color, #c4a574);
   pointer-events: none;
   z-index: 1;
   transform: translate(-12px, -12px);
@@ -80,7 +80,7 @@
   font-style: normal;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--t5-champagne-deep, #a88755);
+  color: var(--theme-color-deep, #a88755);
 }
 
 .editorial-split-eyebrow em,

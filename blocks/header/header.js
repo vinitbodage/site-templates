@@ -1,4 +1,10 @@
-import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
+import {
+  buildBlock,
+  decorateBlock,
+  fetchPlaceholders,
+  getMetadata,
+  loadBlock,
+} from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -171,6 +177,31 @@ async function buildBreadcrumbs() {
 }
 
 /**
+ * Mounts the accent color picker beside Reserve in template5 nav tools.
+ * @param {Element} nav
+ */
+async function mountTemplate5ThemePicker(nav) {
+  if (nav.querySelector('.theme-picker')) return;
+
+  const tools = nav.querySelector('.nav-tools') || nav;
+  const picker = buildBlock('theme-picker', '');
+  const wrap = document.createElement('div');
+  wrap.className = 'theme-picker-wrapper';
+  wrap.append(picker);
+
+  const reserve = tools.querySelector('a.button, .button-container');
+  if (reserve) {
+    const host = reserve.closest('.button-container') || reserve;
+    host.before(wrap);
+  } else {
+    tools.append(wrap);
+  }
+
+  decorateBlock(picker);
+  await loadBlock(picker);
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -259,5 +290,9 @@ export default async function decorate(block) {
       `${window.hlx.codeBasePath}/scripts/template/wgc-header.js`
     );
     await decorateWgcHeader(block);
+  }
+
+  if (document.body.classList.contains('template5')) {
+    await mountTemplate5ThemePicker(nav);
   }
 }

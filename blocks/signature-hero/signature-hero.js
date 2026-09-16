@@ -45,10 +45,40 @@ export default function decorate(block) {
     img.fetchPriority = 'high';
   });
 
+  const veil = document.createElement('div');
+  veil.className = 'signature-hero-veil';
+  veil.setAttribute('aria-hidden', 'true');
+
+  const sweep = document.createElement('div');
+  sweep.className = 'signature-hero-sweep';
+  sweep.setAttribute('aria-hidden', 'true');
+
+  const rule = document.createElement('span');
+  rule.className = 'signature-hero-rule';
+  rule.setAttribute('aria-hidden', 'true');
+
+  const heading = content.querySelector('h1, h2');
+  if (heading) heading.after(rule);
+  else content.prepend(rule);
+
+  media.append(veil, sweep);
   block.replaceChildren(...[media, content].filter((el) => el.childNodes.length));
   block.closest('.section')?.classList.add('full-bleed', 'signature-hero-container');
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   requestAnimationFrame(() => {
     block.classList.add('is-ready');
+    if (!reduceMotion) block.classList.add('is-animated');
   });
+
+  if (!reduceMotion) {
+    const onScroll = () => {
+      const rect = block.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, -rect.top / Math.max(rect.height, 1)));
+      block.style.setProperty('--hero-parallax', `${progress * 12}%`);
+      block.style.setProperty('--hero-fade', String(1 - progress * 0.55));
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
 }

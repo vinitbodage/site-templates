@@ -51,6 +51,11 @@
   grid-template-rows: 240px 1fr;
   background: transparent;
   min-height: 100%;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.experience-rail-card:hover {
+  transform: translateY(-6px);
 }
 
 .experience-rail-card-media {
@@ -99,7 +104,7 @@
   min-width: 0;
   padding: 0 0 0.2rem;
   border: 0;
-  border-bottom: 1px solid var(--t5-champagne, #c4a574);
+  border-bottom: 1px solid var(--theme-color, #c4a574);
   border-radius: 0;
   background: transparent;
   font-size: 0.72rem;
@@ -114,6 +119,6 @@
 .experience-rail-link:hover,
 .experience-rail a.button.experience-rail-link:hover {
   background: transparent;
-  color: var(--t5-champagne-deep, #a88755);
+  color: var(--theme-color-deep, #a88755);
   transform: none;
 }

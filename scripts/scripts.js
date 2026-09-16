@@ -17,6 +17,7 @@ import {
   toCamelCase,
 } from './aem.js';
 import { initThemeOption } from './template/wgc-theme.js';
+import { applyTheme, getStoredTheme } from './template/theme.js';
 
 export const NX_ORIGIN = 'https://da.live/nx';
 
@@ -224,6 +225,9 @@ async function loadEager(doc) {
   }
   await loadTemplateStyles();
   await initThemeOption();
+  if (document.body.classList.contains('template5')) {
+    applyTheme(getStoredTheme());
+  }
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
