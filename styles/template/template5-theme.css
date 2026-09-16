@@ -1,0 +1,228 @@
+/*
+ * Template 5 — Maison Solenne
+ * Midnight ink, cool stone, champagne metal. Premium boutique hospitality.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap');
+
+body.template5 {
+  --t5-ink: #0e1116;
+  --t5-ink-soft: #1c212b;
+  --t5-stone: #e7e4df;
+  --t5-stone-deep: #cfc9c0;
+  --t5-paper: #f7f5f2;
+  --t5-champagne: #c4a574;
+  --t5-champagne-deep: #a88755;
+  --t5-slate: #3d4f55;
+  --t5-muted: #6b727a;
+  --t5-overlay: rgb(14 17 22 / 42%);
+  --t5-max: 1280px;
+  --t5-section-y: 72px;
+  --t5-font-display: 'Cormorant Garamond', georgia, 'Times New Roman', serif;
+  --t5-font-body: 'Manrope', 'Segoe UI', sans-serif;
+  --t5-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --theme-color: var(--t5-champagne);
+  --background-color: var(--t5-paper);
+  --text-color: var(--t5-ink);
+  --link-color: var(--t5-slate);
+  --link-hover-color: var(--t5-champagne-deep);
+  --header-height: 88px;
+  --body-font-family: var(--t5-font-body);
+  --heading-font-family: var(--t5-font-display);
+
+  background:
+    radial-gradient(1200px 600px at 12% -10%, rgb(196 165 116 / 12%), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgb(61 79 85 / 10%), transparent 55%),
+    var(--t5-paper);
+  color: var(--t5-ink);
+  font-family: var(--t5-font-body);
+  letter-spacing: 0.01em;
+}
+
+@media (width >= 900px) {
+  body.template5 {
+    --t5-section-y: 112px;
+  }
+}
+
+body.template5 main {
+  overflow-x: clip;
+}
+
+body.template5 main :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--t5-font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--t5-ink);
+  line-height: 1.12;
+}
+
+body.template5 main p {
+  line-height: 1.65;
+  color: var(--t5-ink-soft);
+}
+
+body.template5 a.button:any-link,
+body.template5 main a.button:any-link,
+body.template5 button.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 10rem;
+  padding: 0.95rem 1.6rem;
+  border: 1px solid var(--t5-ink);
+  border-radius: 0;
+  background: var(--t5-ink);
+  color: var(--t5-paper);
+  font-family: var(--t5-font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 0.35s var(--t5-ease),
+    color 0.35s var(--t5-ease),
+    border-color 0.35s var(--t5-ease),
+    transform 0.35s var(--t5-ease);
+}
+
+body.template5 a.button:any-link:hover,
+body.template5 main a.button:any-link:hover,
+body.template5 button.button:hover {
+  background: var(--t5-champagne);
+  border-color: var(--t5-champagne);
+  color: var(--t5-ink);
+  transform: translateY(-1px);
+}
+
+body.template5 a.button.secondary:any-link,
+body.template5 main a.button.secondary:any-link {
+  background: transparent;
+  color: var(--t5-ink);
+}
+
+body.template5 a.button.secondary:any-link:hover,
+body.template5 main a.button.secondary:any-link:hover {
+  background: var(--t5-ink);
+  color: var(--t5-paper);
+}
+
+/* Header */
+body.template5 header .nav-wrapper {
+  background: rgb(247 245 242 / 88%);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgb(14 17 22 / 8%);
+}
+
+body.template5 header nav {
+  max-width: var(--t5-max);
+}
+
+body.template5 header .nav-brand a {
+  font-family: var(--t5-font-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--t5-ink);
+  text-decoration: none;
+}
+
+body.template5 header .nav-sections a {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--t5-ink-soft);
+}
+
+body.template5 header .nav-tools a.button:any-link {
+  min-width: 0;
+  padding: 0.7rem 1.1rem;
+  background: transparent;
+  border-color: var(--t5-champagne);
+  color: var(--t5-ink);
+}
+
+body.template5 header .nav-tools a.button:any-link:hover {
+  background: var(--t5-champagne);
+}
+
+/* Footer */
+body.template5 footer {
+  background: var(--t5-ink);
+  color: var(--t5-stone);
+}
+
+body.template5 footer a {
+  color: var(--t5-champagne);
+}
+
+body.template5 footer .footer {
+  max-width: var(--t5-max);
+  margin: 0 auto;
+  padding: 4rem 1.5rem 2.5rem;
+}
+
+body.template5 footer h3 {
+  font-family: var(--t5-font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--t5-paper);
+  margin: 0 0 1rem;
+}
+
+/* Section rhythm */
+body.template5 main > .section {
+  padding: var(--t5-section-y) 0;
+}
+
+body.template5 main > .section.full-bleed,
+body.template5 main > .section.signature-hero-container {
+  padding: 0;
+}
+
+body.template5 main > .section > div {
+  max-width: var(--t5-max);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+body.template5 main > .section.full-bleed > div,
+body.template5 main > .section.signature-hero-container > div,
+body.template5 main > .section.marquee-strip-container > div {
+  max-width: none;
+  padding-inline: 0;
+}
+
+@keyframes t5-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes t5-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.template5 *,
+  body.template5 *::before,
+  body.template5 *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

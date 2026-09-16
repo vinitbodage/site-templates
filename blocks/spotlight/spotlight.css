@@ -1,0 +1,121 @@
+.spotlight {
+  position: relative;
+}
+
+.spotlight-frame {
+  position: relative;
+  display: grid;
+  gap: 2rem;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  background:
+    linear-gradient(145deg, rgb(28 33 43 / 96%), rgb(14 17 22 / 94%)),
+    var(--t5-ink, #0e1116);
+  color: var(--t5-paper, #f7f5f2);
+  overflow: hidden;
+}
+
+.spotlight-frame::before {
+  content: '';
+  position: absolute;
+  inset: 1.1rem;
+  border: 1px solid rgb(196 165 116 / 35%);
+  pointer-events: none;
+}
+
+@media (width >= 900px) {
+  .spotlight-frame {
+    grid-template-columns: 1.4fr 0.8fr;
+    align-items: end;
+    min-height: 360px;
+  }
+}
+
+.spotlight-copy,
+.spotlight-aside {
+  position: relative;
+  z-index: 1;
+}
+
+.spotlight-copy {
+  display: grid;
+  gap: 1rem;
+  align-content: end;
+}
+
+.spotlight-eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--t5-champagne, #c4a574);
+  font-style: normal;
+}
+
+.spotlight-eyebrow em,
+.spotlight-eyebrow i {
+  font-style: normal;
+}
+
+.spotlight-copy :is(h2, h3) {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  color: var(--t5-paper, #f7f5f2);
+}
+
+.spotlight-copy p:not(.spotlight-eyebrow):not(.button-container) {
+  margin: 0;
+  max-width: 38ch;
+  color: rgb(247 245 242 / 78%);
+}
+
+.spotlight-copy .button-container {
+  margin: 0.5rem 0 0;
+}
+
+.spotlight-copy a.button {
+  border-color: var(--t5-champagne, #c4a574);
+  background: transparent;
+  color: var(--t5-paper, #f7f5f2);
+}
+
+.spotlight-copy a.button:hover {
+  background: var(--t5-champagne, #c4a574);
+  color: var(--t5-ink, #0e1116);
+}
+
+.spotlight-aside {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+
+@media (width >= 900px) {
+  .spotlight-aside {
+    justify-items: end;
+    text-align: right;
+  }
+}
+
+.spotlight-stat {
+  margin: 0;
+  font-family: var(--t5-font-display, georgia, serif);
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--t5-champagne, #c4a574);
+}
+
+.spotlight-stat span {
+  display: inline-block;
+}
+
+.spotlight-stat-caption {
+  margin: 0;
+  max-width: 18ch;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(247 245 242 / 70%);
+}

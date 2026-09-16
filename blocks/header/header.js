@@ -177,7 +177,9 @@ async function buildBreadcrumbs() {
 export default async function decorate(block) {
   // load nav as fragment
   const navMeta = getMetadata('nav');
-  const defaultNav = document.body.classList.contains('wgc') ? '/template1/nav' : '/nav';
+  let defaultNav = '/nav';
+  if (document.body.classList.contains('wgc')) defaultNav = '/template1/nav';
+  else if (document.body.classList.contains('template5')) defaultNav = '/template5/nav';
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
   const fragment = await loadFragment(navPath);
 

@@ -529,6 +529,62 @@
           }
         },
         {
+          "title": "Signature Hero",
+          "id": "signature-hero",
+          "model": "signature-hero",
+          "plugins": {
+            "da": {
+              "unsafeHTML": "<div class=\"signature-hero\"><div><div><picture><img loading=\"eager\"></picture></div></div><div><div><p><strong>Brand</strong></p><h1>Headline</h1><p>Support</p><p><a href=\"#\">Reserve</a></p></div></div></div>"
+            }
+          }
+        },
+        {
+          "title": "Editorial Split",
+          "id": "editorial-split",
+          "model": "editorial-split",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "unsafeHTML": "<div class=\"editorial-split\"><div><div><picture><img loading=\"lazy\"></picture></div><div><p><em>Eyebrow</em></p><h2>Heading</h2><p>Copy</p><p><a href=\"#\">Learn more</a></p></div></div></div>"
+            }
+          }
+        },
+        {
+          "title": "Experience Rail",
+          "id": "experience-rail",
+          "model": "experience-rail",
+          "plugins": {
+            "da": {
+              "rows": 2,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "Marquee Strip",
+          "id": "marquee-strip",
+          "model": "marquee-strip",
+          "plugins": {
+            "da": {
+              "rows": 3,
+              "columns": 1
+            }
+          }
+        },
+        {
+          "title": "Spotlight",
+          "id": "spotlight",
+          "model": "spotlight",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2,
+              "unsafeHTML": "<div class=\"spotlight\"><div><div><p><em>Eyebrow</em></p><h2>Heading</h2><p>Copy</p><p><a href=\"#\">CTA</a></p></div><div><p>18 suites</p><p><em>Caption</em></p></div></div></div>"
+            }
+          }
+        },
+        {
           "title": "WGC Accordion",
           "id": "wgc-accordion",
           "model": "wgc-accordion",

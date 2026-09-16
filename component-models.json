@@ -957,5 +957,59 @@
         "description": "Room name, description, and an optional Book Now call to action."
       }
     ]
+  },
+  {
+    "id": "signature-hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Hero image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image alt",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Brand, headline, support, and CTA",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "editorial-split",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Layout",
+        "value": "",
+        "options": [
+          { "name": "Media left", "value": "" },
+          { "name": "Media right", "value": "flip" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "experience-rail",
+    "fields": []
+  },
+  {
+    "id": "marquee-strip",
+    "fields": []
+  },
+  {
+    "id": "spotlight",
+    "fields": []
   }
 ]
