@@ -277,6 +277,34 @@
           }
         },
         {
+          "title": "Form",
+          "id": "form",
+          "model": "form",
+          "plugins": {
+            "da": {
+              "unsafeHTML": "<div class=\"form\"><div><div><p><a href=\"/forms/contact.json\">Form definition</a></p><p><a href=\"/forms/contact.json\">Submit</a></p></div></div></div>",
+              "fields": [
+                {
+                  "name": "formUrl",
+                  "selector": "div>div>p:nth-child(1)>a[href]"
+                },
+                {
+                  "name": "formUrlText",
+                  "selector": "div>div>p:nth-child(1)>a"
+                },
+                {
+                  "name": "submitUrl",
+                  "selector": "div>div>p:nth-child(2)>a[href]"
+                },
+                {
+                  "name": "submitUrlText",
+                  "selector": "div>div>p:nth-child(2)>a"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Gallery",
           "id": "gallery",
           "model": "gallery",
