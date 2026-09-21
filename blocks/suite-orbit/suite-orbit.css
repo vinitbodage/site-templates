@@ -1,0 +1,174 @@
+.suite-orbit {
+  --orbit-rotate: 0deg;
+}
+
+.suite-orbit-stage {
+  display: grid;
+  gap: 2rem;
+}
+
+.suite-orbit-intro {
+  max-width: 40rem;
+  display: grid;
+  gap: 0.75rem;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.suite-orbit-intro :is(h2, h3) {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+}
+
+.suite-orbit-intro p {
+  margin: 0;
+  color: var(--t5-muted, #6b727a);
+}
+
+.suite-orbit-ring {
+  position: relative;
+  width: min(100%, 720px);
+  aspect-ratio: 1;
+  margin: 1rem auto 2rem;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+.suite-orbit.is-spinning:not(.is-paused) .suite-orbit-ring {
+  animation: t5-orbit-spin 36s linear infinite;
+}
+
+.suite-orbit.is-paused .suite-orbit-ring {
+  transform: rotate(var(--orbit-rotate));
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.suite-orbit-card {
+  --orbit-angle: 0deg;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(42%, 220px);
+  margin: 0;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--orbit-angle))
+    translateY(-155%)
+    rotate(calc(var(--orbit-angle) * -1));
+  transform-origin: center center;
+  opacity: 0;
+  transition:
+    opacity 0.6s ease,
+    filter 0.4s ease,
+    box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.suite-orbit.is-visible .suite-orbit-card {
+  opacity: 1;
+  animation: t5-orbit-in 0.7s calc(var(--i) * 0.08s) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.suite-orbit-card-media {
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--t5-stone-deep, #cfc9c0);
+}
+
+.suite-orbit-card-media picture,
+.suite-orbit-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.suite-orbit-card:hover .suite-orbit-card-media img,
+.suite-orbit-card.is-active .suite-orbit-card-media img {
+  transform: scale(1.06);
+}
+
+.suite-orbit-card-body {
+  padding: 0.7rem 0.15rem 0;
+  text-align: center;
+}
+
+.suite-orbit-card-body :is(h3, h4) {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.suite-orbit-card-body p {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--t5-muted, #6b727a);
+}
+
+.suite-orbit-link {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--theme-color, #c4a574);
+  text-decoration: none;
+  border-bottom: 1px solid var(--theme-color, #c4a574);
+}
+
+@keyframes t5-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes t5-orbit-in {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Fallback stack on small screens */
+@media (width < 700px) {
+  .suite-orbit-ring {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    aspect-ratio: auto;
+    width: 100%;
+    perspective: none;
+  }
+
+  .suite-orbit.is-spinning:not(.is-paused) .suite-orbit-ring,
+  .suite-orbit.is-paused .suite-orbit-ring {
+    animation: none;
+    transform: none;
+  }
+
+  .suite-orbit-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .suite-orbit.is-spinning:not(.is-paused) .suite-orbit-ring {
+    animation: none;
+  }
+
+  .suite-orbit-card {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}

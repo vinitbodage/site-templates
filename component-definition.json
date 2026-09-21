@@ -585,6 +585,50 @@
           }
         },
         {
+          "title": "Parallax Reveal",
+          "id": "parallax-reveal",
+          "model": "parallax-reveal",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "Kinetic Quote",
+          "id": "kinetic-quote",
+          "model": "kinetic-quote",
+          "plugins": {
+            "da": {
+              "rows": 1,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "Suite Orbit",
+          "id": "suite-orbit",
+          "model": "suite-orbit",
+          "plugins": {
+            "da": {
+              "rows": 2,
+              "columns": 2
+            }
+          }
+        },
+        {
+          "title": "Timeline Flow",
+          "id": "timeline-flow",
+          "model": "timeline-flow",
+          "plugins": {
+            "da": {
+              "rows": 3,
+              "columns": 2
+            }
+          }
+        },
+        {
           "title": "WGC Accordion",
           "id": "wgc-accordion",
           "model": "wgc-accordion",
