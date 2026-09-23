@@ -147,7 +147,7 @@
   transform: scaleX(1);
 }
 
-.editorial-split-copy p:not(.editorial-split-eyebrow):not(.button-container) {
+.editorial-split-copy p:not(.editorial-split-eyebrow, .button-container) {
   margin: 0;
   max-width: 36ch;
   color: var(--t5-muted, #6b727a);

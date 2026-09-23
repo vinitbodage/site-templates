@@ -164,16 +164,20 @@
   }
 }
 
-.experience-rail.is-visible .experience-rail-card {
-  opacity: 1;
-  transform: none;
-}
-
 .experience-rail-card:hover {
   transform: translateY(-8px);
   box-shadow:
     0 28px 50px rgb(14 17 22 / 18%),
     inset 0 0 0 1px color-mix(in srgb, var(--theme-color, #c4a574) 40%, transparent);
+}
+
+.experience-rail.is-visible .experience-rail-card {
+  opacity: 1;
+  transform: none;
+}
+
+.experience-rail.is-visible .experience-rail-card:hover {
+  transform: translateY(-8px);
 }
 
 .experience-rail-card-media {

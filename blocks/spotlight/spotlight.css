@@ -194,7 +194,7 @@
   transform: scaleX(1);
 }
 
-.spotlight-copy p:not(.spotlight-eyebrow):not(.button-container) {
+.spotlight-copy p:not(.spotlight-eyebrow, .button-container) {
   margin: 0;
   max-width: 36ch;
   color: rgb(247 245 242 / 82%);

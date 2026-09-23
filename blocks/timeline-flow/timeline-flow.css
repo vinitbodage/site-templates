@@ -75,6 +75,10 @@
     align-items: start;
   }
 
+  .timeline-flow-item .timeline-flow-marker {
+    justify-self: center;
+  }
+
   .timeline-flow-item:nth-child(odd) .timeline-flow-body {
     grid-column: 1;
     grid-row: 1;
@@ -95,10 +99,6 @@
   .timeline-flow-item:nth-child(even) .timeline-flow-body {
     grid-column: 3;
     grid-row: 1;
-  }
-
-  .timeline-flow-item .timeline-flow-marker {
-    justify-self: center;
   }
 }
 

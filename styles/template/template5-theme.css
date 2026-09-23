@@ -136,6 +136,11 @@ body.template5 main a.button.secondary:any-link:hover {
   color: var(--t5-paper);
 }
 
+/* Footer links before header brand links (lower specificity first) */
+body.template5 footer a {
+  color: var(--theme-color);
+}
+
 /* Header */
 body.template5 header .nav-wrapper {
   background: rgb(247 245 242 / 88%);
@@ -203,10 +208,6 @@ body.template5 footer {
   color: var(--t5-stone);
 }
 
-body.template5 footer a {
-  color: var(--theme-color);
-}
-
 body.template5 footer .footer {
   max-width: var(--t5-max);
   margin: 0 auto;
@@ -244,8 +245,17 @@ body.template5 main > .section.experience-rail-container {
   padding-block: 0;
 }
 
+body.template5 main > .section > div {
+  max-width: var(--t5-max);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
 body.template5 main > .section.spotlight-container > div,
-body.template5 main > .section.experience-rail-container > div {
+body.template5 main > .section.experience-rail-container > div,
+body.template5 main > .section.full-bleed > div,
+body.template5 main > .section.signature-hero-container > div,
+body.template5 main > .section.marquee-strip-container > div {
   max-width: none;
   padding-inline: 0;
 }
@@ -259,19 +269,6 @@ body.template5 main > .section.experience-rail-container .experience-rail-track 
 
 body.template5 main > .section.experience-rail-container .experience-rail-track {
   padding-inline: 1.25rem;
-}
-
-body.template5 main > .section > div {
-  max-width: var(--t5-max);
-  margin-inline: auto;
-  padding-inline: 1.25rem;
-}
-
-body.template5 main > .section.full-bleed > div,
-body.template5 main > .section.signature-hero-container > div,
-body.template5 main > .section.marquee-strip-container > div {
-  max-width: none;
-  padding-inline: 0;
 }
 
 @keyframes t5-rise {
