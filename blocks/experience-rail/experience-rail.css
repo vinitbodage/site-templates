@@ -1,66 +1,226 @@
+.experience-rail {
+  position: relative;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.experience-rail.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 .experience-rail-shell {
   display: grid;
-  gap: 2rem;
+  gap: 1.5rem;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem) 0 clamp(1.5rem, 3vw, 2.25rem);
+  background:
+    linear-gradient(180deg, rgb(14 17 22 / 3%), transparent 28%),
+    linear-gradient(90deg, color-mix(in srgb, var(--theme-color, #c4a574) 6%, transparent), transparent 40%),
+    var(--t5-paper, #f7f5f2);
+  border-block: 1px solid color-mix(in srgb, var(--theme-color, #c4a574) 22%, transparent);
+}
+
+.experience-rail-head {
+  display: grid;
+  gap: 1rem;
+  align-items: end;
+  padding-inline: 0.15rem;
+}
+
+@media (width >= 900px) {
+  .experience-rail-head {
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: 2rem;
+  }
 }
 
 .experience-rail-intro {
   display: grid;
-  gap: 0.75rem;
+  gap: 0.65rem;
   max-width: 40rem;
-  padding-inline: 0.15rem;
+}
+
+.experience-rail-eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--theme-color-deep, #a88755);
+  font-style: normal;
+}
+
+.experience-rail-eyebrow em,
+.experience-rail-eyebrow i {
+  font-style: normal;
 }
 
 .experience-rail-intro :is(h2, h3) {
   margin: 0;
-  font-size: clamp(2.1rem, 4vw, 3.4rem);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  line-height: 1.05;
 }
 
-.experience-rail-intro p {
+.experience-rail-rule {
+  display: block;
+  width: 3.25rem;
+  height: 1px;
+  background: var(--theme-color, #c4a574);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.65s 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.experience-rail.is-visible .experience-rail-rule {
+  transform: scaleX(1);
+}
+
+.experience-rail-intro p:not(.experience-rail-eyebrow) {
   margin: 0;
   color: var(--t5-muted, #6b727a);
   max-width: 42ch;
+  line-height: 1.65;
+}
+
+.experience-rail-meta {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: start;
+}
+
+@media (width >= 900px) {
+  .experience-rail-meta {
+    justify-items: end;
+    text-align: right;
+  }
+}
+
+.experience-rail-count {
+  font-family: var(--t5-font-display, georgia, serif);
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  color: var(--theme-color, #c4a574);
+}
+
+.experience-rail-hint {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--t5-muted, #6b727a) 85%, transparent);
 }
 
 .experience-rail-track {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(260px, 78vw);
-  gap: 1.15rem;
+  grid-auto-columns: minmax(260px, 82vw);
+  gap: 1.1rem;
   overflow-x: auto;
-  padding: 0.35rem 0.15rem 1.25rem;
+  padding: 0.35rem 0.15rem 1.15rem;
   scroll-snap-type: x mandatory;
   scroll-padding-inline: 0.15rem;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-color, #c4a574) transparent;
 }
 
 @media (width >= 900px) {
   .experience-rail-track {
-    grid-auto-columns: minmax(320px, 360px);
-    gap: 1.4rem;
+    grid-auto-columns: minmax(300px, 360px);
+    gap: 1.35rem;
   }
 }
 
 .experience-rail-track:focus-visible {
-  outline: 2px solid var(--t5-champagne, #c4a574);
+  outline: 2px solid var(--theme-color, #c4a574);
   outline-offset: 4px;
 }
 
 .experience-rail-card {
+  position: relative;
   scroll-snap-align: start;
   display: grid;
-  grid-template-rows: 240px 1fr;
-  background: transparent;
+  grid-template-rows: 340px auto;
   min-height: 100%;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  background: var(--t5-ink, #0e1116);
+  box-shadow:
+    0 18px 40px rgb(14 17 22 / 12%),
+    inset 0 0 0 1px color-mix(in srgb, var(--theme-color, #c4a574) 18%, transparent);
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.55s calc(var(--i) * 0.08s) cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+@media (width >= 900px) {
+  .experience-rail-card {
+    grid-template-rows: 380px auto;
+  }
+}
+
+.experience-rail.is-visible .experience-rail-card {
+  opacity: 1;
+  transform: none;
 }
 
 .experience-rail-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
+  box-shadow:
+    0 28px 50px rgb(14 17 22 / 18%),
+    inset 0 0 0 1px color-mix(in srgb, var(--theme-color, #c4a574) 40%, transparent);
 }
 
 .experience-rail-card-media {
+  position: relative;
   overflow: hidden;
   background: var(--t5-stone-deep, #cfc9c0);
+}
+
+.experience-rail-card-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 35%, rgb(14 17 22 / 78%) 100%),
+    linear-gradient(90deg, rgb(14 17 22 / 20%), transparent 45%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.experience-rail-card-media::after {
+  content: '';
+  position: absolute;
+  inset: 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--theme-color, #c4a574) 45%, transparent);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.experience-rail-card:hover .experience-rail-card-media::after {
+  opacity: 1;
+}
+
+.experience-rail-card-index {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 3;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--t5-paper, #f7f5f2) 35%, transparent);
+  background: rgb(14 17 22 / 35%);
+  backdrop-filter: blur(6px);
+  font-family: var(--t5-font-display, georgia, serif);
+  font-size: 0.95rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: var(--t5-paper, #f7f5f2);
 }
 
 .experience-rail-card-media picture,
@@ -69,7 +229,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .experience-rail-card-media picture {
@@ -77,31 +237,39 @@
 }
 
 .experience-rail-card:hover .experience-rail-card-media img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .experience-rail-card-body {
+  position: relative;
+  z-index: 2;
   display: grid;
-  gap: 0.55rem;
+  gap: 0.4rem;
   align-content: start;
-  padding: 1.15rem 0.15rem 0.35rem;
+  margin-top: -3.25rem;
+  padding: 0 1.1rem 1.15rem;
+  color: var(--t5-paper, #f7f5f2);
 }
 
 .experience-rail-card-body :is(h3, h4) {
   margin: 0;
-  font-size: 1.65rem;
+  font-size: 1.7rem;
+  color: var(--t5-paper, #f7f5f2);
+  text-shadow: 0 4px 18px rgb(0 0 0 / 35%);
 }
 
 .experience-rail-card-body p:not(.button-container) {
   margin: 0;
-  font-size: 0.95rem;
-  color: var(--t5-muted, #6b727a);
+  font-size: 0.9rem;
+  color: rgb(247 245 242 / 78%);
+  line-height: 1.5;
 }
 
 .experience-rail-link,
 .experience-rail a.button.experience-rail-link {
   display: inline;
   min-width: 0;
+  margin-top: 0.45rem;
   padding: 0 0 0.2rem;
   border: 0;
   border-bottom: 1px solid var(--theme-color, #c4a574);
@@ -111,7 +279,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--t5-slate, #3d4f55);
+  color: var(--theme-color, #c4a574);
   text-decoration: none;
   width: fit-content;
 }
@@ -119,6 +287,17 @@
 .experience-rail-link:hover,
 .experience-rail a.button.experience-rail-link:hover {
   background: transparent;
-  color: var(--theme-color-deep, #a88755);
+  color: var(--t5-paper, #f7f5f2);
+  border-bottom-color: var(--t5-paper, #f7f5f2);
   transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-rail,
+  .experience-rail-card,
+  .experience-rail-rule {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }

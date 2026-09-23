@@ -11,6 +11,10 @@ export default function decorate(block) {
   const frame = document.createElement('div');
   frame.className = 'kinetic-quote-frame';
 
+  const topRule = document.createElement('span');
+  topRule.className = 'kinetic-quote-line kinetic-quote-line-top';
+  topRule.setAttribute('aria-hidden', 'true');
+
   const mark = document.createElement('span');
   mark.className = 'kinetic-quote-mark';
   mark.setAttribute('aria-hidden', 'true');
@@ -29,14 +33,19 @@ export default function decorate(block) {
     if (i < words.length - 1) quote.append(document.createTextNode(' '));
   });
 
-  frame.append(mark, quote);
+  frame.append(topRule, mark, quote);
 
   if (attribution) {
     const cite = document.createElement('p');
     cite.className = 'kinetic-quote-attr';
-    cite.textContent = attribution;
+    cite.textContent = attribution.replace(/^—\s*/, '');
     frame.append(cite);
   }
+
+  const bottomRule = document.createElement('span');
+  bottomRule.className = 'kinetic-quote-line kinetic-quote-line-bottom';
+  bottomRule.setAttribute('aria-hidden', 'true');
+  frame.append(bottomRule);
 
   block.replaceChildren(frame);
 
