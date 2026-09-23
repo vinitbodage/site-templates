@@ -1,17 +1,27 @@
 .editorial-split {
   display: grid;
-  gap: 1.75rem;
+  gap: 1.5rem;
   align-items: center;
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.editorial-split.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 @media (width >= 900px) {
   .editorial-split {
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(2rem, 5vw, 4.5rem);
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(1.75rem, 4vw, 3.5rem);
   }
 
   .editorial-split.flip {
-    grid-template-columns: 0.85fr 1.15fr;
+    grid-template-columns: 0.8fr 1.2fr;
   }
 
   .editorial-split.flip .editorial-split-media {
@@ -24,19 +34,36 @@
   overflow: hidden;
   min-height: 280px;
   background: var(--t5-stone-deep, #cfc9c0);
+  isolation: isolate;
 }
 
-.editorial-split-media::before {
+.editorial-split-media::after {
   content: '';
   position: absolute;
-  inset: auto 0 0 auto;
-  width: 38%;
-  height: 38%;
-  border-top: 1px solid var(--theme-color, #c4a574);
-  border-left: 1px solid var(--theme-color, #c4a574);
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent 55%, rgb(14 17 22 / 28%)),
+    linear-gradient(90deg, rgb(14 17 22 / 12%), transparent 40%);
   pointer-events: none;
   z-index: 1;
-  transform: translate(-12px, -12px);
+}
+
+.editorial-split-frame {
+  position: absolute;
+  inset: 1rem;
+  border: 1px solid color-mix(in srgb, var(--theme-color, #c4a574) 55%, transparent);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity 0.7s 0.15s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.editorial-split.is-visible .editorial-split-frame {
+  opacity: 1;
+  transform: none;
 }
 
 .editorial-split-media picture,
@@ -46,30 +73,40 @@
   height: 100%;
   min-height: 320px;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (width >= 900px) {
   .editorial-split-media picture,
   .editorial-split-media img {
-    min-height: 540px;
+    min-height: 520px;
   }
 }
 
 .editorial-split:hover .editorial-split-media img {
-  transform: scale(1.035);
+  transform: scale(1.04);
 }
 
 .editorial-split-copy {
+  position: relative;
   display: grid;
-  gap: 1rem;
-  padding: 0.25rem 0 0;
+  gap: 0.85rem;
+  padding: 0.5rem 0 0;
 }
 
 @media (width >= 900px) {
   .editorial-split-copy {
-    padding-inline: 0.5rem;
+    padding-inline: 0.75rem 0.25rem;
   }
+}
+
+.editorial-split-index {
+  margin: 0 0 0.25rem;
+  font-family: var(--t5-font-display, georgia, serif);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--theme-color, #c4a574);
 }
 
 .editorial-split-eyebrow {
@@ -90,16 +127,54 @@
 
 .editorial-split-copy :is(h2, h3) {
   margin: 0;
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(2rem, 4vw, 3.1rem);
   max-width: 12ch;
+  line-height: 1.05;
 }
 
-.editorial-split-copy p:not(.editorial-split-eyebrow):not(.button-container) {
+.editorial-split-rule {
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  margin: 0.15rem 0 0.35rem;
+  background: var(--theme-color, #c4a574);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.65s 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.editorial-split.is-visible .editorial-split-rule {
+  transform: scaleX(1);
+}
+
+.editorial-split-copy p:not(.editorial-split-eyebrow, .button-container) {
   margin: 0;
   max-width: 36ch;
   color: var(--t5-muted, #6b727a);
+  line-height: 1.65;
 }
 
 .editorial-split-copy .button-container {
-  margin: 0.75rem 0 0;
+  margin: 0.5rem 0 0;
+}
+
+.editorial-split-copy a.button.secondary {
+  border-color: var(--theme-color, #c4a574);
+  color: var(--t5-ink, #0e1116);
+}
+
+.editorial-split-copy a.button.secondary:hover {
+  background: var(--theme-color, #c4a574);
+  color: var(--t5-ink, #0e1116);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-split,
+  .editorial-split-frame,
+  .editorial-split-rule,
+  .editorial-split-media img {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }

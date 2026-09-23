@@ -136,7 +136,7 @@
   animation: t5-hero-rule 0.9s 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.signature-hero-content p:not(.signature-hero-brand):not(.button-container) {
+.signature-hero-content p:not(.signature-hero-brand, .button-container) {
   margin: 0;
   max-width: 34ch;
   font-size: 1rem;
@@ -184,7 +184,7 @@ body.template5 .signature-hero.is-animated .signature-hero-content a.button:any-
   animation-delay: 0.14s;
 }
 
-.signature-hero.is-ready .signature-hero-content p:not(.signature-hero-brand):not(.button-container) {
+.signature-hero.is-ready .signature-hero-content p:not(.signature-hero-brand, .button-container) {
   animation-delay: 0.26s;
 }
 
@@ -279,16 +279,16 @@ body.template5 .signature-hero.is-animated .signature-hero-content a.button:any-
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .signature-hero-media picture,
+  .signature-hero-media img {
+    transform: none;
+    opacity: 1;
+  }
+
   .signature-hero.is-ready .signature-hero-media img,
   .signature-hero.is-animated .signature-hero-media img,
   .signature-hero.is-animated .signature-hero-sweep,
   body.template5 .signature-hero.is-animated .signature-hero-content a.button:any-link::before {
     animation: none !important;
-  }
-
-  .signature-hero-media picture,
-  .signature-hero-media img {
-    transform: none;
-    opacity: 1;
   }
 }

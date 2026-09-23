@@ -137,7 +137,7 @@ function autolinkModals(doc) {
 function buildAutoBlocks(main) {
   try {
     // template pages author their own hero/banner, so only plain documents get one built
-    if (!main.querySelector('.hero, .signature-hero, .wgc-hero, .wgc-intro-container')) {
+    if (!main.querySelector('.signature-hero')) {
       buildHeroBlock(main);
     }
   } catch (error) {
@@ -264,16 +264,6 @@ async function loadLazy(doc) {
   await loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
   await mountAccessibilityPicker(doc);
-
-  if (
-    doc.body.classList.contains('wgc')
-    || doc.querySelector('.wgc-book-now, [data-book-now], .book-now-modal')
-  ) {
-    const { bindBookNowTriggers } = await import(
-      `${window.hlx.codeBasePath}/blocks/book-now-modal/book-now-modal.js`
-    );
-    bindBookNowTriggers(doc);
-  }
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();

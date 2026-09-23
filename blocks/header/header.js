@@ -285,13 +285,6 @@ export default async function decorate(block) {
     navWrapper.append(await buildBreadcrumbs());
   }
 
-  if (document.body.classList.contains('wgc')) {
-    const { default: decorateWgcHeader } = await import(
-      `${window.hlx.codeBasePath}/scripts/template/wgc-header.js`
-    );
-    await decorateWgcHeader(block);
-  }
-
   if (document.body.classList.contains('template5')) {
     await mountTemplate5ThemePicker(nav);
   }

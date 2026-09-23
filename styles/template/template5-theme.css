@@ -17,7 +17,7 @@ body.template5 {
   --t5-muted: #6b727a;
   --t5-overlay: rgb(14 17 22 / 42%);
   --t5-max: 1280px;
-  --t5-section-y: 72px;
+  --t5-section-y: 40px;
   --t5-font-display: 'Cormorant Garamond', georgia, 'Times New Roman', serif;
   --t5-font-body: 'Manrope', 'Segoe UI', sans-serif;
   --t5-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -69,7 +69,7 @@ body.template5[data-theme='copper'] {
 
 @media (width >= 900px) {
   body.template5 {
-    --t5-section-y: 112px;
+    --t5-section-y: 56px;
   }
 }
 
@@ -134,6 +134,11 @@ body.template5 a.button.secondary:any-link:hover,
 body.template5 main a.button.secondary:any-link:hover {
   background: var(--t5-ink);
   color: var(--t5-paper);
+}
+
+/* Footer links before header brand links (lower specificity first) */
+body.template5 footer a {
+  color: var(--theme-color);
 }
 
 /* Header */
@@ -203,10 +208,6 @@ body.template5 footer {
   color: var(--t5-stone);
 }
 
-body.template5 footer a {
-  color: var(--theme-color);
-}
-
 body.template5 footer .footer {
   max-width: var(--t5-max);
   margin: 0 auto;
@@ -226,9 +227,22 @@ body.template5 main > .section {
   padding: var(--t5-section-y) 0;
 }
 
+body.template5 main > .section + .section {
+  padding-top: calc(var(--t5-section-y) * 0.55);
+}
+
 body.template5 main > .section.full-bleed,
 body.template5 main > .section.signature-hero-container {
   padding: 0;
+}
+
+body.template5 main > .section.marquee-strip-container {
+  padding-block: 1.25rem;
+}
+
+body.template5 main > .section.spotlight-container,
+body.template5 main > .section.experience-rail-container {
+  padding-block: 0;
 }
 
 body.template5 main > .section > div {
@@ -237,11 +251,24 @@ body.template5 main > .section > div {
   padding-inline: 1.25rem;
 }
 
+body.template5 main > .section.spotlight-container > div,
+body.template5 main > .section.experience-rail-container > div,
 body.template5 main > .section.full-bleed > div,
 body.template5 main > .section.signature-hero-container > div,
 body.template5 main > .section.marquee-strip-container > div {
   max-width: none;
   padding-inline: 0;
+}
+
+body.template5 main > .section.experience-rail-container .experience-rail-head,
+body.template5 main > .section.experience-rail-container .experience-rail-track {
+  max-width: var(--t5-max);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+body.template5 main > .section.experience-rail-container .experience-rail-track {
+  padding-inline: 1.25rem;
 }
 
 @keyframes t5-rise {
@@ -279,8 +306,7 @@ body.template5 main > .section.marquee-strip-container > div {
 }
 
 body.template5 .editorial-split,
-body.template5 .experience-rail-shell,
-body.template5 .spotlight-frame {
+body.template5 .experience-rail-shell {
   animation: t5-fade-up 0.9s var(--t5-ease) both;
   animation-timeline: view();
   animation-range: entry 8% cover 28%;

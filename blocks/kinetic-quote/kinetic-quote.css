@@ -1,0 +1,137 @@
+.kinetic-quote {
+  --kx: 0;
+  --ky: 0;
+
+  position: relative;
+  padding: clamp(1.75rem, 4vw, 3.25rem) 0;
+  overflow: hidden;
+}
+
+.kinetic-quote-frame {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+}
+
+.kinetic-quote-line {
+  display: block;
+  width: 4.5rem;
+  height: 1px;
+  margin-inline: auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--theme-color, #c4a574),
+    transparent
+  );
+  transform: scaleX(0);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.kinetic-quote.is-visible .kinetic-quote-line {
+  transform: scaleX(1);
+}
+
+.kinetic-quote-line-top {
+  margin-bottom: 0.35rem;
+}
+
+.kinetic-quote-line-bottom {
+  margin-top: 1.25rem;
+  transition-delay: 0.35s;
+}
+
+/* Decorative mark sits above the quote — never over the words */
+.kinetic-quote-mark {
+  position: relative;
+  left: auto;
+  top: auto;
+  display: block;
+  margin: 0 0 0.15rem;
+  font-family: var(--t5-font-display, georgia, serif);
+  font-size: clamp(3.25rem, 8vw, 5.5rem);
+  line-height: 0.7;
+  height: 0.55em;
+  color: color-mix(in srgb, var(--theme-color, #c4a574) 55%, transparent);
+  transform: translate3d(calc(var(--kx) * 10px), calc(var(--ky) * 6px), 0);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  user-select: none;
+}
+
+.kinetic-quote-text {
+  position: relative;
+  z-index: 1;
+  margin: 0.35rem 0 0;
+  padding-top: 0.35rem;
+  font-family: var(--t5-font-display, georgia, serif);
+  font-size: clamp(1.75rem, 3.8vw, 2.9rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: var(--t5-ink, #0e1116);
+}
+
+.kinetic-quote-word {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(1rem);
+}
+
+.kinetic-quote.is-visible .kinetic-quote-word {
+  animation: t5-word-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i) * 0.045s) both;
+}
+
+.kinetic-quote-attr {
+  position: relative;
+  z-index: 1;
+  margin: 1.15rem 0 0;
+  padding-top: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--theme-color, #c4a574);
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.kinetic-quote-attr::before {
+  content: '—';
+  margin-right: 0.45em;
+}
+
+.kinetic-quote.is-visible .kinetic-quote-attr {
+  animation: t5-word-in 0.7s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes t5-word-in {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kinetic-quote-word,
+  .kinetic-quote-attr,
+  .kinetic-quote-line {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .kinetic-quote-mark {
+    transform: none;
+  }
+}
