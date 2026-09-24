@@ -1,0 +1,222 @@
+.media-carousel {
+  --mc-ink: var(--t5-ink, #0e1116);
+  --mc-paper: var(--t5-paper, #f7f5f2);
+  --mc-muted: var(--t5-muted, #6b727a);
+  --mc-accent: var(--theme-color, #c4a574);
+  --mc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.media-carousel-intro {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 40rem;
+  margin: 0 auto 1.75rem;
+  text-align: center;
+}
+
+.media-carousel-eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mc-accent);
+}
+
+.media-carousel-eyebrow em,
+.media-carousel-eyebrow i {
+  font-style: normal;
+}
+
+.media-carousel-intro :is(h2, h3) {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.media-carousel-caption p {
+  margin: 0;
+  color: rgb(247 245 242 / 78%);
+}
+
+.media-carousel-intro p:not(.media-carousel-eyebrow) {
+  margin: 0 auto;
+  max-width: 42ch;
+  color: var(--mc-muted);
+}
+
+.media-carousel-shell {
+  position: relative;
+}
+
+.media-carousel-viewport {
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--mc-accent) 28%, transparent);
+  background: var(--mc-ink);
+  outline: none;
+}
+
+.media-carousel-track {
+  display: flex;
+  transition: transform 0.7s var(--mc-ease);
+  will-change: transform;
+}
+
+.media-carousel-slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+
+.media-carousel-media {
+  position: relative;
+  height: min(38svh, 340px);
+  overflow: hidden;
+  background: #12151a;
+}
+
+.media-carousel-media picture,
+.media-carousel-media img,
+.media-carousel-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-carousel-video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.media-carousel-media.is-playing .media-carousel-video {
+  opacity: 1;
+}
+
+.media-carousel-media.is-playing picture,
+.media-carousel-media.is-playing > img {
+  opacity: 0;
+}
+
+.media-carousel-play {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--mc-accent) 55%, transparent);
+  border-radius: 50%;
+  background: rgb(14 17 22 / 55%);
+  backdrop-filter: blur(8px);
+  color: var(--mc-paper);
+  cursor: pointer;
+}
+
+.media-carousel-play span {
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+  margin-left: 1.1rem;
+  border-style: solid;
+  border-width: 0.4rem 0 0.4rem 0.65rem;
+  border-color: transparent transparent transparent var(--mc-paper);
+}
+
+.media-carousel-media.is-playing .media-carousel-play span {
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0;
+  background:
+    linear-gradient(var(--mc-paper), var(--mc-paper)) 0 0 / 0.2rem 100% no-repeat,
+    linear-gradient(var(--mc-paper), var(--mc-paper)) 100% 0 / 0.2rem 100% no-repeat;
+}
+
+.media-carousel-caption {
+  padding: 1.1rem 1.25rem 1.25rem;
+  background: color-mix(in srgb, var(--mc-ink) 92%, var(--mc-accent));
+  color: var(--mc-paper);
+}
+
+.media-carousel-caption :is(h2, h3, h4) {
+  margin: 0 0 0.35rem;
+  color: var(--mc-paper);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+}
+
+.media-carousel-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.media-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.media-carousel-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--mc-accent) 40%, transparent);
+  background: transparent;
+  color: var(--mc-ink);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.media-carousel-btn:hover,
+.media-carousel-btn:focus-visible {
+  background: var(--mc-ink);
+  border-color: var(--mc-ink);
+  color: var(--mc-paper);
+  outline: 2px solid var(--mc-accent);
+  outline-offset: 2px;
+}
+
+.media-carousel-dots {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.media-carousel-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--mc-ink) 25%, transparent);
+  cursor: pointer;
+}
+
+.media-carousel-dot.is-active,
+.media-carousel-dot:hover,
+.media-carousel-dot:focus-visible {
+  background: var(--mc-accent);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-carousel-track {
+    transition: none;
+  }
+}

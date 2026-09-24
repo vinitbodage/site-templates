@@ -9,14 +9,19 @@
     "id": "section",
     "components": [
       "fragment",
+      "orbit-hero",
       "signature-hero",
       "editorial-split",
       "experience-rail",
       "marquee-strip",
       "spotlight",
+      "media-carousel",
+      "spotlight-grid",
+      "premium-membership",
       "kinetic-quote",
       "timeline-flow",
       "theme-picker",
+      "spacer",
       "image",
       "text"
     ]

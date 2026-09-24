@@ -80,6 +80,18 @@
           }
         },
         {
+          "title": "Orbit Hero",
+          "id": "orbit-hero",
+          "model": "orbit-hero",
+          "plugins": {
+            "da": {
+              "rows": 3,
+              "columns": 3,
+              "unsafeHTML": "<div class=\"orbit-hero\"><div><div><picture><img loading=\"eager\"></picture></div><div>Suites</div><div><p><em>Stay</em></p><h1>Headline</h1><p>Support</p><p><a href=\"#\">Explore</a></p></div></div><div><div><picture><img loading=\"lazy\"></picture></div><div>Dining</div><div><p><em>Taste</em></p><h2>Headline</h2><p>Support</p><p><a href=\"#\">Explore</a></p></div></div><div><div><picture><img loading=\"lazy\"></picture></div><div>Spa</div><div><p><em>Restore</em></p><h2>Headline</h2><p>Support</p><p><a href=\"#\">Explore</a></p></div></div></div>"
+            }
+          }
+        },
+        {
           "title": "Signature Hero",
           "id": "signature-hero",
           "model": "signature-hero",
@@ -158,6 +170,42 @@
           }
         },
         {
+          "title": "Media Carousel",
+          "id": "media-carousel",
+          "model": "media-carousel",
+          "plugins": {
+            "da": {
+              "rows": 3,
+              "columns": 2,
+              "unsafeHTML": "<div class=\"media-carousel\"><div><div><p><em>Gallery</em></p><h2>Heading</h2><p>Optional intro</p></div></div><div><div><picture><img loading=\"lazy\"></picture></div><div><h3>Slide title</h3><p>Caption</p></div></div><div><div><picture><img loading=\"lazy\"></picture><p><a href=\"\">Watch film</a></p></div><div><h3>Video slide</h3><p>Caption</p></div></div></div>"
+            }
+          }
+        },
+        {
+          "title": "Spotlight Grid",
+          "id": "spotlight-grid",
+          "model": "spotlight-grid",
+          "plugins": {
+            "da": {
+              "rows": 4,
+              "columns": 2,
+              "unsafeHTML": "<div class=\"spotlight-grid cols-3\"><div><div><p><em>Collection</em></p><h2>Heading</h2><p>Optional intro</p></div></div><div><div><picture><img loading=\"lazy\"></picture></div><div><h3>Item</h3><p>Caption</p></div></div><div><div><picture><img loading=\"lazy\"></picture></div><div><h3>Item</h3><p>Caption</p></div></div><div><div><picture><img loading=\"lazy\"></picture><p><a href=\"\">Watch film</a></p></div><div><h3>Video item</h3><p>Caption</p></div></div></div>"
+            }
+          }
+        },
+        {
+          "title": "Premium Membership",
+          "id": "premium-membership",
+          "model": "premium-membership",
+          "plugins": {
+            "da": {
+              "rows": 5,
+              "columns": 1,
+              "unsafeHTML": "<div class=\"premium-membership\"><div><div><p><em>Membership</em></p><h2>Solenne Circle</h2><p>Unlock quieter arrivals and considered privileges.</p><p>€180 / year</p></div></div><div><div>Priority suite holds before public release</div></div><div><div>Complimentary courtyard breakfast each morning</div></div><div><div>Late checkout until 2pm when available</div></div><div><div>Private rooftop hour once per stay</div></div></div>"
+            }
+          }
+        },
+        {
           "title": "Theme Picker",
           "id": "theme-picker",
           "model": "theme-picker",
@@ -166,6 +214,18 @@
               "name": "theme-picker",
               "rows": 1,
               "columns": 1
+            }
+          }
+        },
+        {
+          "title": "Spacer",
+          "id": "spacer",
+          "model": "spacer",
+          "plugins": {
+            "da": {
+              "rows": 2,
+              "columns": 2,
+              "unsafeHTML": "<div class=\"spacer\"><div><div>Size</div><div>48</div></div><div><div>Side</div><div>top</div></div></div>"
             }
           }
         }

@@ -1,9 +1,9 @@
 /**
- * Cinematic spotlight — full-bleed media with interactive video, pointer beam,
- * and floating story panel.
+ * Spotlight — editorial feature with media + story copy.
+ * Optional video link on the media cell; optional short stat cell.
  *
  * Authored cells (any order in one or more rows):
- * - Media: picture/img and optional video link (.mp4 / youtube / vimeo)
+ * - Media: picture/img and optional video link (.mp4)
  * - Copy: eyebrow, heading, body, CTA
  * - Stat: short numeral cell (e.g. "18 suites")
  * @param {Element} block
@@ -11,19 +11,14 @@
 export default function decorate(block) {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const stage = document.createElement('div');
-  stage.className = 'spotlight-stage';
+  const layout = document.createElement('div');
+  layout.className = 'spotlight-layout';
+
+  const mediaFrame = document.createElement('div');
+  mediaFrame.className = 'spotlight-media-frame';
 
   const media = document.createElement('div');
   media.className = 'spotlight-media';
-
-  const veil = document.createElement('div');
-  veil.className = 'spotlight-veil';
-  veil.setAttribute('aria-hidden', 'true');
-
-  const beam = document.createElement('div');
-  beam.className = 'spotlight-beam';
-  beam.setAttribute('aria-hidden', 'true');
 
   const copy = document.createElement('div');
   copy.className = 'spotlight-copy';
@@ -43,7 +38,9 @@ export default function decorate(block) {
       const img = cell.querySelector('img');
       const videoLink = [...cell.querySelectorAll('a[href]')].find((a) => isVideoUrl(a.href));
       const text = cell.textContent.trim();
-      const isStat = /^\d+/.test(text) && text.length < 28 && !cell.querySelector('a, h2, h3, picture, img');
+      const isStat = /^\d+/.test(text)
+        && text.length < 28
+        && !cell.querySelector('a, h2, h3, picture, img');
 
       if ((picture || img || videoLink) && !poster && !videoUrl) {
         if (picture || img) poster = picture || img;
@@ -119,16 +116,7 @@ export default function decorate(block) {
     a.closest('p')?.classList.add('button-container');
   });
 
-  const panel = document.createElement('div');
-  panel.className = 'spotlight-panel';
-  panel.append(copy);
-  if (aside.childElementCount) panel.append(aside);
-
-  const tag = document.createElement('p');
-  tag.className = 'spotlight-tag';
-  tag.textContent = 'In the spotlight';
-
-  stage.append(media, veil, beam, tag, panel);
+  mediaFrame.append(media);
 
   if (video) {
     const scrub = document.createElement('div');
@@ -144,7 +132,7 @@ export default function decorate(block) {
     playBtn.innerHTML = '<span class="spotlight-play-icon" aria-hidden="true"></span><span class="spotlight-play-label">Play film</span>';
 
     const setPlaying = (playing) => {
-      stage.classList.toggle('is-playing', playing);
+      mediaFrame.classList.toggle('is-playing', playing);
       playBtn.setAttribute('aria-label', playing ? 'Pause spotlight video' : 'Play spotlight video');
       playBtn.querySelector('.spotlight-play-label').textContent = playing ? 'Pause film' : 'Play film';
     };
@@ -168,7 +156,7 @@ export default function decorate(block) {
       scrubFill.style.width = `${(video.currentTime / video.duration) * 100}%`;
     });
 
-    stage.append(playBtn, scrub);
+    mediaFrame.append(playBtn, scrub);
 
     if (!reduceMotion) {
       const autoPlayIo = new IntersectionObserver((entries) => {
@@ -185,7 +173,13 @@ export default function decorate(block) {
     }
   }
 
-  block.replaceChildren(stage);
+  const content = document.createElement('div');
+  content.className = 'spotlight-content';
+  content.append(copy);
+  if (aside.childElementCount) content.append(aside);
+
+  layout.append(mediaFrame, content);
+  block.replaceChildren(layout);
   block.closest('.section')?.classList.add('spotlight-container');
 
   const io = new IntersectionObserver((entries) => {
@@ -197,23 +191,4 @@ export default function decorate(block) {
     });
   }, { threshold: 0.2 });
   io.observe(block);
-
-  if (!reduceMotion) {
-    const onMove = (event) => {
-      const rect = stage.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width) * 100;
-      const y = ((event.clientY - rect.top) / rect.height) * 100;
-      stage.style.setProperty('--spot-x', `${x}%`);
-      stage.style.setProperty('--spot-y', `${y}%`);
-      const shiftX = ((x / 100) - 0.5) * -18;
-      const shiftY = ((y / 100) - 0.5) * -12;
-      media.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) scale(1.08)`;
-    };
-    stage.addEventListener('pointermove', onMove);
-    stage.addEventListener('pointerleave', () => {
-      stage.style.setProperty('--spot-x', '68%');
-      stage.style.setProperty('--spot-y', '35%');
-      media.style.transform = 'translate3d(0, 0, 0) scale(1.05)';
-    });
-  }
 }

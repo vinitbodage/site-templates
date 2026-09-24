@@ -147,15 +147,38 @@
   margin: 0.6rem 0 0;
 }
 
-body.template5 .signature-hero-content a.button:any-link {
+.signature-hero-content a:any-link,
+.signature-hero-content a.button:any-link {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  border-color: var(--theme-color, #c4a574);
+  box-sizing: border-box;
+  min-width: 10rem;
+  margin: 0;
+  padding: 0.95rem 1.6rem;
+  border: 1px solid var(--theme-color, #c4a574);
+  border-radius: 0;
   background: transparent;
   color: var(--t5-paper, #f7f5f2);
+  font-family: var(--t5-font-body, 'Manrope', 'Segoe UI', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-body.template5 .signature-hero-content a.button:any-link::before {
+.signature-hero-content a:any-link::before,
+.signature-hero-content a.button:any-link::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -163,13 +186,18 @@ body.template5 .signature-hero-content a.button:any-link::before {
   transform: translateX(-120%);
 }
 
-body.template5 .signature-hero-content a.button:any-link:hover {
+.signature-hero-content a:any-link:hover,
+.signature-hero-content a:any-link:focus-visible,
+.signature-hero-content a.button:any-link:hover,
+.signature-hero-content a.button:any-link:focus-visible {
   background: var(--theme-color, #c4a574);
   border-color: var(--theme-color, #c4a574);
   color: var(--t5-ink, #0e1116);
+  text-decoration: none;
 }
 
-body.template5 .signature-hero.is-animated .signature-hero-content a.button:any-link::before {
+.signature-hero.is-animated .signature-hero-content a:any-link::before,
+.signature-hero.is-animated .signature-hero-content a.button:any-link::before {
   animation: t5-hero-shimmer 2.8s 1.4s ease-in-out infinite;
 }
 
@@ -288,6 +316,7 @@ body.template5 .signature-hero.is-animated .signature-hero-content a.button:any-
   .signature-hero.is-ready .signature-hero-media img,
   .signature-hero.is-animated .signature-hero-media img,
   .signature-hero.is-animated .signature-hero-sweep,
+  body.template5 .signature-hero.is-animated .signature-hero-content a:any-link::before,
   body.template5 .signature-hero.is-animated .signature-hero-content a.button:any-link::before {
     animation: none !important;
   }

@@ -90,6 +90,80 @@ body.template5 main p {
   color: var(--t5-ink-soft);
 }
 
+/* Light text on dark surfaces (overrides global main heading/paragraph colors) */
+body.template5 main :is(
+  .orbit-hero,
+  .signature-hero,
+  .marquee-strip,
+  .experience-rail-card,
+  .media-carousel-caption,
+  .media-carousel-viewport
+) :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--t5-paper);
+}
+
+body.template5 main :is(
+  .orbit-hero,
+  .signature-hero,
+  .marquee-strip,
+  .experience-rail-card,
+  .media-carousel-caption
+) p {
+  color: rgb(247 245 242 / 84%);
+}
+
+body.template5 main .premium-membership-popup :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--t5-paper);
+}
+
+body.template5 main .premium-membership-popup :is(p, li, span) {
+  color: rgb(247 245 242 / 90%);
+}
+
+body.template5 main .premium-membership-popup .premium-membership-confirm {
+  color: var(--theme-color);
+}
+
+body.template5 main .premium-membership-popup .premium-membership-close {
+  color: var(--t5-paper);
+}
+
+body.template5 main :is(
+  .orbit-hero,
+  .signature-hero,
+  .experience-rail-card
+) a:any-link {
+  color: var(--t5-paper);
+}
+
+body.template5 main .orbit-hero .orbit-hero-eyebrow,
+body.template5 main .signature-hero .signature-hero-brand,
+body.template5 main .spotlight .spotlight-eyebrow {
+  color: var(--theme-color);
+}
+
+body.template5 main .orbit-hero .orbit-hero-copy p:not(.orbit-hero-eyebrow, :has(.orbit-hero-cta)),
+body.template5 main .signature-hero-content p:not(.signature-hero-brand, .button-container) {
+  color: rgb(247 245 242 / 82%);
+}
+
+body.template5 main .spotlight-copy p:not(.spotlight-eyebrow, .button-container) {
+  color: var(--t5-muted);
+}
+
+body.template5 main .spotlight-copy :is(h2, h3) {
+  color: var(--t5-ink);
+}
+
+body.template5 main .experience-rail-card-body p {
+  color: rgb(247 245 242 / 78%);
+}
+
+body.template5 main .marquee-strip,
+body.template5 main .marquee-strip .marquee-strip-item {
+  color: var(--t5-stone);
+}
+
 body.template5 a.button:any-link,
 body.template5 main a.button:any-link,
 body.template5 button.button {
@@ -136,59 +210,95 @@ body.template5 main a.button.secondary:any-link:hover {
   color: var(--t5-paper);
 }
 
-/* Footer links before header brand links (lower specificity first) */
-body.template5 footer a {
-  color: var(--theme-color);
+/* Header */
+body.template5 {
+  --header-height: 92px;
 }
 
-/* Header */
 body.template5 header .nav-wrapper {
-  background: rgb(247 245 242 / 88%);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgb(14 17 22 / 8%);
+  background: rgb(247 245 242 / 82%);
+  backdrop-filter: blur(18px) saturate(1.2);
+  border-bottom: 1px solid color-mix(in srgb, var(--theme-color) 22%, transparent);
+  box-shadow: 0 10px 40px rgb(14 17 22 / 4%);
+  transition:
+    background 0.35s var(--t5-ease),
+    box-shadow 0.35s var(--t5-ease);
 }
 
 body.template5 header nav {
   max-width: var(--t5-max);
+  min-height: var(--header-height);
 }
 
 body.template5 header .nav-brand a {
+  position: relative;
   font-family: var(--t5-font-display);
-  font-size: 1.55rem;
+  font-size: clamp(1.45rem, 2vw, 1.75rem);
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: var(--t5-ink);
   text-decoration: none;
   transition: color 0.3s var(--t5-ease);
 }
 
+body.template5 header .nav-brand a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 2.25rem;
+  height: 1px;
+  background: var(--theme-color);
+  transition: width 0.35s var(--t5-ease);
+}
+
+body.template5 header .nav-brand a:hover,
+body.template5 header .nav-brand a:focus-visible {
+  color: var(--theme-color-deep);
+}
+
+body.template5 header .nav-brand a:hover::after,
+body.template5 header .nav-brand a:focus-visible::after {
+  width: 100%;
+}
+
 body.template5 header .nav-sections a {
   position: relative;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--t5-ink-soft);
+  text-decoration: none;
   transition: color 0.3s var(--t5-ease);
+}
+
+body.template5 header .nav-sections a:hover,
+body.template5 header .nav-sections a:focus-visible {
+  color: var(--t5-ink);
 }
 
 body.template5 header .nav-tools a.button:any-link {
   min-width: 0;
-  padding: 0.7rem 1.1rem;
-  background: transparent;
-  border-color: var(--theme-color);
-  color: var(--t5-ink);
+  padding: 0.75rem 1.25rem;
+  background: var(--t5-ink);
+  border-color: var(--t5-ink);
+  color: var(--t5-paper);
+  letter-spacing: 0.16em;
 }
 
-body.template5 header .nav-tools a.button:any-link:hover {
+body.template5 header .nav-tools a.button:any-link:hover,
+body.template5 header .nav-tools a.button:any-link:focus-visible {
   background: var(--theme-color);
+  border-color: var(--theme-color);
+  color: var(--t5-ink);
 }
 
 body.template5 header .nav-sections a::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -0.35rem;
+  bottom: -0.4rem;
   width: 100%;
   height: 1px;
   background: var(--theme-color);
@@ -202,45 +312,125 @@ body.template5 header .nav-sections a:focus-visible::after {
   transform: scaleX(1);
 }
 
+body.template5 header .nav-hamburger button {
+  background: transparent;
+}
+
 /* Footer */
 body.template5 footer {
-  background: var(--t5-ink);
+  background:
+    radial-gradient(800px 320px at 10% 0%, color-mix(in srgb, var(--theme-color) 16%, transparent), transparent 60%),
+    var(--t5-ink);
   color: var(--t5-stone);
+  border-top: 1px solid color-mix(in srgb, var(--theme-color) 35%, transparent);
+}
+
+body.template5 footer a {
+  color: var(--theme-color);
+  text-decoration: none;
+  transition: color 0.3s var(--t5-ease);
+}
+
+body.template5 footer a:hover,
+body.template5 footer a:focus-visible {
+  color: var(--t5-paper);
 }
 
 body.template5 footer .footer {
   max-width: var(--t5-max);
   margin: 0 auto;
-  padding: 4rem 1.5rem 2.5rem;
+  padding: 0;
+}
+
+body.template5 footer .footer > div {
+  display: grid;
+  gap: 2rem 2.5rem;
+  max-width: none;
+  margin: 0;
+  padding: clamp(3.5rem, 6vw, 5rem) 1.5rem 2rem;
+}
+
+body.template5 footer .footer > div > :is(.section, div) {
+  min-width: 0;
+}
+
+@media (width >= 900px) {
+  body.template5 footer .footer > div {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    align-items: start;
+    padding-inline: 2rem;
+  }
+
+  body.template5 footer .footer > div > :is(.section, div):last-child {
+    grid-column: 1 / -1;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgb(247 245 242 / 12%);
+  }
 }
 
 body.template5 footer h3 {
   font-family: var(--t5-font-display);
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 500;
   color: var(--t5-paper);
   margin: 0 0 1rem;
+  letter-spacing: 0.02em;
 }
 
-/* Section rhythm */
+body.template5 footer p,
+body.template5 footer li {
+  color: rgb(231 228 223 / 78%);
+  line-height: 1.7;
+}
+
+body.template5 footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+body.template5 footer li a {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+body.template5 footer .footer > div > :is(.section, div):first-child h3 {
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+}
+
+body.template5 footer .footer > div > :is(.section, div):first-child p:first-of-type {
+  max-width: 28ch;
+}
+
+/* Section rhythm — no default vertical spacing; use Spacer block instead */
 body.template5 main > .section {
-  padding: var(--t5-section-y) 0;
-}
-
-body.template5 main > .section + .section {
-  padding-top: calc(var(--t5-section-y) * 0.55);
-}
-
-body.template5 main > .section.full-bleed,
-body.template5 main > .section.signature-hero-container {
+  margin: 0;
   padding: 0;
 }
 
-body.template5 main > .section.marquee-strip-container {
-  padding-block: 1.25rem;
+body.template5 main > .section + .section {
+  padding-top: 0;
 }
 
-body.template5 main > .section.spotlight-container,
+body.template5 main > .section.full-bleed,
+body.template5 main > .section.signature-hero-container,
+body.template5 main > .section.orbit-hero-container,
+body.template5 main > .section.marquee-strip-container,
+body.template5 main > .section.spacer-container {
+  margin: 0;
+  padding: 0;
+}
+
+body.template5 main > .section.spotlight-container {
+  padding-block: 0;
+  padding-inline: 1.25rem;
+}
+
 body.template5 main > .section.experience-rail-container {
   padding-block: 0;
 }
@@ -251,11 +441,17 @@ body.template5 main > .section > div {
   padding-inline: 1.25rem;
 }
 
-body.template5 main > .section.spotlight-container > div,
+body.template5 main > .section.spotlight-container > div {
+  max-width: var(--t5-max);
+  padding-inline: 0;
+}
+
 body.template5 main > .section.experience-rail-container > div,
 body.template5 main > .section.full-bleed > div,
 body.template5 main > .section.signature-hero-container > div,
-body.template5 main > .section.marquee-strip-container > div {
+body.template5 main > .section.orbit-hero-container > div,
+body.template5 main > .section.marquee-strip-container > div,
+body.template5 main > .section.spacer-container > div {
   max-width: none;
   padding-inline: 0;
 }

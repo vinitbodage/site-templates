@@ -24,11 +24,27 @@
 .marquee-strip-track {
   display: flex;
   width: max-content;
-  animation: t5-marquee 42s linear infinite;
+  animation: marquee-strip-scroll 42s linear infinite;
 }
 
 .marquee-strip:hover .marquee-strip-track {
   animation-play-state: paused;
+}
+
+@keyframes marquee-strip-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-strip-track {
+    animation: none;
+  }
 }
 
 .marquee-strip-group {

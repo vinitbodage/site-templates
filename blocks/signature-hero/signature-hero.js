@@ -37,7 +37,15 @@ export default function decorate(block) {
 
   content.querySelectorAll('a').forEach((a) => {
     a.classList.add('button');
-    a.closest('p')?.classList.add('button-container');
+    const parent = a.parentElement;
+    if (parent && (parent.tagName === 'P' || parent.tagName === 'DIV')) {
+      parent.classList.add('button-container');
+    } else {
+      const wrap = document.createElement('p');
+      wrap.className = 'button-container';
+      a.replaceWith(wrap);
+      wrap.append(a);
+    }
   });
 
   media.querySelectorAll('img').forEach((img) => {

@@ -23,6 +23,10 @@
   color: var(--t5-muted, #6b727a);
 }
 
+.timeline-flow-list-wrap {
+  position: relative;
+}
+
 .timeline-flow-spine {
   position: absolute;
   left: 1.15rem;
