@@ -54,10 +54,14 @@ export default function decorate(block) {
   spine.className = 'timeline-flow-spine';
   spine.setAttribute('aria-hidden', 'true');
 
+  const listWrap = document.createElement('div');
+  listWrap.className = 'timeline-flow-list-wrap';
+  listWrap.append(spine, list);
+
   const shell = document.createElement('div');
   shell.className = 'timeline-flow-shell';
   if (intro.childNodes.length) shell.append(intro);
-  shell.append(spine, list);
+  shell.append(listWrap);
   block.replaceChildren(shell);
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -1,0 +1,23 @@
+.spacer {
+  display: block;
+  box-sizing: content-box;
+  margin: 0;
+  border: 0;
+  height: 0;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
+main > .section.spacer-container {
+  margin: 0;
+  padding: 0;
+}
+
+main > .section.spacer-container > div {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}

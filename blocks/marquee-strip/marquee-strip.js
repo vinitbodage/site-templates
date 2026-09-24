@@ -4,7 +4,7 @@
  * @param {Element} block
  */
 export default function decorate(block) {
-  const phrases = [...block.querySelectorAll(':scope > div > div, :scope > div')]
+  const phrases = [...block.querySelectorAll(':scope > div > div')]
     .map((el) => el.textContent.trim())
     .filter(Boolean);
 

@@ -1,0 +1,294 @@
+.premium-membership {
+  --pm-ink: var(--t5-ink, #0e1116);
+  --pm-paper: var(--t5-paper, #f7f5f2);
+  --pm-muted: var(--t5-muted, #6b727a);
+  --pm-accent: var(--theme-color, #c4a574);
+  --pm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-membership-card {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 420px;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid color-mix(in srgb, var(--pm-accent) 40%, transparent);
+  background:
+    linear-gradient(165deg, color-mix(in srgb, var(--pm-accent) 12%, var(--pm-paper)) 0%, var(--pm-paper) 45%),
+    var(--pm-paper);
+  box-shadow: 0 18px 48px rgb(14 17 22 / 8%);
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s var(--pm-ease),
+    transform 0.6s var(--pm-ease),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.premium-membership.is-visible .premium-membership-card {
+  opacity: 1;
+  transform: none;
+}
+
+.premium-membership-card.is-subscribed {
+  border-color: var(--pm-accent);
+  box-shadow:
+    0 18px 48px rgb(14 17 22 / 10%),
+    0 0 0 1px color-mix(in srgb, var(--pm-accent) 35%, transparent);
+}
+
+.premium-membership-copy {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.premium-membership-eyebrow {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pm-accent);
+}
+
+.premium-membership-eyebrow em,
+.premium-membership-eyebrow i {
+  font-style: normal;
+}
+
+.premium-membership-copy :is(h2, h3) {
+  margin: 0;
+  font-size: clamp(1.85rem, 3.5vw, 2.4rem);
+  color: var(--pm-ink);
+  line-height: 1.1;
+}
+
+.premium-membership-copy p:not(.premium-membership-eyebrow, .premium-membership-price) {
+  margin: 0;
+  color: var(--pm-muted);
+  line-height: 1.6;
+}
+
+.premium-membership-price {
+  margin: 0.25rem 0 0;
+  font-family: var(--t5-font-display, georgia, serif);
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  color: var(--pm-ink);
+  letter-spacing: -0.02em;
+}
+
+.premium-membership-toggle-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid color-mix(in srgb, var(--pm-accent) 25%, transparent);
+}
+
+.premium-membership-toggle-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pm-ink);
+}
+
+.premium-membership-toggle {
+  position: relative;
+  width: 3.4rem;
+  height: 1.9rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--pm-ink) 18%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--pm-ink) 10%, var(--pm-paper));
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.premium-membership-toggle-thumb {
+  position: absolute;
+  top: 0.18rem;
+  left: 0.18rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: var(--pm-paper);
+  box-shadow: 0 4px 12px rgb(14 17 22 / 18%);
+  transition: transform 0.3s var(--pm-ease);
+}
+
+.premium-membership-toggle[aria-checked='true'] {
+  background: var(--pm-accent);
+  border-color: var(--pm-accent);
+}
+
+.premium-membership-toggle[aria-checked='true'] .premium-membership-toggle-thumb {
+  transform: translateX(1.45rem);
+}
+
+.premium-membership-toggle:focus-visible {
+  outline: 2px solid var(--pm-accent);
+  outline-offset: 3px;
+}
+
+.premium-membership-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgb(14 17 22 / 0%);
+  pointer-events: none;
+  transition: background 0.35s ease;
+}
+
+/* Author `display` must not override the hidden attribute */
+.premium-membership-overlay[hidden] {
+  display: none !important;
+}
+
+.premium-membership-overlay.is-open {
+  background: rgb(14 17 22 / 55%);
+  pointer-events: auto;
+}
+
+.premium-membership-popup {
+  position: relative;
+  width: min(100%, 28rem);
+  max-height: min(86svh, 640px);
+  overflow: auto;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid color-mix(in srgb, var(--pm-accent) 45%, transparent);
+  background:
+    radial-gradient(600px 240px at 100% 0%, color-mix(in srgb, var(--pm-accent) 18%, transparent), transparent 60%),
+    var(--pm-ink);
+  color: var(--pm-paper);
+  box-shadow: 0 28px 80px rgb(0 0 0 / 35%);
+  opacity: 0;
+  transform: translateY(28px) scale(0.96);
+  transition:
+    opacity 0.4s var(--pm-ease),
+    transform 0.4s var(--pm-ease);
+}
+
+.premium-membership-popup.is-open {
+  opacity: 1;
+  transform: none;
+}
+
+.premium-membership-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgb(247 245 242 / 35%);
+  border-radius: 50%;
+  background: rgb(247 245 242 / 8%);
+  color: var(--pm-paper);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.premium-membership-close:hover,
+.premium-membership-close:focus-visible {
+  border-color: var(--pm-accent);
+  color: var(--pm-accent);
+  outline: none;
+}
+
+.premium-membership-popup :is(h2, h3, h4) {
+  margin: 0 2rem 0.65rem 0;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  color: var(--pm-paper);
+}
+
+.premium-membership-popup-lead {
+  margin: 0 0 1.25rem;
+  color: rgb(247 245 242 / 88%);
+  line-height: 1.6;
+}
+
+.premium-membership-benefits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.premium-membership-benefits li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgb(247 245 242 / 18%);
+  background: rgb(247 245 242 / 8%);
+  color: var(--pm-paper);
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.premium-membership-benefits li span {
+  color: var(--pm-paper);
+}
+
+.premium-membership-popup.is-open .premium-membership-benefits li {
+  animation: premium-benefit-in 0.45s calc(0.12s + (var(--i) * 0.07s)) var(--pm-ease) both;
+}
+
+.premium-membership-benefit-mark {
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0.45rem;
+  border-radius: 50%;
+  background: var(--pm-accent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--pm-accent) 55%, transparent);
+}
+
+.premium-membership-confirm {
+  margin: 1.25rem 0 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pm-accent);
+}
+
+body.premium-membership-lock {
+  overflow: hidden;
+}
+
+@keyframes premium-benefit-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-membership-card,
+  .premium-membership-popup,
+  .premium-membership-benefits li,
+  .premium-membership-toggle-thumb {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
