@@ -17,8 +17,8 @@ export default function decorate(block) {
 
   let sizeRaw = String(config.size || config.padding || config.height || '').trim();
   if (!sizeRaw) {
-    const match = plain.match(/(\d+)\s*px?/i);
-    if (match) sizeRaw = match[1];
+    const [, matchedSize] = plain.match(/(\d+)\s*px?/i) || [];
+    if (matchedSize) sizeRaw = matchedSize;
   }
 
   const px = Math.max(0, parseInt(sizeRaw.replace(/[^\d]/g, ''), 10) || 0);
