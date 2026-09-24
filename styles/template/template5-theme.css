@@ -3,6 +3,9 @@
  * Midnight ink, cool stone, champagne metal. Premium boutique hospitality.
  */
 
+/* Theme scopes header/footer/main separately; selector order follows cascade, not global specificity rank. */
+/* stylelint-disable no-descending-specificity */
+
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap');
 
 body.template5 {
@@ -28,7 +31,7 @@ body.template5 {
   --text-color: var(--t5-ink);
   --link-color: var(--t5-slate);
   --link-hover-color: var(--theme-color-deep);
-  --header-height: 88px;
+  --header-height: 92px;
   --body-font-family: var(--t5-font-body);
   --heading-font-family: var(--t5-font-display);
 
@@ -90,80 +93,6 @@ body.template5 main p {
   color: var(--t5-ink-soft);
 }
 
-/* Light text on dark surfaces (overrides global main heading/paragraph colors) */
-body.template5 main :is(
-  .orbit-hero,
-  .signature-hero,
-  .marquee-strip,
-  .experience-rail-card,
-  .media-carousel-caption,
-  .media-carousel-viewport
-) :is(h1, h2, h3, h4, h5, h6) {
-  color: var(--t5-paper);
-}
-
-body.template5 main :is(
-  .orbit-hero,
-  .signature-hero,
-  .marquee-strip,
-  .experience-rail-card,
-  .media-carousel-caption
-) p {
-  color: rgb(247 245 242 / 84%);
-}
-
-body.template5 main .premium-membership-popup :is(h1, h2, h3, h4, h5, h6) {
-  color: var(--t5-paper);
-}
-
-body.template5 main .premium-membership-popup :is(p, li, span) {
-  color: rgb(247 245 242 / 90%);
-}
-
-body.template5 main .premium-membership-popup .premium-membership-confirm {
-  color: var(--theme-color);
-}
-
-body.template5 main .premium-membership-popup .premium-membership-close {
-  color: var(--t5-paper);
-}
-
-body.template5 main :is(
-  .orbit-hero,
-  .signature-hero,
-  .experience-rail-card
-) a:any-link {
-  color: var(--t5-paper);
-}
-
-body.template5 main .orbit-hero .orbit-hero-eyebrow,
-body.template5 main .signature-hero .signature-hero-brand,
-body.template5 main .spotlight .spotlight-eyebrow {
-  color: var(--theme-color);
-}
-
-body.template5 main .orbit-hero .orbit-hero-copy p:not(.orbit-hero-eyebrow, :has(.orbit-hero-cta)),
-body.template5 main .signature-hero-content p:not(.signature-hero-brand, .button-container) {
-  color: rgb(247 245 242 / 82%);
-}
-
-body.template5 main .spotlight-copy p:not(.spotlight-eyebrow, .button-container) {
-  color: var(--t5-muted);
-}
-
-body.template5 main .spotlight-copy :is(h2, h3) {
-  color: var(--t5-ink);
-}
-
-body.template5 main .experience-rail-card-body p {
-  color: rgb(247 245 242 / 78%);
-}
-
-body.template5 main .marquee-strip,
-body.template5 main .marquee-strip .marquee-strip-item {
-  color: var(--t5-stone);
-}
-
 body.template5 a.button:any-link,
 body.template5 main a.button:any-link,
 body.template5 button.button {
@@ -211,10 +140,6 @@ body.template5 main a.button.secondary:any-link:hover {
 }
 
 /* Header */
-body.template5 {
-  --header-height: 92px;
-}
-
 body.template5 header .nav-wrapper {
   background: rgb(247 245 242 / 82%);
   backdrop-filter: blur(18px) saturate(1.2);
@@ -252,16 +177,6 @@ body.template5 header .nav-brand a::after {
   transition: width 0.35s var(--t5-ease);
 }
 
-body.template5 header .nav-brand a:hover,
-body.template5 header .nav-brand a:focus-visible {
-  color: var(--theme-color-deep);
-}
-
-body.template5 header .nav-brand a:hover::after,
-body.template5 header .nav-brand a:focus-visible::after {
-  width: 100%;
-}
-
 body.template5 header .nav-sections a {
   position: relative;
   font-size: 0.7rem;
@@ -273,9 +188,37 @@ body.template5 header .nav-sections a {
   transition: color 0.3s var(--t5-ease);
 }
 
+body.template5 header .nav-sections a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.4rem;
+  width: 100%;
+  height: 1px;
+  background: var(--theme-color);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s var(--t5-ease);
+}
+
+body.template5 header .nav-brand a:hover,
+body.template5 header .nav-brand a:focus-visible {
+  color: var(--theme-color-deep);
+}
+
+body.template5 header .nav-brand a:hover::after,
+body.template5 header .nav-brand a:focus-visible::after {
+  width: 100%;
+}
+
 body.template5 header .nav-sections a:hover,
 body.template5 header .nav-sections a:focus-visible {
   color: var(--t5-ink);
+}
+
+body.template5 header .nav-sections a:hover::after,
+body.template5 header .nav-sections a:focus-visible::after {
+  transform: scaleX(1);
 }
 
 body.template5 header .nav-tools a.button:any-link {
@@ -292,24 +235,6 @@ body.template5 header .nav-tools a.button:any-link:focus-visible {
   background: var(--theme-color);
   border-color: var(--theme-color);
   color: var(--t5-ink);
-}
-
-body.template5 header .nav-sections a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -0.4rem;
-  width: 100%;
-  height: 1px;
-  background: var(--theme-color);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.35s var(--t5-ease);
-}
-
-body.template5 header .nav-sections a:hover::after,
-body.template5 header .nav-sections a:focus-visible::after {
-  transform: scaleX(1);
 }
 
 body.template5 header .nav-hamburger button {
@@ -405,6 +330,83 @@ body.template5 footer .footer > div > :is(.section, div):first-child h3 {
 
 body.template5 footer .footer > div > :is(.section, div):first-child p:first-of-type {
   max-width: 28ch;
+}
+
+/* Light text on dark surfaces (overrides global main heading/paragraph colors) */
+body.template5 main :is(
+  .orbit-hero,
+  .signature-hero,
+  .marquee-strip,
+  .experience-rail-card,
+  .media-carousel-caption,
+  .media-carousel-viewport
+) :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--t5-paper);
+}
+
+body.template5 main :is(
+  .orbit-hero,
+  .signature-hero,
+  .marquee-strip,
+  .experience-rail-card,
+  .media-carousel-caption
+) p {
+  color: rgb(247 245 242 / 84%);
+}
+
+body.template5 main .premium-membership-popup :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--t5-paper);
+}
+
+body.template5 main .premium-membership-popup :is(p, li, span) {
+  color: rgb(247 245 242 / 90%);
+}
+
+body.template5 main .premium-membership-popup .premium-membership-confirm {
+  color: var(--theme-color);
+}
+
+body.template5 main .premium-membership-popup .premium-membership-close {
+  color: var(--t5-paper);
+}
+
+body.template5 main :is(
+  .orbit-hero,
+  .signature-hero,
+  .experience-rail-card
+) a:any-link {
+  color: var(--t5-paper);
+}
+
+body.template5 main .orbit-hero .orbit-hero-eyebrow,
+body.template5 main .signature-hero .signature-hero-brand,
+body.template5 main .spotlight .spotlight-eyebrow {
+  color: var(--theme-color);
+}
+
+body.template5 main .experience-rail-card-body p {
+  color: rgb(247 245 242 / 78%);
+}
+
+body.template5 main .spotlight-copy p:not(.spotlight-eyebrow, .button-container) {
+  color: var(--t5-muted);
+}
+
+body.template5 main .signature-hero-content p:not(.signature-hero-brand, .button-container) {
+  color: rgb(247 245 242 / 82%);
+}
+
+body.template5 main .orbit-hero .orbit-hero-copy p:not(.orbit-hero-eyebrow, :has(.orbit-hero-cta)) {
+  color: rgb(247 245 242 / 82%);
+}
+
+body.template5 main .spotlight-copy :is(h2, h3) {
+  color: var(--t5-ink);
+}
+
+body.template5 main .marquee-strip,
+body.template5 main .marquee-strip .marquee-strip-item {
+  color: var(--t5-stone);
 }
 
 /* Section rhythm — no default vertical spacing; use Spacer block instead */
